@@ -107,6 +107,28 @@ namespace TortolasProject.Models.Repositorios
         {
             return mtbMalagaDB.tbUsuario.Where(u => u.FKUser == user).Single().idUsuario;
         }
+
+        public void crearSocio(tbSocio socio)
+        {
+            mtbMalagaDB.tbSocio.InsertOnSubmit(socio);
+            mtbMalagaDB.SubmitChanges();
+        }
+
+        public int ultimoNumeroSocio()
+        {
+            return mtbMalagaDB.tbSocio.Max(s => s.NumeroSocio);
+        }
+
+        public Guid tipoCuota(String tipoCuota)
+        {
+            return mtbMalagaDB.tbTipoCuota.Where(tipoC => tipoC.Nombre.Equals(tipoCuota)).Single().idTipoCuota;
+        }
+
+        public void crearTipoCuota(tbTipoCuota tipoCuota)
+        {
+            mtbMalagaDB.tbTipoCuota.InsertOnSubmit(tipoCuota);
+            mtbMalagaDB.SubmitChanges();
+        }
         
     }
 }

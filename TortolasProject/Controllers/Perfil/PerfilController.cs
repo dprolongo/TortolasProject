@@ -19,6 +19,7 @@ namespace TortolasProject.Controllers.Perfil
         mtbMalagaDataContext mtbDB = new mtbMalagaDataContext();
         MensajesRepositorio mensajesRepo = new MensajesRepositorio();
         UsuariosRepositorio usuariosRepo = new UsuariosRepositorio();
+        FacturasRepositorio facturasRepo = new FacturasRepositorio();
 
 
         public ActionResult Index()
@@ -258,5 +259,73 @@ namespace TortolasProject.Controllers.Perfil
                 DescuentoTipo = cuotas.Where(cuota => cuota.Nombre.Equals("Descuento")).Single().Tipo
             });
         }
+
+        [HttpPost]
+        public void realizarPago(FormCollection data)
+        {
+            Boolean hayAlta = Boolean.Parse(data["hayAlta"]);
+            IList<tbLineaFactura> lineasFacturas = new List<tbLineaFactura>();
+            Guid usuario = usuariosRepo.obtenerUsuarioNoAsp(HomeController.obtenerUserIdActual()).idUsuario;
+
+            tbFactura factura = new tbFactura
+            {
+                idFactura = Guid.NewGuid(),
+                Concepto = data["Concepto"],    // Renovacion o alta+ reno
+                Fecha = DateTime.Today,
+                FKUsuario = usuario
+            };
+
+            if (hayAlta)
+            {
+
+                tbLineaFactura alta = new tbLineaFactura
+                {
+                    idLineaFactura = Guid.NewGuid(),
+                    Descripcion = "Alta de Socio", // informacion mas detallada
+                    FKFactura = factura.idFactura,
+                    Unidades = 1,
+                    PrecioUnitario = int.Parse(data["importeAlta"]), 
+                    Total = 1 * int.Parse(data["importeAlta"])
+                };
+
+                lineasFacturas.Add(alta);
+            }
+
+            tbLineaFactura renovacion = new tbLineaFactura
+            {
+                    idLineaFactura = Guid.NewGuid(),
+                    Descripcion = data["Descripcion"], // informacion mas detallada
+                    FKFactura = factura.idFactura,
+                    Unidades = 1,
+                    PrecioUnitario = int.Parse(data["importeRenovacion"]), //
+                    Total = 1 * int.Parse(data["importeRenovacion"])
+            };
+
+            lineasFacturas.Add(renovacion);
+            Guid socio = usuariosRepo.obtenerSocio(usuario).idSocio;
+
+            tbCuota cuota = new tbCuota
+            {
+                FKFactura = factura.idFactura,
+                idCuota = Guid.NewGuid(),
+                FKTipoCuota = usuariosRepo.tipoCuota(data["tipoCuota"]),
+                FKSocio = usuariosRepo.obtenerSocio(usuario).idSocio
+            };
+
+            // Insertamos las lineas
+
+            // La insertamos en la BD si tiene lineasFactura
+            if (lineasFacturas.Count > 0)
+            {
+                facturasRepo.nuevaFactura(factura);
+                foreach (tbLineaFactura linea in lineasFacturas)
+                {
+                    facturasRepo.nuevaLinea(linea);
+                }
+            }
+           
+
+        }
+
     }
 }

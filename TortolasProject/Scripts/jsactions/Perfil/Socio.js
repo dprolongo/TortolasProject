@@ -75,7 +75,7 @@
                 $("#importeTotal").text(importeInicial + ((importeInicial * 18) / 100));
                 $("#importeAlta").text(cuotas["Alta"]);
                 $("#IVAAlta").text(((cuotas["Alta"] * 18) / 100));
-                $("#importeTotalAlta").text( cuotas["Alta"] +  ((cuotas["Alta"] * 18) / 100)  );
+                $("#importeTotalAlta").text(cuotas["Alta"] + ((cuotas["Alta"] * 18) / 100));
 
                 // Combo para cuotas predeterminadas
                 $("#comboCuota").kendoDropDownList({
@@ -159,9 +159,71 @@
                     $("#mensajeExpiracion").html("Su solicitud de renovacion esta en tramites, pronto su estado estara activo.");
                 }
             }
+
+
+            // Funcion para realizar el pago : crear Factura, cuota, etc.. y el PDF
+            $("#botonPagoTarjeta").click(function () {
+
+                var aEnviar = {};
+                var concepto = null;
+                var descripcion = null;
+                aEnviar["importeRenovacion"] = $("#importeNuevo").val();
+                aEnviar["importeAlta"] = $("#importeAlta").val();
+
+                if ($("#checkCustom").attr("checked") == "checked") {
+                    aEnviar["meses"] = $("#numberCuotaCustom").val();
+                }
+                else {
+                    aEnviar["meses"] = $("#comboCuota").data("kendoDropDownList").value();
+                }
+
+                switch (aEnviar["meses"]) {
+                    case 1: aEnviar["tipoCuota"] = "Mensual";
+                        break;
+                    case 3: aEnviar["tipoCuota"] = "Trimestral";
+                        break;
+                    case 12: aEnviar["tipoCuota"] = "Anual";
+                        break;
+                    default: aEnviar["tipoCuota"] = "Custom";
+                }
+
+                // Si el estado es de Baja tiene que añadir el alta
+                if (socio.Estado == "Baja") {
+                    aEnviar["concepto"] = "Renovacion y alta de Socio";
+                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"];
+                    aEnviar["hayAlta"] = true;
+                    alert("cac");
+                    $.ajax({
+                        url: "Perfil/realizarPago",
+                        type: "POST",
+                        data: aEnviar,
+                        success: function () {
+                        },
+                        async: false
+                    });
+                }
+                else {
+                    aEnviar["concepto"] = "Renovacion de Socio";
+                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"];
+                    aEnviar["hayAlta"] = false;
+                    $.ajax({
+                        url: "Perfil/realizarPago",
+                        type: "POST",
+                        data: aEnviar,
+                        success: function () {
+                        },
+                        async: false
+                    });
+                }
+
+            });
+
+
         },
         async: false
     });
+
+
 
 
 
@@ -180,6 +242,7 @@
         var opcion = $("#formaDePago").data("kendoDropDownList").value();
         $(".formasDePago").toggle();
     }
+
 
     // Funcion para calcular la fecha de expiracion por ejemplo, daremos por hecho que siempre seran meses
     function calcularFechas(operacion, cantidad) {
