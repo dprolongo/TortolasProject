@@ -46,4 +46,25 @@
             }
         });
     });
+
+    $("#kedomenuizquierda").kendoMenu({
+        direction: "right right",
+        orientation: "vertical",
+        dataSource: [
+                        {
+                            text: "Empresas", imageUrl: "../../content/icons/agents.ico",
+                            
+                            items: [
+                                { 
+                                    text: "Empresas y asociados", imageUrl: "../../content/icons/aim.ico",
+                                    url: "http://localhost:3608/Empresas#",
+                                 },
+                                { text: "Contratos", imageUrl: "../../content/icons/aim.ico" }
+                            ]
+                        }
+                    ]
+                });
+     //Menu izquierda
+
+
 });
