@@ -1,14 +1,9 @@
-﻿#FacturasContainer
-{
-    float:left;
-    margin-top:10px;
-    width:inherit;
-}
-#FacturasGrid 
+﻿#FacturasGrid 
 {
     position:relative;
     float:left;
     width:inherit;
+    height:inherit;
 }
 .limpiarButton
 {

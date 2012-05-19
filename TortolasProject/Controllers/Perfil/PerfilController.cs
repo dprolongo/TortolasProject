@@ -272,7 +272,8 @@ namespace TortolasProject.Controllers.Perfil
                 idFactura = Guid.NewGuid(),
                 Concepto = data["Concepto"],    // Renovacion o alta+ reno
                 Fecha = DateTime.Today,
-                FKUsuario = usuario
+                FKUsuario = usuario,
+                FKEstado = mtbDB.tbEstadoFactura.Where(estado => estado.Nombre.Equals("Pendiente")).Single().idEstadoFactura
             };
 
             if (hayAlta)
@@ -309,7 +310,7 @@ namespace TortolasProject.Controllers.Perfil
                 FKFactura = factura.idFactura,
                 idCuota = Guid.NewGuid(),
                 FKTipoCuota = usuariosRepo.tipoCuota(data["tipoCuota"]),
-                FKSocio = usuariosRepo.obtenerSocio(usuario).idSocio
+                FKSocio = socio
             };
 
             // Insertamos las lineas
@@ -317,14 +318,15 @@ namespace TortolasProject.Controllers.Perfil
             // La insertamos en la BD si tiene lineasFactura
             if (lineasFacturas.Count > 0)
             {
-                facturasRepo.nuevaFactura(factura);
+                facturasRepo.
                 foreach (tbLineaFactura linea in lineasFacturas)
                 {
                     facturasRepo.nuevaLinea(linea);
                 }
             }
            
-
+            // FALTA AÑADIR PDF
+            
         }
 
     }

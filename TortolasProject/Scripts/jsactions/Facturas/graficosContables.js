@@ -1,14 +1,32 @@
 ﻿var grafica;
 var options;
 var dataSource;
+var dataSourceFechas;
 var datos;
 $(document).ready(function () {
     inicializar();
-
-
-
+    inicializarGrafica();
 });
 function inicializar() {
+    dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "../Facturas/todosIngresosGastos",
+                dataType: "json",
+                type: "POST"
+            }
+        },
+        schema: {
+                model: {
+                    fields: {
+                        fecha: {  },
+                        ingresos: { type: "number"},
+                        gastos: { type: "number" }
+                    }
+                }
+            },
+    });
+
     $("#fechaInicio").kendoDatePicker({
         start: "day",
         depth: "year",
@@ -20,36 +38,107 @@ function inicializar() {
         format: "dd/MM/yyyy"
     });
 
-    $("#generarGrafica").click(function () {
-        var inicial = $("#fechaInicio").val();
-        var final = $("#fechaFinal").val();
-        $.post("../Facturas/todosIngresosGastos", null, function (data) {
-            datos = data;
-            balance2();
+    $("#gastos").click(function () {
+        var titulo = "Gastos";
+        var series = [{
+            field: "gastos",
+            name: "Gastos",
+            color: "red"
+        }];
+
+        jQuery.removeData("#grafica", "kendoChart");
+        $("#grafica").empty();
+        graficaTodos(titulo, series);
+    });
+
+    $("#ingresos").click(function () {
+        var titulo = "Ingresos";
+        var series = [{
+            field: "ingresos",
+            name: "Ingresos",
+            color: "blue"
+        }];
+        jQuery.removeData("#grafica", "kendoChart");
+        $("#grafica").empty();
+        graficaTodos(titulo, series);
+    });
+
+    $("#todos").click(function () {
+        inicializar();
+    });
+
+    $("#filtrarFecha").click(function () {
+        var url = "../Facturas/periodoIngresosGastos";
+        var datosPeriodo = {
+            inicial: $("#fechaInicio").val(),
+            final: $("#fechaFinal").val()
+        };
+        alert(kendo.stringify(datosPeriodo));
+        dataSourceFechas = dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: url,
+                    data: datosPeriodo,
+                    dataType: "json",                    
+                    type: "POST"
+                }
+            },
+            schema: {
+                    model: {
+                        fields: {
+                            fecha: {  },
+                            ingresos: { type: "number"},
+                            gastos: { type: "number" }
+                        }
+                    }
+                }
         });
-        
-    });
 
-}
-function grafica1(){
-    dataSource = new kendo.data.DataSource({
-        transport: {
-            read: {
-                url: "../Facturas/periodoIngresosGastos",
-                dataType: "json",
-                type: "POST"
-            }
-        }
+        var titulo = "Contabilidad";
+        var series = [{
+            field: "gastos",
+            name: "Gastos",
+            color: "red"
+        }, {
+            field: "ingresos",
+            name: "Ingresos",
+            color: "blue"
+        }];
+        jQuery.removeData("#grafica", "kendoChart");
+        $("#grafica").empty();
+        graficaPeriodo(titulo,series);
     });
-
-    setTimeout(function () { crearGrafica(); }, 400);
+    
+    
 }
-function crearGrafica(){
-    $("#grafica").kendoChart({
+
+function inicializarGrafica() {
+    var titulo = "Contabilidad";
+    var series = [{
+        field: "gastos",
+        name: "Gastos",
+        color: "red"
+    }, {
+        field: "ingresos",
+        name: "Ingresos",
+        color: "blue"
+    }];
+    jQuery.removeData("#grafica", "kendoChart");
+    $("#grafica").empty();
+    graficaTodos(titulo, series);
+    
+}
+function graficaTodos(titulo,series){
+    grafica = $("#grafica").kendoChart({
         theme: $(document).data("kendoSkin") || "default",
+        height: 200,
+        chartArea: 
+        {                
+            height: 400,
+        },
         dataSource: dataSource,
         title: {
-            text: "Contabilidad"
+            text: titulo
         },
         legend: {
             position: "top"
@@ -57,19 +146,10 @@ function crearGrafica(){
         seriesDefaults: {
             type: "line"
         },
-        series:
-        [{
-            field: "Gastos",
-            name: "Gastos"
-        }, {
-            field: "Ingresos",
-            name: "Ingresos"
-        }],
+        series: series
+        ,
         categoryAxis: {
-            field: "Mes",
-            labels: {
-                rotation: -90
-            }
+            field: "fecha"            
         },
         valueAxis: {
             labels: {
@@ -78,153 +158,42 @@ function crearGrafica(){
         },
         tooltip: {
             visible: true,
-            format: "{0:N0}"
+            template: "#= category # <br /> <b>#= series.name #</b> #= value  #€"
         }
-    });
+    }).data("kendoChart");
 }
 
-function balance(){
-    options = {
-        chart:
-        {
-            renderTo: 'grafica'
+function graficaPeriodo(titulo,series){
+    grafica = $("#grafica").kendoChart({
+        theme: $(document).data("kendoSkin") || "default",
+        height: 200,
+        chartArea: 
+        {                
+            height: 400,
         },
-        title:
-        {
-            text: 'Balance anual'
-        },
-        subtitle:
-        {
-            text: 'Ejercicio 2011'
-        },
-        xAxis:
-        {
-            type: 'datetime',
-            tickInterval: 30 * 7 * 24 * 3600 * 1000, // one week
-            tickWidth: 0,
-            gridLineWidth: 1,
-            labels:
-            {
-                align: 'left',
-                x: 3,
-                y: -3
-            }
-        },
-        yAxis:
-        [{ // left y axis
-            title:
-            {
-                text: null
-            },
-            labels:
-            {
-                align: 'left',
-                x: 3,
-                y: 16,
-                formatter: function () {
-                    return Highcharts.numberFormat(this.value, 0);
-                }
-            },
-            showFirstLabel: false
-        },
-        { // right y axis
-            linkedTo: 0,
-            gridLineWidth: 0,
-            opposite: true,
-            title:
-            {
-                text: null
-            },
-            labels:
-            {
-                align: 'right',
-                x: -3,
-                y: 16,
-                formatter: function () {
-                    return Highcharts.numberFormat(this.value, 0);
-                }
-            },
-            showFirstLabel: false
-        }],
-        legend:
-        {
-            align: 'left',
-            verticalAlign: 'top',
-            y: 20,
-            floating: true,
-            borderWidth: 0
-        },
-        tooltip:
-        {
-            shared: true,
-            crosshairs: true
-        },
-        plotOptions:
-        {
-            series:
-            {
-                cursor: 'pointer',
-                point:
-                {
-                    events:
-                    {
-                        click: function () {
-                            hs.htmlExpand(null, {
-                                pageOrigin: {
-                                    x: this.pageX,
-                                    y: this.pageY
-                                },
-                                headingText: this.series.name,
-                                maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
-                                        this.y + ' visits',
-                                width: 200
-                            });
-                        }
-                    }
-                },
-                marker:
-                {
-                    lineWidth: 1
-                }
-            }
-        },
-        series:
-        [{
-            name: 'Ingresos',
-            lineWidth: 4,
-            marker:
-            {
-                radius: 4
-            }
-        },
-        {
-            name: 'Gastos'
-        }]
-    };
-    
-    options.series[0].data = datos.Ingresos;
-    options.series[1].data = datos.Gastos;
-    grafica = new Highcharts.Chart(options);
-}
-function balance2() {
-    grafica = new Highcharts.StockChart({
-        chart: {
-            renderTo: 'grafica'
-        },
-        rangeSelector: {
-            selected: 1
-        },
+        dataSource: dataSourceFechas,
         title: {
-            text: 'Balance'
+            text: titulo
         },
-        series:
-            [{
-                name: 'Gastos',
-                data: datos,
-                tooltip: {
-                    valueDecimals: 2
-                }
-            }]
-    });
-
+        legend: {
+            position: "top"
+        },
+        seriesDefaults: {
+            type: "line"
+        },
+        series: series
+        ,
+        categoryAxis: {
+            field: "fecha"            
+        },
+        valueAxis: {
+            labels: {
+                format: "{0:N0}"
+            }
+        },
+        tooltip: {
+            visible: true,
+            template: "#= category # <br /> <b>#= series.name #</b> #= value  #€"
+        }
+    }).data("kendoChart");
 }

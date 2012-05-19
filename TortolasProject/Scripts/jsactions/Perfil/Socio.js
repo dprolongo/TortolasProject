@@ -167,32 +167,36 @@
                 var aEnviar = {};
                 var concepto = null;
                 var descripcion = null;
-                aEnviar["importeRenovacion"] = $("#importeNuevo").val();
-                aEnviar["importeAlta"] = $("#importeAlta").val();
+                aEnviar["importeRenovacion"] = $("#importeNuevo").text();
+                aEnviar["importeAlta"] = $("#importeAlta").text();
 
                 if ($("#checkCustom").attr("checked") == "checked") {
                     aEnviar["meses"] = $("#numberCuotaCustom").val();
                 }
                 else {
-                    aEnviar["meses"] = $("#comboCuota").data("kendoDropDownList").value();
+                    aEnviar["meses"] = $("#comboCuota").data("kendoDropDownList").value();                    
                 }
 
-                switch (aEnviar["meses"]) {
-                    case 1: aEnviar["tipoCuota"] = "Mensual";
-                        break;
-                    case 3: aEnviar["tipoCuota"] = "Trimestral";
-                        break;
-                    case 12: aEnviar["tipoCuota"] = "Anual";
-                        break;
-                    default: aEnviar["tipoCuota"] = "Custom";
+                if (aEnviar["meses"] == 1) {
+                    aEnviar["tipoCuota"] = "Mensual";
+                }
+                else if (aEnviar["meses"] == 3) {
+                    aEnviar["tipoCuota"] = "Trimestre";
+                }
+                else if (aEnviar["meses"] == 12) {
+                    aEnviar["tipoCuota"] = "Anual";
+                }
+                else {
+                    aEnviar["tipoCuota"] = "Custom";
                 }
 
+                alert(aEnviar["tipoCuota"]);
                 // Si el estado es de Baja tiene que añadir el alta
                 if (socio.Estado == "Baja") {
                     aEnviar["concepto"] = "Renovacion y alta de Socio";
-                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"];
+                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"] +" mes";
                     aEnviar["hayAlta"] = true;
-                    alert("cac");
+
                     $.ajax({
                         url: "Perfil/realizarPago",
                         type: "POST",
@@ -204,7 +208,7 @@
                 }
                 else {
                     aEnviar["concepto"] = "Renovacion de Socio";
-                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"];
+                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"] + " mes";
                     aEnviar["hayAlta"] = false;
                     $.ajax({
                         url: "Perfil/realizarPago",
