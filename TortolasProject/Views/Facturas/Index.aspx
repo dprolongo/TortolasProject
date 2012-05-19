@@ -17,10 +17,8 @@
 <asp:Content ID="FacturasIndexMain" ContentPlaceHolderID="MainContent" runat="server">
     <%Html.RenderPartial("facturasNav"); %>    
 
-    <div id="FacturasContainer"></div>
-
-    <div id="FacturasGrid">
-        
+    <div id="facturaContainer">
+        <div id="FacturasGrid"></div>        
     </div>
 </asp:Content>
 

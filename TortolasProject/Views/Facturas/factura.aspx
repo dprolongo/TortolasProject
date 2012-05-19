@@ -21,8 +21,9 @@
 <% String estado = Model.vista; %>
 <input type="hidden" id='estadoPage' value='<% Response.Write(estado); %>' />
 <input type="hidden" id='idFactura' value='<% Response.Write(Model.idFactura); %>' />
-    <div id='facturaForm' class='k-header'>
-        <div id='facturaHeader' class='k-content'>
+    <div id='facturaContainer' >
+        <div id='facturaHeader'>
+            <div id='pdfButton'><%: Html.ActionLink("Descargar en PDF", "facturaPDF", "Facturas", new { id = Model.idFactura.ToString() }, new { @class = "k-button" })%></div>
             <div id='volverButton' class='k-button'></div>
             <div id='poliButton' class='k-button'></div>
             <div id='eliminarButton' class='k-button'></div>
