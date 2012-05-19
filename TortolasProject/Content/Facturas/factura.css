@@ -1,9 +1,4 @@
-﻿#facturaForm
-{
-    position:relative;
-    float:left;
-    width:inherit;
-}
+﻿
 #facturaHeader
 {
     display:block;
@@ -12,6 +7,7 @@
     width:inherit;
     min-height:100px;
     border-bottom:1px solid gray;
+    margin-bottom:5px;
 }
 #relacionesFacturaContainer
 {
@@ -24,7 +20,11 @@
     float:left;
     text-align:left;
 }
-
+#estadoFacturaDiv
+{
+    position:relative;
+    float:right;
+}
 #totalFacturaDiv
 {
     position:relative;
@@ -59,34 +59,16 @@
     cursor:pointer;
 }
 #descartarFacturaButton
-{
-    position:relative;
+{    
+    background-color:red;
     float:left;
-    margin-left:10px;    
-    padding:5px;
-    
-    color:gray;
-    
-    border:1px solid gray;
-    border-radius:5px;
-    box-shadow:0px -1px 1px snow inset;
-    cursor:pointer;
+    color:White;
+    font-weight:bold;
 }
 #guardarFacturaButton
 {
-    position:relative;
+    background-color:Green;    
     float:right;
-    margin-right:10px;
-    padding:5px;
-    
-    background-color:gray;
-    color:white;
-    
-    border:1px: solid gray; 
-    border-radius:5px;   
-    box-shadow:0px -1px 1px #DCDCDC inset;
-    cursor:pointer;
-    
-}
-.inputText{
+    color:White;
+    font-weight:bold;
 }

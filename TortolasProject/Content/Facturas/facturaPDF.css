@@ -1,0 +1,45 @@
+﻿#facturaHeader
+{
+    display:block;
+    position:relative;
+    float:left;
+    width:inherit;
+    min-height:100px;
+    border-bottom:1px solid gray;
+    margin-bottom:5px;   
+}
+.leftContent
+{
+    position:relative;
+    float:left; 
+    text-align:left;     
+}
+.rightContent
+{
+    position:relative;
+    float:right;
+    text-align:right;
+    
+}
+#fechaFacturaDiv
+{
+    
+}
+#conceptoFacturaDiv
+{
+
+}
+#responsableFacturaDiv
+{
+    
+}    
+#estadoFacturaDiv
+{
+    
+}
+#totalFacturaDiv
+{
+}
+#facturaLineasFacturaGrid
+{
+}

@@ -1,4 +1,15 @@
-﻿#FacturasNav 
+﻿#facturaContainer
+{
+    position:relative;
+    float:left;
+    width:inherit;
+    background-color:White;
+    border: 1px solid Orange;
+    padding:5px;
+    border-radius:5px;
+    
+}
+#FacturasNav 
 {
     position:relative;
     float:left;
