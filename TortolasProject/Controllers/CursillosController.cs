@@ -65,7 +65,6 @@ namespace TortolasProject.Controllers
                 Pagado = false,
                 NumAcom = NumAcompa,
                 FKCursillo = idCursillo,
-                FKEvento = null,
                 FKUsuario = FKUsuario
             };
             CursillosRepo.inscripcionCursillo(DocInscrip);
