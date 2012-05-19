@@ -37,6 +37,14 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.2.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\itextsharp-all-5.2.1\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra, Version=5.2.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\itextsharp-all-5.2.1\itextsharp.xtra.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
@@ -120,6 +128,8 @@
     <Content Include="Content\Empresas\FormatoTexto.css" />
     <Content Include="Content\Eventos\EventosKendocss.css" />
     <Content Include="Content\Empresas\EmpresasNew.css" />
+    <Content Include="Content\Facturas\facturaPDF.css" />
+    <Content Include="Content\Facturas\graficosContables.css" />
     <Content Include="Content\images\bienvenidosocio.png" />
     <Content Include="Content\images\cvv2.png" />
     <Content Include="Content\images\fondocarnet.png" />
@@ -837,6 +847,7 @@
     <Content Include="Scripts\styles\textures\glass.png" />
     <Content Include="Scripts\styles\textures\highlight.png" />
     <Content Include="Views\Administracion\Index.aspx" />
+    <Content Include="Views\Facturas\facturaPDF.ascx" />
     <Content Include="Views\Facturas\facturasNav.ascx" />
     <Content Include="Views\Facturas\graficosContables.aspx" />
     <Content Include="Views\Cursillos\Index.aspx" />
