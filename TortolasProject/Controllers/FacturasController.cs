@@ -507,12 +507,14 @@ namespace TortolasProject.Controllers
         public Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
         {
             Boolean lineasCorrectas = true;
+            Decimal totalLineas = 0;
             foreach (tbLineaFactura linea in lineas)
             {
                 if (linea.FKFactura == f.idFactura) lineasCorrectas = lineasCorrectas && true;
                 else lineasCorrectas = false;
+                totalLineas = totalLineas + linea.Total;
             }
-
+            f.BaseImponible = totalLineas;
             f.Total = f.BaseImponible * IVA;
             if(f.FKJuntaDirectiva == null) f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
 
