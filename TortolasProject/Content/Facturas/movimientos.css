@@ -1,0 +1,16 @@
+﻿#MovimientosContainer 
+{
+    float:left;
+    margin-top:10px;
+    width:inherit;
+}
+.limpiarButton
+{
+    float:right;
+}
+#MovimientosGrid 
+{
+    position:relative;
+    float:left;
+    width:inherit;
+}

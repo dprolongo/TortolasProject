@@ -1,5 +1,6 @@
 ﻿#FacturasContainer
 {
+    float:left;
     margin-top:10px;
     width:inherit;
 }
@@ -9,3 +10,8 @@
     float:left;
     width:inherit;
 }
+.limpiarButton
+{
+    float:right;
+}
+

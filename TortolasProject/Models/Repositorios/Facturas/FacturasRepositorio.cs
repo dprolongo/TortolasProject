@@ -44,15 +44,24 @@ namespace TortolasProject.Models.Repositorios
 
         }
 
-        public void setEstado(tbEstadoFactura estado, Guid id)
+        public void setEstadoFactura(tbEstadoFactura estado, Guid id)
         {
             tbFactura f = leerFactura(id);
-            f.FKEstado = estado.idEstadoFactura;
+            f.FKEstado = estado.idEstadoFactura;            
             save();
 
         }
 
-        public String getEstado(Guid id)
+        public tbEstadoFactura leerEstadoByNombre(String Nombre)
+        {
+            return mtbMalagaDB.tbEstadoFactura.Where(e => e.Nombre.Equals(Nombre)).Single();
+        }
+
+        public String leerEstadoByGuid(Guid id)
+        {
+            return mtbMalagaDB.tbEstadoFactura.Where(e => e.idEstadoFactura.Equals(id)).Single().Nombre;
+        }
+        public String getEstadoFactura(Guid id)
         {
             tbFactura f = leerFactura(id);
 
@@ -201,10 +210,79 @@ namespace TortolasProject.Models.Repositorios
             save();
         }
 
+        public Boolean esMovimientoGasto(Guid idMovimiento)
+        {
+            return mtbMalagaDB.tbMovimientoGasto.Any(m => m.idMovimientoGasto.Equals(idMovimiento));
+        }
 
+        public Boolean esMovimientoIngreso(Guid idMovimiento)
+        {
+            return mtbMalagaDB.tbMovimientoIngreso.Any(m => m.idMovimientoIngreso.Equals(idMovimiento));
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Gráficas contables                                                            
+        ////////////////// /////////////////////////////////////////////////////////////
+
+        public IList<tbFactura> soloIngresosFactura()
+        {
+            return mtbMalagaDB.tbFactura.Where(f => f.Total >= 0).ToList(); 
+        }
+
+        public IList<tbFactura> soloGastosFactura()
+        {
+            return mtbMalagaDB.tbFactura.Where(f => f.Total < 0).ToList();
+        }
+
+        public Decimal ingresosFecha(DateTime inicial, DateTime final)
+        {
+            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total >= 0).ToList().Sum(f=> f.Total);
+        }
+
+        public Decimal gastosFecha(DateTime inicial, DateTime final)
+        {
+            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total < 0).ToList().Sum(f => f.Total);
+        }
+
+        public Dictionary<DateTime, Decimal[]> todosIngresosGastos()
+        {
+            Dictionary<DateTime,Decimal[]> datos = new Dictionary<DateTime,decimal[]>();
+
+            foreach (tbFactura f in mtbMalagaDB.tbFactura.ToList())
+            {
+                DateTime fecha = new DateTime(f.Fecha.Year,f.Fecha.Month,f.Fecha.Day);
+                if (!datos.ContainsKey(fecha))
+                {
+                    Decimal[] valores = new Decimal[2];
+                    if(f.Total >= 0)
+                    {
+                        valores[0] = f.Total;
+                        valores[1] = 0;
+                    }else
+                    {
+                        valores[0] = 0;
+                        valores[1] = f.Total;
+                    }
+                    datos.Add(fecha,valores);
+                }
+                else
+                {                   
+                    if(f.Total >= 0)
+                    {
+                        datos[fecha][0] = datos[fecha][0] + f.Total;
+                    }
+                    else
+                    {
+                        datos[fecha][1] = datos[fecha][1] - f.Total;
+                    }
+                }
+            }
+            return datos;
+        }
         // 
         //  Funciones auxiliares
         //
+
         private void save()
         {
             mtbMalagaDB.SubmitChanges();

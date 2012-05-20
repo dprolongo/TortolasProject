@@ -9,6 +9,7 @@ $(document).ready(function () {
             modal: false,
             visible: false,
             resizable: false,
+            width: 600,
         }).data("kendoWindow");
 
     $('#EmpresasGridRemoto .k-grid-content tr').live('dblclick', function () {

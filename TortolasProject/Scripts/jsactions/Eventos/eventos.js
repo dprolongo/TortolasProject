@@ -1,6 +1,8 @@
-﻿$(document).ready(function () {
+﻿var maxacompa;
+var idEvento = null;
 
-    var idEvento = null;
+$(document).ready(function () {
+
     var datasource = new kendo.data.DataSource
     ({
         transport:
@@ -26,34 +28,80 @@
         sortable: true,
         pageable: true,
         selectable: true,
+        filterable: true,
         columns: [
                     {
                         field: "Titulo",
-                        text: "Titulo"
+                        text: "Titulo",
+                        filterable: {
+                            extra: false, //do not show extra filters
+                            operators: { // redefine the string operators
+                                string: {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                        }
                     },
                     {
                         field: "Lugar",
-                        text: "Lugar"
+                        text: "Lugar",
+                        filterable: {
+                            extra: false, //do not show extra filters
+                            operators: { // redefine the string operators
+                                string: {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                        }
                     },
                     {
                         field: "FechaRealizacion",
-                        text: "Fecha"
+                        text: "Fecha",
+                        filterable: {
+                            extra: false, //do not show extra filters
+                            operators: { // redefine the string operators
+                                string: {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                        }
                     },
                     {
                         field: "Plazas",
-                        text: "Plazas"
+                        text: "Plazas",
+                        filterable: {
+                            extra: false, //do not show extra filters
+                            operators: { // redefine the string operators
+                                string: {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                        }
                     },
                     {
                         title: "Herramientas",
-                        command: { text: "Editar", className: "botonEditarFila" }
-                    },
-                    {
-                        command: { text: "Eliminar", className: "botonEliminarFila" }
+                        width: "200px",
+                        command: [{ text: "Editar", className: "botonEditarFila" }, { text: "Eliminar", className: "botonEliminarFila" }, { text: "Inscribirse", className: "botonInscripcion"}]
                     }
+
         ],
         detailTemplate: kendo.template($("#template").html()),
         detailInit: inicializarDetalles
     });
+
+    //............................................VENTANAS POP-UP...............................................
 
     var windowEditar = $("#VentanaEditar").kendoWindow
     ({
@@ -63,22 +111,47 @@
         resizable: false
     }).data("kendoWindow");
 
-
+    var windowInscripcion = $("#VentanaInscripcion").kendoWindow
+    ({
+        title: "Inscripcion",
+        modal: true,
+        visible: false,
+        resizable: false
+    }).data("kendoWindow");
 
     // ..........................FUNCIONES..............................
 
     $("#editor").kendoEditor();
-    var valoresComboPrioridad = [
-                        { texto: "Si", valor: true },
-                        { texto: "No", valor: false }
 
-                    ];
+    var valoresComboPrioridad = [{ texto: "No", valor: false },{ texto: "Si", valor: true }];
 
     $("#PrioridadSocios").kendoDropDownList({
         dataTextField: "texto",
         dataValueField: "valor",
         dataSource: valoresComboPrioridad
     });
+
+    $("#AcompanantesDropdown").kendoDropDownList({
+        dataTextField: "texto",
+        dataValueField: "valor",
+        dataSource: valoresComboPrioridad,
+        select: function (e) {
+            var numacompa = this.dataItem(e.item.index());
+            if (numacompa.valor == true) {
+                $("#Acompanantes").kendoNumericTextBox({
+                    min: 1,
+                    max: maxacompa,
+                    step: 1,
+                    format:"0"
+                });
+                $("#NumeroAcompa").show();
+            }
+            else {
+                $("#NumeroAcompa").hide();
+            }
+        }
+    });
+    $("#NumeroAcompa").hide();
 
     $("#FechaRealizacion").kendoDatePicker({
 
@@ -96,8 +169,6 @@
 
         format: "dd/MM/yyyy"
     });
-
-
 
     $("#botonCrearEvento").live("click", function () {
 
@@ -159,7 +230,7 @@
         $("#FechaAperturaInscrip").data("kendoDatePicker").value(filajson.FechaAperturaInscripcion);
         $("#FechaLimiteInscrip").data("kendoDatePicker").value(filajson.FechaLimiteInscripcion);
         $("#Plazas").val(filajson.Plazas);
-
+        $("#NumAcompa").val(filajson.NumAcompa);
 
         $("#PrioridadSocios").data("kendoDropDownList").value((filajson.PrioridadSocios));
         $("#editor").data("kendoEditor").value((filajson.Actividad));
@@ -172,6 +243,12 @@
         windowEditar.close();
         $("#Eventostabla").show();
     });
+
+    $("#BotonCancelarInscripcion").live("click", function () {
+        windowInscripcion.close();
+        $("#Eventostabla").show();
+    });
+
 
     $("#BotonCancelarFormularioCrear").live("click", function () {
         $("#FormularioCreacion").hide();
@@ -188,9 +265,10 @@
         datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
         datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
         datos["PlazasUpdate"] = $("#Plazas").val();
+        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
         datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
         datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
-        datos["FKUsuario"] = "a98c5f56-763d-45cc-ab93-8788f7452bac";
+
 
         $.ajax(
         {
@@ -200,11 +278,31 @@
             success: function () {
                 datasource.read();
                 $("#FormularioCreacion").hide();
+                $("#Eventostabla").show();
             }
         });
 
     });
 
+    $("#BotonAceptarInscripcion").click(function () {
+        var datos = {};
+
+        datos["numacompa"] = 0;
+        if (!$("#AcompanantesDropdown").data("kendoDropDownList").value()) {
+            datos["numacompa"] = $("#Acompanantes").val();
+        }
+        datos["idEvento"] = idEvento;
+        $.ajax(
+        {
+            url: "Eventos/InscripcionEvento",
+            type: "POST",
+            data: datos,
+            success: function () {
+                datasource.read();
+                windowInscripcion.close();
+            }
+        });
+    });
 
     $("#BotonAceptarVentanaEditar").click(function () {
         var datos = {};
@@ -215,6 +313,7 @@
         datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
         datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
         datos["PlazasUpdate"] = $("#Plazas").val();
+        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
         datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
         datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
         datos["idEvento"] = idEvento;
@@ -241,16 +340,47 @@
                 open: { effects: "fadeIn" }
             }
         });
-
     }
 
+    $(".botonInscripcion").live("click", function () {
+
+        var fila = $("#Eventostabla").data("kendoGrid").select();
+        var filaJson = $("#Eventostabla").data("kendoGrid").dataItem(fila).toJSON(); // La pasamos a JSON
+
+        var Evento = datasource.getByUid(fila.attr("data-uid"));
+        var Titulo = Evento.Titulo;
+        idEvento = Evento.idEvento;
+        var Precio = Evento.Precio;
+        maxacompa = Evento.NumAcompa;
+
+        $("#TituloEventoInscripcion").text(Titulo);
+        $("#PrecioEventoInscripcion").text(Precio);
+
+        $("#acompaWrapper").empty();
+        $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+        $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
+
+        $("#Acompanantes").kendoNumericTextBox({
+            
+            min: 1,
+            max: maxacompa,
+            step: 1,
+            format:"0"
+        });
+
+        $("#NumeroAcompa").hide();
+
+        windowInscripcion.center();
+        windowInscripcion.open();
+    });
+
     $(".botonEliminarFila").live("click", function () {
-        
+
         var fila = $("#Eventostabla").data("kendoGrid").select(); // Cogemos la fila seleccionada
         var filaJson = $("#Eventostabla").data("kendoGrid").dataItem(fila).toJSON(); // La pasamos a JSON
 
         var idEvento = datasource.getByUid(fila.attr("data-uid")).idEvento;
-       
+
         $.ajax({
             url: "Eventos/eliminarEvento",
             type: "POST",
@@ -260,5 +390,4 @@
             }
         });
     });
-
 });

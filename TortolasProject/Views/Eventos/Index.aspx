@@ -5,10 +5,26 @@
 </asp:Content>
 
 <asp:Content ID="EventosIndexMain" ContentPlaceHolderID="MainContent" runat="server">
-<div id="Eventostabla">
 
-</div>
+<img src="../../Content/images/eventostitulo.png" />
+
+<div id="Eventostabla"></div>
 <div id="FormularioCreacion"></div>
+
+<div id ="VentanaInscripcion">
+    <label>Inscipción al Evento </label>
+    <div id="TituloEventoInscripcion"></div>
+    <label>Le recordamos que el precio por persona para este Evento es:</label>
+    <div id="PrecioEventoInscripcion"></div>
+    <label> ¿Desea llevar acompañantes?</label><input type="text" id="AcompanantesDropdown" class="dropdown" /><br />
+    <div id="acompaWrapper">
+        <div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>
+    </div>
+    <center>
+        <input type ="button" value="Aceptar" id="BotonAceptarInscripcion" class="k-button" />
+        <input type ="button" value="Cancelar" id="BotonCancelarInscripcion" class="k-button" />
+    </center>
+</div>
 
 <div id ="VentanaEditar">
     <label for="Titulo">Titulo: </label><input type="text" id="Titulo" class="k-input" /><br />
@@ -17,7 +33,8 @@
     <label for="FechaAperturaInscrip">Fecha de apertura de incripción: </label><input type="text" id="FechaAperturaInscrip" class="k-input" /><br />
     <label for="FechaLimiteInscrip">Fecha límite de inscripción: </label><input type="text" id="FechaLimiteInscrip" class="k-input" /><br />
     <label for="Plazas">Plazas libres: </label><input type="text" id="Plazas" class="k-input" /><br />
-    <label for="PrioridadSocios">Prioridad para socios: </label><input type="select" id="PrioridadSocios" class="dropdown" /><br />
+    <label for="NumAcompa">Número de acompañantes máximos por inscripción: </label><input type="text" id="NumAcompa" class="k-input" /><br />
+    <label for="PrioridadSocios">Prioridad para socios: </label><input type="text" id="PrioridadSocios" class="dropdown" /><br />
     <label for="Actividad">Actividad: </label><textarea id="editor" rows="10" cols="30" style="width:740px;height:440px"> </textarea>
 
     <center>
@@ -47,6 +64,7 @@
                                 <li><label>Fecha de apertura de inscripción:</label>#= FechaAperturaInscripcion #</li>
                                 <li><label>Fecha límite de inscripción:</label>#= FechaLimiteInscripcion #</li>
                                 <li><label>Plazas libres:</label>#= Plazas #</li>
+                                <li><label>Número de compañantes máximo por incripción:</label>#= NumAcompa #</li>
                                 <li><label>Prioridad socios:</label>#= PrioridadSocios #</li>
                                 <li><label>Actividad:</label>#= Actividad #</li>
                                 

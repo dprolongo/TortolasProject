@@ -369,22 +369,78 @@
     </div>
 
     <div id="VentanaEditarContrato">
-        <b><h5>Datos Contrato</h5></b>
-        <br />
-        <label for="nombreempresaconvenioeditar">Nombre: </label><input type="text" id="nombreempresacontratoeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifcontratoeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="jdirectivacontratoeditar" class="k-input CuadroTexto" /><br />
-        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <textarea id="descripcionlegalcontratoeditar" rows="20" cols="40"></textarea>
-        <label for="Importe">Importe: </label><input type="text" id="importecontraroeditar" class="k-input CuadroTexto NoModificable" /><br />
-        
+        <h5>Datos Empresa</h5>
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeditar" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifcontratoeditar" class="k-input CuadroTexto k-textbox cifremoto" /><br />
+        <input type="button" value="Cambiar Empresa" id="CambiarEmpresaContratoEditar" class="k-button" />
+        <hr />
+        <h5>Datos Responsable</h5>
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="jdirectivacontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <input type="button" value="Cambiar Responsable" id="CambiarJuntaDirectivaContratoEditar" class="k-button" />
+        <hr />
+        <h5>Datos Contrato</h5>
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <h5>Descripción Legal</h5>
+        <textarea id="descripcionlegalcontratoeditar" rows="20" cols="38"></textarea>
+        <label for="Importe">Importe: </label><input type="text" id="importecontraroeditar" class="k-input CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
         <center>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaEditarContrato" class="k-button" />
-            <input type="button" value="Cancelar" id="BotonCancelarVentanaEditarContrato" class="k-button FuncionBotonCancelarProveedores" />    
+            <input type="button" value="Cancelar" id="BotonCancelarVentanaEditarContrato" class="k-button FuncionBotonCancelarProveedores" />
+        </center>
+    </div>
+
+    <div id="VentanaEliminarContrato">
+        <h5>Datos Empresa</h5>
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeliminar" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifcontratoeliminar" class="k-input CuadroTexto k-textbox cifremoto" /><br />
+        <hr />
+        <h5>Datos Responsable</h5>
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <hr />
+        <h5>Datos Contrato</h5>
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <h5>Descripción Legal</h5>
+        <textarea id="descripcioncontratoeliminar" rows="20" cols="38" readonly="readonly"></textarea>
+        <br />
+        <label for="Importe">Importe: </label><input type="text" id="importecontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <br />
+        <hr />
+        <br />
+        <center>
+            <input type="button" value="Aceptar" id="BotonAceptarVentanaEliminarContrato" class="k-button" />
+            <input type="button" value="Cancelar" id="BotonCancelarVentanaEliminarContrato" class="k-button FuncionBotonCancelarProveedores" />
+        </center>
+    </div>
+
+    <div id="VentanaCrearContrato">
+        <h5>Datos Empresa</h5>
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class="k-input CuadroTexto k-textbox cifremoto" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresacontratocrear" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <input type="button" value="Escoger Empresa" id="BotonElegirEmpresaRemotaDesdeContrato" class="k-button" />
+        <hr />
+        <h5>Datos Responsable</h5>
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratocrear" class="k-input CuadroTexto k-textbox nombrejuntadirectivaremota" /><br />
+        <input type="button" value="Escoger Responsable" id="BotonElegirJuntaDirectivaDesdeContrato" class="k-button" />
+        <hr />
+        <h5>Datos Contrato</h5>
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratocrear" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratocrear" class="k-input CuadroTexto k-textbox" /><br />
+        <h5>Descripción Legal</h5>
+        <textarea id="descripcioncontratocrear" rows="20" cols="38" disable="true"></textarea>
+        <br />
+        <label for="Importe">Importe: </label><input type="text" id="importecontratocrear" class="k-input CuadroTexto k-textbox" /><br />
+        <br />
+        <hr />
+        <br />
+        <center>
+            <input type="button" value="Aceptar" id="BotonAceptarVentanaCrearContrato" class="k-button" />
+            <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearContrato" class="k-button FuncionBotonCancelarProveedores" />
         </center>
     </div>
 
@@ -394,6 +450,12 @@
 
     <div id="VentanaEmpresasRemota">
         <div id="EmpresasGridRemoto" class="VisibilidadGridEmpresasRemota">
+    
+        </div>
+    </div>
+    
+    <div id="VentanaJuntaDirectivaRemota">
+        <div id="JuntaDirectivaGridRemoto" class="VisibilidadGridJuntaDirectivaRemota">
     
         </div>
     </div>

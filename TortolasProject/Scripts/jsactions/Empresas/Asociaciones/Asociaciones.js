@@ -86,8 +86,6 @@
             modal: true,
             visible: false,
             resizable: false,
-            width: 600,
-            height: 400
         }).data("kendoWindow");
 
 
@@ -100,7 +98,8 @@
     $(".botonEditarFilaAsociacion").live("click", function () {
 
         //alert("Editar!");
-
+        $(".VisibilidadBotonVincularEmpresa").hide();
+        $(".VisibilidadDatosNuevaEmpresaRemota").hide(); //Muestro los datos de la empresa asociada
         $(".NoModificable").prop('disabled', true); //Bloquea editar los campos
 
         var fila = $("#AsociacionesGrid").find("tbody tr.k-state-selected");

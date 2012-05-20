@@ -81,8 +81,6 @@
             modal: true,
             visible: false,
             resizable: false,
-            width: 600,
-            height: 400
         }).data("kendoWindow");
 
     var weliminarProveedor = $("#VentanaEliminarProveedor")
@@ -92,8 +90,6 @@
             modal: true,
             visible: false,
             resizable: false,
-            width: 600,
-            height: 400
         }).data("kendoWindow");
 
 
@@ -105,8 +101,6 @@
             modal: true,
             visible: false,
             resizable: false,
-            width: 600,
-            height: 400
         }).data("kendoWindow");
 
 
