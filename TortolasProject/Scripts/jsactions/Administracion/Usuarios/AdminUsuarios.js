@@ -124,7 +124,7 @@
                                 }
                             }
                         }
-                    },
+                    }/*,
                     {
                         title: "Herramientas",
                         command:
@@ -132,7 +132,7 @@
                         //   { text: "editar", className: "editarfila" },
                             {text: "eliminar", className: "eliminarUsuario" }
                         ]
-                    }
+                    }*/
 
             ]
     });

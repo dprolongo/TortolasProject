@@ -264,6 +264,7 @@
     <Content Include="Content\images\socios\danie.png" />
     <Content Include="Content\images\tituloadminsocios.png" />
     <Content Include="Content\images\titulousuarios.png" />
+    <Content Include="Content\images\tituloventanaeditarsocio.png" />
     <Content Include="Content\images\tituloventananuevosocio.png" />
     <Content Include="Content\images\user-new.png" />
     <Content Include="Content\images\usuarios\526214_10150894749063804_1689304985_n.jpg" />

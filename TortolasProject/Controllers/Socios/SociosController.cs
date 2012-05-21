@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TortolasProject.Models.Repositorios;
 using TortolasProject.Models;
+using TortolasProject.Controllers;
 
 namespace TortolasProject.Controllers.Socios
 {
@@ -14,7 +15,8 @@ namespace TortolasProject.Controllers.Socios
         UsuariosRepositorio usuariosRepo = new UsuariosRepositorio();
         FacturasRepositorio facturasRepo = new FacturasRepositorio();
         AccountController accountRepo = new AccountController();
-
+        
+       
         public ActionResult Index()
         {
             return View();
@@ -39,6 +41,7 @@ namespace TortolasProject.Controllers.Socios
                          };
             return Json(socios);
         }
+        
 
         [HttpPost]
         public JsonResult obtenerSociosyUsuario()
@@ -127,10 +130,10 @@ namespace TortolasProject.Controllers.Socios
         }
 
         [HttpPost]
-        public JsonResult insertarSocio(FormCollection data)
+        public void insertarSocio(FormCollection data)
         {
             // Creamos el Usuario ASP NET
-            //accountRepo.
+            
 
             // Creamos el Usuario
             tbUsuario usuario = new tbUsuario
@@ -149,9 +152,36 @@ namespace TortolasProject.Controllers.Socios
                  FechaAlta = DateTime.Parse(data["FechaAlta"]),
                  Estado = data["Estado"],
                  FKUsuario = usuario.idUsuario,
-                 NumeroSocio = data["NumeroSocio"]                 
+                 NumeroSocio = int.Parse(data["NumeroSocio"])
                  
             };
+
+            
+        }
+
+        [HttpPost]
+        public void editarSocio(FormCollection data)
+        {
+            Guid idSocio = Guid.Parse(data["idSocio"]);
+            int NumeroSocio = int.Parse(data["NumeroSocio"]);
+            DateTime FechaExpiracion = DateTime.Parse(data["FechaExpiracion"]);
+            DateTime FechaAlta = DateTime.Parse(data["FechaAlta"]);
+            String Estado = data["Estado"];
+
+            usuariosRepo.actualizarNombreApellidosUsuario(usuariosRepo.obtenerUsuarioBySocio(idSocio).idUsuario, data["Nombre"], data["Apellidos"]);
+            usuariosRepo.actualizarSocio(idSocio, NumeroSocio, FechaExpiracion, FechaAlta, data["FechaBaja"], Estado);            
+            
+        }
+
+        [HttpPost]
+        public JsonResult obtenerJuntaDirectiva()
+        {
+            var JuntaDirectiva = from j in usuariosRepo.obtenerJuntaDirectiva()
+                                 select new
+                                 {
+                                     FKCargoDirectivo = j.FKCargoDirectivo
+                                     
+                                 };
         }
         
     }

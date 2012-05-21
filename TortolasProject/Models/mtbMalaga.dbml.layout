@@ -1,740 +1,747 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 23.5, 39.25" name="mtbMalaga">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 20.25, 38.75" name="mtbMalaga">
   <DataContextMoniker Name="/mtbMalagaDataContext" />
   <nestedChildShapes>
-    <classShape Id="032c917c-2519-43ff-acf4-958b4370f1e9" absoluteBounds="2.25, 28.375, 2, 1.5785953776041666">
+    <classShape Id="e3eae023-2a83-4fb4-9b3f-05e41a48773a" absoluteBounds="2.25, 27.875, 2, 1.5785953776041666">
       <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Applications" />
       <nestedChildShapes>
-        <elementListCompartment Id="b96d495f-8f1d-4f4b-8afb-327ea52ea3d8" absoluteBounds="2.265, 28.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="cb2eb1da-18fb-4026-8936-872f766c1e4f" absoluteBounds="2.265, 28.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" absoluteBounds="1.75, 18.625, 2, 5.0400211588541666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbUsuario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="0e102c63-ca2a-48e8-b144-e1cb790a5cfc" absoluteBounds="1.7650000000000001, 19.085, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="27e15350-815e-4e65-9223-041f0b2091a8" absoluteBounds="8, 30.125, 2, 4.8477197265624987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Membership" />
-      <nestedChildShapes>
-        <elementListCompartment Id="32d7686b-a310-4e73-aba7-1cac2be60813" absoluteBounds="8.015, 30.585, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="63e942a2-628e-45de-ad96-bf123a7ebced" absoluteBounds="5, 25.125, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Paths" />
-      <nestedChildShapes>
-        <elementListCompartment Id="11cf65fd-8e0a-4f1a-bb1c-e3666642f845" absoluteBounds="5.015, 25.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4ece9750-4f1b-40b0-a072-105ad44f036c" absoluteBounds="7.75, 25.125, 2, 1.3862939453125023">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_PersonalizationAllUsers" />
-      <nestedChildShapes>
-        <elementListCompartment Id="165ab546-e6f2-4135-9023-fee138dd1878" absoluteBounds="7.765, 25.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="77e7b09c-a0ea-48b3-aaa2-0a7ab175284f" absoluteBounds="7.75, 27.25, 2, 1.7708968098958309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_PersonalizationPerUser" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2d580f6c-3942-4fc5-af59-0eb1c401dffa" absoluteBounds="7.765, 27.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="34daa69d-c5f9-47ba-86b7-b07ef705845f" absoluteBounds="4.75, 22.5, 2, 1.7708968098958309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Profile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="26610e7b-8760-4025-aef8-eb297951b4bc" absoluteBounds="4.765, 22.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="68131f02-6aa1-4f50-b94f-b24257ad9503" absoluteBounds="5, 27.375, 2, 1.7708968098958309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Roles" />
-      <nestedChildShapes>
-        <elementListCompartment Id="92968057-d3fb-4da9-88c7-19760bccb1b1" absoluteBounds="5.015, 27.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="36d81161-29e2-42ca-8431-121949c0c6f5" absoluteBounds="3.75, 1.5, 2, 1.3862939453125003">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_SchemaVersions" />
-      <nestedChildShapes>
-        <elementListCompartment Id="272a99d6-28ff-43fa-a6e4-04269eddcbd2" absoluteBounds="3.765, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="957e03f3-61f9-44ed-934b-f33aa397d15f" absoluteBounds="2, 25.125, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Users" />
-      <nestedChildShapes>
-        <elementListCompartment Id="42fc08c8-9759-4783-91f8-148dd813cc8b" absoluteBounds="2.015, 25.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9558a6df-5c74-4d4c-a86f-6e7fbe8412b0" absoluteBounds="10.75, 26.5, 2, 1.1939925130208309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_UsersInRoles" />
-      <nestedChildShapes>
-        <elementListCompartment Id="20a3fafc-88f0-48cb-a52a-213144f8314e" absoluteBounds="10.765, 26.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2e37a6b1-da71-409f-86e1-4d39db0e3cce" absoluteBounds="6.75, 1.5, 2, 3.6939111328124996">
-      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_WebEvent_Events" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6770af16-491a-4e38-b1f1-d06b2f9b82c3" absoluteBounds="6.765, 1.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f53c8082-804e-450f-9a55-eb1bcb426b8e" absoluteBounds="15.25, 19.25, 2, 1.3862939453125023">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbAnuncio" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3e70bd05-cdbc-49ec-bcc8-f87d5963ec5c" absoluteBounds="15.265, 19.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1d2192fc-e885-4264-b430-144e0baa4820" absoluteBounds="15.5, 3.625, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbArticulo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="458de8b9-0db7-4ad9-8ce6-d3ff6d0911f5" absoluteBounds="15.515, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="96f5371d-ad81-41d4-b4f0-990935af34b6" absoluteBounds="3.5, 9.25, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbAsociacion" />
-      <nestedChildShapes>
-        <elementListCompartment Id="432666b9-fc15-4a5e-baa4-9d9568c6d38d" absoluteBounds="3.515, 9.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3685af60-dacf-4d36-948b-bac9823e4a6d" absoluteBounds="9, 13.625, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbAvisoRetiradaPublicidad" />
-      <nestedChildShapes>
-        <elementListCompartment Id="83621bca-f9f5-4c7e-9144-322304b11000" absoluteBounds="9.015, 14.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b000167c-08d0-43f3-a2f4-59b79ad4f61a" absoluteBounds="1, 6.375, 2, 1.1939925130208344">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbCargoDirectivo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="294199d1-fbdf-4e81-ba0b-d74e820f2b35" absoluteBounds="1.0150000000000001, 6.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1484862a-6ccc-42b3-8a28-d95347e2de97" absoluteBounds="12.75, 4, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbCategoria" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e2f2cab9-ec47-40ab-aeb1-21c559cf737f" absoluteBounds="12.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ba5207e4-edfd-48fc-bbe6-9df62031d1bd" absoluteBounds="6.5, 10.25, 2, 2.5401025390624987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbContrato" />
-      <nestedChildShapes>
-        <elementListCompartment Id="082e6641-a04a-411d-9e4f-d311b1605737" absoluteBounds="6.515, 10.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9347aad9-4859-4820-8444-30847d8679e2" absoluteBounds="3.5, 11.375, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbConvenio" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8b87bc24-079d-4cca-b5ec-11364048eb53" absoluteBounds="3.515, 11.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="7a901421-6f49-4537-9e6e-9026c54e866d" absoluteBounds="15, 12, 2, 1.7708968098958344">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbCuota" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b6fde571-63c6-4fd3-9ccf-45f9dd9957c0" absoluteBounds="15.015, 12.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9c54be2d-e207-41bf-9213-55f44b0a5221" absoluteBounds="9.5, 20, 2, 3.5016097005208309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbCursillo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6046f8fa-cf03-4d55-8775-3455ecac62a9" absoluteBounds="9.515, 20.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e8b673eb-a37d-4ed8-8152-62fb34f06ac5" absoluteBounds="12.25, 22.125, 2, 1.1939925130208309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbCursilloMonitor" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2e661eba-0f24-492c-b454-e53d7b688c04" absoluteBounds="12.265, 22.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f582d779-f567-4a30-a16a-1cec6b6e532d" absoluteBounds="3.75, 6.5, 2, 1.9631982421875014">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbDescuentoSocio" />
-      <nestedChildShapes>
-        <elementListCompartment Id="697c5cdb-7ae5-4cf0-b0bc-554b3046c410" absoluteBounds="3.765, 6.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2e20e117-a6c3-4ced-93e1-f9186d6f270d" absoluteBounds="12.25, 19, 2, 1.9631982421875023">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbDocInscripcion" />
-      <nestedChildShapes>
-        <elementListCompartment Id="fe4fe5b9-8ad1-4f5f-b178-cc3c127561a0" absoluteBounds="12.265, 19.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" absoluteBounds="0.75, 12.375, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbEmpresa" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8b5160e2-fca2-4a6c-8775-26ca9b8fed9d" absoluteBounds="0.765, 12.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e5881522-3784-4b05-9d5f-8096aeeeefbf" absoluteBounds="9.5, 8.375, 2, 1.1939925130208344">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbEstadoFactura" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d255f5b0-8a53-4e32-b543-4387023bd8d1" absoluteBounds="9.515, 8.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2eca5d3d-44fc-48f5-9598-35a34f6cd5f3" absoluteBounds="6.75, 16.375, 2, 2.9247054036458309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbEvento" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7738abe1-f9cf-4a0d-8354-570fb006aac7" absoluteBounds="6.765, 16.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="334ce777-af39-4ee6-80bc-e879fccfc36e" absoluteBounds="9.5, 17, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbEventoOficial" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1a8be0bf-f938-4079-8d82-56dd634b03b9" absoluteBounds="9.515, 17.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" absoluteBounds="12.25, 12.25, 2, 3.3093082682291666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbFactura" />
-      <nestedChildShapes>
-        <elementListCompartment Id="73faa90a-df23-4fe0-acdc-56daedab86e3" absoluteBounds="12.265, 12.71, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="02df74fc-34a4-4f71-8651-7a45df968226" absoluteBounds="9.25, 10.75, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbInformeCancelacionContrato" />
-      <nestedChildShapes>
-        <elementListCompartment Id="78cf474f-f6c3-4930-a539-53c49e0e0561" absoluteBounds="9.265, 11.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="bf73e03e-6009-4d3f-8bec-048c8ad0a5ad" absoluteBounds="18.25, 6.75, 2, 1.5785953776041675">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbInventario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4501b746-1e6e-49c4-8cf5-96ee8993d52f" absoluteBounds="18.265, 7.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" absoluteBounds="3.75, 3.875, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1d3ebb2e-8f36-4704-b7fb-e4bc1abd3891" absoluteBounds="3.765, 4.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="279124ad-6302-4f51-8a3d-664207c27d88" absoluteBounds="15, 15.5, 2, 1.9631982421874969">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbLineaFactura" />
-      <nestedChildShapes>
-        <elementListCompartment Id="19a60965-f2d2-4267-8861-a099a7d25248" absoluteBounds="15.015, 15.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d89c46e4-01f9-4f4b-afd2-ced70dc57d71" absoluteBounds="15.5, 7, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbLineaPedidoUsuario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c315900b-11fb-49ef-8161-772cb19b6d74" absoluteBounds="15.515, 7.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="983f3a95-7fca-493a-885b-c2789cfef42e" absoluteBounds="4.5, 33.75, 2, 2.1554996744791595">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbMensaje" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e3e37d42-0cd7-4958-9354-d6c90b1423aa" absoluteBounds="4.515, 34.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d7ab4d6a-c9d1-433c-8b6f-2d2fe611eb5d" absoluteBounds="9.5, 36.625, 2, 2.3478011067708309">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbMonitor" />
-      <nestedChildShapes>
-        <elementListCompartment Id="04391883-a4c7-41d2-bcee-d9e1f15ed56d" absoluteBounds="9.515, 37.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="fd032b9f-06c4-4490-8058-de8a51e2ae10" absoluteBounds="18, 12.875, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbMovimientoGasto" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6cb652b0-5d55-45bf-bc74-5739dabff703" absoluteBounds="18.015, 13.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="34f20dfb-9a17-4943-b7d6-269d4c05c209" absoluteBounds="18, 9.875, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbMovimientoIngreso" />
-      <nestedChildShapes>
-        <elementListCompartment Id="fa2f668c-13e8-4474-838d-70e25653b2a9" absoluteBounds="18.015, 10.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="468478b8-c106-498b-969c-8174e1d07c4f" absoluteBounds="3.5, 13.625, 2, 1.3862939453124987">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbPatrocinador" />
-      <nestedChildShapes>
-        <elementListCompartment Id="32b4435e-995b-40f1-b423-63e147e203f9" absoluteBounds="3.515, 14.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4e1ab3e4-6a9a-48c6-a8fd-be68a8f0a39d" absoluteBounds="15.5, 0.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6a3b372b-5659-43c1-87bb-c6a5698dae4f" absoluteBounds="15.515, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="35918958-2b1a-4e4f-8d6c-33c835e9c326" absoluteBounds="21.25, 11.375, 2, 1.7708968098958344">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbPedidoUsuario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9d9d7776-6157-49c6-a031-5d456d596657" absoluteBounds="21.265, 11.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ccaca94e-64f1-433a-abae-40d603080963" absoluteBounds="3.5, 15.875, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbProveedores" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2d51c84c-cf50-42d7-8565-17fb40a88631" absoluteBounds="3.515, 16.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="bf8cd245-c624-4cd4-8efd-222213d90e28" absoluteBounds="6.25, 13.625, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbPublicidad" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7342e06d-ed39-4630-8c74-534d6b043c95" absoluteBounds="6.265, 14.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="168187b4-4f05-4cf1-918b-4a63e9a94fe8" absoluteBounds="18.25, 4, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbRelacionLineaPedidoUsuarioArticulo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e9446fa4-841d-44fd-b6f0-7a18eee3cb2f" absoluteBounds="18.265, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4d138114-0308-48a9-b497-1d4fac88a07d" absoluteBounds="18.25, 2, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbRelacionPedidoGlobalArticulo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="480e56b2-336b-4edb-9b61-78b980aa9fbb" absoluteBounds="18.265, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3b41de59-67fa-462a-a8a6-6cea7769cdae" absoluteBounds="4.5, 31, 2, 1.9631982421875023">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbRuta" />
-      <nestedChildShapes>
-        <elementListCompartment Id="63ba06e9-71cb-4b2c-989e-e90f760c56cc" absoluteBounds="4.515, 31.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="575c2634-8424-4b4f-a874-fdf0b51c7b9a" absoluteBounds="1, 1.5, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/mtbMalagaDataContext/tbSocio" />
-      <nestedChildShapes>
-        <elementListCompartment Id="feb96c74-81a9-455e-8654-eafe743c5348" absoluteBounds="1.0150000000000001, 1.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9e4f855b-b2c8-4163-b3c3-c5e17b4dc935" absoluteBounds="12.25, 9, 2, 1.7708968098958344">
+    <classShape Id="41934dc5-c551-4548-9e0b-79587fdff76f" absoluteBounds="12.25, 8.5, 2, 1.7708968098958344">
       <DataClassMoniker Name="/mtbMalagaDataContext/tbTipoCuota" />
       <nestedChildShapes>
-        <elementListCompartment Id="0e1d07e3-5963-4064-b6ff-aba59f5c68ad" absoluteBounds="12.265, 9.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="030b555a-bc35-441f-974e-8fe01443c6ea" absoluteBounds="12.265, 8.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.25 : 29.58099609375); (9.90625 : 29.58099609375); (9.90625 : 30.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="02060acc-e205-429b-9789-e663f40e3280" absoluteBounds="8, 29.625, 2, 4.8477197265624987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Membership" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1ca1222b-3e41-4881-881c-66d8deb9055e" absoluteBounds="8.015, 30.085, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ce9e4e8e-9de1-46c7-b9dd-92f3aa4cc994" absoluteBounds="5, 24.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Paths" />
+      <nestedChildShapes>
+        <elementListCompartment Id="405ba8dc-0f59-4834-a05b-34c074e98e79" absoluteBounds="5.015, 25.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1ad7eda-6478-403f-aa46-b46e46197192" absoluteBounds="7.75, 24.625, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_PersonalizationAllUsers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7088a38a-ee71-4ee4-a68e-117a5aac5f79" absoluteBounds="7.765, 25.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b36fa2b4-9ee1-43e8-82d2-8f1c83406917" absoluteBounds="7.75, 26.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_PersonalizationPerUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c853b791-dbfc-40c4-85f8-dd31c242430a" absoluteBounds="7.765, 27.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="607e76a1-b29c-4ba6-988d-43bfb4f4a5b8" absoluteBounds="4.75, 22, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Profile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="162d9506-985b-4c74-a3b9-bc855a6ec68d" absoluteBounds="4.765, 22.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d62b6415-349e-4c4c-b468-03cb4ad17dad" absoluteBounds="5, 26.875, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Roles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32061fe8-5b01-4836-830a-3bc62910dd1b" absoluteBounds="5.015, 27.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d05975be-8fa4-4e4b-a2a4-366fbedc1205" absoluteBounds="3.75, 1, 2, 1.3862939453124998">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_SchemaVersions" />
+      <nestedChildShapes>
+        <elementListCompartment Id="49c3370b-7b73-4e88-af25-478de5b80d23" absoluteBounds="3.765, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="024a1818-6e27-437b-a036-eed3167cd4a1" absoluteBounds="2, 24.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_Users" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b1c01e2-c8e8-47e0-bf64-39670c62003f" absoluteBounds="2.015, 25.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9d0f9c0b-4b47-48ac-84b4-1f5fbace8f86" absoluteBounds="10.75, 26, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_UsersInRoles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1dff62d-527a-4455-9f70-c6212875a9fc" absoluteBounds="10.765, 26.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3d66635f-01fc-49e1-8f61-2155485315fc" absoluteBounds="17.75, 7, 2, 3.6939111328124978">
+      <DataClassMoniker Name="/mtbMalagaDataContext/aspnet_WebEvent_Events" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50286e33-be31-4953-8345-3e6edc3bbd6c" absoluteBounds="17.765, 7.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="94a74cdb-4469-4a04-8019-5db98827250f" absoluteBounds="15.25, 18.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbAnuncio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b47e9ced-997e-4b90-8f2d-63792e5841f4" absoluteBounds="15.265, 19.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" absoluteBounds="12.25, 4.5, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbArticulo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99beb9cc-d9af-4e09-b62a-cee294fe5cff" absoluteBounds="12.265, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="010fec17-bc70-4e95-86c4-de348bd05c29" absoluteBounds="3.5, 8.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbAsociacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1aaad8a5-5002-40ce-9aa6-649d10310f0c" absoluteBounds="3.515, 9.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="99879d90-df9e-4c49-b5bd-7e0e3b15d7b5" absoluteBounds="9, 13.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbAvisoRetiradaPublicidad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8f4729b4-f6b0-4be1-b167-f99b007511dc" absoluteBounds="9.015, 13.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2fe72a92-48fc-4ee9-a5e4-d1f7ace17445" absoluteBounds="1, 5.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbCargoDirectivo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="726d53d7-3326-43ab-b9d8-e84ce20f954c" absoluteBounds="1.0150000000000001, 6.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="95240a73-5585-4a3c-b0b6-fab1b95b3634" absoluteBounds="9.5, 4.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbCategoria" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1f7ad6a3-89df-4c94-a6f7-f5eff1d84615" absoluteBounds="9.515, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6c196dc7-8051-4b0c-a74e-1874d58e9381" absoluteBounds="6.5, 9.75, 2, 2.5401025390624987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbContrato" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8464e8bc-cd58-4466-b316-bf877e23dc10" absoluteBounds="6.515, 10.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3ab67832-dec8-4da2-825e-dbb68fe6a7d4" absoluteBounds="3.5, 10.875, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbConvenio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a67edfd-391d-42cf-a206-25ca0b2d3f61" absoluteBounds="3.515, 11.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f1a17b0-fd10-485d-80cd-df398f0b1dcc" absoluteBounds="15, 12.5, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbCuota" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c8cb2bb6-d67c-40fb-95f1-4607bb56e917" absoluteBounds="15.015, 12.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" absoluteBounds="9.5, 19.5, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbCursillo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="36b45b0c-04f6-4829-b952-ac4283966b43" absoluteBounds="9.515, 19.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="265c839e-d51c-4913-b4cd-28f3aa52dff0" absoluteBounds="12.25, 22.625, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbCursilloMonitor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d21a6992-3485-4ed3-a1e2-e80dee345750" absoluteBounds="12.265, 23.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f8aeaf9c-f268-45aa-96e2-aea4859703f8" absoluteBounds="3.75, 6, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbDescuentoSocio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b46ad3f-bcce-4712-8ea0-8b904818078a" absoluteBounds="3.765, 6.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7999dea4-3462-46f9-a2b4-c85283e7fac4" absoluteBounds="12.25, 16.5, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbDocInscripcion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d239837c-eeaa-4cbb-a2cf-c8151f2ae0cc" absoluteBounds="12.265, 16.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" absoluteBounds="0.75, 11.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbEmpresa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3cb84a1c-5c7f-4262-9e76-a8d55e993031" absoluteBounds="0.765, 12.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8201ec0b-823a-4c43-b5cc-de6b86588367" absoluteBounds="9.5, 7.875, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbEstadoFactura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e9f4e3b0-2067-429e-b239-6f7046db3c9f" absoluteBounds="9.515, 8.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e3920b5-eccd-4d94-9034-2c1bbf9de499" absoluteBounds="6.75, 15.875, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbEvento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3cf787af-3c32-48ed-a0f4-5ac595ad1dee" absoluteBounds="6.765, 16.335, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9905932d-4659-4992-92a1-974b72383b4c" absoluteBounds="9.5, 16.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbEventoOficial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="354e5594-b418-4b93-9acd-0ba25afad19f" absoluteBounds="9.515, 16.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" absoluteBounds="12.25, 11.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbFactura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69442747-fdd6-4e4c-8614-4ef124aef9d1" absoluteBounds="12.265, 12.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="569f01f6-eeaa-49cf-ab21-16a25a4bc1a9" absoluteBounds="9.25, 10.25, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbInformeCancelacionContrato" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f57a38e7-a7d3-459e-9f07-0f7672b822ca" absoluteBounds="9.265, 10.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82aedc39-ec0c-4c4a-aa14-0c3bf1755b91" absoluteBounds="15, 6.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbInventario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88c95e45-e90e-4a7d-94ab-7a15ec98f7fc" absoluteBounds="15.015, 7.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1841cd42-498d-4db3-b32f-c577cae274b7" absoluteBounds="3.75, 3.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd049dad-b60f-42fe-9190-1ba3eff64998" absoluteBounds="3.765, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="14fedd7f-c634-40be-8fb5-da074d94e96a" absoluteBounds="15, 9.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbLineaFactura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d1586f3d-3112-4f42-bd00-3c26acee034e" absoluteBounds="15.015, 9.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="13e1f158-cf8a-48bb-a0a1-97414d9bff6c" absoluteBounds="15.25, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbLineaPedidoUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="060f0b31-3c67-488e-a512-d6630e57f64e" absoluteBounds="15.265, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2943ee53-e34d-474f-90a9-6dfc0ef8a5f4" absoluteBounds="4.5, 33.25, 2, 2.1554996744791595">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbMensaje" />
+      <nestedChildShapes>
+        <elementListCompartment Id="958d2aeb-1698-42f3-a604-8988b84618ea" absoluteBounds="4.515, 33.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bfa20b59-31e1-40ad-b42c-d2189a8e82d8" absoluteBounds="9.5, 36.125, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbMonitor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6edff86e-a390-4d7e-9b82-940becf26703" absoluteBounds="9.515, 36.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1fa41560-3de7-42d1-b987-7a0d183dd7aa" absoluteBounds="15, 15.375, 2, 2.1554996744791683">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbMovimientoGasto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1f779c4b-81df-4817-b28f-dc9ad2d53766" absoluteBounds="15.015, 15.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="918e496d-a42e-45f9-810c-ccf85564b66c" absoluteBounds="18, 12.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbMovimientoIngreso" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfc746df-0126-4965-9e82-2a126275447a" absoluteBounds="18.015, 12.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="448b9fcc-255d-4442-8c23-0baa5c11aa51" absoluteBounds="3.5, 13.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbPatrocinador" />
+      <nestedChildShapes>
+        <elementListCompartment Id="422dba34-d735-4f73-ba13-8b2d37ec2cfb" absoluteBounds="3.515, 13.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7fd7b817-ba7d-4b88-a624-98602d12eba7" absoluteBounds="9.75, 1.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2066d428-854f-4bb7-8b6f-e1522518c9ba" absoluteBounds="9.765, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4da1bb8e-a3ec-48d6-b12e-c49958c5fff3" absoluteBounds="12.5, 19.875, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbPedidoUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fafbc6db-2fb0-4402-acc6-e48996dc16f5" absoluteBounds="12.515, 20.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46fb91c2-2214-40bc-bdca-92121a3bb82f" absoluteBounds="3.5, 15.375, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbProveedores" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1edc1a2a-94bc-4f68-bd97-515c960ed5fd" absoluteBounds="3.515, 15.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1be90b6-fe87-4027-a232-3fb4a0481af6" absoluteBounds="6.25, 13.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbPublicidad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3407408a-b93c-478d-af99-80f680dd769e" absoluteBounds="6.265, 13.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ac96242f-7c68-4d63-9b7f-bec97074e9b6" absoluteBounds="18, 4.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbRelacionLineaPedidoUsuarioArticulo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c9d50cbc-ed38-459b-9c3f-ec146a6d3888" absoluteBounds="18.015, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d86dce6e-dcc5-4f66-a228-1edc9ccb3483" absoluteBounds="15, 3.5, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbRelacionPedidoGlobalArticulo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="440eaa2e-5344-4d89-b8fa-920617ded9ea" absoluteBounds="15.015, 3.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ddc33523-5e16-4889-8c78-cf04f2eac078" absoluteBounds="4.5, 30.5, 2, 1.9631982421874952">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbRuta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa7cf7b5-d7ba-4bfc-868e-a66109285a3d" absoluteBounds="4.515, 30.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="43cfe1b4-a170-491f-9be9-5a1d125c51c9" absoluteBounds="1, 1, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbSocio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c1a5d89-83a9-4fbb-8b3e-85f524399f38" absoluteBounds="1.0150000000000001, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" absoluteBounds="1.75, 18.125, 2, 5.0400211588541666">
+      <DataClassMoniker Name="/mtbMalagaDataContext/tbUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c505a35e-99c7-42e7-a15f-5ded8457785e" absoluteBounds="1.7650000000000001, 18.585, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.25 : 29.08099609375); (9.90625 : 29.08099609375); (9.90625 : 29.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Applications/aspnet_Applications_aspnet_Membership" />
       <nodes>
-        <classShapeMoniker Id="032c917c-2519-43ff-acf4-958b4370f1e9" />
-        <classShapeMoniker Id="27e15350-815e-4e65-9223-041f0b2091a8" />
+        <classShapeMoniker Id="e3eae023-2a83-4fb4-9b3f-05e41a48773a" />
+        <classShapeMoniker Id="02060acc-e205-429b-9789-e663f40e3280" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.25 : 28.375); (4.625 : 28); (4.625 : 25.9142976888021); (5 : 25.9142976888021)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.25 : 27.875); (4.625 : 27.5); (4.625 : 25.4142976888021); (5 : 25.4142976888021)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Applications/aspnet_Applications_aspnet_Paths" />
       <nodes>
-        <classShapeMoniker Id="032c917c-2519-43ff-acf4-958b4370f1e9" />
-        <classShapeMoniker Id="63e942a2-628e-45de-ad96-bf123a7ebced" />
+        <classShapeMoniker Id="e3eae023-2a83-4fb4-9b3f-05e41a48773a" />
+        <classShapeMoniker Id="ce9e4e8e-9de1-46c7-b9dd-92f3aa4cc994" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7 : 25.8181469726563); (7.75 : 25.8181469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7 : 25.3181469726563); (7.75 : 25.3181469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Paths/aspnet_Paths_aspnet_PersonalizationAllUsers" />
       <nodes>
-        <classShapeMoniker Id="63e942a2-628e-45de-ad96-bf123a7ebced" />
-        <classShapeMoniker Id="4ece9750-4f1b-40b0-a072-105ad44f036c" />
+        <classShapeMoniker Id="ce9e4e8e-9de1-46c7-b9dd-92f3aa4cc994" />
+        <classShapeMoniker Id="d1ad7eda-6478-403f-aa46-b46e46197192" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7 : 26.7035953776042); (7.375 : 27.0785953776042); (7.375 : 26.8736387716847); (7.7513612283153 : 27.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7 : 26.2035953776042); (7.375 : 26.5785953776042); (7.375 : 26.3736387716847); (7.7513612283153 : 26.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Paths/aspnet_Paths_aspnet_PersonalizationPerUser" />
       <nodes>
-        <classShapeMoniker Id="63e942a2-628e-45de-ad96-bf123a7ebced" />
-        <classShapeMoniker Id="77e7b09c-a0ea-48b3-aaa2-0a7ab175284f" />
+        <classShapeMoniker Id="ce9e4e8e-9de1-46c7-b9dd-92f3aa4cc994" />
+        <classShapeMoniker Id="b36fa2b4-9ee1-43e8-82d2-8f1c83406917" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.25 : 28.7917009049479); (5 : 28.7917009049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.25 : 28.2917009049479); (5 : 28.2917009049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Applications/aspnet_Applications_aspnet_Roles" />
       <nodes>
-        <classShapeMoniker Id="032c917c-2519-43ff-acf4-958b4370f1e9" />
-        <classShapeMoniker Id="68131f02-6aa1-4f50-b94f-b24257ad9503" />
+        <classShapeMoniker Id="e3eae023-2a83-4fb4-9b3f-05e41a48773a" />
+        <classShapeMoniker Id="d62b6415-349e-4c4c-b468-03cb4ad17dad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 25.125); (2.875 : 23.6650211588542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_tbUsuario" />
-      <nodes>
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.09375 : 27.2804996744792); (2.09375 : 30.53125); (8 : 30.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.09375 : 26.7804996744792); (2.09375 : 30.03125); (8 : 30.03125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_aspnet_Membership" />
       <nodes>
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
-        <classShapeMoniker Id="27e15350-815e-4e65-9223-041f0b2091a8" />
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
+        <classShapeMoniker Id="02060acc-e205-429b-9789-e663f40e3280" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4 : 26.5973981816406); (4.54166666666667 : 26.5973981816406 : JumpStart); (4.70833333333333 : 26.5973981816406 : JumpEnd); (4.75 : 26.5973981816406); (4.75 : 26.9535953776042); (7.16666666666667 : 26.9535953776042 : JumpStart); (7.33333333333333 : 26.9535953776042 : JumpEnd); (7.37162327258614 : 26.9535953776042 : JumpStart); (7.5382899392528 : 26.9535953776042 : JumpEnd); (8.78193261415765 : 26.9535953776042); (8.78193261415765 : 27.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4 : 26.0973981816406); (4.54166666666667 : 26.0973981816406 : JumpStart); (4.70833333333333 : 26.0973981816406 : JumpEnd); (4.75 : 26.0973981816406); (4.75 : 26.4535953776042); (7.16666666666667 : 26.4535953776042 : JumpStart); (7.33333333333333 : 26.4535953776042 : JumpEnd); (7.37162327258614 : 26.4535953776042 : JumpStart); (7.5382899392528 : 26.4535953776042 : JumpEnd); (8.78193261415765 : 26.4535953776042); (8.78193261415765 : 26.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_aspnet_PersonalizationPerUser" />
       <nodes>
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
-        <classShapeMoniker Id="77e7b09c-a0ea-48b3-aaa2-0a7ab175284f" />
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
+        <classShapeMoniker Id="b36fa2b4-9ee1-43e8-82d2-8f1c83406917" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.90625 : 25.125); (3.90625 : 23.999208984375); (4.75 : 23.999208984375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.90625 : 24.625); (3.90625 : 23.499208984375); (4.75 : 23.499208984375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_aspnet_Profile" />
       <nodes>
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
-        <classShapeMoniker Id="34daa69d-c5f9-47ba-86b7-b07ef705845f" />
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
+        <classShapeMoniker Id="607e76a1-b29c-4ba6-988d-43bfb4f4a5b8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.125 : 28.375); (3.125 : 27.2804996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.125 : 27.875); (3.125 : 26.7804996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Applications/aspnet_Applications_aspnet_Users" />
       <nodes>
-        <classShapeMoniker Id="032c917c-2519-43ff-acf4-958b4370f1e9" />
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
+        <classShapeMoniker Id="e3eae023-2a83-4fb4-9b3f-05e41a48773a" />
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7 : 29.1146468098958); (11.75 : 29.1146468098958); (11.75 : 27.6939925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7 : 28.6146468098958); (11.75 : 28.6146468098958); (11.75 : 27.1939925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Roles/aspnet_Roles_aspnet_UsersInRoles" />
       <nodes>
-        <classShapeMoniker Id="68131f02-6aa1-4f50-b94f-b24257ad9503" />
-        <classShapeMoniker Id="9558a6df-5c74-4d4c-a86f-6e7fbe8412b0" />
+        <classShapeMoniker Id="d62b6415-349e-4c4c-b468-03cb4ad17dad" />
+        <classShapeMoniker Id="9d0f9c0b-4b47-48ac-84b4-1f5fbace8f86" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4 : 27.1330476888021); (4.54166666666667 : 27.1330476888021 : JumpStart); (4.70833333333333 : 27.1330476888021 : JumpEnd); (7.55107558378405 : 27.1330476888021 : JumpStart); (7.71774225045072 : 27.1330476888021 : JumpEnd); (8.69859928082432 : 27.1330476888021 : JumpStart); (8.86526594749099 : 27.1330476888021 : JumpEnd); (10.75 : 27.1330476888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4 : 26.6330476888021); (4.54166666666667 : 26.6330476888021 : JumpStart); (4.70833333333333 : 26.6330476888021 : JumpEnd); (7.55107558378405 : 26.6330476888021 : JumpStart); (7.71774225045072 : 26.6330476888021 : JumpEnd); (8.69859928082432 : 26.6330476888021 : JumpStart); (8.86526594749099 : 26.6330476888021 : JumpEnd); (10.75 : 26.6330476888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_aspnet_UsersInRoles" />
       <nodes>
-        <classShapeMoniker Id="957e03f3-61f9-44ed-934b-f33aa397d15f" />
-        <classShapeMoniker Id="9558a6df-5c74-4d4c-a86f-6e7fbe8412b0" />
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
+        <classShapeMoniker Id="9d0f9c0b-4b47-48ac-84b4-1f5fbace8f86" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.2086362792969 : 5.5881982421875); (16.2086362792969 : 5.8381982421875); (16.8052381835938 : 5.8381982421875); (16.8052381835938 : 5.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(12.9586362792969 : 6.4631982421875); (12.9586362792969 : 6.7131982421875); (13.5552381835937 : 6.7131982421875); (13.5552381835937 : 6.4631982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbArticulo" />
       <nodes>
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14.75 : 4.59699625651042); (15.5 : 4.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.5 : 5.47199625651042); (11.9166666666667 : 5.47199625651042 : JumpStart); (12.0833333333333 : 5.47199625651042 : JumpEnd); (12.25 : 5.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/tbCategoria/tbCategoria_tbArticulo" />
       <nodes>
-        <classShapeMoniker Id="1484862a-6ccc-42b3-8a28-d95347e2de97" />
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
+        <classShapeMoniker Id="95240a73-5585-4a3c-b0b6-fab1b95b3634" />
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 21.5440991210938); (16.25 : 21.5440991210938); (16.25 : 20.6362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbAnuncio" />
-      <nodes>
-        <classShapeMoniker Id="9c54be2d-e207-41bf-9213-55f44b0a5221" />
-        <classShapeMoniker Id="f53c8082-804e-450f-9a55-eb1bcb426b8e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 22.7219962565104); (12.25 : 22.7219962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbCursilloMonitor" />
-      <nodes>
-        <classShapeMoniker Id="9c54be2d-e207-41bf-9213-55f44b0a5221" />
-        <classShapeMoniker Id="e8b673eb-a37d-4ed8-8152-62fb34f06ac5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 20.4815991210938); (12.25 : 20.4815991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbDocInscripcion" />
-      <nodes>
-        <classShapeMoniker Id="9c54be2d-e207-41bf-9213-55f44b0a5221" />
-        <classShapeMoniker Id="2e20e117-a6c3-4ced-93e1-f9186d6f270d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 19.6498527018229); (5.91666666666667 : 19.6498527018229 : JumpStart); (6.08333333333333 : 19.6498527018229 : JumpEnd); (9.16666666666667 : 19.6498527018229 : JumpStart); (9.33333333333333 : 19.6498527018229 : JumpEnd); (12.25 : 19.6498527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbDocInscripcion" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="2e20e117-a6c3-4ced-93e1-f9186d6f270d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 12.375); (1.75 : 9.94314697265625); (3.19791916666667 : 9.94314697265625 : JumpStart); (3.36458583333333 : 9.94314697265625 : JumpEnd); (3.5 : 9.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbAsociacion" />
-      <nodes>
-        <classShapeMoniker Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" />
-        <classShapeMoniker Id="96f5371d-ad81-41d4-b4f0-990935af34b6" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 13.1763017695312); (3.19791916666667 : 13.1763017695312 : JumpStart); (3.36458583333333 : 13.1763017695312 : JumpEnd); (5.79166666666667 : 13.1763017695312 : JumpStart); (6.08333333333333 : 13.1763017695312 : JumpEnd); (8.40625 : 13.1763017695312); (8.40625 : 12.7901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbContrato" />
-      <nodes>
-        <classShapeMoniker Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" />
-        <classShapeMoniker Id="ba5207e4-edfd-48fc-bbe6-9df62031d1bd" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 12.5681469726562); (3.19791916666667 : 12.5681469726562 : JumpStart); (3.36458583333333 : 12.5681469726562 : JumpEnd); (3.5 : 12.5681469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbConvenio" />
-      <nodes>
-        <classShapeMoniker Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" />
-        <classShapeMoniker Id="9347aad9-4859-4820-8444-30847d8679e2" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 18.7892976888021); (9.16666666666667 : 18.7892976888021 : JumpStart); (9.33333333333333 : 18.7892976888021 : JumpEnd); (11.7916666666667 : 18.7892976888021 : JumpStart); (11.9583333333333 : 18.7892976888021 : JumpEnd); (13.1666666666667 : 18.7892976888021 : JumpStart); (13.3333333333333 : 18.7892976888021 : JumpEnd); (17.15625 : 18.7892976888021); (17.15625 : 19.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbAnuncio" />
-      <nodes>
-        <classShapeMoniker Id="2eca5d3d-44fc-48f5-9598-35a34f6cd5f3" />
-        <classShapeMoniker Id="f53c8082-804e-450f-9a55-eb1bcb426b8e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 16.65625); (9.04166666666667 : 16.65625 : JumpStart); (9.20833333333333 : 16.65625 : JumpEnd); (11.1979166666667 : 16.65625 : JumpStart); (11.3645833333333 : 16.65625 : JumpEnd); (11.7916666666667 : 16.65625 : JumpStart); (11.9583333333333 : 16.65625 : JumpEnd); (13.25 : 16.65625); (13.25 : 19)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbDocInscripcion" />
-      <nodes>
-        <classShapeMoniker Id="2eca5d3d-44fc-48f5-9598-35a34f6cd5f3" />
-        <classShapeMoniker Id="2e20e117-a6c3-4ced-93e1-f9186d6f270d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 18.9623527018229); (5.91666666666667 : 18.9623527018229 : JumpStart); (6.08333333333333 : 18.9623527018229 : JumpEnd); (6.75 : 18.9623527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbEvento" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="2eca5d3d-44fc-48f5-9598-35a34f6cd5f3" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 17.7892976888021); (9.5 : 17.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbEventoOficial" />
-      <nodes>
-        <classShapeMoniker Id="2eca5d3d-44fc-48f5-9598-35a34f6cd5f3" />
-        <classShapeMoniker Id="334ce777-af39-4ee6-80bc-e879fccfc36e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(14.25 : 13.0104484049479); (15 : 13.0104484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbCuota" />
-      <nodes>
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-        <classShapeMoniker Id="7a901421-6f49-4537-9e6e-9026c54e866d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.28125 : 17); (11.28125 : 12.90625); (12.25 : 12.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEventoOficial/tbEventoOficial_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="334ce777-af39-4ee6-80bc-e879fccfc36e" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 20); (11.875 : 19.625); (11.875 : 14.2640311341146); (12.25 : 14.2640311341146)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="9c54be2d-e207-41bf-9213-55f44b0a5221" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.40625 : 9.56899251302083); (11.40625 : 12.5468725); (12.25 : 12.5468725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEstadoFactura/tbEstadoFactura_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="e5881522-3784-4b05-9d5f-8096aeeeefbf" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.125 : 18.625); (3.125 : 15.4127018229167); (3.19791916666667 : 15.4127018229167 : JumpStart); (3.36458583333333 : 15.4127018229167 : JumpEnd); (5.79166666666667 : 15.4127018229167 : JumpStart); (6.08333333333333 : 15.4127018229167 : JumpEnd); (11.1979166666667 : 15.4127018229167 : JumpStart); (11.3645833333333 : 15.4127018229167 : JumpEnd); (11.7916666666667 : 15.4127018229167 : JumpStart); (11.9583333333333 : 15.4127018229167 : JumpEnd); (12.25 : 15.4127018229167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 12.33593625); (11.3229166666667 : 12.33593625 : JumpStart); (11.4895833333333 : 12.33593625 : JumpEnd); (12.25 : 12.33593625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbContrato/tbContrato_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="ba5207e4-edfd-48fc-bbe6-9df62031d1bd" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 11.4431469726562); (9.25 : 11.4431469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbContrato/tbContrato_tbInformeCancelacionContrato" />
-      <nodes>
-        <classShapeMoniker Id="ba5207e4-edfd-48fc-bbe6-9df62031d1bd" />
-        <classShapeMoniker Id="02df74fc-34a4-4f71-8651-7a45df968226" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 5.58668708969351); (17.875 : 5.96168708969351); (17.875 : 7.53929768880208); (17.9166666666667 : 7.53929768880208 : JumpStart); (18.0833333333333 : 7.53929768880208 : JumpEnd); (18.25 : 7.53929768880208)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbInventario" />
-      <nodes>
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
-        <classShapeMoniker Id="bf73e03e-6009-4d3f-8bec-048c8ad0a5ad" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.73071242863582 : 5.06899251302083); (6.125 : 5.46328008438502); (6.125 : 11.5200512695312); (6.5 : 11.5200512695312)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbContrato" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="ba5207e4-edfd-48fc-bbe6-9df62031d1bd" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.718748 : 5.06899251302083); (4.718748 : 6.25); (5.79166666666667 : 6.25 : JumpStart); (5.95833333333333 : 6.25 : JumpEnd); (6 : 6.25); (6 : 21.2499995); (9.5 : 21.2499995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbCursillo" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="9c54be2d-e207-41bf-9213-55f44b0a5221" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.234374 : 5.06899251302083); (5.234374 : 6); (5.875 : 6); (5.875 : 16.125); (5.91666666666667 : 16.125 : JumpStart); (6.08333333333333 : 16.125 : JumpEnd); (9.125 : 16.125); (9.125 : 17.363396844401); (9.5 : 17.363396844401)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbEventoOficial" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="334ce777-af39-4ee6-80bc-e879fccfc36e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 5.0487854858774); (6.14520702714343 : 5.44399251302083); (6.41666666666667 : 5.44399251302083 : JumpStart); (6.70833333333333 : 5.44399251302083 : JumpEnd); (11.875 : 5.44399251302083); (11.875 : 11.875); (12.25 : 12.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3 : 6.37591745577925); (3.22232693490112 : 6.15359052087813 : JumpStart); (3.34017806509888 : 6.03573939068037 : JumpEnd); (3.375 : 6.00091745577925); (3.375 : 5.44490996880008); (3.75091745577925 : 5.06899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbCargoDirectivo/tbCargoDirectivo_tbJuntaDirectiva" />
-      <nodes>
-        <classShapeMoniker Id="b000167c-08d0-43f3-a2f4-59b79ad4f61a" />
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.44621064828726 : 3.875); (4.44621064828726 : 3.625); (5.06825551131811 : 3.625); (5.06825551131811 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbJuntaDirectiva" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.75 : 15.5593082682292); (13.75 : 16.1077796341146); (15 : 16.1077796341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbLineaFactura" />
-      <nodes>
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-        <classShapeMoniker Id="279124ad-6302-4f51-8a3d-664207c27d88" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.84375 : 23.6650211588542); (1.84375 : 34.8277498372396); (4.5 : 34.8277498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbMensaje" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="983f3a95-7fca-493a-885b-c2789cfef42e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.8750025 : 23.6650211588542); (1.8750025 : 34.2576224186198); (4.5 : 34.2576224186198)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbMensaje1" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="983f3a95-7fca-493a-885b-c2789cfef42e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 37.7989005533854); (13.53125 : 37.7989005533854); (13.53125 : 23.3189925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbMonitor/tbMonitor_tbCursilloMonitor" />
-      <nodes>
-        <classShapeMoniker Id="d7ab4d6a-c9d1-433c-8b6f-2d2fe611eb5d" />
-        <classShapeMoniker Id="e8b673eb-a37d-4ed8-8152-62fb34f06ac5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(14.25 : 14.4319482421875); (18 : 14.4319482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbMovimientoGasto" />
-      <nodes>
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-        <classShapeMoniker Id="fd032b9f-06c4-4490-8058-de8a51e2ae10" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 4.4306407429387); (6.5 : 4.4306407429387); (6.5 : 6.5); (6.54166666666667 : 6.5 : JumpStart); (6.70833333333333 : 6.5 : JumpEnd); (11.7916666666667 : 6.5 : JumpStart); (11.9583333333333 : 6.5 : JumpEnd); (14.5416666666667 : 6.5 : JumpStart); (14.7083333333333 : 6.5 : JumpEnd); (17.75 : 6.5); (17.75 : 12.5); (19 : 12.5); (19 : 12.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbMovimientoGasto" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="fd032b9f-06c4-4490-8058-de8a51e2ae10" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.281252 : 12.25); (13.281252 : 11.3541994049479); (14.5416666666667 : 11.3541994049479 : JumpStart); (14.7083333333333 : 11.3541994049479 : JumpEnd); (15.9166666666667 : 11.3541994049479 : JumpStart); (16.0833333333333 : 11.3541994049479 : JumpEnd); (17.6666666666667 : 11.3541994049479 : JumpStart); (17.8333333333333 : 11.3541994049479 : JumpEnd); (18 : 11.3541994049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbMovimientoIngreso" />
-      <nodes>
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-        <classShapeMoniker Id="34f20dfb-9a17-4943-b7d6-269d4c05c209" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 4.73971311440805); (6.41666666666667 : 4.73971311440805 : JumpStart); (6.58333333333333 : 4.73971311440805 : JumpEnd); (6.625 : 4.73971311440805); (6.625 : 6.75); (11.7916666666667 : 6.75 : JumpStart); (11.9583333333333 : 6.75 : JumpEnd); (14.5416666666667 : 6.75 : JumpStart); (14.7083333333333 : 6.75 : JumpEnd); (17.6666666666667 : 6.75 : JumpStart); (17.9583333333333 : 6.75 : JumpEnd); (18 : 6.75); (18 : 9.5); (19 : 9.5); (19 : 9.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbMovimientoIngreso" />
-      <nodes>
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-        <classShapeMoniker Id="34f20dfb-9a17-4943-b7d6-269d4c05c209" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 14.0777498372396); (3.19791916666667 : 14.0777498372396 : JumpStart); (3.36458583333333 : 14.0777498372396 : JumpEnd); (3.5 : 14.0777498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbPatrocinador" />
-      <nodes>
-        <classShapeMoniker Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" />
-        <classShapeMoniker Id="468478b8-c106-498b-969c-8174e1d07c4f" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 1.34375); (22.25 : 1.34375); (22.25 : 11.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal/tbPedidoGlobal_tbPedidoUsuario" />
-      <nodes>
-        <classShapeMoniker Id="4e1ab3e4-6a9a-48c6-a8fd-be68a8f0a39d" />
-        <classShapeMoniker Id="35918958-2b1a-4e4f-8d6c-33c835e9c326" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 20.4811786009115); (5.91666666666667 : 20.4811786009115 : JumpStart); (6.08333333333333 : 20.4811786009115 : JumpEnd); (9.25 : 20.4811786009115); (9.25 : 18.6875); (11.7916666666667 : 18.6875 : JumpStart); (11.9583333333333 : 18.6875 : JumpEnd); (13.1666666666667 : 18.6875 : JumpStart); (13.3333333333333 : 18.6875 : JumpEnd); (22.25 : 18.6875); (22.25 : 13.1458968098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbPedidoUsuario" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="35918958-2b1a-4e4f-8d6c-33c835e9c326" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 15.9913898170573); (5.79166666666667 : 15.9913898170573 : JumpStart); (6.08333333333333 : 15.9913898170573 : JumpEnd); (11.1979166666667 : 15.9913898170573 : JumpStart); (11.3645833333333 : 15.9913898170573 : JumpEnd); (11.7916666666667 : 15.9913898170573 : JumpStart); (11.9583333333333 : 15.9913898170573 : JumpEnd); (12.75 : 15.9913898170573); (12.75 : 15.5593082682292)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbProveedores/tbProveedores_tbFactura" />
-      <nodes>
-        <classShapeMoniker Id="ccaca94e-64f1-433a-abae-40d603080963" />
-        <classShapeMoniker Id="afbb225b-0c74-4a48-9afe-f18a48e9be97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 14.5304996744792); (1.75 : 16.7604484049479); (3.04166666666667 : 16.7604484049479 : JumpStart); (3.36458583333333 : 16.7604484049479 : JumpEnd); (3.5 : 16.7604484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbProveedores" />
-      <nodes>
-        <classShapeMoniker Id="bad5e3f5-5ef2-4934-a2ff-45c4c26b6d40" />
-        <classShapeMoniker Id="ccaca94e-64f1-433a-abae-40d603080963" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 14.3181469726562); (9 : 14.3181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbPublicidad/tbPublicidad_tbAvisoRetiradaPublicidad" />
-      <nodes>
-        <classShapeMoniker Id="bf8cd245-c624-4cd4-8efd-222213d90e28" />
-        <classShapeMoniker Id="3685af60-dacf-4d36-948b-bac9823e4a6d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 14.3181469726562); (5.79166666666667 : 14.3181469726562 : JumpStart); (6.08333333333333 : 14.3181469726562 : JumpEnd); (6.25 : 14.3181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbPatrocinador/tbPatrocinador_tbPublicidad" />
-      <nodes>
-        <classShapeMoniker Id="468478b8-c106-498b-969c-8174e1d07c4f" />
-        <classShapeMoniker Id="bf8cd245-c624-4cd4-8efd-222213d90e28" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 4.59699625651042); (18.25 : 4.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbRelacionLineaPedidoUsuarioArticulo" />
-      <nodes>
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
-        <classShapeMoniker Id="168187b4-4f05-4cf1-918b-4a63e9a94fe8" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 7.0618490375601); (17.6910744349011 : 6.87077460265897 : JumpStart); (17.8089255650989 : 6.75292347246122 : JumpEnd); (17.8160744349011 : 6.74577460265897 : JumpStart); (17.9339255650989 : 6.62792347246122 : JumpEnd); (17.9375 : 6.62434903756009); (17.9375 : 4.92674638476563); (18.25 : 4.92674638476563)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbLineaPedidoUsuario/tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo" />
-      <nodes>
-        <classShapeMoniker Id="d89c46e4-01f9-4f4b-afd2-ced70dc57d71" />
-        <classShapeMoniker Id="168187b4-4f05-4cf1-918b-4a63e9a94fe8" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 3.625); (17.875 : 3.25); (17.875 : 3.56990996880008); (18.2509174557792 : 3.19399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbRelacionPedidoGlobalArticulo" />
-      <nodes>
-        <classShapeMoniker Id="1d2192fc-e885-4264-b430-144e0baa4820" />
-        <classShapeMoniker Id="4d138114-0308-48a9-b497-1d4fac88a07d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(17.5 : 2.26044840494792); (18.25 : 2.26044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal/tbPedidoGlobal_tbRelacionPedidoGlobalArticulo" />
-      <nodes>
-        <classShapeMoniker Id="4e1ab3e4-6a9a-48c6-a8fd-be68a8f0a39d" />
-        <classShapeMoniker Id="4d138114-0308-48a9-b497-1d4fac88a07d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.8124975 : 23.6650211588542); (1.8124975 : 31.9815991210938); (4.5 : 31.9815991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbRuta" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="3b41de59-67fa-462a-a8a6-6cea7769cdae" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2 : 4.23240397135417); (2 : 6.125); (3.16758412244591 : 6.125 : JumpStart); (3.36458583333333 : 6.125 : JumpEnd); (4.63541466666667 : 6.125 : JumpStart); (4.80208133333333 : 6.125 : JumpEnd); (5.79166666666667 : 6.125 : JumpStart); (5.95833333333333 : 6.125 : JumpEnd); (6.04166666666667 : 6.125 : JumpStart); (6.20833333333333 : 6.125 : JumpEnd); (6.41666666666667 : 6.125 : JumpStart); (6.70833333333333 : 6.125 : JumpEnd); (11.7916666666667 : 6.125 : JumpStart); (11.9583333333333 : 6.125 : JumpEnd); (14.625 : 6.125); (14.625 : 12.473972202474); (15 : 12.473972202474)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbSocio/tbSocio_tbCuota" />
-      <nodes>
-        <classShapeMoniker Id="575c2634-8424-4b4f-a874-fdf0b51c7b9a" />
-        <classShapeMoniker Id="7a901421-6f49-4537-9e6e-9026c54e866d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3 : 4.05370198567708); (3.19791916666667 : 4.05370198567708 : JumpStart); (3.36458583333333 : 4.05370198567708 : JumpEnd); (3.75 : 4.05370198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbSocio/tbSocio_tbJuntaDirectiva" />
-      <nodes>
-        <classShapeMoniker Id="575c2634-8424-4b4f-a874-fdf0b51c7b9a" />
-        <classShapeMoniker Id="51ced802-aaea-46c4-b236-9dd8f832ab2d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.2812525 : 18.625); (3.2812525 : 2.74559849283854); (3 : 2.74559849283854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbSocio" />
-      <nodes>
-        <classShapeMoniker Id="70cd3df3-c8ae-4050-9d30-4c2988ee2500" />
-        <classShapeMoniker Id="575c2634-8424-4b4f-a874-fdf0b51c7b9a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(14.25 : 9.88544840494792); (14.5416666666667 : 9.88544840494792 : JumpStart); (14.7083333333333 : 9.88544840494792 : JumpEnd); (16 : 9.88544840494792); (16 : 12)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14.25 : 10.2708968098958); (14.3160744349011 : 10.336971244797 : JumpStart); (14.5589255650989 : 10.5798223749947 : JumpEnd); (14.625 : 10.6458968098958); (14.625 : 13.3854484049479); (15 : 13.3854484049479)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/mtbMalagaDataContext/tbTipoCuota/tbTipoCuota_tbCuota" />
       <nodes>
-        <classShapeMoniker Id="9e4f855b-b2c8-4163-b3c3-c5e17b4dc935" />
-        <classShapeMoniker Id="7a901421-6f49-4537-9e6e-9026c54e866d" />
+        <classShapeMoniker Id="41934dc5-c551-4548-9e0b-79587fdff76f" />
+        <classShapeMoniker Id="8f1a17b0-fd10-485d-80cd-df398f0b1dcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.5 : 19.65625); (14.3229141666667 : 19.65625 : JumpStart); (14.5208333333333 : 19.65625 : JumpEnd); (15.25 : 19.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbAnuncio" />
+      <nodes>
+        <classShapeMoniker Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" />
+        <classShapeMoniker Id="94a74cdb-4469-4a04-8019-5db98827250f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.5 : 22.8133048502604); (12.25 : 22.8133048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbCursilloMonitor" />
+      <nodes>
+        <classShapeMoniker Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" />
+        <classShapeMoniker Id="265c839e-d51c-4913-b4cd-28f3aa52dff0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.5 : 19.5953836153846); (12.0625 : 19.0328836153846); (12.0625 : 17.4815991210938); (12.25 : 17.4815991210938)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbDocInscripcion" />
+      <nodes>
+        <classShapeMoniker Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" />
+        <classShapeMoniker Id="7999dea4-3462-46f9-a2b4-c85283e7fac4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 11.875); (1.75 : 9.44314697265625); (3.19791916666667 : 9.44314697265625 : JumpStart); (3.36458583333333 : 9.44314697265625 : JumpEnd); (3.5 : 9.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbAsociacion" />
+      <nodes>
+        <classShapeMoniker Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" />
+        <classShapeMoniker Id="010fec17-bc70-4e95-86c4-de348bd05c29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 12.6763017695312); (3.19791916666667 : 12.6763017695312 : JumpStart); (3.36458583333333 : 12.6763017695312 : JumpEnd); (5.91666666666667 : 12.6763017695312 : JumpStart); (6.20833333333333 : 12.6763017695312 : JumpEnd); (8.40625 : 12.6763017695312); (8.40625 : 12.2901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbContrato" />
+      <nodes>
+        <classShapeMoniker Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" />
+        <classShapeMoniker Id="6c196dc7-8051-4b0c-a74e-1874d58e9381" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 12.0681469726562); (3.19791916666667 : 12.0681469726562 : JumpStart); (3.36458583333333 : 12.0681469726562 : JumpEnd); (3.5 : 12.0681469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbConvenio" />
+      <nodes>
+        <classShapeMoniker Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" />
+        <classShapeMoniker Id="3ab67832-dec8-4da2-825e-dbb68fe6a7d4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.75 : 18.7997054036458); (7.75 : 19.1186032018229); (11.8934470802284 : 19.1186032018229 : JumpStart); (12.060113746895 : 19.1186032018229 : JumpEnd); (13.1666666666667 : 19.1186032018229 : JumpStart); (13.3333333333333 : 19.1186032018229 : JumpEnd); (14.3229141666667 : 19.1186032018229 : JumpStart); (14.5208333333333 : 19.1186032018229 : JumpEnd); (15.25 : 19.1186032018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbAnuncio" />
+      <nodes>
+        <classShapeMoniker Id="8e3920b5-eccd-4d94-9034-2c1bbf9de499" />
+        <classShapeMoniker Id="94a74cdb-4469-4a04-8019-5db98827250f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.75 : 18.3021468098958); (11.7916666666667 : 18.3021468098958 : JumpStart); (11.9583333333333 : 18.3021468098958 : JumpEnd); (11.9791666666667 : 18.3021468098958 : JumpStart); (12.1458333333333 : 18.3021468098958 : JumpEnd); (12.25 : 18.3021468098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbDocInscripcion" />
+      <nodes>
+        <classShapeMoniker Id="8e3920b5-eccd-4d94-9034-2c1bbf9de499" />
+        <classShapeMoniker Id="7999dea4-3462-46f9-a2b4-c85283e7fac4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.75 : 17.2892976888021); (9.5 : 17.2892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEvento/tbEvento_tbEventoOficial" />
+      <nodes>
+        <classShapeMoniker Id="8e3920b5-eccd-4d94-9034-2c1bbf9de499" />
+        <classShapeMoniker Id="9905932d-4659-4992-92a1-974b72383b4c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 12.880224202474); (14.3541666666667 : 12.880224202474 : JumpStart); (14.7083333333333 : 12.880224202474 : JumpEnd); (15 : 12.880224202474)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbCuota" />
+      <nodes>
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+        <classShapeMoniker Id="8f1a17b0-fd10-485d-80cd-df398f0b1dcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.28125 : 16.5); (11.28125 : 12.40625); (12.25 : 12.40625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEventoOficial/tbEventoOficial_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="9905932d-4659-4992-92a1-974b72383b4c" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.4676923076923 : 19.5); (11.875 : 19.0926923076923); (11.875 : 13.7640311341146); (12.25 : 13.7640311341146)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbCursillo/tbCursillo_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.40625 : 9.06899251302083); (11.40625 : 12.0468725); (12.25 : 12.0468725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEstadoFactura/tbEstadoFactura_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="8201ec0b-823a-4c43-b5cc-de6b86588367" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 11.83593625); (11.3229166666667 : 11.83593625 : JumpStart); (11.4895833333333 : 11.83593625 : JumpEnd); (12.25 : 11.83593625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbContrato/tbContrato_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="6c196dc7-8051-4b0c-a74e-1874d58e9381" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 10.9431469726562); (9.25 : 10.9431469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbContrato/tbContrato_tbInformeCancelacionContrato" />
+      <nodes>
+        <classShapeMoniker Id="6c196dc7-8051-4b0c-a74e-1874d58e9381" />
+        <classShapeMoniker Id="569f01f6-eeaa-49cf-ab21-16a25a4bc1a9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.5730656396484 : 6.4631982421875); (12.5730656396484 : 7.45839680989583); (14.2916666666667 : 7.45839680989583 : JumpStart); (14.5833333333333 : 7.45839680989583 : JumpEnd); (14.6666666666667 : 7.45839680989583 : JumpStart); (14.8958333333333 : 7.45839680989583 : JumpEnd); (15 : 7.45839680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbInventario" />
+      <nodes>
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
+        <classShapeMoniker Id="82aedc39-ec0c-4c4a-aa14-0c3bf1755b91" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 3.94314697265625); (7.5 : 3.94314697265625); (7.5 : 9.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbContrato" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="6c196dc7-8051-4b0c-a74e-1874d58e9381" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 4.6362939453125); (4.75 : 5.75); (6 : 5.75); (6 : 20.7499995); (9.5 : 20.7499995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbCursillo" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="43ed9eb7-543d-4df5-b800-5537a4e30ef1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.281252 : 4.6362939453125); (5.281252 : 5.5); (6.125 : 5.5); (6.125 : 15.625); (9.125 : 15.625); (9.125 : 16.863396844401); (9.5 : 16.863396844401)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbEventoOficial" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="9905932d-4659-4992-92a1-974b72383b4c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 4.32097245898438); (7.41666666666667 : 4.32097245898437 : JumpStart); (7.58333333333333 : 4.32097245898438 : JumpEnd); (12 : 4.32097245898438); (12 : 11.375); (13.25 : 11.375); (13.25 : 11.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 5.87591745577925); (3.22232693490112 : 5.65359052087813 : JumpStart); (3.34017806509888 : 5.53573939068037 : JumpEnd); (3.375 : 5.50091745577925); (3.375 : 3.94314697265625); (3.75 : 3.94314697265625)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbCargoDirectivo/tbCargoDirectivo_tbJuntaDirectiva" />
+      <nodes>
+        <classShapeMoniker Id="2fe72a92-48fc-4ee9-a5e4-d1f7ace17445" />
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.44931705603966 : 3.25); (4.44931705603966 : 3); (5.06500117938702 : 3); (5.06500117938702 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbJuntaDirectiva" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 11.8115374615385); (14.3160744349011 : 11.7454630266373 : JumpStart); (14.5589255650989 : 11.5026118964396 : JumpEnd); (14.5660744349011 : 11.4954630266373 : JumpStart); (14.6839255650989 : 11.3776118964396 : JumpEnd); (14.6910744349011 : 11.3704630266373 : JumpStart); (14.8089255650989 : 11.2526118964396 : JumpEnd); (14.8125 : 11.2490374615385); (14.8125 : 11.7179996744792); (15 : 11.5304996744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbLineaFactura" />
+      <nodes>
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+        <classShapeMoniker Id="14fedd7f-c634-40be-8fb5-da074d94e96a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 6.40128098993389); (14.3160744349011 : 6.46735542483501 : JumpStart); (14.5589255650989 : 6.71020655503277 : JumpEnd); (14.6910744349011 : 6.84235542483502 : JumpStart); (14.8089255650989 : 6.96020655503277 : JumpEnd); (14.8125 : 6.96378098993389); (14.8125 : 10.4214978372396); (15 : 10.4214978372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbLineaFactura" />
+      <nodes>
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
+        <classShapeMoniker Id="14fedd7f-c634-40be-8fb5-da074d94e96a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.5 : 37.2989005533854); (13.53125 : 37.2989005533854); (13.53125 : 23.8189925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbMonitor/tbMonitor_tbCursilloMonitor" />
+      <nodes>
+        <classShapeMoniker Id="bfa20b59-31e1-40ad-b42c-d2189a8e82d8" />
+        <classShapeMoniker Id="265c839e-d51c-4913-b4cd-28f3aa52dff0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 15.0593082682292); (14.3785744349011 : 15.1878827031303 : JumpStart); (14.4964255650989 : 15.305733833328 : JumpEnd); (14.625 : 15.4343082682292); (14.625 : 15); (15 : 15.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbMovimientoGasto" />
+      <nodes>
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+        <classShapeMoniker Id="1fa41560-3de7-42d1-b987-7a0d183dd7aa" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 4.13205971582031); (7.41666666666667 : 4.13205971582031 : JumpStart); (7.58333333333333 : 4.13205971582031 : JumpEnd); (14.2916666666667 : 4.13205971582031 : JumpStart); (14.4583333333333 : 4.13205971582031 : JumpEnd); (14.5 : 4.13205971582031); (14.5 : 15); (16.031252 : 15); (16.031252 : 15.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbMovimientoGasto" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="1fa41560-3de7-42d1-b987-7a0d183dd7aa" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 14.4319482421875); (14.3541666666667 : 14.4319482421875 : JumpStart); (14.5833333333333 : 14.4319482421875 : JumpEnd); (18 : 14.4319482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbFactura/tbFactura_tbMovimientoIngreso" />
+      <nodes>
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+        <classShapeMoniker Id="918e496d-a42e-45f9-810c-ccf85564b66c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 3.79451939127604); (9.41666666666667 : 3.79451939127604 : JumpStart); (9.58333333333333 : 3.79451939127604 : JumpEnd); (14.375 : 3.79451939127604); (14.375 : 12); (14.4166666666667 : 12 : JumpStart); (14.8333333333333 : 12 : JumpEnd); (19 : 12); (19 : 12.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbJuntaDirectiva/tbJuntaDirectiva_tbMovimientoIngreso" />
+      <nodes>
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+        <classShapeMoniker Id="918e496d-a42e-45f9-810c-ccf85564b66c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.5777498372396); (3.19791916666667 : 13.5777498372396 : JumpStart); (3.36458583333333 : 13.5777498372396 : JumpEnd); (3.5 : 13.5777498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbPatrocinador" />
+      <nodes>
+        <classShapeMoniker Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" />
+        <classShapeMoniker Id="448b9fcc-255d-4442-8c23-0baa5c11aa51" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.75 : 2.76044840494792); (14.4375 : 2.76044840494792); (14.4375 : 19.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal/tbPedidoGlobal_tbPedidoUsuario" />
+      <nodes>
+        <classShapeMoniker Id="7fd7b817-ba7d-4b88-a624-98602d12eba7" />
+        <classShapeMoniker Id="4da1bb8e-a3ec-48d6-b12e-c49958c5fff3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 15.3763612283153); (5.875 : 15.0013612283153); (5.875 : 15.4343082682292); (5.91666666666667 : 15.4343082682292 : JumpStart); (6.20833333333333 : 15.4343082682292 : JumpEnd); (11.1979166666667 : 15.4343082682292 : JumpStart); (11.3645833333333 : 15.4343082682292 : JumpEnd); (11.875 : 15.4343082682292); (12.25 : 15.0593082682292)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbProveedores/tbProveedores_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="46fb91c2-2214-40bc-bdca-92121a3bb82f" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 14.0304996744792); (1.75 : 16.2604484049479); (3.04166666666667 : 16.2604484049479 : JumpStart); (3.36458583333333 : 16.2604484049479 : JumpEnd); (3.5 : 16.2604484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbEmpresa/tbEmpresa_tbProveedores" />
+      <nodes>
+        <classShapeMoniker Id="fcbf28fd-980d-44f2-ae6f-a7f51cfb1958" />
+        <classShapeMoniker Id="46fb91c2-2214-40bc-bdca-92121a3bb82f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 13.8181469726562); (9 : 13.8181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbPublicidad/tbPublicidad_tbAvisoRetiradaPublicidad" />
+      <nodes>
+        <classShapeMoniker Id="d1be90b6-fe87-4027-a232-3fb4a0481af6" />
+        <classShapeMoniker Id="99879d90-df9e-4c49-b5bd-7e0e3b15d7b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 13.8181469726562); (5.91666666666667 : 13.8181469726562 : JumpStart); (6.20833333333333 : 13.8181469726562 : JumpEnd); (6.25 : 13.8181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbPatrocinador/tbPatrocinador_tbPublicidad" />
+      <nodes>
+        <classShapeMoniker Id="448b9fcc-255d-4442-8c23-0baa5c11aa51" />
+        <classShapeMoniker Id="d1be90b6-fe87-4027-a232-3fb4a0481af6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 5.47199625651042); (14.2916666666667 : 5.47199625651042 : JumpStart); (14.5833333333333 : 5.47199625651042 : JumpEnd); (14.6666666666667 : 5.47199625651042 : JumpStart); (14.8333333333333 : 5.47199625651042 : JumpEnd); (15.9166666666667 : 5.47199625651042 : JumpStart); (16.0833333333333 : 5.47199625651042 : JumpEnd); (18 : 5.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbRelacionLineaPedidoUsuarioArticulo" />
+      <nodes>
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
+        <classShapeMoniker Id="ac96242f-7c68-4d63-9b7f-bec97074e9b6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.15625 : 2.1362939453125); (17.15625 : 5.14224562825521); (18 : 5.14224562825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbLineaPedidoUsuario/tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo" />
+      <nodes>
+        <classShapeMoniker Id="13e1f158-cf8a-48bb-a0a1-97414d9bff6c" />
+        <classShapeMoniker Id="ac96242f-7c68-4d63-9b7f-bec97074e9b6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 5.93663862322216); (14.2916666666667 : 5.93663862322216 : JumpStart); (14.5833333333333 : 5.93663862322216 : JumpEnd); (14.6666666666667 : 5.93663862322216 : JumpStart); (14.8333333333333 : 5.93663862322216 : JumpEnd); (16 : 5.93663862322216); (16 : 4.69399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbArticulo/tbArticulo_tbRelacionPedidoGlobalArticulo" />
+      <nodes>
+        <classShapeMoniker Id="c8c343d3-885b-4fca-9b47-4021ca9ce92c" />
+        <classShapeMoniker Id="d86dce6e-dcc5-4f66-a228-1edc9ccb3483" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.75 : 3.16147620247396); (14.3541666666667 : 3.16147620247396 : JumpStart); (14.5208333333333 : 3.16147620247396 : JumpEnd); (15.09375 : 3.16147620247396); (15.09375 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbPedidoGlobal/tbPedidoGlobal_tbRelacionPedidoGlobalArticulo" />
+      <nodes>
+        <classShapeMoniker Id="7fd7b817-ba7d-4b88-a624-98602d12eba7" />
+        <classShapeMoniker Id="d86dce6e-dcc5-4f66-a228-1edc9ccb3483" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 2.36620198567708); (3.19791916666667 : 2.36620198567708 : JumpStart); (3.36458583333333 : 2.36620198567708 : JumpEnd); (3.5 : 2.36620198567708); (3.5 : 2.6362939453125); (9.5 : 2.6362939453125); (9.5 : 3.89589680989583); (14.2916666666667 : 3.89589680989583 : JumpStart); (14.5208333333333 : 3.89589680989583 : JumpEnd); (14.75 : 3.89589680989583); (14.75 : 12.125); (16 : 12.125); (16 : 12.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbSocio/tbSocio_tbCuota" />
+      <nodes>
+        <classShapeMoniker Id="43cfe1b4-a170-491f-9be9-5a1d125c51c9" />
+        <classShapeMoniker Id="8f1a17b0-fd10-485d-80cd-df398f0b1dcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 3.49120198567708); (3.19791916666667 : 3.49120198567708 : JumpStart); (3.36458583333333 : 3.49120198567708 : JumpEnd); (3.75 : 3.49120198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbSocio/tbSocio_tbJuntaDirectiva" />
+      <nodes>
+        <classShapeMoniker Id="43cfe1b4-a170-491f-9be9-5a1d125c51c9" />
+        <classShapeMoniker Id="1841cd42-498d-4db3-b32f-c577cae274b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 19.9343013509115); (5.91666666666667 : 19.9343013509115 : JumpStart); (6.08333333333333 : 19.9343013509115 : JumpEnd); (9.25 : 19.9343013509115); (9.25 : 19.25); (11.634358974359 : 19.25 : JumpStart); (11.9287169487179 : 19.25 : JumpEnd); (13.25 : 19.25); (13.25 : 18.4631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbDocInscripcion" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="7999dea4-3462-46f9-a2b4-c85283e7fac4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 18.4623527018229); (5.91666666666667 : 18.4623527018229 : JumpStart); (6.08333333333333 : 18.4623527018229 : JumpEnd); (6.75 : 18.4623527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbEvento" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="8e3920b5-eccd-4d94-9034-2c1bbf9de499" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.125 : 18.125); (3.125 : 14.8814493229167); (3.19791916666667 : 14.8814493229167 : JumpStart); (3.36458583333333 : 14.8814493229167 : JumpEnd); (5.91666666666667 : 14.8814493229167 : JumpStart); (6.20833333333333 : 14.8814493229167 : JumpEnd); (11.1979166666667 : 14.8814493229167 : JumpStart); (11.3645833333333 : 14.8814493229167 : JumpEnd); (11.7916666666667 : 14.8814493229167 : JumpStart); (11.9583333333333 : 14.8814493229167 : JumpEnd); (12.25 : 14.8814493229167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbFactura" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="edb93406-e3c7-45d4-8117-7c1a55a9eefd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.84375 : 23.1650211588542); (1.84375 : 34.3277498372396); (4.5 : 34.3277498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbMensaje" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="2943ee53-e34d-474f-90a9-6dfc0ef8a5f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.8750025 : 23.1650211588542); (1.8750025 : 33.7576224186198); (4.5 : 33.7576224186198)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbMensaje1" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="2943ee53-e34d-474f-90a9-6dfc0ef8a5f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 18.9904043027344); (5.91666666666667 : 18.9904043027344 : JumpStart); (6.08333333333333 : 18.9904043027344 : JumpEnd); (7.66666666666667 : 18.9904043027344 : JumpStart); (7.83333333333333 : 18.9904043027344 : JumpEnd); (11.7916666666667 : 18.9904043027344 : JumpStart); (11.9583333333333 : 18.9904043027344 : JumpEnd); (13.1666666666667 : 18.9904043027344 : JumpStart); (13.3333333333333 : 18.9904043027344 : JumpEnd); (14.4062475 : 18.9904043027344); (14.4062475 : 19.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbPedidoUsuario" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="4da1bb8e-a3ec-48d6-b12e-c49958c5fff3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.8124975 : 23.1650211588542); (1.8124975 : 31.4815991210937); (4.5 : 31.4815991210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbRuta" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="ddc33523-5e16-4889-8c78-cf04f2eac078" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.2812525 : 18.125); (3.2812525 : 1.65184849283854); (3 : 1.65184849283854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/tbUsuario/tbUsuario_tbSocio" />
+      <nodes>
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
+        <classShapeMoniker Id="43cfe1b4-a170-491f-9be9-5a1d125c51c9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.875 : 24.625); (2.875 : 23.1650211588542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mtbMalagaDataContext/aspnet_Users/aspnet_Users_tbUsuario" />
+      <nodes>
+        <classShapeMoniker Id="024a1818-6e27-437b-a036-eed3167cd4a1" />
+        <classShapeMoniker Id="cca49c73-89b2-4f37-9d23-cd74c72324ec" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -51,6 +51,27 @@ namespace TortolasProject.Models.Repositorios
             mtbMalagaDB.SubmitChanges();
         }
 
+        public void actualizarNombreApellidosUsuario(Guid idUsuario, String Nombre, String Apellidos)
+        {
+            tbUsuario user = obtenerUsuario(idUsuario);
+            user.Nombre = Nombre;
+            user.Apellidos = Apellidos;
+            mtbMalagaDB.SubmitChanges();
+        }
+
+        public void actualizarSocio(Guid idSocio,int NumeroSocio, DateTime FechaExpiracion, DateTime FechaAlta, String FechaBaja, String Estado)
+        {
+            tbSocio socio = obtenerSocioById(idSocio);
+            
+            if(FechaBaja!="")
+                 socio.FechaBaja  = DateTime.Parse(FechaBaja);
+            socio.NumeroSocio = NumeroSocio;
+            socio.FechaExpiracion = FechaExpiracion;
+            socio.Estado = Estado;
+
+            mtbMalagaDB.SubmitChanges();
+        }
+
         public tbSocio obtenerSocio(Guid usuario)
         {
             return  mtbMalagaDB.tbSocio.Where(socio => socio.FKUsuario.Equals(usuario)).SingleOrDefault();
@@ -68,6 +89,11 @@ namespace TortolasProject.Models.Repositorios
         public tbSocio obtenerSocioById(Guid socio)
         {
             return mtbMalagaDB.tbSocio.Where(soci => soci.idSocio.Equals(socio)).Single();
+        }
+
+        public tbUsuario obtenerUsuarioBySocio(Guid socio)
+        {
+            return mtbMalagaDB.tbUsuario.Where(usuario => usuario.idUsuario.Equals(obtenerSocioById(socio).FKUsuario)).Single();
         }
 
         public IList<tbTipoCuota> obtenerCuotas()

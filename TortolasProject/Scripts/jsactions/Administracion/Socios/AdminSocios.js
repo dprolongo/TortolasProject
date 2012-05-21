@@ -23,17 +23,28 @@
         width:500        
     }).data("kendoWindow");
 
+    
+     var ventanaEditar = $("#ventanaEditarSocio").kendoWindow({
+        title: "Editar Socio",
+        modal: true,
+        visible: false,
+        resizable: false,
+        scrollable: false,
+        movable: false,
+        width:500        
+    }).data("kendoWindow");
+
     // DatePickers y combos
 
     $(".date").kendoDatePicker();
 
-    $("#nuevoEstado").kendoDropDownList({
+    $(".comboEstado").kendoDropDownList({
         dataSource : [{ valor: "Activo" , nombre :"Activo" }, { valor: "Inactivo", nombre:"Inactivo" }, { valor:"Baja", nombre:"Baja" } , { valor:"Pendiente", nombre:"Pendiente" }],
         dataValueField : "valor",
         dataTextField : "nombre"
     });
 
-    // Cargamos la tabla de Usuarios
+    // Cargamos la tabla de Socios
     var tablaAdmin = $("#tablaAdminSocios").kendoGrid({
         dataSource: {
             transport: {
@@ -150,15 +161,149 @@
                                 title: "Herramientas",
                                 command:
                                 [
-                                    { text: "editar", className: "editarfila" },
-                                    { text: "eliminar", className: "eliminarUsuario" }
+                                    { text: "editar", className: "editarSocio" }                                   
                                 ]
                             }
 
                     ]
     });
 
+    // Cargamos la tabla de Socios
+    var tablaAdminJunta = $("#tablaAdminJunta").kendoGrid({
+        dataSource: {
+            transport: {
+                type: "json",
+                read: {
+                    url: "Socios/obtenerJuntaDirectiva",
+                    type: "POST",
+                    dataType: "json"
+                },
+                pageSize: 15
+            }
+        },
+        pageable: true,
+        sortable: true,
+        selectable: true,
+        scrollable: false,
+        filterable: true,
+       // toolbar: kendo.template($("#templateToolbarAdminSocio").html()),
+       // detailTemplate: kendo.template($("#templateDetailAdminSocio").html()),
+      //  detailInit: inicializarTablaAdminSocio,
+        columns: [
+                            {
+                                field: "NumeroSocio",
+                                title: "Socio",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
 
+                            },
+                            {
+                                field: "Nombre",
+                                title: "Nombre",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                field: "Apellidos",
+                                title: "Apellidos",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                field: "FechaAlta",
+                                title: "Alta",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                field: "FechaExpiracion",
+                                title: "Expiracion",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                field: "Estado",
+                                title: "Estado",
+                                filterable: {
+                                    extra: false, //do not show extra filters
+                                    operators: { // redefine the string operators
+                                        string: {
+                                            eq: "Es igual a..",
+                                            neq: "No es igual a...",
+                                            startswith: "Empieza por...",
+                                            contains: "Contiene"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                title: "Herramientas",
+                                command:
+                                [
+                                    { text: "editar", className: "editarSocio" },
+                                    { text: "eliminar", className: "eliminarSocio" }
+                                ]
+                            }
+
+                    ]
+    });
+
+    // Funcion para comprobar campos vacios
+    function comprobarNecesarios(formulario){
+        var noHayErrores = true;
+        $("."+formulario+" .necesario").each(function(index){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid"); 
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+    }
 
     // Boton de Ascender usuario a JD
     $("#botonAscenderJD").click(function () {
@@ -184,7 +329,69 @@
     // Boton Crear Nuevo Socio
     $("#botonCrearSocio").click(function(){
         ventanaCrear.open();
-        ventanaCrear.center();
+        ventanaCrear.center();        
+        $(".formularioVentana").val("");                
+    });
+
+    // Boton Cancelar
+    $("#botonCancelar").click(function(){
+        ventanaCrear.close();        
+    });
+
+     $("#botonCancelarEdicion").click(function(){
+        ventanaEditar.close();        
+    });
+
+    $(".editarSocio").live("click",function(){
+        var tabla = $("#tablaAdminSocios").data("kendoGrid");
+        var seleccionado = tabla.select();
+        var filaJson = tabla.dataItem(seleccionado).toJSON();      // La pasamos a JSON                
+
+        var dataSource = tabla.dataSource;
+
+        var idSocio = dataSource.getByUid(seleccionado.attr("data-uid")).idSocio;
+
+        // Ponemos los datos
+        $("#editarNombre").val(filaJson.Nombre);
+        $("#editarApellidos").val(filaJson.Apellidos);
+        $("#editarNumeroSocio").val(filaJson.NumeroSocio);
+        $("#editarFechaAlta").data("kendoDatePicker").value(filaJson.FechaAlta);
+        $("#editarFechaExpiracion").data("kendoDatePicker").value(filaJson.FechaExpiracion);
+        $("#editarFechaBaja").data("kendoDatePicker").value(filaJson.FechaBaja);
+        $("#editarEstado").data("kendoDropDownList").value(filaJson.Estado);
+        $(".idSocioSeleccionado").val(idSocio);
+
+        var FechaExpiracion = dataSource.getByUid(seleccionado.attr("data-uid")).FechaExpiracion;
+
+        ventanaEditar.open();
+        ventanaEditar.center();
+    });
+
+    $("#botonEditarSocio").click(function(){
+        var aEnviar = {};
+         if(comprobarNecesarios("formularioVentanaEditar")){
+            
+            $(".formularioVentanaEditar input").each(function(){
+                aEnviar[$(this).attr("atributo")] = $(this).val();
+            });
+            
+            if((aEnviar["FechaBaja"]=="")&&(aEnviar["Estado"]=="Baja")){
+                alert("Debe rellenar el campo 'Fecha de Baja'");
+            }
+            else{
+                $.ajax({
+                    url: "Socios/editarSocio",
+                    type:"POST",
+                    data: aEnviar,
+                    success: function(){
+                        alert("fin");
+                        $("#tablaAdminSocios").data("kendoGrid").dataSource.read();
+                        ventanaEditar.close();
+                    },
+                    async:false
+                });
+            }
+         }
     });
 
     // Funcion para el check de password Random
@@ -210,29 +417,19 @@
         else{
             $(this).removeClass("k-invalid");
         }
-    });
-
-    // Funcion para comprobar campos vacios
-    function comprobarNecesarios(){
-        var noHayErrores = true;
-        $(".necesario").each(function(index){
-            if($(this).val()==""){
-                $(this).addClass("k-invalid"); 
-                hayErrores = false;
-            }
-        });   
-        return noHayErrores;    
-    }
+    });    
 
     // Boton para crear Usuario
     $("#botonNuevoSocio").click(function () {
-
-        if(comprobarNecesarios()){
+        
+        if(comprobarNecesarios("formularioVentana")){
                 var aEnviar = {};
                 
-                $(".necesario").each(function(){                    
+                $(".formularioVentana input").each(function(){                    
                     aEnviar[$(this).attr("atributo")] = $(this).val();
                 });
+                
+                aEnviar["ConfirmPassword"] = $("#nuevoPassword").val();
 
                 $.ajax({
                     url:"Socios/insertarSocio",
@@ -597,6 +794,24 @@
         $(".comboCargo").qtip({
             content: {
                 text: "Selecciona un cargo de este combo y pulse el boton de la izquierda para convertir el Socio en un cargo de la <b>Junta Directiva</b>."
+            },
+            position: {
+                my: "top left"
+            }
+        });
+
+        $(".necesario").qtip({
+            content: {
+                text: "Este campo es <font color='red'><b>obligatorio</b></font>."
+            },
+            position: {
+                my: "top left"
+            }
+        });
+       
+        $("#editarFechaBaja").qtip({
+            content: {
+                text: "Si desea dar de <b>baja</b> a un Usuario, debe rellenar este campo y seleccionar debajo la opcion <i>Baja</i>"
             },
             position: {
                 my: "top left"
