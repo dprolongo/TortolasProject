@@ -22,6 +22,8 @@ var Total;              // Total factura
 var vieneDeDetalles = false;
 var validacion;         // Validación de campos
 var status;             // Status de la validación
+var validacionLinea;    // Validación de una línea de factura
+var statusLinea;        // Status de la validación de una línea.
 var idLineaFactura;           // uid de la linea editada
 
 
@@ -286,7 +288,7 @@ function tablaEditable() {
     // Tabla de facturas
     $("#facturaLineasFacturaGrid").kendoGrid({
         dataSource: dataSource,
-        toolbar: [{ text: "+ Nueva línea", className: "nuevaLineaFactura" }],
+        toolbar: [{ text: "Nueva línea", className: "nuevaLineaFacturaButton" }],
         columns: [
                 {
                     field: "concepto",
@@ -772,9 +774,12 @@ function datosVentana() {
 
 /* ##############   VENTANA LINEA FACTURA ####################################################### */
 function ventanaLineaFactura()
-{
+{// Validación de campos
+    
+    validacionLinea = $("#lineaFacturaForm").kendoValidator().data("kendoValidator"),
+    statusLinea = $("#statusLinea");
     wl = $("#lineaFacturaWindow").kendoWindow({
-        width: "600px",
+        width: "800px",
         title: "Línea factura",
         visible: false,
         modal: true
@@ -793,13 +798,15 @@ function ventanaLineaFactura()
     });
 
     // Botón nueva línea de factura
-    $(".nuevaLineaFactura").click(function() {
+    $(".nuevaLineaFacturaButton").live("click", function() {
+        alert("Entrar por favor");
         idLineaFactura = null;
         idArticulo = null;
         $("#quitarArticulo").hide();
         $("#articulosGrid").show();
         $("#agregarArticuloConcepto").show();
         $("#conceptoLinea").val("");
+        $("#conceptoLinea").prop("disabled",false);
         $("#unidadesLinea").data("kendoNumericTextBox").value("");
         $("#precioLinea").data("kendoNumericTextBox").value("");
         wl.center();
@@ -919,30 +926,37 @@ function ventanaLineaFactura()
         var conceptoLinea = $("#conceptoLinea").val();
         var unidades = $("#unidadesLinea").val();
         var precio = $("#precioLinea").val();
-        
-        if(idLineaFactura == null )     // Nueva línea
+        if(!validacionLinea.validate())
         {
-            var linea;
-            linea.concepto = conceptoLinea;
-            linea.unidades = unidades*1;
-            linea.precio = precio*1;
-            linea.total = precio * unidades;
-            linea.idArticulo = idArticulo;
-            dataSource.add(linea);
+            statusLinea.text("Rellene todos los campos").addClass("invalid");            
         }
-        else   // Linea editada
+        else
         {
-            var linea = dataSource.get(idLineaFactura);
-            linea.concepto = conceptoLinea;
-            linea.unidades = unidades*1;
-            linea.precio = precio*1;
-            linea.total = precio * unidades;
-            linea.idArticulo = idArticulo;
-        }
+            if(idLineaFactura == null )     // Nueva línea
+            {
+                var linea = {
+                    concepto: conceptoLinea,
+                    unidades: unidades*1,
+                    precio: precio*1,
+                    total: precio * unidades,
+                    idArticulo: idArticulo
+                };
+                dataSource.add(linea);
+            }
+            else   // Linea editada
+            {
+                var linea = dataSource.get(idLineaFactura);
+                linea.concepto = conceptoLinea;
+                linea.unidades = unidades*1;
+                linea.precio = precio*1;
+                linea.total = precio * unidades;
+                linea.idArticulo = idArticulo;
+            }
 
-        tabla.refresh();
-        obtenerTotalGrid();
-        wl.close();
+            tabla.refresh();
+            obtenerTotalGrid();
+            wl.close();
+        }
     });
 }
 /* ##############    AUXILIARES ###################################################################### */

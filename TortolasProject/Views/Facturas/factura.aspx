@@ -147,39 +147,42 @@
                 <div id='guardarFacturaButton' class='k-button'>Guardar</div>
                 <div class='status' class='k-invalid-msg'></div>
             </div>
-
-        <div id='lineaFacturaWindow'>
-            <div id='conceptoLineaDiv'>
-                <div id='conceptoLineaLabel'>Concepto</div>
-                <br />
-                <br />
-                <div id='conceptoContainer'>
-                    <input id='conceptoLinea' type='text'class='k-input' required />
-                    <div id='quitarArticulo'>X</div>
-                </div>                
-            </div>
-            <div id='articulosDiv'>                                
-                                <div id='articulosGrid'></div>
-                                <div id='agregarArticuloConcepto' class='k-button'>Agregar</div>
-            </div>
-            <div class='k-grid k-widget'>
-                <table>                    
-                        <tr class='k-grid-header'>
-                            <th>Unidades</th>
-                            <th>Precio unitario</th>
-                            <th>Total</th>  
-                        </tr>
-                        <tr>
-                            <td class='k-grid-content'><input id='unidadesLinea' required validationMessage='Introduzca unidades'/></td>
-                            <td class='k-grid-content'><input id='precioLinea'  required  validationMessage='Introduzca precio'/></td>
-                            <td class='k-grid-content'><div id='totalLinea'></div></td>
-                        </tr>  
+        
+        <div id='lineaFacturaForm'>
+            <div id='lineaFacturaWindow'>
+                <div id='conceptoLineaDiv'>
+                    <div id='conceptoLineaLabel'>Concepto</div>
+                    <br />
+                    <br />
+                    <div id='conceptoContainer'>
+                        <input id='conceptoLinea' type='text'class='k-input' required validationMessage='Introduzca concepto,'/>
+                        <div id='quitarArticulo'>X</div>
+                    </div>                
+                </div>
+                <div id='articulosDiv'>                                
+                                    <div id='articulosGrid'></div>
+                                    <div id='agregarArticuloConcepto' class='k-button'>Agregar</div>
+                </div>
+                <div class='k-grid k-widget'>
+                    <table>                    
+                            <tr class='k-grid-header'>
+                                <th>Unidades</th>
+                                <th>Precio unitario</th>
+                                <th>Total</th>  
+                            </tr>
+                            <tr>
+                                <td class='k-grid-content'><input id='unidadesLinea' min='0' required validationMessage='Introduzca unidades.'/></td>
+                                <td class='k-grid-content'><input id='precioLinea'  required  validationMessage='Introduzca precio.'/></td>
+                                <td class='k-grid-content'><div id='totalLinea'></div></td>
+                            </tr>  
                                                
-                </table>
-            </div>
-            <div id = 'lineaFacturaWindowBottom'>
-                <div id='descartarLinea' class='k-button'>Descartar</div>
-                <div id='agregarLinea' class='k-button'>Añadir</div>
+                    </table>
+                </div>
+                <div id = 'lineaFacturaWindowBottom'>
+                    <div id='descartarLinea' class='k-button'>Descartar</div>
+                    <div id='statusLinea' class='k-invalid-msg'></div>
+                    <div id='agregarLinea' class='k-button'>Añadir</div>
+                </div>
             </div>
         </div>
     </div>
