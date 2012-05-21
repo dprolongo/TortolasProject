@@ -195,6 +195,7 @@
       <Column Name="FKCategoria" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="tbArticulo_tbArticulo" Member="tbArticulo2" ThisKey="idArticulo" OtherKey="idArticulo" Type="tbArticulo" Cardinality="One" />
       <Association Name="tbArticulo_tbInventario" Member="tbInventario" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbInventario" />
+      <Association Name="tbArticulo_tbLineaFactura" Member="tbLineaFactura" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbLineaFactura" />
       <Association Name="tbArticulo_tbRelacionLineaPedidoUsuarioArticulo" Member="tbRelacionLineaPedidoUsuarioArticulo" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbRelacionLineaPedidoUsuarioArticulo" />
       <Association Name="tbArticulo_tbRelacionPedidoGlobalArticulo" Member="tbRelacionPedidoGlobalArticulo" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbRelacionPedidoGlobalArticulo" />
       <Association Name="tbArticulo_tbArticulo" Member="tbArticulo1" ThisKey="idArticulo" OtherKey="idArticulo" Type="tbArticulo" IsForeignKey="true" />
@@ -217,6 +218,13 @@
       <Association Name="tbPublicidad_tbAvisoRetiradaPublicidad" Member="tbPublicidad" ThisKey="FKCodigoPublicidad" OtherKey="idPublicidad" Type="tbPublicidad" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbCargoDirectivo" Member="tbCargoDirectivo">
+    <Type Name="tbCargoDirectivo">
+      <Column Name="idCargoDirectivo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(70) NOT NULL" CanBeNull="false" />
+      <Association Name="tbCargoDirectivo_tbJuntaDirectiva" Member="tbJuntaDirectiva" ThisKey="idCargoDirectivo" OtherKey="FKCargoDirectivo" Type="tbJuntaDirectiva" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbCategoria" Member="tbCategoria">
     <Type Name="tbCategoria">
       <Column Name="idCategoria" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -230,7 +238,7 @@
       <Column Name="FKJuntaDirectiva" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaCaducidad" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DescripcionLegal" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DescripcionLegal" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
       <Column Name="Firmas" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="idContrato" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Importe" Type="System.Decimal" DbType="Money" CanBeNull="true" />
@@ -255,6 +263,7 @@
       <Column Name="FKFactura" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="FKSocio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="FKTipoCuota" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FechaExpiracion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="tbFactura_tbCuota" Member="tbFactura" ThisKey="FKFactura" OtherKey="idFactura" Type="tbFactura" IsForeignKey="true" />
       <Association Name="tbSocio_tbCuota" Member="tbSocio" ThisKey="FKSocio" OtherKey="idSocio" Type="tbSocio" IsForeignKey="true" />
       <Association Name="tbTipoCuota_tbCuota" Member="tbTipoCuota" ThisKey="FKTipoCuota" OtherKey="idTipoCuota" Type="tbTipoCuota" IsForeignKey="true" />
@@ -414,14 +423,17 @@
   </Table>
   <Table Name="dbo.tbJuntaDirectiva" Member="tbJuntaDirectiva">
     <Type Name="tbJuntaDirectiva">
-      <Column Name="CargoDirectivo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="FKSocio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FKCargoDirectivo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="tbJuntaDirectiva_tbContrato" Member="tbContrato" ThisKey="FKSocio" OtherKey="FKJuntaDirectiva" Type="tbContrato" />
       <Association Name="tbJuntaDirectiva_tbCursillo" Member="tbCursillo" ThisKey="FKSocio" OtherKey="FKUsuarioCreador" Type="tbCursillo" />
       <Association Name="tbJuntaDirectiva_tbEventoOficial" Member="tbEventoOficial" ThisKey="FKSocio" OtherKey="FKJuntaDirectiva" Type="tbEventoOficial" />
       <Association Name="tbJuntaDirectiva_tbFactura" Member="tbFactura" ThisKey="FKSocio" OtherKey="FKJuntaDirectiva" Type="tbFactura" />
+      <Association Name="tbJuntaDirectiva_tbJuntaDirectiva" Member="tbJuntaDirectiva2" ThisKey="FKSocio" OtherKey="FKSocio" Type="tbJuntaDirectiva" Cardinality="One" />
       <Association Name="tbJuntaDirectiva_tbMovimientoGasto" Member="tbMovimientoGasto" ThisKey="FKSocio" OtherKey="Responsable" Type="tbMovimientoGasto" />
       <Association Name="tbJuntaDirectiva_tbMovimientoIngreso" Member="tbMovimientoIngreso" ThisKey="FKSocio" OtherKey="Responsable" Type="tbMovimientoIngreso" />
+      <Association Name="tbCargoDirectivo_tbJuntaDirectiva" Member="tbCargoDirectivo" ThisKey="FKCargoDirectivo" OtherKey="idCargoDirectivo" Type="tbCargoDirectivo" IsForeignKey="true" />
+      <Association Name="tbJuntaDirectiva_tbJuntaDirectiva" Member="tbJuntaDirectiva1" ThisKey="FKSocio" OtherKey="FKSocio" Type="tbJuntaDirectiva" IsForeignKey="true" />
       <Association Name="tbSocio_tbJuntaDirectiva" Member="tbSocio" ThisKey="FKSocio" OtherKey="idSocio" Type="tbSocio" IsForeignKey="true" />
     </Type>
   </Table>
@@ -433,7 +445,9 @@
       <Column Name="Total" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="FKFactura" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FKArticulo" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="tbFactura_tbLineaFactura" Member="tbFactura" ThisKey="FKFactura" OtherKey="idFactura" Type="tbFactura" IsForeignKey="true" />
+      <Association Name="tbArticulo_tbLineaFactura" Member="tbArticulo" ThisKey="FKArticulo" OtherKey="idArticulo" Type="tbArticulo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbLineaPedidoUsuario" Member="tbLineaPedidoUsuario">
