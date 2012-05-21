@@ -525,7 +525,9 @@ namespace TortolasProject.Controllers
             }
             f.BaseImponible = totalLineas;
             f.Total = f.BaseImponible * IVA;            
-            if(f.FKJuntaDirectiva == null) f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
+            // PRUEBA!!!
+            //if(f.FKJuntaDirectiva == null) 
+            f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
 
             if (lineasCorrectas)
             {
