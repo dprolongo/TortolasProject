@@ -2,7 +2,9 @@
 var factura;            // Factura
 var tipo;               // Tipo Relación
 var idRelacion;         // idRelacion
+var idArticulo;         // idArticulo de línea
 var w;                  // Ventana
+var wl;                 // Ventana de líneas factura
 var estadoPagina;       // Estado {nueva,detalles,editar}
 var dsUsuarios;         // dataSource Usuarios
 var dsEventos;          // dataSource Eventos
@@ -20,6 +22,7 @@ var Total;              // Total factura
 var vieneDeDetalles = false;
 var validacion;         // Validación de campos
 var status;             // Status de la validación
+var idLineaFactura;           // uid de la linea editada
 
 
 $(document).ready(function () {
@@ -39,6 +42,7 @@ $(document).ready(function () {
 
 function estadoNuevaFactura() {
     idRelacion = null;
+    idArticulo = null;
     tipo = null;
 
     $("#volverButton").show();
@@ -58,9 +62,7 @@ function estadoNuevaFactura() {
 
     datosTablaNueva();
     $("#facturaForm").show();    
-    tablaEditable();
-    tabla.addRow();
-    
+    tablaEditable(); 
 }
 
 function estadoDetallesFactura() {
@@ -124,7 +126,8 @@ function estadoDetallesFactura() {
                         concepto: {},
                         unidades: { type: "number" },
                         precio: { type: "number" },
-                        total: { type: "number" }
+                        total: { type: "number" },
+                        idArticulo: { }
                     }
                 }
             }
@@ -230,14 +233,16 @@ function datosTablaNueva()
                 {
                     id: "idLineaFactura",
                     fields: {
-                        concepto: { editable: true },
-                        unidades: { editable: true, type: "number", validation: { min: 0} },
-                        precio: { editable: true, type: "number" },
-                        total: { editable: false, type: "number" }
+                        concepto: {  },
+                        unidades: { },
+                        precio: {  },
+                        total: {  },
+                        idArticulo: {}
                     }
                 }
             },
-            change: obtenerTotalGrid
+        emptyMsg: "No hay líneas de factura.",
+        change: emptyGrid,
         });
 }
 
@@ -261,15 +266,16 @@ function datosTablaEditar()
                 {
                     id: "idLineaFactura",
                     fields: {
-                        concepto: { editable: true },
-                        unidades: { editable: true, type: "number", validation: { min: 0} },
-                        precio: { editable: true, type: "number" },
-                        total: { editable: false, type: "number" }
+                        concepto: { },
+                        unidades: {  },
+                        precio: { },
+                        total: { },
+                        idArticulo: {}
                     }
                 }
             },
-        change: obtenerTotalGrid
-
+        emptyMsg: "No hay líneas de factura.",
+        change: emptyGrid,
     });
 
 
@@ -280,7 +286,7 @@ function tablaEditable() {
     // Tabla de facturas
     $("#facturaLineasFacturaGrid").kendoGrid({
         dataSource: dataSource,
-        toolbar: ["create"],
+        toolbar: [{ text: "+ Nueva línea", className: "nuevaLineaFactura" }],
         columns: [
                 {
                     field: "concepto",
@@ -300,12 +306,11 @@ function tablaEditable() {
                     field: "total"
                 },
                 {
-                    command: "destroy",
+                    command: [{text:"Editar", className:"editarLineaFacturaButton"}, "destroy"],
                     title: " ",
                     width: "200px"
                 }
-            ],
-           editable: true
+            ]
     });
 
     tabla = $("#facturaLineasFacturaGrid").data("kendoGrid");
@@ -409,6 +414,10 @@ function inicializar() {
         if(!validacion.validate()){
             status.text("Hay errores en la factura").addClass("invalid");            
         }
+        else if( dataSource.total() == 0)
+        {
+            status.text("Introduzca al menos una línea factura").addClass("invalid");            
+        }
         else
         {
             if( ($("#estadoFacturaDropDownList").data("kendoDropDownList").text() != "Pagado") || confirm("Ha indicado que la factura está pagada. Si lo confirma no podrá modificarla ni eliminarla en el futuro. \n ¿Está seguro que desea establecer la factura como pagada?") )
@@ -431,7 +440,8 @@ function inicializar() {
                             lineasFactura.push({
                                 "concepto": lineasFacturaRaw[i].concepto,
                                 "unidades": lineasFacturaRaw[i].unidades,
-                                "precio": lineasFacturaRaw[i].precio
+                                "precio": lineasFacturaRaw[i].precio,
+                                "idArticulo": lineasFacturaRaw[i].idArticulo
                             });
                         }
                         var datos = {
@@ -453,7 +463,8 @@ function inicializar() {
                                 "idLineaFactura": lineasFacturaRaw[i].idLineaFactura,
                                 "concepto": lineasFacturaRaw[i].concepto,
                                 "unidades": lineasFacturaRaw[i].unidades,
-                                "precio": lineasFacturaRaw[i].precio
+                                "precio": lineasFacturaRaw[i].precio,
+                                "idArticulo": lineasFacturaRaw[i].idArticulo
                             });
                         }
 
@@ -483,7 +494,6 @@ function inicializar() {
             }
         }
     });
-
 
     // Cambio en unidades
     $("#facturaLineasFacturaGrid .k-grid-content .k-edit-cell .k-numerictextbox input").change(function () {
@@ -556,7 +566,7 @@ function inicializar() {
     });
 
     datosVentana();
-    ventanaConceptoLineaFactura();
+    ventanaLineaFactura();
 }
 
 /* ##############   VENTANA ########################################################################## */
@@ -760,16 +770,78 @@ function datosVentana() {
         });
     }
 
-/* ##############   VENTANA CONCEPTO ################################################################# */
-function ventanaConceptoLineaFactura()
+/* ##############   VENTANA LINEA FACTURA ####################################################### */
+function ventanaLineaFactura()
 {
-    $("#conceptoLineaFacturaWindow").kendoWindow({
+    wl = $("#lineaFacturaWindow").kendoWindow({
         width: "600px",
-        title: "Concepto",
+        title: "Línea factura",
         visible: false,
         modal: true
+    }).data("kendoWindow");
+
+    $("#unidadesLinea").kendoNumericTextBox({
+        min:0,
+        change: function(e){ actualizarTotalLinea() }
     });
 
+
+    $("#precioLinea").kendoNumericTextBox({
+        format: "c",
+        decimals: 2,
+        change:  function(e){ actualizarTotalLinea() }
+    });
+
+    // Botón nueva línea de factura
+    $(".nuevaLineaFactura").click(function() {
+        idLineaFactura = null;
+        idArticulo = null;
+        $("#quitarArticulo").hide();
+        $("#articulosGrid").show();
+        $("#agregarArticuloConcepto").show();
+        $("#conceptoLinea").val("");
+        $("#unidadesLinea").data("kendoNumericTextBox").value("");
+        $("#precioLinea").data("kendoNumericTextBox").value("");
+        wl.center();
+        wl.open();
+    });
+    // Botón editar línea
+    $("#facturaLineasFacturaGrid").delegate(".editarLineaFacturaButton", "click", function (e) {
+        e.preventDefault();
+        
+        var linea = tabla.dataItem($(this).closest("tr"));
+        idLineaFactura = linea.idLineaFactura;
+        alert(kendo.stringify(linea));
+        if(linea.idArticulo != null)
+        {
+            $("#conceptoLinea").val(linea.concepto);
+            $("#conceptoLinea").prop("disabled",true);
+            $("#conceptoLinea").addClass("k-state-disabled");
+
+            $("#quitarArticulo").show();
+            $("#articulosGrid").hide();
+            $("#agregarArticuloConcepto").hide();
+        }
+        else
+        {
+            $("#conceptoLinea").val(linea.concepto);
+            $("#conceptoLinea").prop("disabled",false);
+            $("#quitarArticulo").hide();
+            $("#articulosGrid").show();
+            $("#agregarArticuloConcepto").show();
+            $("#conceptoLinea").removeClass("k-state-disabled");            
+        }
+        $("#unidadesLinea").data("kendoNumericTextBox").value(linea.unidades);
+        $("#precioLinea").data("kendoNumericTextBox").value(linea.precio);
+        var totalLinea = linea.unidades*linea.precio;
+        $("#totalLinea").html(totalLinea+"€");
+        wl.center();
+        wl.open();
+    });
+    
+    
+
+    /*
     // Al pulsar en concepto
     $(".k-grid-content .k-grid-edit-row .k-edit-cell .k-textbox").click(function () {
         alert("Concpeto línea");
@@ -777,6 +849,7 @@ function ventanaConceptoLineaFactura()
         w.center();
         w.open();
     });
+    */
 
      // GRID artículos
     dsArticulos = new kendo.data.DataSource({
@@ -791,17 +864,95 @@ function ventanaConceptoLineaFactura()
 
     $("#articulosGrid").kendoGrid({
         dataSource: dsArticulos,
+        width: 100,
         columns: [
             {
                 field: "Nombre",
                 title: "Nombre"
+            },
+            {   
+                field: "Precio",
+                title: "Precio"
             }
         ],
             selectable: true
-        });
+    });
 
+    $("#agregarArticuloConcepto").click(function (){
+            var uid = $("#articulosGrid .k-state-selected").attr("data-uid");
+            var articulo = $("#articulosGrid").data("kendoGrid").dataSource.getByUid(uid);
+            
+            $("#conceptoLinea").val(articulo.Nombre);
+            $("#conceptoLinea").prop("disabled",true);
+            $("#precioLinea").data("kendoNumericTextBox").value(articulo.Precio);
+            $("#precioLinea").data("kendoNumericTextBox").enable(false);
+            actualizarTotalLinea();
+            idArticulo = articulo.idArticulo;
+            $("#quitarArticulo").show();
+            $("#articulosGrid").hide();
+            $("#agregarArticuloConcepto").hide();
+            $("#conceptoLinea").addClass("k-state-disabled");
+    });
+
+    $("#quitarArticulo").click(function(){
+        idArticulo = null;
+        $("#conceptoLinea").val("");
+        $("#conceptoLinea").removeClass("k-state-disabled");
+        $("#conceptoLinea").addClass("k-input");
+        $("#conceptoLinea").prop("disabled",false);
+        $("#precioLinea").data("kendoNumericTextBox").value(0);
+        $("#precioLinea").data("kendoNumericTextBox").enable(true);
+        $("#unidadesLinea").data("kendoNumericTextBox").value(0);
+        $("#quitarArticulo").hide();
+        $("#articulosGrid").show();
+        $("#agregarArticuloConcepto").show();
+
+        actualizarTotalLinea();
+    });
+
+    $("#descartarLinea").click(function() {
+        idArticulo = null;
+        wl.close();
+    });
+    
+    $("#agregarLinea").click(function() {
+        var conceptoLinea = $("#conceptoLinea").val();
+        var unidades = $("#unidadesLinea").val();
+        var precio = $("#precioLinea").val();
+        
+        if(idLineaFactura == null )     // Nueva línea
+        {
+            var linea;
+            linea.concepto = conceptoLinea;
+            linea.unidades = unidades*1;
+            linea.precio = precio*1;
+            linea.total = precio * unidades;
+            linea.idArticulo = idArticulo;
+            dataSource.add(linea);
+        }
+        else   // Linea editada
+        {
+            var linea = dataSource.get(idLineaFactura);
+            linea.concepto = conceptoLinea;
+            linea.unidades = unidades*1;
+            linea.precio = precio*1;
+            linea.total = precio * unidades;
+            linea.idArticulo = idArticulo;
+        }
+
+        tabla.refresh();
+        obtenerTotalGrid();
+        wl.close();
+    });
 }
 /* ##############    AUXILIARES ###################################################################### */
+function actualizarTotalLinea()
+    {
+        var u = $("#unidadesLinea").data("kendoNumericTextBox").value();
+        var p = $("#precioLinea").data("kendoNumericTextBox").value();
+        var t = u * p;
+        $("#totalLinea").html(t+"€");
+    }
 
 function obtenerTotalGrid() {
     var totalLinea = 0;
@@ -818,8 +969,8 @@ function obtenerTotalGrid() {
 }
 
 function actualizarTotal(bi, t) {
-    $("#baseImponibleNumero").html(bi);
-    $("#totalFacturaNumero").html(t);
+    $("#baseImponibleNumero").html(bi+" €");
+    $("#totalFacturaNumero").html(t+" €");
 }
 
 function volverAtras() {
@@ -831,4 +982,13 @@ function volverAtras() {
     {
         history.back();
     }
+}
+
+function emptyGrid()
+{
+    if (this.total() > 0) return; // continue only for empty grid
+    var msg = this.options.emptyMsg;
+    if (!msg) msg = 'No existen filas para mostrar'; // Default message
+    $(this.options.table).parent().html('<div class="empty-grid">' + msg + '</div>');
+       
 }
