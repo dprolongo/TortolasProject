@@ -22,7 +22,7 @@ namespace TortolasProject.Controllers
     {
         mtbMalagaDataContext db = new mtbMalagaDataContext();
         static FacturasRepositorio FacturasRepo = new FacturasRepositorio();
-        Decimal IVA = 1.18M;
+        static Decimal IVA = 1.18M;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Carga de vistas
@@ -114,7 +114,7 @@ namespace TortolasProject.Controllers
                 {
                             idMovimiento = mg.idMovimientoGasto,
                             Concepto = mg.Concepto,
-                            Fecha = mg.Fecha,
+                            Fecha = mg.Fecha, 
                             Descripcion = mg.Descripcion,
                             Total = mg.Total,                            
                             Responsable = mg.Responsable,
@@ -506,7 +506,7 @@ namespace TortolasProject.Controllers
             FacturasRepo.setEstadoFactura(FacturasRepo.leerEstadoByNombre("Pagado"), idFactura);
         }
 
-        public Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
+        public static Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
         {
             Boolean lineasCorrectas = true;
             Decimal totalLineas = 0;
@@ -518,7 +518,9 @@ namespace TortolasProject.Controllers
             }
             f.BaseImponible = totalLineas;
             f.Total = f.BaseImponible * IVA;
-            if(f.FKJuntaDirectiva == null) f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
+            // PRUEBA!!!
+            //if(f.FKJuntaDirectiva == null) 
+            f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
 
             if (lineasCorrectas)
             {

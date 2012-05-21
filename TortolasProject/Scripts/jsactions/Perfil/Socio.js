@@ -169,19 +169,20 @@
                 var descripcion = null;
                 aEnviar["importeRenovacion"] = $("#importeNuevo").text();
                 aEnviar["importeAlta"] = $("#importeAlta").text();
+                aEnviar["FechaExpiracion"] = $("#fechaExpiracionNueva").text();
 
                 if ($("#checkCustom").attr("checked") == "checked") {
                     aEnviar["meses"] = $("#numberCuotaCustom").val();
                 }
                 else {
-                    aEnviar["meses"] = $("#comboCuota").data("kendoDropDownList").value();                    
+                    aEnviar["meses"] = $("#comboCuota").data("kendoDropDownList").value();
                 }
 
                 if (aEnviar["meses"] == 1) {
                     aEnviar["tipoCuota"] = "Mensual";
                 }
                 else if (aEnviar["meses"] == 3) {
-                    aEnviar["tipoCuota"] = "Trimestre";
+                    aEnviar["tipoCuota"] = "Trimestral";
                 }
                 else if (aEnviar["meses"] == 12) {
                     aEnviar["tipoCuota"] = "Anual";
@@ -190,11 +191,11 @@
                     aEnviar["tipoCuota"] = "Custom";
                 }
 
-                alert(aEnviar["tipoCuota"]);
+
                 // Si el estado es de Baja tiene que añadir el alta
                 if (socio.Estado == "Baja") {
                     aEnviar["concepto"] = "Renovacion y alta de Socio";
-                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"] +" mes";
+                    aEnviar["descripcion"] = "Renovacion por " + aEnviar["meses"] + " mes";
                     aEnviar["hayAlta"] = true;
 
                     $.ajax({

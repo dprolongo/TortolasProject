@@ -266,13 +266,14 @@ namespace TortolasProject.Controllers.Perfil
             Boolean hayAlta = Boolean.Parse(data["hayAlta"]);
             IList<tbLineaFactura> lineasFacturas = new List<tbLineaFactura>();
             Guid usuario = usuariosRepo.obtenerUsuarioNoAsp(HomeController.obtenerUserIdActual()).idUsuario;
+            Guid socio = usuariosRepo.obtenerSocio(usuario).idSocio;
 
             tbFactura factura = new tbFactura
             {
                 idFactura = Guid.NewGuid(),
                 Concepto = data["Concepto"],    // Renovacion o alta+ reno
                 Fecha = DateTime.Today,
-                FKUsuario = usuario,
+                FKUsuario = usuario,                
                 FKEstado = mtbDB.tbEstadoFactura.Where(estado => estado.Nombre.Equals("Pendiente")).Single().idEstadoFactura
             };
 
@@ -303,28 +304,25 @@ namespace TortolasProject.Controllers.Perfil
             };
 
             lineasFacturas.Add(renovacion);
-            Guid socio = usuariosRepo.obtenerSocio(usuario).idSocio;
+            
 
             tbCuota cuota = new tbCuota
             {
                 FKFactura = factura.idFactura,
                 idCuota = Guid.NewGuid(),
                 FKTipoCuota = usuariosRepo.tipoCuota(data["tipoCuota"]),
-                FKSocio = socio
+                FKSocio = socio,
+                FechaExpiracion = DateTime.Parse(data["FechaExpiracion"])
             };
+                        
+            // Creamos la Factura
+            FacturasController.crearFacturaExterna(factura, lineasFacturas);                
+               
+            // Creamos la Cuota
+            usuariosRepo.crearCuota(cuota);
 
-            // Insertamos las lineas
-
-            // La insertamos en la BD si tiene lineasFactura
-            if (lineasFacturas.Count > 0)
-            {
-                facturasRepo.
-                foreach (tbLineaFactura linea in lineasFacturas)
-                {
-                    facturasRepo.nuevaLinea(linea);
-                }
-            }
-           
+            // Cambiamos el estado del socio            
+            usuariosRepo.cambiarEstadoSocio(socio, "Pendiente", data["FechaExpiracion"]);
             // FALTA AÑADIR PDF
             
         }

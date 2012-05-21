@@ -65,6 +65,11 @@ namespace TortolasProject.Models.Repositorios
             };*/
         }
 
+        public tbSocio obtenerSocioById(Guid socio)
+        {
+            return mtbMalagaDB.tbSocio.Where(soci => soci.idSocio.Equals(socio)).Single();
+        }
+
         public IList<tbTipoCuota> obtenerCuotas()
         {
             return mtbMalagaDB.tbTipoCuota.ToList();
@@ -129,6 +134,56 @@ namespace TortolasProject.Models.Repositorios
             mtbMalagaDB.tbTipoCuota.InsertOnSubmit(tipoCuota);
             mtbMalagaDB.SubmitChanges();
         }
-        
+
+        public void cambiarEstadoSocio(Guid Socio , String Estado, String FechaExpiracion)
+        {
+            tbSocio socio = obtenerSocioById(Socio);
+          
+            if (FechaExpiracion.Length.Equals(0))
+            {                
+                socio.FechaExpiracion = DateTime.Parse(FechaExpiracion);
+            }
+            
+            socio.Estado = Estado;
+            mtbMalagaDB.SubmitChanges();
+        }
+
+        public void crearCuota(tbCuota cuota)
+        {
+            mtbMalagaDB.tbCuota.InsertOnSubmit(cuota);
+            mtbMalagaDB.SubmitChanges();
+        }
+
+        public tbCuota obtenerCuota(Guid idCuota)
+        {
+            return mtbMalagaDB.tbCuota.Where(cuoti => cuoti.idCuota.Equals(idCuota)).Single();
+        }
+
+        public Boolean esJuntaDirectiva(Guid Socio)
+        {
+            return mtbMalagaDB.tbJuntaDirectiva.Where(junta => junta.FKSocio.Equals(Socio)).Count().Equals(1);
+        }
+
+        public void crearJuntaDirectiva(Guid Socio, Guid Cargo)
+        {
+            tbJuntaDirectiva directivo = new tbJuntaDirectiva{ FKSocio = Socio , FKCargoDirectivo = Cargo };
+            mtbMalagaDB.tbJuntaDirectiva.InsertOnSubmit(directivo);
+            mtbMalagaDB.SubmitChanges();
+        }
+
+        public Guid cargoPorNombre(String Nombre)
+        {
+            return mtbMalagaDB.tbCargoDirectivo.Where(cargo => cargo.Nombre.Equals(Nombre)).Single().idCargoDirectivo;
+        }
+
+        public IList<tbCargoDirectivo> obtenerTodosCargos()
+        {
+            return mtbMalagaDB.tbCargoDirectivo.ToList();
+        }
+
+        public IList<tbJuntaDirectiva> obtenerJuntaDirectiva()
+        {
+            return mtbMalagaDB.tbJuntaDirectiva.ToList();
+        }
     }
 }
