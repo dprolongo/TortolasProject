@@ -22,7 +22,7 @@ namespace TortolasProject.Controllers
     {
         mtbMalagaDataContext db = new mtbMalagaDataContext();
         static FacturasRepositorio FacturasRepo = new FacturasRepositorio();
-        Decimal IVA = 1.18M;
+        static Decimal  IVA = 1.18M;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Carga de vistas
@@ -192,7 +192,8 @@ namespace TortolasProject.Controllers
                                     concepto = l.Descripcion,
                                     unidades = l.Unidades,
                                     precio = l.PrecioUnitario,
-                                    total = l.Total
+                                    total = l.Total,
+                                    idArticulo = l.FKArticulo == null? "" : l.FKArticulo.ToString()
                                 };
 
             return Json(lineasFactura);
@@ -239,12 +240,14 @@ namespace TortolasProject.Controllers
             // Creamos la lista de lineas de factura
             List<tbLineaFactura> lineasFactura = new List<tbLineaFactura>();
             int i;
-            int unidadesLinea;
+            Decimal unidadesLinea;
             Decimal precioLinea;
             Decimal totalLinea;
+            string idArticulo;
 
             for ( i = 0; i < lineasFacturaRaw.Length; ++i)
             {
+                idArticulo = lineasFacturaRaw[i].idArticulo;
                 precioLinea = lineasFacturaRaw[i].precio;
                 unidadesLinea = lineasFacturaRaw[i].unidades;                
                 totalLinea = unidadesLinea * precioLinea;
@@ -258,6 +261,7 @@ namespace TortolasProject.Controllers
                     PrecioUnitario = precioLinea,
                     Total = totalLinea
                 };
+                if (idArticulo != "") linea.FKArticulo = Guid.Parse(idArticulo);
                 baseImponible = baseImponible + totalLinea;
                 lineasFactura.Add(linea);
             }
@@ -359,12 +363,14 @@ namespace TortolasProject.Controllers
             List<tbLineaFactura> lineasExistentes = FacturasRepo.listarLineasFactura(idFactura).ToList<tbLineaFactura>() ;
 
             int i;
-            int unidadesLinea;
+            Decimal unidadesLinea;
             Decimal precioLinea;
             Decimal totalLinea;
+            string idArticulo;
 
             for (i = 0; i < lineasFacturaRaw.Length; ++i)
             {
+                idArticulo = lineasFacturaRaw[i].idArticulo;
                 precioLinea = lineasFacturaRaw[i].precio;
                 unidadesLinea = lineasFacturaRaw[i].unidades;
                 totalLinea = unidadesLinea * precioLinea;
@@ -381,6 +387,7 @@ namespace TortolasProject.Controllers
                         Total = totalLinea
                     };
 
+                    if (idArticulo != "") linea.FKArticulo = Guid.Parse(idArticulo);
                     lineasExistentes.Remove(lineasExistentes.Where(l => l.idLineaFactura == linea.idLineaFactura).Single());
                     FacturasRepo.modificarLinea(linea.idLineaFactura, linea);
                 }
@@ -395,7 +402,7 @@ namespace TortolasProject.Controllers
                         PrecioUnitario = precioLinea,
                         Total = totalLinea
                     };
-
+                    if (idArticulo != "") linea.FKArticulo = Guid.Parse(idArticulo);
                     FacturasRepo.nuevaLinea(linea);
                 }
                 baseImponible = baseImponible + totalLinea; 
@@ -506,7 +513,7 @@ namespace TortolasProject.Controllers
             FacturasRepo.setEstadoFactura(FacturasRepo.leerEstadoByNombre("Pagado"), idFactura);
         }
 
-        public Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
+        public static Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
         {
             Boolean lineasCorrectas = true;
             Decimal totalLineas = 0;
@@ -517,7 +524,7 @@ namespace TortolasProject.Controllers
                 totalLineas = totalLineas + linea.Total;
             }
             f.BaseImponible = totalLineas;
-            f.Total = f.BaseImponible * IVA;
+            f.Total = f.BaseImponible * IVA;            
             if(f.FKJuntaDirectiva == null) f.FKJuntaDirectiva = Guid.Parse("b91b5b16-c4f2-4759-bdd9-6e80d2ef24ea");
 
             if (lineasCorrectas)
@@ -690,7 +697,8 @@ namespace TortolasProject.Controllers
                            select new
                            {
                                idArticulo = a.idArticulo,
-                               Nombre = a.Nombre
+                               Nombre = a.Nombre,
+                               Precio = a.Precio
                            };
 
             return Json(articulos);
@@ -750,7 +758,7 @@ namespace TortolasProject.Controllers
                           {
                               idPedidoUsuario = e.idPedidoUsuario,
                               idUsuario = e.FKUsuario,
-                              nickname = db.tbUsuario.Where(u => u.idUsuario == e.FKUsuario).Single()
+                              nickname = db.tbUsuario.Where(u => u.idUsuario == e.FKUsuario).Single().Nickname
                           };
 
             return Json(pedidos);
