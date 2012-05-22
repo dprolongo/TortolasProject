@@ -22,11 +22,13 @@
 <input type="hidden" id='estadoPage' value='<% Response.Write(estado); %>' />
 <input type="hidden" id='idFactura' value='<% Response.Write(Model.idFactura); %>' />
     <div id='facturaContainer' >
-        <div id='facturaDetalles'>
-            <div id='pdfButton'><%: Html.ActionLink("Descargar en PDF", "generarFacturaPDF", "Facturas", new { id = Model.idFactura.ToString() }, new { @class = "k-button" })%></div>
+        <div id='facturaHeader'>            
             <div id='volverButton' class='k-button'></div>
             <div id='poliButton' class='k-button'></div>
             <div id='eliminarButton' class='k-button'></div>
+            <div id='pdfButton'><%: Html.ActionLink("Descargar en PDF", "generarFacturaPDF", "Facturas", new { id = Model.idFactura.ToString() }, new { @class = "k-button" })%></div>
+        </div>
+        <div id='facturaDetalles'>            
             <div id='relacionesFacturaContainer'>
                 <div id='relacionesButton' class='k-button'>Añadir relación</div>
                 <div id='relacionesExistentesDiv'>
