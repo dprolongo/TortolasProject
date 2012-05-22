@@ -88,7 +88,19 @@
                 resizable: false,
             }).data("kendoWindow");
 
+        //VALIDACION//
 
+        function comprobarNecesarios(formulario){ //Comprueba nulos
+        var noHayErrores = true;
+        $("."+formulario+" .requerido").each(function(){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid");
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+        }
+        
         // FUNCIONES //
 
         //Funciones: Botones del GRID//
@@ -248,49 +260,48 @@
         $("#BotonAceptarVentanaCrearAsociacion").click(function () {
 
             var datos = {};
-
-            //Coger datos
-            datos["nombreempresa"] = $("#nombreempresaasociacion").val();
-            datos["cif"] = $("#cifremoto").val();
-            datos["direccion"] = $("#direccion").val();
-            datos["tematica"] = $("#tematica").val();
-            if ($("#telefonoremoto").val() == "") {
-                datos["telefono"] = 0
-            }
-            else {
-                datos["telefono"] = $("#telefonoremoto").val(); 
-            }
-            if ($("#telefonoremoto2").val() == "") {
-                datos["telefono2"] = 0 
-            }
-            else {
-                datos["telefono2"] = $("#telefonoremoto2").val(); 
-            }
-
-
-            $.ajax(
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
-                url: "Asociaciones/CreateAsociacion",
-                type: "POST",
-                data: datos,
-                success: function () {
-                    //alert("Estoy dentro del success!");
-                    //alert($("#EmpresasGrid"));
-                    var temp = $("#AsociacionesGrid").data("kendoGrid").dataSource;
-                    //alert("soy el temp:" + temp);
-                    temp.read();
+                //Coger datos
+                datos["nombreempresa"] = $("#nombreempresaasociacion").val();
+                datos["cif"] = $("#cifremoto").val();
+                datos["direccion"] = $("#direccion").val();
+                datos["tematica"] = $("#tematica").val();
+                if ($("#telefonoremoto").val() == "") {
+                    datos["telefono"] = 0
+                }
+                else {
+                    datos["telefono"] = $("#telefonoremoto").val(); 
+                }
+                if ($("#telefonoremoto2").val() == "") {
+                    datos["telefono2"] = 0 
+                }
+                else {
+                    datos["telefono2"] = $("#telefonoremoto2").val(); 
+                }
+
+
+                $.ajax(
+                {
+                    url: "Asociaciones/CreateAsociacion",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
+                        var temp = $("#AsociacionesGrid").data("kendoGrid").dataSource;
+                        temp.read();
                 
-                    //alert("Ya he cogido e datasource!");
-                    $("#NuevaEmpresaFormulario2").hide();
+                        $("#NuevaEmpresaFormulario2").hide();
 
 
-                    weditarAsociacion.close();
-
-                    //alert("Ya he terminado!");
-                },
-                async: false
-            });
-
+                        weditarAsociacion.close();
+                    },
+                    async: false
+                });
+            }
+            else
+            {
+                $("#MensajeErrorAsociaciones").fadeIn(500).fadeOut(3000);
+            }
         });
     /*$("#AsociacionesNav").live("click", function () {  //Actualiza los datos al pulsar en su pestaña.
         

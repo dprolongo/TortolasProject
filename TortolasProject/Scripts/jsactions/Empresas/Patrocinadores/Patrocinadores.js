@@ -119,6 +119,19 @@
             });
         }
 
+        //VALIDACION//
+
+        function comprobarNecesarios(formulario){ //Comprueba nulos
+        var noHayErrores = true;
+        $("."+formulario+" .requerido").each(function(){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid");
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+        }
+
         // VENTANAS (POP-UP) //
 
         //Editar//
@@ -320,43 +333,49 @@
 
             var datos = {};
 
-            //Coger datos
-            datos["nombreempresa"] = $("#nombrepatrocinadornuevo").val();
-            datos["cif"] = $("#cifpatrocinadornuevo").val();
-            datos["localizacion"] = $("#locpatrocinadornuevo").val();
-            if ($("#tlfpatrocinadornuevo").val() == "") {
-                datos["telefono"] = 0
-            }
-            else {
-                datos["telefono"] = $("#tlfpatrocinadornuevo").val();
-            }
-            if ($("#patrocinadortflremoto").val() == "") {
-                datos["telefono2"] = 0
-            }
-            else {
-                datos["telefono2"] = $("#patrocinadortflremoto").val();
-            }
-
-            $.ajax(
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
-                url: "Patrocinadores/CreatePatrocinador",
-                type: "POST",
-                data: datos,
-                success: function () {
+                //Coger datos
+                datos["nombreempresa"] = $("#nombrepatrocinadornuevo").val();
+                datos["cif"] = $("#cifpatrocinadornuevo").val();
+                datos["localizacion"] = $("#locpatrocinadornuevo").val();
+                if ($("#tlfpatrocinadornuevo").val() == "") {
+                    datos["telefono"] = 0
+                }
+                else {
+                    datos["telefono"] = $("#tlfpatrocinadornuevo").val();
+                }
+                if ($("#patrocinadortflremoto").val() == "") {
+                    datos["telefono2"] = 0
+                }
+                else {
+                    datos["telefono2"] = $("#patrocinadortflremoto").val();
+                }
 
-                    $(".VisibilidadDatosNuevaEmpresaRemota").hide();
+                $.ajax(
+                {
+                    url: "Patrocinadores/CreatePatrocinador",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
 
-                    var temp = $("#PatrocinadoresGrid").data("kendoGrid").dataSource;
+                        $(".VisibilidadDatosNuevaEmpresaRemota").hide();
 
-                    temp.read();
+                        var temp = $("#PatrocinadoresGrid").data("kendoGrid").dataSource;
 
-                    wcrearPatrocinador.close();
+                        temp.read();
+
+                        wcrearPatrocinador.close();
 
 
-                },
-                async: false
-            });
-
+                    },
+                    async: false
+                });
+            }
+            else
+            {
+                $("#MensajeErrorPatrocinadores").fadeIn(500).fadeOut(3000);
+            }
         });
         //Funcionnes: Botones Grid Publicidad//
     

@@ -156,6 +156,19 @@
 
         });
 
+        //VALIDACION//
+
+        function comprobarNecesarios(formulario){ //Comprueba nulos
+        var noHayErrores = true;
+        $("."+formulario+" .requerido").each(function(){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid");
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+        }
+
             //POP-UPs//
 
             //Editar//
@@ -274,29 +287,37 @@
 
         $("#BotonAceptarVentanaEditarContrato").live("click", function () {
             var datos = {};
-            //Coger datos
-            datos["nombreempresa"] = $("#nombreempresacontratoeditar").val();
-            datos["cifempresa"] = $("#cifcontratoeditar").val();
-            datos["nombrejunta"] = $("#jdirectivacontratoeditar").val();
-            datos["fechacreacion"] = $("#fechacreacioncontratoeditar").val();
-            datos["fechacaducidad"] = $("#fechacaducidadcontratoeditar").val();
-            datos["descripcion"] = $("#descripcionlegalcontratoeditar").data("kendoEditor").value();
-            datos["importe"] = $("#importecontraroeditar").val();
-            datos["idcontrato"] = idContrato;
-            datos["fkjuntadirectiva"] = FKJuntaDirectiva;
 
-            $.ajax(
-                {
-                    url: "Contratos/UpdateContrato",
-                    type: "POST",
-                    data: datos,
-                    success: function () {
-                        $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
-                        datasourcecont.read();
-                        weditarContrato.close();
-                    },
-                    async: false
-                });
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+            {
+                //Coger datos
+                datos["nombreempresa"] = $("#nombreempresacontratoeditar").val();
+                datos["cifempresa"] = $("#cifcontratoeditar").val();
+                datos["nombrejunta"] = $("#jdirectivacontratoeditar").val();
+                datos["fechacreacion"] = $("#fechacreacioncontratoeditar").val();
+                datos["fechacaducidad"] = $("#fechacaducidadcontratoeditar").val();
+                datos["descripcion"] = $("#descripcionlegalcontratoeditar").data("kendoEditor").value();
+                datos["importe"] = $("#importecontraroeditar").val();
+                datos["idcontrato"] = idContrato;
+                datos["fkjuntadirectiva"] = FKJuntaDirectiva;
+
+                $.ajax(
+                    {
+                        url: "Contratos/UpdateContrato",
+                        type: "POST",
+                        data: datos,
+                        success: function () {
+                            $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
+                            datasourcecont.read();
+                            weditarContrato.close();
+                        },
+                        async: false
+                    });
+            }
+            else
+            {
+                $("#MensajeErrorContratoEditar").fadeIn(500).fadeOut(3000);
+            }
         });
     
         // Funciones: Botones Ventana Eliminar //
@@ -363,44 +384,49 @@
         $("#BotonAceptarVentanaCrearContrato").click(function () {
 
             var datos = {};
-
-            //Coger datos
-            datos["nombreempresa"] = $("#nombreempresacontratocrear").val();
-            datos["cif"] = $("#cifempresacontratocrear").val();
-            datos["nombrejunta"] = $("#juntadirectivacontratocrear").val();
-            datos["fechacreacion"] = $("#fechacreacioncontratocrear").val();
-            datos["fechacaducidad"] = $("#fechacaducidadcontratocrear").val();
-            datos["descripcion"] = $("#descripcioncontratocrear").val();
-            datos["importe"] = $("#importecontratocrear").val();
-            datos["idcontrato"] = idContrato;
-            datos["fkjuntadirectiva"] = FKJuntaDirectiva;
-            if ($("#telefonoempresacontratocrear").val() == "") {
-                datos["telefono"] = 0
-            }
-            else {
-                datos["telefono"] = $("#telefonoempresacontratocrear").val();
-            }
-        
-            $.ajax(
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
-                url: "Contratos/CreateContrato",
-                type: "POST",
-                data: datos,
-                success: function () {
+                //Coger datos
+                datos["nombreempresa"] = $("#nombreempresacontratocrear").val();
+                datos["cif"] = $("#cifempresacontratocrear").val();
+                datos["nombrejunta"] = $("#juntadirectivacontratocrear").val();
+                datos["fechacreacion"] = $("#fechacreacioncontratocrear").val();
+                datos["fechacaducidad"] = $("#fechacaducidadcontratocrear").val();
+                datos["descripcion"] = $("#descripcioncontratocrear").val();
+                datos["importe"] = $("#importecontratocrear").val();
+                datos["idcontrato"] = idContrato;
+                datos["fkjuntadirectiva"] = FKJuntaDirectiva;
+                if ($("#telefonoempresacontratocrear").val() == "") {
+                    datos["telefono"] = 0
+                }
+                else {
+                    datos["telefono"] = $("#telefonoempresacontratocrear").val();
+                }
+        
+                $.ajax(
+                {
+                    url: "Contratos/CreateContrato",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
                 
-                    var temp = $("#ContratosGrid").data("kendoGrid").dataSource;
+                        var temp = $("#ContratosGrid").data("kendoGrid").dataSource;
 
-                    temp.read();
+                        temp.read();
 
-                    $(".VisibilidadDatosNuevaEmpresaRemota").hide();
+                        $(".VisibilidadDatosNuevaEmpresaRemota").hide();
 
-                    wcrearContrato.close();
+                        wcrearContrato.close();
 
                 
-                },
-                async: false
-            });
-
+                    },
+                    async: false
+                });
+            }
+            else
+            {
+                $("#MensajeErrorContratoCrear").fadeIn(500).fadeOut(3000);
+            }
         });
     /*$("#ContratosNav").live("click", function () {
         

@@ -324,7 +324,7 @@ $(document).ready(function () {
         }
         else
         {
-            $("#MensajeError").fadeIn(500).fadeOut(3000);
+            $("#MensajeErrorEmpresas").fadeIn(500).fadeOut(3000);
         }
     });
 
@@ -354,29 +354,37 @@ $(document).ready(function () {
 
     $("#BotonAceptarVentanaEditar").live("click", function () {
         var datos = {};
-        //Coger datos
-        datos["nombreempresaupdate"] = $("#nombreempresa").val();
-        datos["cifupdate"] = $("#cif").val();
-        datos["localidadupdate"] = $("#localidad").val();
-        datos["direccionwebupdate"] = $("#direccionweb").val();
-        datos["telefonodecontactoupdate"] = $("#telefonodecontacto").val();
-        datos["emailupdate"] = $("#email-c").val();
-        datos["idempresa"] = idEmpresa;
 
-        //alert(datos["nombreempresaupdate"]);
-
-        $.ajax(
+        if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
         {
-            url: "Empresas/UpdateEmpresa",
-            type: "POST",
-            data: datos,
-            success: function () {
-                $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
-                datasource.read();
-                weditar.close();
-            },
-            async: false
-        });
+            //Coger datos
+            datos["nombreempresaupdate"] = $("#nombreempresa").val();
+            datos["cifupdate"] = $("#cif").val();
+            datos["localidadupdate"] = $("#localidad").val();
+            datos["direccionwebupdate"] = $("#direccionweb").val();
+            datos["telefonodecontactoupdate"] = $("#telefonodecontacto").val();
+            datos["emailupdate"] = $("#email-c").val();
+            datos["idempresa"] = idEmpresa;
+
+            //alert(datos["nombreempresaupdate"]);
+
+            $.ajax(
+            {
+                url: "Empresas/UpdateEmpresa",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
+                    datasource.read();
+                    weditar.close();
+                },
+                async: false
+            });
+        }
+        else
+        {
+            $("#MensajeErrorEmpresaEditar").fadeIn(500).fadeOut(3000);
+        }
     });
 
     // Funciones: Botones Ventana Eliminar //

@@ -62,6 +62,19 @@
 
             });
 
+        //VALIDACION//
+
+        function comprobarNecesarios(formulario){ //Comprueba nulos
+        var noHayErrores = true;
+        $("."+formulario+" .requerido").each(function(){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid");
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+        }
+
             var weditarConvenio = $("#VentanaEditarConvenio")
             .kendoWindow
             ({
@@ -229,44 +242,50 @@
 
             var datos = {};
 
-            //Coger datos
-            datos["nombreempresa"] = $("#nombreempresaconveniocrear").val();
-            datos["cif"] = $("#cifconveniocrear").val();
-            datos["descripcion"] = $("#descripcionconveniocrear").val();
-            if ($("#tlfconveniocrear").val() == "") {
-                datos["telefono"] = 0
-            }
-            else {
-                datos["telefono"] = $("#tlfconveniocrear").val();
-            }
-            if ($("#tlfempresaremotaconveniocrear").val() == "") {
-                datos["telefono2"] = 0
-            }
-            else {
-                datos["telefono2"] = $("#tlfempresaremotaconveniocrear").val();
-            }
-
-
-            $.ajax(
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
-                url: "Convenios/CreateConvenio",
-                type: "POST",
-                data: datos,
-                success: function () {
+                //Coger datos
+                datos["nombreempresa"] = $("#nombreempresaconveniocrear").val();
+                datos["cif"] = $("#cifconveniocrear").val();
+                datos["descripcion"] = $("#descripcionconveniocrear").val();
+                if ($("#tlfconveniocrear").val() == "") {
+                    datos["telefono"] = 0
+                }
+                else {
+                    datos["telefono"] = $("#tlfconveniocrear").val();
+                }
+                if ($("#tlfempresaremotaconveniocrear").val() == "") {
+                    datos["telefono2"] = 0
+                }
+                else {
+                    datos["telefono2"] = $("#tlfempresaremotaconveniocrear").val();
+                }
+
+
+                $.ajax(
+                {
+                    url: "Convenios/CreateConvenio",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
                 
-                    var temp = $("#ConveniosGrid").data("kendoGrid").dataSource;
+                        var temp = $("#ConveniosGrid").data("kendoGrid").dataSource;
                 
-                    temp.read();
+                        temp.read();
 
-                    $(".VisibilidadDatosNuevaEmpresaRemota").hide();
+                        $(".VisibilidadDatosNuevaEmpresaRemota").hide();
 
-                    wcrearConvenio.close();
+                        wcrearConvenio.close();
 
                 
-                },
-                async: false
-            });
-
+                    },
+                    async: false
+                });
+            }
+            else
+            {
+                $("#MensajeErrorConvenios").fadeIn(500).fadeOut(3000);
+            }
         });
 
     /*$("#ConveniosNav").live("click", function () {  //Actualiza los datos al pulsar en su pestaña.

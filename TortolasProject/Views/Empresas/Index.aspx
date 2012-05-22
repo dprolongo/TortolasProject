@@ -124,6 +124,9 @@
         <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonodecontacto" class=" CuadroTexto k-textbox requerido" /><br />
         <label for="email">E-Mail: </label><input type="text" id="email-c" class=" CuadroTexto k-textbox" /><br />
         <center>
+            <div hidden="hidden" id="MensajeErrorEmpresaEditar" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaEditar" class="k-button VisibilidadBotonAceptarEditar" />
             <input type="button" value="Confirmar" id="BotonAceptarVentanaEliminar" class="k-button VisibilidadBotonAceptarEliminar" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaEditar" class="k-button" />           
@@ -139,12 +142,9 @@
         <label for="direccionweb">Dirección Web: </label><input type="text" id="newdireccionweb" class=" k-textbox" /><br />
         <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="newtelefonodecontacto" class=" k-textbox requerido" /><br />
         <label for="email">E-Mail: </label><input type="text" id="newemail-c" class=" k-textbox" /><br />
-        <div id="NuevaEmpresaImagenEmpresa">  
-
-        </div>
         <center>
             <div id="NuevaEmpresaHerramientasContent">
-                <div hidden="hidden" id="MensajeError" class="FormatoMensajeError">
+                <div hidden="hidden" id="MensajeErrorEmpresas" class="FormatoMensajeError">
                     <p>Datos nulos o erroneos</p>
                 </div>
                 <input type="button" value="Confirmar" id="BotonConfirmarNuevaEmpresa" class="k-button" />
@@ -153,14 +153,14 @@
         </center>
     </div>
 
-    <div id="VentanaEditarAsociacion">
+    <div id="VentanaEditarAsociacion" class="ComprobarNulosAsociaciones">
         <b><h5>Datos Asociacion</h5></b>
         <br />
-        <label for="nombreempresaasociacion">Nombre: </label><input type="text" id="nombreempresaasociacion" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifremoto" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeAsociacion" class="k-button VisibilidadBotonVincularEmpresa" /><br />
+        <label for="nombreempresaasociacion">Nombre: </label><input type="text" id="nombreempresaasociacion" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox requerido" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifremoto" class=" CuadroTexto NoModificable cifremoto k-textbox requerido" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeAsociacion" class="k-button VisibilidadBotonVincularEmpresa" /><br />
         <label for="direccion">Dirección: </label><input type="text" id="direccion" class=" CuadroTexto k-textbox" /><br />
         <label for="tematica">Temática: </label><input type="text" id="tematica" class=" CuadroTexto k-textbox" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox requerido" /><br />
         <hr />
 
         <div id="DatosNuevaEmpresaRemota" class="VisibilidadDatosNuevaEmpresaRemota">
@@ -168,11 +168,14 @@
             <br />
             <label for="localidad">Localidad: </label><input type="text" id="localidadremota" class=" CuadroTexto localidadremota k-textbox" /><br />
             <label for="direccionweb">Dirección Web: </label><input type="text" id="dirwebremota" class=" CuadroTexto dirwebremota k-textbox" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class=" CuadroTexto telefonoremoto2 k-textbox requerido" /><br />
             <label for="email">E-Mail: </label><input type="text" id="emailremoto" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
+            <div hidden="hidden" id="MensajeErrorAsociaciones" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaEditarAsociacion" class="k-button VisibilidadBotonAceptarEditar" />
             <input type="button" value="Confirmar" id="BotonAceptarVentanaEliminarAsociacion" class="k-button VisibilidadBotonAceptarEliminar" />
             <input type="button" value="Crear" id="BotonAceptarVentanaCrearAsociacion" class="k-button VisibilidadBotonAceptarCrear" />
@@ -223,12 +226,12 @@
     <div id="VentanaCrearProveedor">
         <b><h5>Datos Proveedor</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nuevoproveedornombre" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="nuevoproveedorcif" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeProveedor" class="k-button" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nuevoproveedornombre" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox requerido" /><br />
+        <label for="cif">CIF: </label><input type="text" id="nuevoproveedorcif" class=" CuadroTexto NoModificable cifremoto k-textbox requerido" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeProveedor" class="k-button" /><br />
         <label for="direccion">Dirección Física: </label><input type="text" id="nuevoproveedordir" class=" CuadroTexto k-textbox" /><br />
         <label for="mercado">Mercado: </label><input type="text" id="nuevoproveedormercado" class=" CuadroTexto k-textbox" /><br />
         <label for="codigopostal">Código Postal: </label><input type="text" id="nuevoproveedorcpostal" class=" CuadroTexto k-textbox" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="nuevoproveedortlf" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="nuevoproveedortlf" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox requerido" /><br />
         <br />
         <hr />
         <br />
@@ -238,11 +241,14 @@
             <br />
             <label for="localidad">Localidad: </label><input type="text" id="nuevoproveedorlocalidad" class=" CuadroTexto localidadremota k-textbox" /><br />
             <label for="direccionweb">Dirección Web: </label><input type="text" id="nuevoproveedorweb" class=" CuadroTexto dirwebremota k-textbox" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class=" CuadroTexto telefonoremoto2 k-textbox requerido" /><br />
             <label for="email">E-Mail: </label><input type="text" id="nuevoproveedoremail" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
+            <div hidden="hidden" id="MensajeErrorProveedores" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Crear" id="BotonAceptarVentanaCrearProveedor" class="k-button" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearProveedor" class="k-button FuncionBotonCancelarProveedores" />          
         </center>
@@ -283,10 +289,10 @@
     <div id="VentanaCrearPatrocinador">
         <b><h5>Datos Patrocinador</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadornuevo" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadornuevo" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdePatrocinador" class="k-button" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadornuevo" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox requerido" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadornuevo" class=" CuadroTexto NoModificable cifremoto k-textbox requerido" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdePatrocinador" class="k-button" /><br />
         <label for="loc">Localización Publicidad: </label><input type="text" id="locpatrocinadornuevo" class=" CuadroTexto k-textbox" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfpatrocinadornuevo" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfpatrocinadornuevo" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox requerido" /><br />
         <br />
         <hr />
         <br />
@@ -301,6 +307,9 @@
         </div>
 
         <center>
+            <div hidden="hidden" id="MensajeErrorPatrocinadores" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Crear" id="BotonAceptarVentanaCrearPatrocinador" class="k-button" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearPatrocinador" class="k-button FuncionBotonCancelarProveedores" />          
         </center>
@@ -325,11 +334,14 @@
         <br />
         <label for="loca">Localización: </label><input type="text" id="Text1" class=" CuadroTexto NoModificable k-textbox" /><br />
         <label for="carac">Características: </label><input type="text" id="Text2" class=" CuadroTexto NoModificable k-textbox" /><br />
-        <label for="cif">CIF Patrocinador: </label><input type="text" id="cifpatrocinador" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF Patrocinador: </label><input type="text" id="cifpatrocinador" class=" CuadroTexto NoModificable k-textbox requerido" /><br />
         <br />
         <hr />
         <br />
         <center>
+            <div hidden="hidden" id="MensajeErrorPublicidad" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Aceptar" id="Button1" class="k-button" />
             <input type="button" value="Cancelar" id="Button2" class="k-button FuncionBotonCancelarProveedores" />    
         </center>
@@ -370,10 +382,10 @@
     <div id="VentanaCrearConvenio">
         <b><h5>Datos Convenio</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaconveniocrear" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifconveniocrear" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeConvenio" class="k-button" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaconveniocrear" class=" CuadroTexto NoModificable requerido nombreempresaasociacion k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifconveniocrear" class=" CuadroTexto NoModificable cifremoto k-textbox requerido" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeConvenio" class="k-button" /><br />
         <label for="descripcion">Descripción: </label><input type="text" id="descripcionconveniocrear" class=" CuadroTexto k-textbox" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfconveniocrear" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfconveniocrear" class=" CuadroTexto requerido VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -383,11 +395,14 @@
             <br />
             <label for="localidad">Localidad: </label><input type="text" id="locempresaremotaconveniocrear" class=" CuadroTexto localidadremota k-textbox" /><br />
             <label for="direccionweb">Dirección Web: </label><input type="text" id="webempresaremotaconveniocrear" class=" CuadroTexto dirwebremota k-textbox" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="tlfempresaremotaconveniocrear" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="tlfempresaremotaconveniocrear" class=" CuadroTexto requerido telefonoremoto2 k-textbox" /><br />
             <label for="email">E-Mail: </label><input type="text" id="emailempresaremotaconveniocrear" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
+            <div hidden="hidden" id="MensajeErrorConvenios" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Crear" id="BotonAceptarVentanaCrearConvenio" class="k-button" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearConvenio" class="k-button FuncionBotonCancelarProveedores" />          
         </center>
@@ -413,6 +428,9 @@
         <hr />
         <br />
         <center>
+            <div hidden="hidden" id="MensajeErrorContratoEditar" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaEditarContrato" class="k-button" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaEditarContrato" class="k-button FuncionBotonCancelarProveedores" />
         </center>
@@ -444,18 +462,18 @@
 
     <div id="VentanaCrearContrato">
         <h5>Datos Empresa</h5>
-        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class=" CuadroTexto k-textbox nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class=" CuadroTexto k-textbox cifremoto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresacontratocrear" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class=" CuadroTexto requerido k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class=" CuadroTexto k-textbox cifremoto requerido" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresacontratocrear" class=" CuadroTexto requerido VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <input type="button" value="Escoger Empresa" id="BotonElegirEmpresaRemotaDesdeContrato" class="k-button" />
         <hr />
         <h5>Datos Responsable</h5>
-        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratocrear" class=" CuadroTexto k-textbox nombrejuntadirectivaremota" /><br />
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratocrear" class=" CuadroTexto k-textbox nombrejuntadirectivaremota requerido" /><br />
         <input type="button" value="Escoger Responsable" id="BotonElegirJuntaDirectivaDesdeContrato" class="k-button" />
         <hr />
         <h5>Datos Contrato</h5>
         <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratocrear" class=" CuadroTexto k-textbox" /><br />
-        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratocrear" class=" CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratocrear" class=" CuadroTexto k-textbox requerido" /><br />
         <h5>Descripción Legal</h5>
         <textarea id="descripcioncontratocrear" rows="20" cols="38" disable="true"></textarea>
         <br />
@@ -464,6 +482,9 @@
         <hr />
         <br />
         <center>
+            <div hidden="hidden" id="MensajeErrorContratoCrear" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+            </div>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaCrearContrato" class="k-button" />
             <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearContrato" class="k-button FuncionBotonCancelarProveedores" />
         </center>

@@ -103,6 +103,18 @@
                 resizable: false,
             }).data("kendoWindow");
 
+        //VALIDACION//
+
+        function comprobarNecesarios(formulario){ //Comprueba nulos
+        var noHayErrores = true;
+        $("."+formulario+" .requerido").each(function(){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid");
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+        }
 
         // FUNCIONES //
 
@@ -249,46 +261,52 @@
 
             var datos = {};
 
-            //Coger datos
-            datos["nombreempresa"] = $("#nuevoproveedornombre").val();
-            datos["cif"] = $("#nuevoproveedorcif").val();
-            datos["direccion"] = $("#nuevoproveedordir").val();
-            datos["mercado"] = $("#nuevoproveedormercado").val();
-            datos["codigopostal"] = $("#nuevoproveedorcpostal").val();
-            if ($("#nuevoproveedortlf").val() == "") {
-                datos["telefono"] = 0
-            }
-            else {
-                datos["telefono"] = $("#nuevoproveedortlf").val();
-            }
-            if ($("#telefonoempresa").val() == "") {
-                datos["telefono2"] = 0
-            }
-            else {
-                datos["telefono2"] = $("#telefonoempresa").val();
-            }
-
-
-            $.ajax(
+            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
-                url: "Proveedores/CreateProveedor",
-                type: "POST",
-                data: datos,
-                success: function () {
+                //Coger datos
+                datos["nombreempresa"] = $("#nuevoproveedornombre").val();
+                datos["cif"] = $("#nuevoproveedorcif").val();
+                datos["direccion"] = $("#nuevoproveedordir").val();
+                datos["mercado"] = $("#nuevoproveedormercado").val();
+                datos["codigopostal"] = $("#nuevoproveedorcpostal").val();
+                if ($("#nuevoproveedortlf").val() == "") {
+                    datos["telefono"] = 0
+                }
+                else {
+                    datos["telefono"] = $("#nuevoproveedortlf").val();
+                }
+                if ($("#telefonoempresa").val() == "") {
+                    datos["telefono2"] = 0
+                }
+                else {
+                    datos["telefono2"] = $("#telefonoempresa").val();
+                }
+
+
+                $.ajax(
+                {
+                    url: "Proveedores/CreateProveedor",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
                 
-                    var temp = $("#ProveedoresGrid").data("kendoGrid").dataSource;
+                        var temp = $("#ProveedoresGrid").data("kendoGrid").dataSource;
 
-                    temp.read();
+                        temp.read();
 
-                    $(".VisibilidadDatosNuevaEmpresaRemota").hide();
+                        $(".VisibilidadDatosNuevaEmpresaRemota").hide();
 
-                    wcrearProveedor.close();
+                        wcrearProveedor.close();
 
                 
-                },
-                async: false
-            });
-
+                    },
+                    async: false
+                });
+            }
+            else
+            {
+                $("#MensajeErrorProveedores").fadeIn(500).fadeOut(3000);
+            }
         });
     /*$("#ProveedoresNav").live("click", function () {  //Actualiza los datos al pulsar en su pestaña.
         
