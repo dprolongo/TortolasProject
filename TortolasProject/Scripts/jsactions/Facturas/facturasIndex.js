@@ -62,7 +62,7 @@
     });
 
     $(".pendientesButton").click(function () {
-        dataSource.filter({ field: "estadoNombre", operator: "eq", value: "Pendientes" });
+        dataSource.filter({ field: "estadoNombre", operator: "eq", value: "Pendiente" });
     });
 
     $(".limpiarButton").click(function () {

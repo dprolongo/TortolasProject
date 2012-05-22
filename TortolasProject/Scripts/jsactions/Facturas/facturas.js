@@ -308,7 +308,9 @@ function tablaEditable() {
                     field: "total"
                 },
                 {
-                    command: [{text:"Editar", className:"editarLineaFacturaButton"}, "destroy"],
+                    command: [
+                        {text:"Editar", className:"editarLineaFacturaButton"},
+                        {text:"Eliminar", className:"eliminarLineaFacturaButton"}],
                     title: " ",
                     width: "200px"
                 }
@@ -352,7 +354,7 @@ function inicializar() {
     inicializarFactura();
 
     // Validación de campos
-    validacion = $("#facturaForm").kendoValidator().data("kendoValidator"),
+    validacion = $("#facturaForm").kendoValidator().data("kendoValidator");
     status = $(".status");
     // Botón volver
     $("#volverButton").text("Volver");
@@ -414,17 +416,17 @@ function inicializar() {
 
     $("#guardarFacturaButton").click(function () {
         if(!validacion.validate()){
-            status.text("Hay errores en la factura").addClass("invalid");            
+            //status.text("Hay errores en la factura").addClass("invalid");            
         }
         else if( dataSource.total() == 0)
         {
-            status.text("Introduzca al menos una línea factura").addClass("invalid");            
+            //status.text("Introduzca al menos una línea factura").addClass("invalid");            
         }
         else
         {
             if( ($("#estadoFacturaDropDownList").data("kendoDropDownList").text() != "Pagado") || confirm("Ha indicado que la factura está pagada. Si lo confirma no podrá modificarla ni eliminarla en el futuro. \n ¿Está seguro que desea establecer la factura como pagada?") )
             {
-                    status.empty();
+                    //status.empty();
                     var estadoF = $("#estadoFacturaCombobox").val();
                     var concepto = $('#conceptoFactura').val();
                     var total = $('#totalFactura').val();
@@ -482,7 +484,7 @@ function inicializar() {
                     }
 
                     if (lineasFactura.length <= 1 && lineasFactura[0].concepto == "") {
-                        status.text("Introduzca al menos una línea de factura completa");
+                        //status.text("Introduzca al menos una línea de factura completa");
                     }
                     else {
                         $.post(url, datos, function (data) {
@@ -799,7 +801,6 @@ function ventanaLineaFactura()
 
     // Botón nueva línea de factura
     $(".nuevaLineaFacturaButton").live("click", function() {
-        alert("Entrar por favor");
         idLineaFactura = null;
         idArticulo = null;
         $("#quitarArticulo").hide();
@@ -818,7 +819,6 @@ function ventanaLineaFactura()
         
         var linea = tabla.dataItem($(this).closest("tr"));
         idLineaFactura = linea.idLineaFactura;
-        alert(kendo.stringify(linea));
         if(linea.idArticulo != null)
         {
             $("#conceptoLinea").val(linea.concepto);
@@ -846,7 +846,15 @@ function ventanaLineaFactura()
         wl.open();
     });
     
-    
+    // Botón editar línea
+    $("#facturaLineasFacturaGrid").delegate(".eliminarLineaFacturaButton", "click", function (e) {
+        e.preventDefault();
+
+        // Obtenemos la UID de la fila creada por KENDO
+        var uid = $(this).closest("tr").attr("data-uid");        
+        dataSource.remove(dataSource.getByUid(uid));
+        tabla.refresh();
+    });
 
     /*
     // Al pulsar en concepto
@@ -926,12 +934,14 @@ function ventanaLineaFactura()
         var conceptoLinea = $("#conceptoLinea").val();
         var unidades = $("#unidadesLinea").val();
         var precio = $("#precioLinea").val();
+        
+        alert(validacionLinea.validate());
         if(!validacionLinea.validate())
         {
-            statusLinea.text("Rellene todos los campos").addClass("invalid");            
+            //statusLinea.text("Rellene todos los campos").addClass("invalid");            
         }
         else
-        {
+        {            
             if(idLineaFactura == null )     // Nueva línea
             {
                 var linea = {
@@ -958,8 +968,22 @@ function ventanaLineaFactura()
             wl.close();
         }
     });
+
+    
 }
+
 /* ##############    AUXILIARES ###################################################################### */
+function comprobarNecesariosLinea()
+{
+        var noHayErrores = true;
+        $(".requeridosLinea").each(function(index){
+            if($(this).val()==""){
+                $(this).addClass("k-invalid"); 
+                noHayErrores = false;
+            }
+        });   
+        return noHayErrores;    
+}
 function actualizarTotalLinea()
     {
         var u = $("#unidadesLinea").data("kendoNumericTextBox").value();
@@ -975,7 +999,7 @@ function obtenerTotalGrid() {
     for (var i = 0; i < lineasFacturaRaw.length; i++)
     {
         totalLinea = lineasFacturaRaw[i].unidades * lineasFacturaRaw[i].precio;
-        dataSource.get(lineasFacturaRaw[i].idLineaFactura).total = totalLinea;
+        lineasFacturaRaw[i].total = totalLinea;
         total = total + totalLinea;
         tabla.refresh();
     }
