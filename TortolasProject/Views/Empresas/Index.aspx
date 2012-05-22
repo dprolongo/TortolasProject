@@ -3,6 +3,7 @@
 <asp:Content ID="EmpresasIndexCss" ContentPlaceHolderID="CssContent" runat="server">
     <link href="../../Content/Empresas/EmpresasNav.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/Empresas/EmpresasNew.css" rel="stylesheet" type="text/css" /> 
+    <link href="../../Content/Empresas/FormatoTexto.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="EmpresasIndexScript" ContentPlaceHolderID="ScriptContent" runat="server">
@@ -78,6 +79,7 @@
             
             </div>
             <script type="text/x-kendo-template" id="detallepublicidad">
+                <img src="../../Content/images/publicidad.jpg"  /> <!--Fuente: Calibri, size: 24-->
                 <div class="PublicidadGrid">
                 </div>
                 <br />
@@ -113,14 +115,14 @@
     <br />
 
     <div id="VentanaEditar">
-        <b><h5>Datos Proveedor</h5></b>
+        <b><h5>Datos Empresa</h5></b>
         <br />
-        <label for="nombreempresa">Nombre: </label><input type="text" id="nombreempresa" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cif" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="localidad">Localidad: </label><input type="text" id="localidad" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="direccionweb">Dirección Web: </label><input type="text" id="direccionweb" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonodecontacto" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="email">E-Mail: </label><input type="text" id="email-c" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="nombreempresa">Nombre: </label><input type="text" id="nombreempresa" class=" CuadroTexto k-textbox requerido" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cif" class=" CuadroTexto k-textbox requerido" /><br />
+        <label for="localidad">Localidad: </label><input type="text" id="localidad" class=" CuadroTexto k-textbox" /><br />
+        <label for="direccionweb">Dirección Web: </label><input type="text" id="direccionweb" class=" CuadroTexto k-textbox" /><br />
+        <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonodecontacto" class=" CuadroTexto k-textbox requerido" /><br />
+        <label for="email">E-Mail: </label><input type="text" id="email-c" class=" CuadroTexto k-textbox" /><br />
         <center>
             <input type="button" value="Aceptar" id="BotonAceptarVentanaEditar" class="k-button VisibilidadBotonAceptarEditar" />
             <input type="button" value="Confirmar" id="BotonAceptarVentanaEliminar" class="k-button VisibilidadBotonAceptarEliminar" />
@@ -128,23 +130,46 @@
         </center>
     </div>
 
+    <div id="VentanaCrearEmpresa" class="ComprobarNulos">
+        <h5>Datos Empresa</h5>
+        <label for="nombreempresa">Nombre: </label><input type="text" id="newnombreempresa" class="k-textbox requerido" /><br />
+        <label for="cif">CIF: </label><input type="text" id="newcif" class="k-textbox requerido" /><br />
+        <h5>Datos Contacto</h5>
+        <label for="localidad">Localidad: </label><input type="text" id="newlocalidad" class=" k-textbox" /><br />
+        <label for="direccionweb">Dirección Web: </label><input type="text" id="newdireccionweb" class=" k-textbox" /><br />
+        <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="newtelefonodecontacto" class=" k-textbox requerido" /><br />
+        <label for="email">E-Mail: </label><input type="text" id="newemail-c" class=" k-textbox" /><br />
+        <div id="NuevaEmpresaImagenEmpresa">  
+
+        </div>
+        <center>
+            <div id="NuevaEmpresaHerramientasContent">
+                <div hidden="hidden" id="MensajeError" class="FormatoMensajeError">
+                    <p>Datos nulos o erroneos</p>
+                </div>
+                <input type="button" value="Confirmar" id="BotonConfirmarNuevaEmpresa" class="k-button" />
+                <input type="button" value="Cancelar" id="BotonCancelarNuevaEmpresa" class="k-button FuncionBotonCancelarProveedores" />
+            </div>
+        </center>
+    </div>
+
     <div id="VentanaEditarAsociacion">
         <b><h5>Datos Asociacion</h5></b>
         <br />
-        <label for="nombreempresaasociacion">Nombre: </label><input type="text" id="nombreempresaasociacion" class="k-input CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifremoto" class="k-input CuadroTexto NoModificable cifremoto" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeAsociacion" class="k-button VisibilidadBotonVincularEmpresa k-textbox" /><br />
-        <label for="direccion">Dirección: </label><input type="text" id="direccion" class="k-input CuadroTexto" /><br />
-        <label for="tematica">Temática: </label><input type="text" id="tematica" class="k-input CuadroTexto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable" /><br />
+        <label for="nombreempresaasociacion">Nombre: </label><input type="text" id="nombreempresaasociacion" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifremoto" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeAsociacion" class="k-button VisibilidadBotonVincularEmpresa" /><br />
+        <label for="direccion">Dirección: </label><input type="text" id="direccion" class=" CuadroTexto k-textbox" /><br />
+        <label for="tematica">Temática: </label><input type="text" id="tematica" class=" CuadroTexto k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <hr />
 
         <div id="DatosNuevaEmpresaRemota" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="localidadremota" class="k-input CuadroTexto localidadremota" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="dirwebremota" class="k-input CuadroTexto dirwebremota" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class="k-input CuadroTexto telefonoremoto2" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="emailremoto" class="k-input CuadroTexto emailremoto" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="localidadremota" class=" CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="dirwebremota" class=" CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="emailremoto" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
@@ -160,11 +185,11 @@
     <div id="VentanaEditarProveedor">
         <b><h5>Datos Proveedor</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaproveedor" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifproveedor" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="direccion">Dirección Física: </label><input type="text" id="dirfisica" class="k-input CuadroTexto" /><br />
-        <label for="mercado">Mercado: </label><input type="text" id="mercado" class="k-input CuadroTexto" /><br />
-        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostal" class="k-input CuadroTexto VisibilidadTelefonodeContacto" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaproveedor" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifproveedor" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="direccion">Dirección Física: </label><input type="text" id="dirfisica" class=" CuadroTexto k-textbox" /><br />
+        <label for="mercado">Mercado: </label><input type="text" id="mercado" class=" CuadroTexto k-textbox" /><br />
+        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostal" class=" CuadroTexto VisibilidadTelefonodeContacto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -179,11 +204,11 @@
     <div id="VentanaEliminarProveedor">
         <b><h5>Datos Proveedor</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaproveedoreliminar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifproveedoreliminar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="direccion">Dirección Física: </label><input type="text" id="direccionproveedoreliminar" class="k-input CuadroTexto" /><br />
-        <label for="mercado">Mercado: </label><input type="text" id="mercadoproveedoreliminar" class="k-input CuadroTexto" /><br />
-        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostalproveedoreliminar" class="k-input CuadroTexto VisibilidadTelefonodeContacto" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaproveedoreliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifproveedoreliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="direccion">Dirección Física: </label><input type="text" id="direccionproveedoreliminar" class=" CuadroTexto k-textbox" /><br />
+        <label for="mercado">Mercado: </label><input type="text" id="mercadoproveedoreliminar" class=" CuadroTexto k-textbox" /><br />
+        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostalproveedoreliminar" class=" CuadroTexto VisibilidadTelefonodeContacto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -198,12 +223,12 @@
     <div id="VentanaCrearProveedor">
         <b><h5>Datos Proveedor</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nuevoproveedornombre" class="k-input CuadroTexto NoModificable nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="nuevoproveedorcif" class="k-input CuadroTexto NoModificable cifremoto" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeProveedor" class="k-button" /><br />
-        <label for="direccion">Dirección Física: </label><input type="text" id="nuevoproveedordir" class="k-input CuadroTexto" /><br />
-        <label for="mercado">Mercado: </label><input type="text" id="nuevoproveedormercado" class="k-input CuadroTexto" /><br />
-        <label for="codigopostal">Código Postal: </label><input type="text" id="nuevoproveedorcpostal" class="k-input CuadroTexto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="nuevoproveedortlf" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nuevoproveedornombre" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="nuevoproveedorcif" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeProveedor" class="k-button" /><br />
+        <label for="direccion">Dirección Física: </label><input type="text" id="nuevoproveedordir" class=" CuadroTexto k-textbox" /><br />
+        <label for="mercado">Mercado: </label><input type="text" id="nuevoproveedormercado" class=" CuadroTexto k-textbox" /><br />
+        <label for="codigopostal">Código Postal: </label><input type="text" id="nuevoproveedorcpostal" class=" CuadroTexto k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="nuevoproveedortlf" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -211,10 +236,10 @@
         <div id="DatosNuevaEmpresaRemota2" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="nuevoproveedorlocalidad" class="k-input CuadroTexto localidadremota" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="nuevoproveedorweb" class="k-input CuadroTexto dirwebremota" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class="k-input CuadroTexto telefonoremoto2" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="nuevoproveedoremail" class="k-input CuadroTexto emailremoto" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="nuevoproveedorlocalidad" class=" CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="nuevoproveedorweb" class=" CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="nuevoproveedoremail" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
@@ -226,9 +251,9 @@
     <div id="VentanaEditarPatrocinador">
         <b><h5>Datos Patrocinador</h5></b>
         <br />
-        <label for="nombreempresapatrocinadoreditar">Nombre: </label><input type="text" id="nombreempresapatrocinadoreditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadoreditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="localizacion">Localización Publicidad: </label><input type="text" id="locpatrocinadoreditar" class="k-input CuadroTexto" /><br />
+        <label for="nombreempresapatrocinadoreditar">Nombre: </label><input type="text" id="nombreempresapatrocinadoreditar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadoreditar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="localizacion">Localización Publicidad: </label><input type="text" id="locpatrocinadoreditar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -241,9 +266,9 @@
     <div id="VentanaEliminarPatrocinador">
         <b><h5>Datos Patrocinador</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadoreliminar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadoreliinar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="localizacion">Localización Publicidad: </label><input type="text" id="lopatrocinadoreliminar" class="k-input CuadroTexto" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadoreliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadoreliinar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="localizacion">Localización Publicidad: </label><input type="text" id="lopatrocinadoreliminar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -258,10 +283,10 @@
     <div id="VentanaCrearPatrocinador">
         <b><h5>Datos Patrocinador</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadornuevo" class="k-input CuadroTexto NoModificable nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadornuevo" class="k-input CuadroTexto NoModificable cifremoto" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdePatrocinador" class="k-button" /><br />
-        <label for="loc">Localización Publicidad: </label><input type="text" id="locpatrocinadornuevo" class="k-input CuadroTexto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfpatrocinadornuevo" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadornuevo" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifpatrocinadornuevo" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdePatrocinador" class="k-button" /><br />
+        <label for="loc">Localización Publicidad: </label><input type="text" id="locpatrocinadornuevo" class=" CuadroTexto k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfpatrocinadornuevo" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -269,10 +294,10 @@
         <div id="DatosNuevaEmpresaRemota3" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="patrocinadorlocalidadremoto" class="k-input CuadroTexto localidadremota" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="patrocinadorwebremoto" class="k-input CuadroTexto dirwebremota" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="patrocinadortflremoto" class="k-input CuadroTexto telefonoremoto2" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="patrocinadoremailremoto" class="k-input CuadroTexto emailremoto" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="patrocinadorlocalidadremoto" class=" CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="patrocinadorwebremoto" class=" CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="patrocinadortflremoto" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="patrocinadoremailremoto" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
@@ -284,8 +309,8 @@
     <div id="VentanaEditarPublicidad">
         <b><h5>Datos Elemento Publicitario</h5></b>
         <br />
-        <label for="loca">Localización: </label><input type="text" id="locpublicidadeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="carac">Características: </label><input type="text" id="caracpublicidadeditar" class="k-input CuadroTexto NoModificable" /><br />
+        <label for="loca">Localización: </label><input type="text" id="locpublicidadeditar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="carac">Características: </label><input type="text" id="caracpublicidadeditar" class=" CuadroTexto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -298,9 +323,9 @@
     <div id="VentanaCrearPublicidad">
         <b><h5>Datos Elemento Publicitario</h5></b>
         <br />
-        <label for="loca">Localización: </label><input type="text" id="Text1" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="carac">Características: </label><input type="text" id="Text2" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF Patrocinador: </label><input type="text" id="cifpatrocinador" class="k-input CuadroTexto NoModificable" /><br />
+        <label for="loca">Localización: </label><input type="text" id="Text1" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="carac">Características: </label><input type="text" id="Text2" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF Patrocinador: </label><input type="text" id="cifpatrocinador" class=" CuadroTexto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -313,9 +338,9 @@
     <div id="VentanaEditarConvenio">
         <b><h5>Datos Convenio</h5></b>
         <br />
-        <label for="nombreempresaconvenioeditar">Nombre: </label><input type="text" id="nombreempresaconvenioeditar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifempresaconvenio" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="desc">Descripción Oferta: </label><input type="text" id="descconvenioeditar" class="k-input CuadroTexto" /><br />
+        <label for="nombreempresaconvenioeditar">Nombre: </label><input type="text" id="nombreempresaconvenioeditar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifempresaconvenio" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="desc">Descripción Oferta: </label><input type="text" id="descconvenioeditar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -328,9 +353,9 @@
     <div id="VentanaEliminarConvenio">
         <b><h5>Datos Convenio</h5></b>
         <br />
-        <label for="nombreempresaconvenioeditar">Nombre: </label><input type="text" id="nombreempresaconvenioeliminar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifempresaconvenioeliminar" class="k-input CuadroTexto NoModificable" /><br />
-        <label for="desc">Descripción Oferta: </label><input type="text" id="descripcionconvenioeliminar" class="k-input CuadroTexto" /><br />
+        <label for="nombreempresaconvenioeditar">Nombre: </label><input type="text" id="nombreempresaconvenioeliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifempresaconvenioeliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="desc">Descripción Oferta: </label><input type="text" id="descripcionconvenioeliminar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -345,10 +370,10 @@
     <div id="VentanaCrearConvenio">
         <b><h5>Datos Convenio</h5></b>
         <br />
-        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaconveniocrear" class="k-input CuadroTexto NoModificable nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifconveniocrear" class="k-input CuadroTexto NoModificable cifremoto" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeConvenio" class="k-button" /><br />
-        <label for="descripcion">Descripción: </label><input type="text" id="descripcionconveniocrear" class="k-input CuadroTexto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfconveniocrear" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable" /><br />
+        <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaconveniocrear" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifconveniocrear" class=" CuadroTexto NoModificable cifremoto k-textbox" /> <input type="button" value="Vincular Empresa" id="BotonVincularEmpresaDesdeConvenio" class="k-button" /><br />
+        <label for="descripcion">Descripción: </label><input type="text" id="descripcionconveniocrear" class=" CuadroTexto k-textbox" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="tlfconveniocrear" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -356,10 +381,10 @@
         <div id="Div2" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="locempresaremotaconveniocrear" class="k-input CuadroTexto localidadremota" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="webempresaremotaconveniocrear" class="k-input CuadroTexto dirwebremota" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="tlfempresaremotaconveniocrear" class="k-input CuadroTexto telefonoremoto2" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="emailempresaremotaconveniocrear" class="k-input CuadroTexto emailremoto" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="locempresaremotaconveniocrear" class=" CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="webempresaremotaconveniocrear" class=" CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="tlfempresaremotaconveniocrear" class=" CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="emailempresaremotaconveniocrear" class=" CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
@@ -370,20 +395,20 @@
 
     <div id="VentanaEditarContrato">
         <h5>Datos Empresa</h5>
-        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeditar" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifcontratoeditar" class="k-input CuadroTexto k-textbox cifremoto" /><br />
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeditar" class=" CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifcontratoeditar" class=" CuadroTexto k-textbox cifremoto" /><br />
         <input type="button" value="Cambiar Empresa" id="CambiarEmpresaContratoEditar" class="k-button" />
         <hr />
         <h5>Datos Responsable</h5>
-        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="jdirectivacontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="jdirectivacontratoeditar" class=" CuadroTexto k-textbox" /><br />
         <input type="button" value="Cambiar Responsable" id="CambiarJuntaDirectivaContratoEditar" class="k-button" />
         <hr />
         <h5>Datos Contrato</h5>
-        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeditar" class=" CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeditar" class=" CuadroTexto k-textbox" /><br />
         <h5>Descripción Legal</h5>
         <textarea id="descripcionlegalcontratoeditar" rows="20" cols="38"></textarea>
-        <label for="Importe">Importe: </label><input type="text" id="importecontraroeditar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="Importe">Importe: </label><input type="text" id="importecontraroeditar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -395,19 +420,19 @@
 
     <div id="VentanaEliminarContrato">
         <h5>Datos Empresa</h5>
-        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeliminar" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifcontratoeliminar" class="k-input CuadroTexto k-textbox cifremoto" /><br />
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeliminar" class=" CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifcontratoeliminar" class=" CuadroTexto k-textbox cifremoto" /><br />
         <hr />
         <h5>Datos Responsable</h5>
-        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratoeliminar" class=" CuadroTexto k-textbox" /><br />
         <hr />
         <h5>Datos Contrato</h5>
-        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeliminar" class=" CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeliminar" class=" CuadroTexto k-textbox" /><br />
         <h5>Descripción Legal</h5>
         <textarea id="descripcioncontratoeliminar" rows="20" cols="38" readonly="readonly"></textarea>
         <br />
-        <label for="Importe">Importe: </label><input type="text" id="importecontratoeliminar" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="Importe">Importe: </label><input type="text" id="importecontratoeliminar" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -419,22 +444,22 @@
 
     <div id="VentanaCrearContrato">
         <h5>Datos Empresa</h5>
-        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class="k-input CuadroTexto k-textbox nombreempresaasociacion" /><br />
-        <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class="k-input CuadroTexto k-textbox cifremoto" /><br />
-        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresacontratocrear" class="k-input CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
+        <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class=" CuadroTexto k-textbox nombreempresaasociacion" /><br />
+        <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class=" CuadroTexto k-textbox cifremoto" /><br />
+        <label for="telefono" class="VisibilidadTelefonodeContacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresacontratocrear" class=" CuadroTexto VisibilidadTelefonodeContacto NoModificable k-textbox" /><br />
         <input type="button" value="Escoger Empresa" id="BotonElegirEmpresaRemotaDesdeContrato" class="k-button" />
         <hr />
         <h5>Datos Responsable</h5>
-        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratocrear" class="k-input CuadroTexto k-textbox nombrejuntadirectivaremota" /><br />
+        <label for="juntadirevtiva">Junta Directiva Asociada: </label><input type="text" id="juntadirectivacontratocrear" class=" CuadroTexto k-textbox nombrejuntadirectivaremota" /><br />
         <input type="button" value="Escoger Responsable" id="BotonElegirJuntaDirectivaDesdeContrato" class="k-button" />
         <hr />
         <h5>Datos Contrato</h5>
-        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratocrear" class="k-input CuadroTexto k-textbox" /><br />
-        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratocrear" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratocrear" class=" CuadroTexto k-textbox" /><br />
+        <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratocrear" class=" CuadroTexto k-textbox" /><br />
         <h5>Descripción Legal</h5>
         <textarea id="descripcioncontratocrear" rows="20" cols="38" disable="true"></textarea>
         <br />
-        <label for="Importe">Importe: </label><input type="text" id="importecontratocrear" class="k-input CuadroTexto k-textbox" /><br />
+        <label for="Importe">Importe: </label><input type="text" id="importecontratocrear" class=" CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -459,5 +484,7 @@
     
         </div>
     </div>
+
+    
     
 </asp:Content>

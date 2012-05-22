@@ -152,6 +152,8 @@ namespace TortolasProject.Controllers
                             {
                                 NombreJuntaDirectiva = ContratosRepo.buscarusuario(ContratosRepo.buscarsocio(ob.FKSocio).FKUsuario).Nombre,
                                 Cargo = ContratosRepo.obtenercargo(ob.FKCargoDirectivo),
+                                FKSocio = ob.FKSocio,
+                                Estado = ob.Estado
                             };
             return Json(junta);
         }

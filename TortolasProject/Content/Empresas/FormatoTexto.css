@@ -8,3 +8,13 @@
     font-weight: bold;
     font-size: medium;
 }
+.k-invalid,k-invalid:hover
+{
+    border : 1px solid red;
+}
+.FormatoMensajeError
+{
+    font-weight :bold;
+    font-size: small;
+    color:Red;    
+}

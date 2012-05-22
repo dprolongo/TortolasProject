@@ -251,6 +251,7 @@
     <Content Include="Content\images\monitores_titulo.png" />
     <Content Include="Content\images\nosocio.png" />
     <Content Include="Content\images\pago.gif" />
+    <Content Include="Content\images\publicidad.jpg" />
     <Content Include="Content\images\socios\danie.png" />
     <Content Include="Content\images\tituloadminsocios.png" />
     <Content Include="Content\images\titulousuarios.png" />

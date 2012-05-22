@@ -255,6 +255,7 @@ namespace TortolasProject.Models.Repositorios
         public IList<tbJuntaDirectiva> ListarJuntaDirectiva()
         {
             return mtbMalagaDB.tbJuntaDirectiva.ToList();
+            //.Where(junta => junta.Estado.Equals("Activo"))
         }
         public tbSocio buscarsocio(Guid id)
         {
