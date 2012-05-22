@@ -12,7 +12,10 @@
             <% if (Model.FKFactura != null)
                { 
             %>
-            <div id='factura'><%: Html.ActionLink("Ver factura asociada", "leerFactura", "Facturas", new { id = Model.FKFactura.ToString() }, new { @class = "k-button" })%></div>
+            <div id='factura'>
+                <%: Html.ActionLink("Ver factura asociada", "leerFactura", "Facturas", new { id = Model.FKFactura.ToString() }, new { @class = "k-button" })%>
+                <%: Html.ActionLink("Generar PDF", "generarMovimientoPDF", "Facturas", new { id = Model.idMovimiento.ToString() }, new { @class = "k-button" })%>
+                </div>
         
             <% } %>
         </div>

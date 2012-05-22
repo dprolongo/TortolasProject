@@ -1,5 +1,16 @@
-﻿
-#facturaHeader
+﻿#facturaHeader
+{
+    position:relative;
+    float:left;
+    width:inherit;
+}
+#pdfButton
+{
+    position:relative;
+    float:right;
+}
+    
+#facturaDetalles
 {
     display:block;
     position:relative;

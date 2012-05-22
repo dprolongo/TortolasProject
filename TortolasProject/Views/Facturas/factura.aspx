@@ -22,8 +22,8 @@
 <input type="hidden" id='estadoPage' value='<% Response.Write(estado); %>' />
 <input type="hidden" id='idFactura' value='<% Response.Write(Model.idFactura); %>' />
     <div id='facturaContainer' >
-        <div id='facturaHeader'>
-            <div id='pdfButton'><%: Html.ActionLink("Descargar en PDF", "facturaPDF", "Facturas", new { id = Model.idFactura.ToString() }, new { @class = "k-button" })%></div>
+        <div id='facturaDetalles'>
+            <div id='pdfButton'><%: Html.ActionLink("Descargar en PDF", "generarFacturaPDF", "Facturas", new { id = Model.idFactura.ToString() }, new { @class = "k-button" })%></div>
             <div id='volverButton' class='k-button'></div>
             <div id='poliButton' class='k-button'></div>
             <div id='eliminarButton' class='k-button'></div>
@@ -148,43 +148,42 @@
                 <div class='status' class='k-invalid-msg'></div>
             </div>
         
-        <div id='lineaFacturaForm'>
+        
             <div id='lineaFacturaWindow'>
-                <div id='conceptoLineaDiv'>
-                    <div id='conceptoLineaLabel'>Concepto</div>
-                    <br />
-                    <br />
-                    <div id='conceptoContainer'>
-                        <input id='conceptoLinea' type='text'class='k-input' required validationMessage='Introduzca concepto,'/>
-                        <div id='quitarArticulo'>X</div>
-                    </div>                
-                </div>
-                <div id='articulosDiv'>                                
-                                    <div id='articulosGrid'></div>
-                                    <div id='agregarArticuloConcepto' class='k-button'>Agregar</div>
-                </div>
-                <div class='k-grid k-widget'>
-                    <table>                    
-                            <tr class='k-grid-header'>
-                                <th>Unidades</th>
-                                <th>Precio unitario</th>
-                                <th>Total</th>  
-                            </tr>
-                            <tr>
-                                <td class='k-grid-content'><input id='unidadesLinea' min='0' required validationMessage='Introduzca unidades.'/></td>
-                                <td class='k-grid-content'><input id='precioLinea'  required  validationMessage='Introduzca precio.'/></td>
-                                <td class='k-grid-content'><div id='totalLinea'></div></td>
-                            </tr>  
+                <div id='statusLinea' class='k-invalid-msg'></div>
+                <div id='lineaFacturaForm'>
+                    <div id='conceptoLineaDiv'>
+                        <div id='conceptoLineaLabel'>Concepto</div>
+                        <div id='conceptoContainer'>
+                            <input id='conceptoLinea' type='text' class='k-input' required validationMessage='Introduzca concepto,'/><span class="k-invalid-msg" data-for="conceptoLinea"></span>
+                            <div id='quitarArticulo'>X</div>
+                        </div>                
+                    </div>
+                    <div id='articulosDiv'>                                
+                                        <div id='articulosGrid'></div>
+                                        <div id='agregarArticuloConcepto' class='k-button'>Agregar</div>
+                    </div>
+                    <div class='k-grid k-widget'>
+                        <table>                    
+                                <tr class='k-grid-header'>
+                                    <th>Unidades</th>
+                                    <th>Precio unitario</th>
+                                    <th>Total</th>  
+                                </tr>
+                                <tr>
+                                    <td class='k-grid-content'><input id='unidadesLinea' min='0' required validationMessage='Introduzca unidades.'/><span class="k-invalid-msg" data-for="unidadesLinea"></span></td>
+                                    <td class='k-grid-content'><input id='precioLinea' required  validationMessage='Introduzca precio.'/><span class="k-invalid-msg" data-for="precioLinea"></span></td>
+                                    <td class='k-grid-content'><div id='totalLinea'></div></td>
+                                </tr>  
                                                
-                    </table>
-                </div>
-                <div id = 'lineaFacturaWindowBottom'>
-                    <div id='descartarLinea' class='k-button'>Descartar</div>
-                    <div id='statusLinea' class='k-invalid-msg'></div>
-                    <div id='agregarLinea' class='k-button'>Añadir</div>
+                        </table>
+                    </div>
+                    <div id = 'lineaFacturaWindowBottom'>
+                        <div id='descartarLinea' class='k-button'>Descartar</div>
+                        <div id='agregarLinea' class='k-button'>Añadir</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </asp:Content>
