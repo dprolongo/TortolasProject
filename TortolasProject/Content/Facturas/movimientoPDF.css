@@ -1,16 +1,18 @@
 ﻿body
 {
     width:100%;
-    height:100%;    
+    height:400px; 
+    background-color:White;
+    margin: auto auto;
 }
-#facturaHeader
+#movimientoHeader
 {
     display:block;
     position:relative;
     float:left;
     width:inherit;
     height:62px;
-
+    margin-bottom:5px;   
 }
 .logoPDF
 {
@@ -31,37 +33,16 @@
     font-size:large;
     text-align:center
 }
-#facturaContainer
+
+#movimientoContainer
 {
+    width:inherit;
     position:relative;
     float:left;
-    width:100%;
+    margin: auto auto;
     border: 1px solid Orange;
     padding:5px;
-    border-radius:5px;  
-}
-#detallesFactura
-{
-    position:relative;
-    float:left;
-    width:inherit;
-    border-bottom:1px solid gray;
-    margin-bottom:5px;   
-    
-}
-#grid
-{
-    position:relative;
-    float:left;
-    width:inherit;
-    min-height:600px;    
-}
-#facturaBottom
-{
-    margin-top:10px;
-    position:relative;
-    float:left;
-    width:inherit;
+    border-radius:5px;   
 }
 .leftContent
 {
@@ -84,4 +65,7 @@
 {
        
 }
-
+#descripcion
+{
+    min-height:50px;
+}

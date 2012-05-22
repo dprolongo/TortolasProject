@@ -182,6 +182,7 @@ namespace TortolasProject.Controllers.Socios
                                      FKCargoDirectivo = j.FKCargoDirectivo
                                      
                                  };
+            return Json(JuntaDirectiva);
         }
         
     }

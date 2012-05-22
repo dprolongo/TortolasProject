@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Helpers;
 using TortolasProject.Models;
 using TortolasProject.Models.Repositorios;
+using System.IO;
+using HiQPdf;
+using Rotativa;
 /*
 using System.IO;
 using System.Text;
@@ -942,190 +945,81 @@ namespace TortolasProject.Controllers
         ///////////////////////////////////////////////////////////////////////////////
         // Generación de PDF
         ///////////////////////////////////////////////////////////////////////////////
-        /* public ActionResult facturaPDF2(String id)
-         {
-             HtmlToPdf htmlToPdfConverter = new HtmlToPdf();
-            
-             String url = "Facturas;
-             String pdfFile = "factura.pdf";
-
-             htmlToPdfConverter.ConvertUrlToFile(url, pdfFile);
-         }
-        
-
-         public ActionResult facturaPDF(String id)
-         {
-             Guid idFactura = Guid.Parse(id);
-             tbFactura factura = FacturasRepo.leerFactura(idFactura);
-             factura.EstadoName = FacturasRepo.getEstadoFactura(idFactura);
-             factura.LineasFactura = FacturasRepo.listarLineasFactura(idFactura);
-
-             // Crear PDF
-             byte[] buf = null;
-             MemoryStream pdfTemp = new MemoryStream();
-             iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4,30,30,30,30);
-             iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, pdfTemp);
-             writer.CloseStream = false;
-             doc.Open(); 
-             float ySup = (float)PageSize.A4.Height;
-             float xDer = (float)PageSize.A4.Width;
-           
-             // Logo
-             iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Content/logo_azul.png"));
-             logo.Alignment = iTextSharp.text.Image.UNDERLYING;
-             logo.ScaleAbsolute(100, 25);  
-             logo.SetAbsolutePosition(30,ySup-55);
-            
-             // Espacio            
-             //iTextSharp.text.Rectangle espacio = new iTextSharp.text.Rectangle(0,ySup-50,xDer,ySup);
-            
+        public ActionResult generarFacturaPDF(String id)
+        {
+            tbFactura factura = FacturasRepo.leerFactura(Guid.Parse(id));
+            factura.LineasFactura = FacturasRepo.listarLineasFactura(factura.idFactura);
+            factura.ResponsableName = obtenerJuntaDirectivaNickname(factura.FKJuntaDirectiva);
             
 
-             // Formulario
-             Phrase fechaLabel = formularioLabel("Fecha");
-             Phrase fecha = formularioValor(factura.Fecha.ToShortDateString());
-             Phrase conceptoLabel = formularioLabel("Concepto");
-             Phrase concepto = formularioValor(factura.Concepto);
-             Phrase responsableLabel = formularioLabel("Insertada");
-             Phrase responsable = formularioValor(factura.ResponsableName);
-             Phrase estado = formularioLabel(FacturasRepo.leerEstadoByGuid(factura.FKEstado));
+            // Meter relacion
+            /*
+             * 
+             * 
+             */
 
-             // Línea horizontal
-             PdfContentByte cb = writer.DirectContent;
-             cb.SetLineWidth(1.0f);   // Make a bit thicker than 1.0 default
-             cb.SetRGBColorStroke(0, 0, 0);
-             cb.MoveTo(60, (float)PageSize.A4.Height - 100);
-             cb.LineTo((float)PageSize.A4.Width - 30, (float)PageSize.A4.Height - 100);
-             cb.Stroke();           
+            return new ActionAsPdf("facturaPDF", new { id = id }) 
+                        { FileName = "Factura"
+                                        +factura.Fecha.Day
+                                        +factura.Fecha.Month
+                                        +factura.Fecha.Year
+                                        +".pdf" 
+                        };
+            //return View("facturaPDF", factura);
+        }
+        public ActionResult facturaPDF(String id)
+        { 
+            tbFactura factura = FacturasRepo.leerFactura(Guid.Parse(id));
+            return View("PDF/facturaPDF", factura);
+        }
+
+        public ActionResult generarMovimientoPDF(String id)
+        {
+            return new ActionAsPdf("movimientoPDF", new { idMovimiento = Guid.Parse(id) })
+                {
+                    FileName = "Movimiento.pdf"
+                };
+              
             
+        }
+        public ActionResult movimientoPDF(Guid idMovimiento)
+        {
 
-             // Crear tabla
-             String[] columnas = new String[] {
-                         "Concepto",
-                         "Unidades",
-                         "Precio unitaria",
-                         "Total"
-             };
+            if (FacturasRepo.esMovimientoGasto(idMovimiento))
+            {
+                tbMovimientoGasto mg = FacturasRepo.leerMovimientoGasto(idMovimiento);
+                Movimiento movimiento = new Movimiento
+                {
+                    idMovimiento = mg.idMovimientoGasto,
+                    Concepto = mg.Concepto,
+                    Fecha = mg.Fecha,
+                    Descripcion = mg.Descripcion,
+                    Total = mg.Total,
+                    Responsable = mg.Responsable,
+                    ResponsableName = obtenerJuntaDirectivaNickname(mg.Responsable)
+                };
+                if (mg.FKFactura.HasValue) movimiento.FKFactura = (Guid)mg.FKFactura;
 
-            
+                return View("PDF/movimientoPDF", movimiento);
+            }
+            else
+            {
+                tbMovimientoIngreso mi = FacturasRepo.leerMovimientoIngreso(idMovimiento);
+                Movimiento movimiento = new Movimiento
+                {
+                    idMovimiento = mi.idMovimientoIngreso,
+                    Concepto = mi.Concepto,
+                    Fecha = mi.Fecha,
+                    Descripcion = mi.Descripcion,
+                    Total = mi.Total,
+                    Responsable = mi.Responsable,
+                    ResponsableName = obtenerJuntaDirectivaNickname(mi.Responsable)
+                };
+                if (mi.FKFactura.HasValue) movimiento.FKFactura = (Guid)mi.FKFactura;
 
-             PdfPTable tabla = new PdfPTable(columnas.Length);
-            
-             foreach (String cabecera in columnas)
-             {
-                 tabla.AddCell(crearCabecera(cabecera));
-             }
-
-             foreach (tbLineaFactura linea in FacturasRepo.listarLineasFactura(idFactura))
-             {
-                 tabla.AddCell(crearCelda(linea.Descripcion));
-                 tabla.AddCell(crearCelda(linea.Unidades.ToString()));
-                 tabla.AddCell(crearCelda(linea.PrecioUnitario.ToString()));
-                 tabla.AddCell(crearCelda(linea.Total.ToString()));                
-             }
-
-             tabla.HorizontalAlignment = 1;
-             tabla.SpacingBefore = 20f;
-             tabla.SpacingAfter = 30f;            
-            
-             // Montamos los elementos
-             doc.Add(logo);
-             //doc.Add(espacio);
-             doc.Add(fechaLabel);
-             doc.Add(fecha);
-             doc.Add(tabla);
-             doc.Close();
-
-             buf = new byte[pdfTemp.Position];
-             pdfTemp.Position = 0;
-             pdfTemp.Read(buf, 0, buf.Length);
-            
-             // Devolver PDF
-             String fileName = factura.Concepto+".pdf";
-             return File(buf, "application/pdf", fileName);
-
-         }
-
-         private Phrase formularioLabel(String contenido)
-         {
-             Phrase label = new Phrase(contenido);
-             return label;
-         }
-
-         private Phrase formularioValor(String contenido)
-         {
-             Phrase label = new Phrase(contenido);
-             return label;
-         }
-
-         private PdfPCell crearCabecera(String contenido)
-         {
-             PdfPCell celda = new PdfPCell();
-             celda.Phrase = new iTextSharp.text.Phrase(contenido);
-             celda.HorizontalAlignment = 1;
-
-             return celda;
-         }
-
-         private PdfPCell crearCelda(String contenido)
-         {
-             PdfPCell celda = new PdfPCell();
-             celda.Phrase = new iTextSharp.text.Phrase(contenido);
-             celda.HorizontalAlignment = 1;
-
-             return celda;
-         }
-
-
-         private string GetViewToString(ControllerContext context, ViewEngineResult result)
-         {
-
-             string viewResult = "";
-             ViewDataDictionary viewData = new ViewDataDictionary();
-             TempDataDictionary tempData = new TempDataDictionary();
-             StringBuilder sb = new StringBuilder();
-             using (StringWriter sw = new StringWriter(sb))
-             {
-                 using (HtmlTextWriter output = new HtmlTextWriter(sw))
-                 {
-                     ViewContext viewContext = new ViewContext(context, result.View, viewData, tempData, output);
-                     result.View.Render(viewContext, output);
-                 }
-                 viewResult = sb.ToString();
-             }
-             return viewResult;
-         }
-
-         private void AddHTMLText(iTextSharp.text.Document doc, string html)
-         {
-             List<iTextSharp.text.IElement> htmlarraylist = HTMLWorker.ParseToList(new StringReader(html), null);
-             foreach (var item in htmlarraylist)
-             {
-                 doc.Add(item);
-             }
-         }
-
-         private string RenderPartialViewToString(Controller controller, string viewName, object model)
-         {
-             controller.ViewData.Model = model;
-             try
-             {
-                 using (StringWriter sw = new StringWriter())
-                 {
-                     ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(controller.ControllerContext, viewName);
-                     ViewContext viewContext = new ViewContext(controller.ControllerContext, viewResult.View, controller.ViewData, controller.TempData, sw);
-                     viewResult.View.Render(viewContext, sw);
-
-                     return sw.GetStringBuilder().ToString();
-                 }
-             }
-             catch (Exception ex)
-             {
-                 return ex.ToString();
-             }
-         }
-         * 
-         * */
+                return View("PDF/movimientoPDF", movimiento);
+            }
+        }
 
 
 
