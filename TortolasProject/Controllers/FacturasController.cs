@@ -484,7 +484,7 @@ namespace TortolasProject.Controllers
             // Leer factura
         [Authorize]
         [HttpPost]
-        public JsonResult leerFactura(FormCollection data)
+        public JsonResult leerFactura(FormCollection data) 
         {
             Guid idFactura = Guid.Parse(data["idFactura"]);
             tbFactura f = FacturasRepo.leerFactura(idFactura);
