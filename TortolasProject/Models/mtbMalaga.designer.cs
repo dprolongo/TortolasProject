@@ -159,9 +159,6 @@ namespace TortolasProject.Models
     partial void InserttbPublicidad(tbPublicidad instance);
     partial void UpdatetbPublicidad(tbPublicidad instance);
     partial void DeletetbPublicidad(tbPublicidad instance);
-    partial void InserttbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
-    partial void UpdatetbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
-    partial void DeletetbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
     partial void InserttbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
     partial void UpdatetbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
     partial void DeletetbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
@@ -550,14 +547,6 @@ namespace TortolasProject.Models
 			get
 			{
 				return this.GetTable<tbPublicidad>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
-		{
-			get
-			{
-				return this.GetTable<tbRelacionLineaPedidoUsuarioArticulo>();
 			}
 		}
 		
@@ -3811,8 +3800,6 @@ namespace TortolasProject.Models
 		
 		private EntitySet<tbLineaFactura> _tbLineaFactura;
 		
-		private EntitySet<tbRelacionLineaPedidoUsuarioArticulo> _tbRelacionLineaPedidoUsuarioArticulo;
-		
 		private EntitySet<tbRelacionPedidoGlobalArticulo> _tbRelacionPedidoGlobalArticulo;
 		
 		private EntityRef<tbArticulo> _tbArticulo1;
@@ -3842,7 +3829,6 @@ namespace TortolasProject.Models
 			this._tbArticulo2 = default(EntityRef<tbArticulo>);
 			this._tbInventario = new EntitySet<tbInventario>(new Action<tbInventario>(this.attach_tbInventario), new Action<tbInventario>(this.detach_tbInventario));
 			this._tbLineaFactura = new EntitySet<tbLineaFactura>(new Action<tbLineaFactura>(this.attach_tbLineaFactura), new Action<tbLineaFactura>(this.detach_tbLineaFactura));
-			this._tbRelacionLineaPedidoUsuarioArticulo = new EntitySet<tbRelacionLineaPedidoUsuarioArticulo>(new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.attach_tbRelacionLineaPedidoUsuarioArticulo), new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.detach_tbRelacionLineaPedidoUsuarioArticulo));
 			this._tbRelacionPedidoGlobalArticulo = new EntitySet<tbRelacionPedidoGlobalArticulo>(new Action<tbRelacionPedidoGlobalArticulo>(this.attach_tbRelacionPedidoGlobalArticulo), new Action<tbRelacionPedidoGlobalArticulo>(this.detach_tbRelacionPedidoGlobalArticulo));
 			this._tbArticulo1 = default(EntityRef<tbArticulo>);
 			this._tbCategoria = default(EntityRef<tbCategoria>);
@@ -4032,19 +4018,6 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbRelacionLineaPedidoUsuarioArticulo", ThisKey="idArticulo", OtherKey="FKArticulo")]
-		public EntitySet<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
-		{
-			get
-			{
-				return this._tbRelacionLineaPedidoUsuarioArticulo;
-			}
-			set
-			{
-				this._tbRelacionLineaPedidoUsuarioArticulo.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionPedidoGlobalArticulo", Storage="_tbRelacionPedidoGlobalArticulo", ThisKey="idArticulo", OtherKey="FKArticulo")]
 		public EntitySet<tbRelacionPedidoGlobalArticulo> tbRelacionPedidoGlobalArticulo
 		{
@@ -4165,18 +4138,6 @@ namespace TortolasProject.Models
 		}
 		
 		private void detach_tbLineaFactura(tbLineaFactura entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbArticulo = null;
-		}
-		
-		private void attach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbArticulo = this;
-		}
-		
-		private void detach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbArticulo = null;
@@ -6254,13 +6215,13 @@ namespace TortolasProject.Models
 		
 		private string _Nombre;
 		
-		private string _Tipo;
+		private int _Cantidad;
 		
-		private string _Utilidad;
+		private System.Nullable<int> _Annos;
 		
-		private System.DateTime _FechaCreacion;
+		private string _Observaciones;
 		
-		private System.Nullable<System.DateTime> _FechaExpiracion;
+		private EntitySet<tbSocio> _tbSocio;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -6270,18 +6231,17 @@ namespace TortolasProject.Models
     partial void OnidDescuentoSocioChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnTipoChanging(string value);
-    partial void OnTipoChanged();
-    partial void OnUtilidadChanging(string value);
-    partial void OnUtilidadChanged();
-    partial void OnFechaCreacionChanging(System.DateTime value);
-    partial void OnFechaCreacionChanged();
-    partial void OnFechaExpiracionChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaExpiracionChanged();
+    partial void OnCantidadChanging(int value);
+    partial void OnCantidadChanged();
+    partial void OnAnnosChanging(System.Nullable<int> value);
+    partial void OnAnnosChanged();
+    partial void OnObservacionesChanging(string value);
+    partial void OnObservacionesChanged();
     #endregion
 		
 		public tbDescuentoSocio()
 		{
+			this._tbSocio = new EntitySet<tbSocio>(new Action<tbSocio>(this.attach_tbSocio), new Action<tbSocio>(this.detach_tbSocio));
 			OnCreated();
 		}
 		
@@ -6325,83 +6285,76 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Tipo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int NOT NULL")]
+		public int Cantidad
 		{
 			get
 			{
-				return this._Tipo;
+				return this._Cantidad;
 			}
 			set
 			{
-				if ((this._Tipo != value))
+				if ((this._Cantidad != value))
 				{
-					this.OnTipoChanging(value);
+					this.OnCantidadChanging(value);
 					this.SendPropertyChanging();
-					this._Tipo = value;
-					this.SendPropertyChanged("Tipo");
-					this.OnTipoChanged();
+					this._Cantidad = value;
+					this.SendPropertyChanged("Cantidad");
+					this.OnCantidadChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utilidad", DbType="VarChar(100)")]
-		public string Utilidad
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Annos", DbType="Int")]
+		public System.Nullable<int> Annos
 		{
 			get
 			{
-				return this._Utilidad;
+				return this._Annos;
 			}
 			set
 			{
-				if ((this._Utilidad != value))
+				if ((this._Annos != value))
 				{
-					this.OnUtilidadChanging(value);
+					this.OnAnnosChanging(value);
 					this.SendPropertyChanging();
-					this._Utilidad = value;
-					this.SendPropertyChanged("Utilidad");
-					this.OnUtilidadChanged();
+					this._Annos = value;
+					this.SendPropertyChanged("Annos");
+					this.OnAnnosChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreacion", DbType="DateTime NOT NULL")]
-		public System.DateTime FechaCreacion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Observaciones", DbType="NVarChar(100)")]
+		public string Observaciones
 		{
 			get
 			{
-				return this._FechaCreacion;
+				return this._Observaciones;
 			}
 			set
 			{
-				if ((this._FechaCreacion != value))
+				if ((this._Observaciones != value))
 				{
-					this.OnFechaCreacionChanging(value);
+					this.OnObservacionesChanging(value);
 					this.SendPropertyChanging();
-					this._FechaCreacion = value;
-					this.SendPropertyChanged("FechaCreacion");
-					this.OnFechaCreacionChanged();
+					this._Observaciones = value;
+					this.SendPropertyChanged("Observaciones");
+					this.OnObservacionesChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaExpiracion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaExpiracion
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbDescuentoSocio_tbSocio", Storage="_tbSocio", ThisKey="idDescuentoSocio", OtherKey="FKDescuento")]
+		public EntitySet<tbSocio> tbSocio
 		{
 			get
 			{
-				return this._FechaExpiracion;
+				return this._tbSocio;
 			}
 			set
 			{
-				if ((this._FechaExpiracion != value))
-				{
-					this.OnFechaExpiracionChanging(value);
-					this.SendPropertyChanging();
-					this._FechaExpiracion = value;
-					this.SendPropertyChanged("FechaExpiracion");
-					this.OnFechaExpiracionChanged();
-				}
+				this._tbSocio.Assign(value);
 			}
 		}
 		
@@ -6423,6 +6376,18 @@ namespace TortolasProject.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbDescuentoSocio = this;
+		}
+		
+		private void detach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbDescuentoSocio = null;
 		}
 	}
 	
@@ -7906,6 +7871,10 @@ namespace TortolasProject.Models
 		
 		private bool _Eliminado;
 		
+		private System.Nullable<System.Guid> _FKPedidoGlobal;
+		
+		private System.Nullable<System.Guid> _FKPedidoUsuario;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
 		private EntitySet<tbLineaFactura> _tbLineaFactura;
@@ -7962,6 +7931,10 @@ namespace TortolasProject.Models
     partial void OnNumFacturaChanged();
     partial void OnEliminadoChanging(bool value);
     partial void OnEliminadoChanged();
+    partial void OnFKPedidoGlobalChanging(System.Nullable<System.Guid> value);
+    partial void OnFKPedidoGlobalChanged();
+    partial void OnFKPedidoUsuarioChanging(System.Nullable<System.Guid> value);
+    partial void OnFKPedidoUsuarioChanged();
     #endregion
 		
 		public tbFactura()
@@ -8304,6 +8277,46 @@ namespace TortolasProject.Models
 					this._Eliminado = value;
 					this.SendPropertyChanged("Eliminado");
 					this.OnEliminadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoGlobal", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> FKPedidoGlobal
+		{
+			get
+			{
+				return this._FKPedidoGlobal;
+			}
+			set
+			{
+				if ((this._FKPedidoGlobal != value))
+				{
+					this.OnFKPedidoGlobalChanging(value);
+					this.SendPropertyChanging();
+					this._FKPedidoGlobal = value;
+					this.SendPropertyChanged("FKPedidoGlobal");
+					this.OnFKPedidoGlobalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> FKPedidoUsuario
+		{
+			get
+			{
+				return this._FKPedidoUsuario;
+			}
+			set
+			{
+				if ((this._FKPedidoUsuario != value))
+				{
+					this.OnFKPedidoUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._FKPedidoUsuario = value;
+					this.SendPropertyChanged("FKPedidoUsuario");
+					this.OnFKPedidoUsuarioChanged();
 				}
 			}
 		}
@@ -9720,9 +9733,9 @@ namespace TortolasProject.Models
 		
 		private System.Guid _FKPedidoUsuario;
 		
-		private System.Nullable<int> _Unidades;
+		private int _Unidades;
 		
-		private EntitySet<tbRelacionLineaPedidoUsuarioArticulo> _tbRelacionLineaPedidoUsuarioArticulo;
+		private System.Guid _FKArticulo;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -9732,13 +9745,14 @@ namespace TortolasProject.Models
     partial void OnidLineaPedidoUsuarioChanged();
     partial void OnFKPedidoUsuarioChanging(System.Guid value);
     partial void OnFKPedidoUsuarioChanged();
-    partial void OnUnidadesChanging(System.Nullable<int> value);
+    partial void OnUnidadesChanging(int value);
     partial void OnUnidadesChanged();
+    partial void OnFKArticuloChanging(System.Guid value);
+    partial void OnFKArticuloChanged();
     #endregion
 		
 		public tbLineaPedidoUsuario()
 		{
-			this._tbRelacionLineaPedidoUsuarioArticulo = new EntitySet<tbRelacionLineaPedidoUsuarioArticulo>(new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.attach_tbRelacionLineaPedidoUsuarioArticulo), new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.detach_tbRelacionLineaPedidoUsuarioArticulo));
 			OnCreated();
 		}
 		
@@ -9762,7 +9776,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKPedidoUsuario
 		{
 			get
@@ -9782,8 +9796,8 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Int")]
-		public System.Nullable<int> Unidades
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Int NOT NULL")]
+		public int Unidades
 		{
 			get
 			{
@@ -9802,16 +9816,23 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbRelacionLineaPedidoUsuarioArticulo", ThisKey="idLineaPedidoUsuario", OtherKey="FKLineaPedidoUsuario")]
-		public EntitySet<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKArticulo", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FKArticulo
 		{
 			get
 			{
-				return this._tbRelacionLineaPedidoUsuarioArticulo;
+				return this._FKArticulo;
 			}
 			set
 			{
-				this._tbRelacionLineaPedidoUsuarioArticulo.Assign(value);
+				if ((this._FKArticulo != value))
+				{
+					this.OnFKArticuloChanging(value);
+					this.SendPropertyChanging();
+					this._FKArticulo = value;
+					this.SendPropertyChanged("FKArticulo");
+					this.OnFKArticuloChanged();
+				}
 			}
 		}
 		
@@ -9833,18 +9854,6 @@ namespace TortolasProject.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbLineaPedidoUsuario = this;
-		}
-		
-		private void detach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbLineaPedidoUsuario = null;
 		}
 	}
 	
@@ -10414,6 +10423,10 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.Guid> _FKFactura;
 		
+		private int _NumMovimiento;
+		
+		private decimal _Saldo;
+		
 		private EntityRef<tbFactura> _tbFactura;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
@@ -10436,6 +10449,10 @@ namespace TortolasProject.Models
     partial void OnResponsableChanged();
     partial void OnFKFacturaChanging(System.Nullable<System.Guid> value);
     partial void OnFKFacturaChanged();
+    partial void OnNumMovimientoChanging(int value);
+    partial void OnNumMovimientoChanged();
+    partial void OnSaldoChanging(decimal value);
+    partial void OnSaldoChanged();
     #endregion
 		
 		public tbMovimientoGasto()
@@ -10593,6 +10610,46 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumMovimiento", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int NumMovimiento
+		{
+			get
+			{
+				return this._NumMovimiento;
+			}
+			set
+			{
+				if ((this._NumMovimiento != value))
+				{
+					this.OnNumMovimientoChanging(value);
+					this.SendPropertyChanging();
+					this._NumMovimiento = value;
+					this.SendPropertyChanged("NumMovimiento");
+					this.OnNumMovimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Saldo", DbType="Money NOT NULL")]
+		public decimal Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbFactura_tbMovimientoGasto", Storage="_tbFactura", ThisKey="FKFactura", OtherKey="idFactura", IsForeignKey=true)]
 		public tbFactura tbFactura
 		{
@@ -10702,6 +10759,10 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.Guid> _FKFactura;
 		
+		private int _NumMovimiento;
+		
+		private decimal _Saldo;
+		
 		private EntityRef<tbFactura> _tbFactura;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
@@ -10724,6 +10785,10 @@ namespace TortolasProject.Models
     partial void OnResponsableChanged();
     partial void OnFKFacturaChanging(System.Nullable<System.Guid> value);
     partial void OnFKFacturaChanged();
+    partial void OnNumMovimientoChanging(int value);
+    partial void OnNumMovimientoChanged();
+    partial void OnSaldoChanging(decimal value);
+    partial void OnSaldoChanged();
     #endregion
 		
 		public tbMovimientoIngreso()
@@ -10877,6 +10942,46 @@ namespace TortolasProject.Models
 					this._FKFactura = value;
 					this.SendPropertyChanged("FKFactura");
 					this.OnFKFacturaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumMovimiento", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int NumMovimiento
+		{
+			get
+			{
+				return this._NumMovimiento;
+			}
+			set
+			{
+				if ((this._NumMovimiento != value))
+				{
+					this.OnNumMovimientoChanging(value);
+					this.SendPropertyChanging();
+					this._NumMovimiento = value;
+					this.SendPropertyChanged("NumMovimiento");
+					this.OnNumMovimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Saldo", DbType="Money NOT NULL")]
+		public decimal Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
 				}
 			}
 		}
@@ -12033,198 +12138,6 @@ namespace TortolasProject.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbRelacionLineaPedidoUsuarioArticulo")]
-	public partial class tbRelacionLineaPedidoUsuarioArticulo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _FKLineaPedidoUsuario;
-		
-		private System.Guid _FKArticulo;
-		
-		private System.Guid _idRelacionLineaPedidoArticulo;
-		
-		private EntityRef<tbArticulo> _tbArticulo;
-		
-		private EntityRef<tbLineaPedidoUsuario> _tbLineaPedidoUsuario;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnFKLineaPedidoUsuarioChanging(System.Guid value);
-    partial void OnFKLineaPedidoUsuarioChanged();
-    partial void OnFKArticuloChanging(System.Guid value);
-    partial void OnFKArticuloChanged();
-    partial void OnidRelacionLineaPedidoArticuloChanging(System.Guid value);
-    partial void OnidRelacionLineaPedidoArticuloChanged();
-    #endregion
-		
-		public tbRelacionLineaPedidoUsuarioArticulo()
-		{
-			this._tbArticulo = default(EntityRef<tbArticulo>);
-			this._tbLineaPedidoUsuario = default(EntityRef<tbLineaPedidoUsuario>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKLineaPedidoUsuario", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FKLineaPedidoUsuario
-		{
-			get
-			{
-				return this._FKLineaPedidoUsuario;
-			}
-			set
-			{
-				if ((this._FKLineaPedidoUsuario != value))
-				{
-					if (this._tbLineaPedidoUsuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKLineaPedidoUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._FKLineaPedidoUsuario = value;
-					this.SendPropertyChanged("FKLineaPedidoUsuario");
-					this.OnFKLineaPedidoUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKArticulo", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FKArticulo
-		{
-			get
-			{
-				return this._FKArticulo;
-			}
-			set
-			{
-				if ((this._FKArticulo != value))
-				{
-					if (this._tbArticulo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._FKArticulo = value;
-					this.SendPropertyChanged("FKArticulo");
-					this.OnFKArticuloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idRelacionLineaPedidoArticulo", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid idRelacionLineaPedidoArticulo
-		{
-			get
-			{
-				return this._idRelacionLineaPedidoArticulo;
-			}
-			set
-			{
-				if ((this._idRelacionLineaPedidoArticulo != value))
-				{
-					this.OnidRelacionLineaPedidoArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._idRelacionLineaPedidoArticulo = value;
-					this.SendPropertyChanged("idRelacionLineaPedidoArticulo");
-					this.OnidRelacionLineaPedidoArticuloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbArticulo", ThisKey="FKArticulo", OtherKey="idArticulo", IsForeignKey=true)]
-		public tbArticulo tbArticulo
-		{
-			get
-			{
-				return this._tbArticulo.Entity;
-			}
-			set
-			{
-				tbArticulo previousValue = this._tbArticulo.Entity;
-				if (((previousValue != value) 
-							|| (this._tbArticulo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbArticulo.Entity = null;
-						previousValue.tbRelacionLineaPedidoUsuarioArticulo.Remove(this);
-					}
-					this._tbArticulo.Entity = value;
-					if ((value != null))
-					{
-						value.tbRelacionLineaPedidoUsuarioArticulo.Add(this);
-						this._FKArticulo = value.idArticulo;
-					}
-					else
-					{
-						this._FKArticulo = default(System.Guid);
-					}
-					this.SendPropertyChanged("tbArticulo");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbLineaPedidoUsuario", ThisKey="FKLineaPedidoUsuario", OtherKey="idLineaPedidoUsuario", IsForeignKey=true)]
-		public tbLineaPedidoUsuario tbLineaPedidoUsuario
-		{
-			get
-			{
-				return this._tbLineaPedidoUsuario.Entity;
-			}
-			set
-			{
-				tbLineaPedidoUsuario previousValue = this._tbLineaPedidoUsuario.Entity;
-				if (((previousValue != value) 
-							|| (this._tbLineaPedidoUsuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbLineaPedidoUsuario.Entity = null;
-						previousValue.tbRelacionLineaPedidoUsuarioArticulo.Remove(this);
-					}
-					this._tbLineaPedidoUsuario.Entity = value;
-					if ((value != null))
-					{
-						value.tbRelacionLineaPedidoUsuarioArticulo.Add(this);
-						this._FKLineaPedidoUsuario = value.idLineaPedidoUsuario;
-					}
-					else
-					{
-						this._FKLineaPedidoUsuario = default(System.Guid);
-					}
-					this.SendPropertyChanged("tbLineaPedidoUsuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbRelacionPedidoGlobalArticulo")]
 	public partial class tbRelacionPedidoGlobalArticulo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -12666,9 +12579,17 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.DateTime> _FechaExpiracion;
 		
+		private System.Guid _FKDescuento;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
+		
+		private EntityRef<tbSocio> _tbSocio2;
+		
+		private EntityRef<tbDescuentoSocio> _tbDescuentoSocio;
+		
+		private EntityRef<tbSocio> _tbSocio1;
 		
 		private EntityRef<tbUsuario> _tbUsuario;
 		
@@ -12696,12 +12617,17 @@ namespace TortolasProject.Models
     partial void OnMotivosBajaChanged();
     partial void OnFechaExpiracionChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaExpiracionChanged();
+    partial void OnFKDescuentoChanging(System.Guid value);
+    partial void OnFKDescuentoChanged();
     #endregion
 		
 		public tbSocio()
 		{
 			this._tbCuota = new EntitySet<tbCuota>(new Action<tbCuota>(this.attach_tbCuota), new Action<tbCuota>(this.detach_tbCuota));
 			this._tbJuntaDirectiva = default(EntityRef<tbJuntaDirectiva>);
+			this._tbSocio2 = default(EntityRef<tbSocio>);
+			this._tbDescuentoSocio = default(EntityRef<tbDescuentoSocio>);
+			this._tbSocio1 = default(EntityRef<tbSocio>);
 			this._tbUsuario = default(EntityRef<tbUsuario>);
 			OnCreated();
 		}
@@ -12717,6 +12643,10 @@ namespace TortolasProject.Models
 			{
 				if ((this._idSocio != value))
 				{
+					if (this._tbSocio1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnidSocioChanging(value);
 					this.SendPropertyChanging();
 					this._idSocio = value;
@@ -12737,6 +12667,10 @@ namespace TortolasProject.Models
 			{
 				if ((this._NumeroSocio != value))
 				{
+					if (this._tbSocio1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnNumeroSocioChanging(value);
 					this.SendPropertyChanging();
 					this._NumeroSocio = value;
@@ -12910,6 +12844,30 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKDescuento", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FKDescuento
+		{
+			get
+			{
+				return this._FKDescuento;
+			}
+			set
+			{
+				if ((this._FKDescuento != value))
+				{
+					if (this._tbDescuentoSocio.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFKDescuentoChanging(value);
+					this.SendPropertyChanging();
+					this._FKDescuento = value;
+					this.SendPropertyChanged("FKDescuento");
+					this.OnFKDescuentoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbCuota", Storage="_tbCuota", ThisKey="idSocio", OtherKey="FKSocio")]
 		public EntitySet<tbCuota> tbCuota
 		{
@@ -12948,6 +12906,105 @@ namespace TortolasProject.Models
 						value.tbSocio = this;
 					}
 					this.SendPropertyChanged("tbJuntaDirectiva");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbSocio", Storage="_tbSocio2", ThisKey="idSocio,NumeroSocio", OtherKey="idSocio,NumeroSocio", IsUnique=true, IsForeignKey=false)]
+		public tbSocio tbSocio2
+		{
+			get
+			{
+				return this._tbSocio2.Entity;
+			}
+			set
+			{
+				tbSocio previousValue = this._tbSocio2.Entity;
+				if (((previousValue != value) 
+							|| (this._tbSocio2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbSocio2.Entity = null;
+						previousValue.tbSocio1 = null;
+					}
+					this._tbSocio2.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio1 = this;
+					}
+					this.SendPropertyChanged("tbSocio2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbDescuentoSocio_tbSocio", Storage="_tbDescuentoSocio", ThisKey="FKDescuento", OtherKey="idDescuentoSocio", IsForeignKey=true)]
+		public tbDescuentoSocio tbDescuentoSocio
+		{
+			get
+			{
+				return this._tbDescuentoSocio.Entity;
+			}
+			set
+			{
+				tbDescuentoSocio previousValue = this._tbDescuentoSocio.Entity;
+				if (((previousValue != value) 
+							|| (this._tbDescuentoSocio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbDescuentoSocio.Entity = null;
+						previousValue.tbSocio.Remove(this);
+					}
+					this._tbDescuentoSocio.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio.Add(this);
+						this._FKDescuento = value.idDescuentoSocio;
+					}
+					else
+					{
+						this._FKDescuento = default(System.Guid);
+					}
+					this.SendPropertyChanged("tbDescuentoSocio");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbSocio", Storage="_tbSocio1", ThisKey="idSocio,NumeroSocio", OtherKey="idSocio,NumeroSocio", IsForeignKey=true)]
+		public tbSocio tbSocio1
+		{
+			get
+			{
+				return this._tbSocio1.Entity;
+			}
+			set
+			{
+				tbSocio previousValue = this._tbSocio1.Entity;
+				if (((previousValue != value) 
+							|| (this._tbSocio1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbSocio1.Entity = null;
+						previousValue.tbSocio2 = null;
+					}
+					this._tbSocio1.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio2 = this;
+						this._idSocio = value.idSocio;
+						this._NumeroSocio = value.NumeroSocio;
+					}
+					else
+					{
+						this._idSocio = default(System.Guid);
+						this._NumeroSocio = default(int);
+					}
+					this.SendPropertyChanged("tbSocio1");
 				}
 			}
 		}
