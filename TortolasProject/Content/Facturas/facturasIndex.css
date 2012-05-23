@@ -5,8 +5,21 @@
     width:inherit;
     height:inherit;
 }
+#FacturasGrid a
+{
+    color:#2E2E2E;
+}
 .limpiarButton
 {
     float:right;
+}
+.pageSizeDropDownContainer
+{
+    position:relative;
+    float:right;
+}
+.pageSizeDropDown
+{
+    width:50px;
 }
 
