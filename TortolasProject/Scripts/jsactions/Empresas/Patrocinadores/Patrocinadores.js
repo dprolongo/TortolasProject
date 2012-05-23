@@ -68,8 +68,6 @@
         });
 
         function funciondetallepublicidad(e) {
-
-        
             var datasourcepub = new kendo.data.DataSource
             ({
                 transport:
@@ -83,13 +81,12 @@
                     },
                 },
                 schema:
-            {
-            
-                model:
-                 {
-                     id: "idPublicidad",
-                 }
-            }
+                {
+                    model:
+                    {
+                        id: "idPublicidad"
+                    }
+                }
             });
 
             $(".PublicidadGrid").kendoGrid //Creo el kendo Grid
@@ -118,7 +115,6 @@
             ],
             });
         }
-
         //VALIDACION//
 
         function comprobarNecesarios(formulario){ //Comprueba nulos
@@ -396,10 +392,10 @@
     
         $(".botonEditarFilaPublicidad").live("click", function () {
 
-            alert("Boton Pulsado Editar");
+            
             var fila = $(".PublicidadGrid").find("tbody tr.k-state-selected");
             var filajson = $(".PublicidadGrid").data("kendoGrid").dataItem(fila).toJSON();
-            alert("Codigo Json?");
+            
             idPublicidad = datasourcepub.getByUid(fila.attr("data-uid")).idPublicidad;
             alert(idPublicidad);
 

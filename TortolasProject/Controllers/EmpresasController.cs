@@ -12,18 +12,21 @@ namespace TortolasProject.Controllers
     {
         static EmpresasRepositorio EmpresasRepo = new EmpresasRepositorio();
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             //var empresas = from Nombre in mtbMalagaDB.tbEmpresa select Nombre;
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Create()
         {
             return PartialView("Create");
         }
-        
 
+
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos()
         {
@@ -40,6 +43,7 @@ namespace TortolasProject.Controllers
                            };
             return Json(empresas);
         }
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdateEmpresa(FormCollection data)
         {
@@ -65,6 +69,7 @@ namespace TortolasProject.Controllers
 
             EmpresasRepo.updateEmp(Empresa);
         }
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void CreateEmpresa(FormCollection data)
         {
@@ -91,12 +96,15 @@ namespace TortolasProject.Controllers
             EmpresasRepo.createEmp(Empresa);
             
         }
+        [Authorize(Roles = "Junta Directiva")]
+        [HttpPost]
         public void DeleteEmpresa(FormCollection data)
         {
             Guid idEmpresa = Guid.Parse(data["idempresa"]);
 
             EmpresasRepo.deleteEmp(idEmpresa);
         }
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult CargarVistaNuevaEmpresa()
         {

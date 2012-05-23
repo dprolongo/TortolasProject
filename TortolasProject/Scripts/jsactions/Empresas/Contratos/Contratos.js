@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     
     var idContrato = null;
-        var FKJuntaDirectiva = null;
+    var FKJuntaDirectiva = null;
+    var idPublicidad = null;
 
         //Junta Directiva Remota//
 
@@ -47,7 +48,7 @@
             {
                 model:
                  {
-                     id: "idConvenio"
+                     id: "idContrato"
                  }
             }
          });
@@ -154,6 +155,32 @@
                 }
             ]
 
+        });
+
+        //GENERAR DATAPICKER//
+
+        $(".datapickerfechacrearcion").kendoDatePicker({
+            value: new Date(),
+            min: new Date(1950, 0, 1),
+            max: new Date(2049, 11, 31),
+            format: "dd/MM/yyyy"
+        });
+
+        $(".datapickerfechacaducidad").kendoDatePicker({
+            value: new Date(),
+            min: new Date(1950, 0, 1),
+            max: new Date(2049, 11, 31),
+            format: "dd/MM/yyyy"
+        });
+
+        //GENERAR NUMERICTEXTBOX//
+
+        $(".numerictextboximporte").kendoNumericTextBox({
+            value: 0,
+            min: 0,
+            step: 1.00,
+            format: "n",
+            decimals: 2
         });
 
         //VALIDACION//

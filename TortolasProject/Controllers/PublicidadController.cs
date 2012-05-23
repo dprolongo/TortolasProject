@@ -14,11 +14,13 @@ namespace TortolasProject.Controllers
         // GET: /Publicidad/
         static EmpresasRepositorio PublicidadRepo = new EmpresasRepositorio();
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos(FormCollection data)
         {
@@ -35,6 +37,7 @@ namespace TortolasProject.Controllers
             return Json(publicidad);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdatePublicidad(FormCollection data)
         {
@@ -55,6 +58,7 @@ namespace TortolasProject.Controllers
             PublicidadRepo.updatePub(publicidad);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeletePublicidad(FormCollection data)
         {

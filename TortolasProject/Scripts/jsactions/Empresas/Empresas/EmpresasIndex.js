@@ -85,6 +85,8 @@ $(document).ready(function () {
 
     $("#EmpresasNavegador").kendoTabStrip(); //Creo el kendo para pestañas
 
+    $("#newlocalidad").kendoDropDownList();
+
     $("#EmpresasGrid").kendoGrid //Creo el kendo Grid
     ({
         //height: 400,
@@ -296,7 +298,7 @@ $(document).ready(function () {
             //Coger datos
             datos["nombreempresa"] = $("#newnombreempresa").val();
             datos["cif"] = $("#newcif").val();
-            datos["localidad"] = $("#newlocalidad").val();
+            datos["localidad"] = $("#newlocalidad").data("kendoDropDownList").value();
             datos["direccionweb"] = $("#newdireccionweb").val();
             datos["telefonodecontacto"] = $("#newtelefonodecontacto").val();
             datos["email"] = $("#newemail-c").val();
@@ -336,6 +338,9 @@ $(document).ready(function () {
             $("#EmpresasHerramientasContent").show();
             $("#EmpresasGrid").show();
             $("#NuevaEmpresaFormulario2").hide();
+            $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
+            $(".VisibilidadBotonAceptarEditar").show(); //Muestra el boton de aceptar de la ventana editar
+            $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton correspondiente para aceptar en la ventana eliminar
             wcrearempresa.close();
         });
     });
