@@ -69,7 +69,6 @@ namespace TortolasProject.Controllers
         }
 
         [HttpPost]
-
         public void UpdateEvento(FormCollection data)
         {
             Guid idEvento = Guid.Parse(data["idEvento"]);
@@ -98,6 +97,7 @@ namespace TortolasProject.Controllers
 
             EventosRepo.editarEvento(idEvento,Evento);
         }
+
         [HttpPost]
         public void CreateEvento(FormCollection data)
         {
@@ -112,7 +112,11 @@ namespace TortolasProject.Controllers
             bool PrioridadSocios = bool.Parse(data["PrioridadSociosUpdate"]);
             String Actividad = data["ActividadUpdate"];
             Guid FKUsuario =  UsuariosRepo.obtenerUsuarioByUser(HomeController.obtenerUserIdActual());
-
+            Guid FKJuntaDirectiva = UsuariosRepo.obtenerSocio(UsuariosRepo.obtenerUsuarioByUser(HomeController.obtenerUserIdActual())).idSocio;
+            bool oficial = bool.Parse(data["TipoUpdate"]);
+            Decimal precioEvento = 0;
+            if (oficial) precioEvento = Decimal.Parse(data["PrecioEventoUpdate"]);
+            
             tbEvento Evento = new tbEvento
             {
                 idEvento = idEvento,
@@ -129,7 +133,22 @@ namespace TortolasProject.Controllers
             };
 
             EventosRepo.crearEvento(Evento);
+
+            if (oficial)
+            {
+                tbEventoOficial eventoOficial = new tbEventoOficial()
+                {
+                    idEventoOficial = Guid.NewGuid(),
+                    FKEvento = idEvento,
+                    FKJuntaDirectiva = FKJuntaDirectiva,
+                    Precio = precioEvento
+                };
+            EventosRepo.crearEventoOficial(eventoOficial);
+            }
+            
+            
         }
+
         [HttpPost]
         public void eliminarEvento(FormCollection data)
         {
@@ -137,6 +156,33 @@ namespace TortolasProject.Controllers
 
             EventosRepo.eliminarEvento(idEvento);
         }
+
+        [HttpPost]
+        public ActionResult participantesDeEvento(FormCollection data)
+        {
+            Guid idEvento = Guid.Parse(data["idEvento"]);
+
+            var participantes = from p in EventosRepo.participantesEvento(idEvento)
+                                select new
+                                {
+                                    idUsuario = p.idUsuario,
+                                    Nombre = p.Nombre,
+                                    Apellidos = p.Apellidos,
+                                    NumAcompa = EventosRepo.obtenerAcompanantesEvento(idEvento,p.idUsuario)
+                                };
+            return Json(participantes);
+        }
+
+        [HttpPost]
+        public Boolean comprobarInscrip(FormCollection data)
+        {
+            Guid idEvento = Guid.Parse(data["idEvento"]);
+            Guid Usuario = UsuariosRepo.obtenerUsuarioByUser(HomeController.obtenerUserIdActual());
+
+
+            return EventosRepo.existInscrip(idEvento, Usuario);
+        }
+
     }
 
 }

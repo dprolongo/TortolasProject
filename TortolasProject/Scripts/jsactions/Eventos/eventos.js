@@ -9,7 +9,7 @@ $(document).ready(function () {
         {
             read:
             {
-                url: "Eventos/LeerTodos",
+                url: "../Eventos/LeerTodos",
                 datatype: "json",
                 type: "POST"
             }
@@ -22,7 +22,9 @@ $(document).ready(function () {
             }
         }
     });
-    var tablaevento = $("#Eventostabla").kendoGrid({
+
+    var tablaevento = $("#Eventostabla").kendoGrid
+    ({
         dataSource: datasource,
         toolbar: kendo.template($("#templateToolbarEvento").html()),
         sortable: true,
@@ -33,10 +35,13 @@ $(document).ready(function () {
                     {
                         field: "Titulo",
                         text: "Titulo",
-                        filterable: {
+                        filterable:
+                        {
                             extra: false, //do not show extra filters
-                            operators: { // redefine the string operators
-                                string: {
+                            operators:
+                            { // redefine the string operators
+                                string:
+                                {
                                     eq: "Es igual a..",
                                     neq: "No es igual a...",
                                     startswith: "Empieza por...",
@@ -48,10 +53,13 @@ $(document).ready(function () {
                     {
                         field: "Lugar",
                         text: "Lugar",
-                        filterable: {
+                        filterable:
+                        {
                             extra: false, //do not show extra filters
-                            operators: { // redefine the string operators
-                                string: {
+                            operators:
+                            { // redefine the string operators
+                                string:
+                                {
                                     eq: "Es igual a..",
                                     neq: "No es igual a...",
                                     startswith: "Empieza por...",
@@ -63,10 +71,13 @@ $(document).ready(function () {
                     {
                         field: "FechaRealizacion",
                         text: "Fecha",
-                        filterable: {
+                        filterable:
+                        {
                             extra: false, //do not show extra filters
-                            operators: { // redefine the string operators
-                                string: {
+                            operators:
+                            { // redefine the string operators
+                                string:
+                                {
                                     eq: "Es igual a..",
                                     neq: "No es igual a...",
                                     startswith: "Empieza por...",
@@ -78,10 +89,13 @@ $(document).ready(function () {
                     {
                         field: "Plazas",
                         text: "Plazas",
-                        filterable: {
+                        filterable:
+                        {
                             extra: false, //do not show extra filters
-                            operators: { // redefine the string operators
-                                string: {
+                            operators:
+                            { // redefine the string operators
+                                string:
+                                {
                                     eq: "Es igual a..",
                                     neq: "No es igual a...",
                                     startswith: "Empieza por...",
@@ -93,7 +107,7 @@ $(document).ready(function () {
                     {
                         title: "Herramientas",
                         width: "200px",
-                        command: [{ text: "Editar", className: "botonEditarFila" }, { text: "Eliminar", className: "botonEliminarFila" }, { text: "Inscribirse", className: "botonInscripcion"}]
+                        command: [{ text: "Editar", className: "botonEditarFila" }, { text: "Eliminar", className: "botonEliminarFila"}]
                     }
 
         ],
@@ -123,26 +137,54 @@ $(document).ready(function () {
 
     $("#editor").kendoEditor();
 
-    var valoresComboPrioridad = [{ texto: "No", valor: false },{ texto: "Si", valor: true }];
+    var valoresComboPrioridad = [{ texto: "No", valor: false }, { texto: "Si", valor: true}];
 
-    $("#PrioridadSocios").kendoDropDownList({
+    $("#PrioridadSocios").kendoDropDownList
+    ({
         dataTextField: "texto",
         dataValueField: "valor",
         dataSource: valoresComboPrioridad
     });
 
-    $("#AcompanantesDropdown").kendoDropDownList({
+    var valoresTipoEvento = [{ texto: "Libre", valor: false }, { texto: "Oficial", valor: true}];
+
+    $("#tipoEventoDropDown").kendoDropDownList
+    ({
+        dataTextField: "texto",
+        dataValueField: "valor",
+        dataSource: valoresTipoEvento,
+        select: function (e) {
+            var tipoevento = this.dataItem(e.item.index());
+            if (tipoevento.valor == true) {
+                $("#PrecioEvento").kendoNumericTextBox
+                ({
+                    min: 0,
+                    format: c
+                });
+                $("#capaPrecio").show();
+            }
+            else {
+                $("#capaPrecio").hide();
+            }
+        }
+    });
+
+    $("#tipoEventoWrapper").hide();
+
+    $("#AcompanantesDropdown").kendoDropDownList
+    ({
         dataTextField: "texto",
         dataValueField: "valor",
         dataSource: valoresComboPrioridad,
         select: function (e) {
             var numacompa = this.dataItem(e.item.index());
             if (numacompa.valor == true) {
-                $("#Acompanantes").kendoNumericTextBox({
+                $("#Acompanantes").kendoNumericTextBox
+                ({
                     min: 1,
                     max: maxacompa,
                     step: 1,
-                    format:"0"
+                    format: "0"
                 });
                 $("#NumeroAcompa").show();
             }
@@ -151,28 +193,28 @@ $(document).ready(function () {
             }
         }
     });
+
     $("#NumeroAcompa").hide();
 
-    $("#FechaRealizacion").kendoDatePicker({
+    $("#FechaRealizacion").kendoDatePicker
+    ({
+        format: "dd/MM/yyyy"
+    });
 
+    $("#FechaAperturaInscrip").kendoDatePicker
+    ({
         format: "dd/MM/yyyy"
     });
 
 
-    $("#FechaAperturaInscrip").kendoDatePicker({
-
-        format: "dd/MM/yyyy"
-    });
-
-
-    $("#FechaLimiteInscrip").kendoDatePicker({
-
+    $("#FechaLimiteInscrip").kendoDatePicker
+    ({
         format: "dd/MM/yyyy"
     });
 
     $("#botonCrearEvento").live("click", function () {
-
-        $.ajax({
+        $.ajax
+        ({
             url: "Eventos/cargarVistaCrearEvento",
             type: "POST",
             success: function (data) {
@@ -181,44 +223,66 @@ $(document).ready(function () {
                 $("#FormularioCreacion").show();
                 $("#editor").kendoEditor();
 
-
-
-                $("#FechaRealizacion").kendoDatePicker({
-
+                $("#FechaRealizacion").kendoDatePicker
+                ({
                     format: "dd/MM/yyyy"
                 });
-                $("#FechaAperturaInscrip").kendoDatePicker({
-
+                $("#FechaAperturaInscrip").kendoDatePicker
+                ({
                     format: "dd/MM/yyyy"
                 });
-                $("#FechaLimiteInscrip").kendoDatePicker({
-
+                $("#FechaLimiteInscrip").kendoDatePicker
+                ({
                     format: "dd/MM/yyyy"
                 });
 
+                var valoresComboPrioridad =
+                [
+                    { texto: "Si", valor: true },
+                    { texto: "No", valor: false }
+                ];
 
-
-
-                var valoresComboPrioridad = [
-                        { texto: "Si", valor: true },
-                        { texto: "No", valor: false }
-
-                    ];
-
-                $("#PrioridadSocios").kendoDropDownList({
+                $("#PrioridadSocios").kendoDropDownList
+                ({
                     dataTextField: "texto",
                     dataValueField: "valor",
                     dataSource: valoresComboPrioridad
                 });
+
+                var valoresTipoEvento = [{ texto: "Libre", valor: false }, { texto: "Oficial", valor: true}];
+
+                $("#tipoEventoDropDown").kendoDropDownList
+                ({
+                    dataTextField: "texto",
+                    dataValueField: "valor",
+                    dataSource: valoresTipoEvento,
+                    select: function (e) {
+                        var tipoevento = this.dataItem(e.item.index());
+                        if (tipoevento.valor == true) {
+                            $("#PrecioEvento").kendoNumericTextBox
+                            ({
+                                min: 0,
+                                format: 'c'
+                            });
+                            $("#capaPrecio").show();
+                        }
+                        else {
+                            $("#capaPrecio").hide();
+                        }
+                    }
+                });
+
+                $("#tipoEventoWrapper").empty();
+                $("#tipoEventoWrapper").html('<div id="capaPrecio"><label>Precio por persona: </label><input id="PrecioEvento" /></div>');
+                $("#tipoEventoDropDown").data("kendoDropDownList").select(0);
+
+                $("#capaPrecio").hide();
+
             }
-
         });
-
-
     });
 
     $(".botonEditarFila").live("click", function () {
-
         var fila = $("#Eventostabla").find("tbody tr.k-state-selected");
 
         var filajson = $("#Eventostabla").data("kendoGrid").dataItem(fila).toJSON();
@@ -249,16 +313,13 @@ $(document).ready(function () {
         $("#Eventostabla").show();
     });
 
-
     $("#BotonCancelarFormularioCrear").live("click", function () {
         $("#FormularioCreacion").hide();
         $("#Eventostabla").show();
-
     });
 
     $("#BotonAceptarFormularioCrear").live("click", function () {
         var datos = {};
-
         datos["TituloUpdate"] = $("#Titulo").val();
         datos["LugarUpdate"] = $("#Lugar").val();
         datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
@@ -268,8 +329,13 @@ $(document).ready(function () {
         datos["NumAcompaUpdate"] = $("#NumAcompa").val();
         datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
         datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+        datos["TipoUpdate"] = $("#tipoEventoDropDown").data("kendoDropDownList").value();
+        datos["PrecioEventoUpdate"] = 0;
+        if ($("#tipoEventoDropDown").data("kendoDropDownList").value()) {
+            datos["PrecioEventoUpdate"] = $("#PrecioEvento").val();
+        }
 
-
+        alert(datos["TipoUpdate"]);
         $.ajax(
         {
             url: "Eventos/CreateEvento",
@@ -336,13 +402,107 @@ $(document).ready(function () {
         var detailRow = e.detailRow;
 
         detailRow.find(".detallesEventosPestanas").kendoTabStrip({
-            animation: {
-                open: { effects: "fadeIn" }
+            animation:
+        {
+            open: { effects: "fadeIn" }
+        }
+        });
+
+        var participantes = new kendo.data.DataSource
+        ({
+            transport:
+            {
+                read:
+                {
+                    url: "../Eventos/participantesDeEvento",
+                    datype: "json",
+                    type: "POST",
+                    data: { idEvento: e.data.idEvento }
+                }
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "idUsuario",
+                    fields:
+                    {
+                        Nombre: {},
+                        Apellidos: {},
+                        NumAcompa: {}
+                    }
+                }
             }
+        });
+
+        var tablaParticipantes = $(".Participantes").kendoGrid
+        ({
+            dataSource: participantes,
+            sorteable: true,
+            pageable: true,
+            selectable: true,
+            filterable: true,
+            columns:
+            [
+                {
+                    field: "Nombre",
+                    text: "Nombre",
+                    filterable:
+                    {
+                        extra: false, //do not show extra filters
+                        operators:
+                            { // redefine the string operators
+                                string:
+                                {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                    }
+                },
+                {
+                    field: "Apellidos",
+                    text: "Apellidos",
+                    filterable:
+                    {
+                        extra: false, //do not show extra filters
+                        operators:
+                            { // redefine the string operators
+                                string:
+                                {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                    }
+                },
+                {
+                    field: "NumAcompa",
+                    text: "NumAcompa",
+                    filterable:
+                    {
+                        extra: false, //do not show extra filters
+                        operators:
+                            { // redefine the string operators
+                                string:
+                                {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                    }
+                }
+            ]
         });
     }
 
-    $(".botonInscripcion").live("click", function () {
+    $("#botonInscripcion").live("click", function () {
 
         var fila = $("#Eventostabla").data("kendoGrid").select();
         var filaJson = $("#Eventostabla").data("kendoGrid").dataItem(fila).toJSON(); // La pasamos a JSON
@@ -352,26 +512,40 @@ $(document).ready(function () {
         idEvento = Evento.idEvento;
         var Precio = Evento.Precio;
         maxacompa = Evento.NumAcompa;
+        var inscripcionExistente;
 
-        $("#TituloEventoInscripcion").text(Titulo);
-        $("#PrecioEventoInscripcion").text(Precio);
-
-        $("#acompaWrapper").empty();
-        $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
-        $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
-
-        $("#Acompanantes").kendoNumericTextBox({
-            
-            min: 1,
-            max: maxacompa,
-            step: 1,
-            format:"0"
+        $.ajax
+        ({
+            url: "Eventos/comprobarInscrip",
+            type: "POST",
+            data: { idEvento: idEvento },
+            async: false,
+            success: function (data) {
+                inscripcionExistente = data;
+            }
         });
+        if (inscripcionExistente == "False") {
+            $("#TituloEventoInscripcion").text(Titulo);
+            $("#PrecioEventoInscripcion").text(Precio);
 
-        $("#NumeroAcompa").hide();
+            $("#acompaWrapper").empty();
+            $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+            $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
 
-        windowInscripcion.center();
-        windowInscripcion.open();
+            $("#Acompanantes").kendoNumericTextBox
+                ({
+                    min: 1,
+                    max: maxacompa,
+                    step: 1,
+                    format: "0"
+                });
+            $("#NumeroAcompa").hide();
+            windowInscripcion.center();
+            windowInscripcion.open();
+        }
+        else {
+            alert("Ya está inscrito a este Evento");
+        }
     });
 
     $(".botonEliminarFila").live("click", function () {
@@ -381,7 +555,8 @@ $(document).ready(function () {
 
         var idEvento = datasource.getByUid(fila.attr("data-uid")).idEvento;
 
-        $.ajax({
+        $.ajax
+        ({
             url: "Eventos/eliminarEvento",
             type: "POST",
             data: { idEvento: idEvento },
@@ -390,4 +565,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    setTimeout(cargarEtiqueta, 1000);
+    function cargarEtiqueta() {
+        $("#botonInscripcion").qtip({
+            content: {
+                text: "Seleccione un Evento y haga click para Inscribirse"
+            },
+            position: {
+                my: "top left"
+            }
+        });
+    }
 });

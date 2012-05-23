@@ -11,6 +11,7 @@ namespace TortolasProject.Models.Repositorios
         //Conexion BD
         mtbMalagaDataContext mtbMalagaDB = new mtbMalagaDataContext();
 
+
         public IList<tbEvento> listarEventos()
         {
             return mtbMalagaDB.tbEvento.ToList();
@@ -67,10 +68,50 @@ namespace TortolasProject.Models.Repositorios
             return mtbMalagaDB.tbEvento.Where(evento => evento.FKUsuarioCreador == idUsuario).ToList();
         }
 
-        //PARTICIPANTES
-        /*Participantes y documentos de inscripcion y tal y cual y esto y lo otro,  mas tarde lo abordaremos y tal y cual...
-        public void leerTodosDocInscrip()
-        */
+        public IList<tbDocInscripcion> documentosEvento(Guid Evento)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKEvento.Equals(Evento)).ToList();
+        }
+
+        public IList<tbUsuario> participantesEvento(Guid Evento)
+        {
+            IList<tbDocInscripcion> documentos = documentosEvento(Evento);
+            //return mtbMalagaDB.tbUsuario.Where(usuario => documentos.Where(doc => doc.FKUsuario.Equals(usuario.idUsuario)).Count().Equals(1)  ).ToList();
+            IList<tbUsuario> participantes = new List<tbUsuario>();
+
+            foreach(tbDocInscripcion doc in documentos)
+            {
+                participantes.Add(mtbMalagaDB.tbUsuario.Where(u => u.idUsuario.Equals(doc.FKUsuario)).Single());
+            }
+             //participantes =  mtbMalagaDB.tbUsuario.Where(usuario => documentos.Where(doc => doc.FKUsuario.Equals(usuario.idUsuario)).Count().Equals(1)).ToList();
+
+            return participantes;
+        }
+
+        public int obtenerAcompanantesEvento(Guid idEvento, Guid idUsuario)
+        {
+            tbDocInscripcion doc = mtbMalagaDB.tbDocInscripcion
+                .Where(di => di.FKEvento.Equals(idEvento) && di.FKUsuario.Equals(idUsuario))
+                .Single(); 
+            return doc.NumAcom.HasValue ? 
+                    mtbMalagaDB.tbDocInscripcion
+                    .Where(di => di.FKEvento.Equals(idEvento) && di.FKUsuario.Equals(idUsuario))
+                    .Single().NumAcom.Value 
+                : 
+                    0;
+           
+        }
+
+        public Boolean existInscrip(Guid idEvento,Guid idUsuario)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(docu => docu.FKEvento.Equals(idEvento) && docu.FKUsuario.Equals(idUsuario)).Count() != 0;
+        }
+
+        public void crearEventoOficial(tbEventoOficial ev)
+        {
+            mtbMalagaDB.tbEventoOficial.InsertOnSubmit(ev);
+            save();
+        }
 
         // 
         //  Funciones auxiliares

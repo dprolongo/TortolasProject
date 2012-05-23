@@ -80,6 +80,7 @@
                         
                     </div>
                     <div class="infoParticipantes">
+                        <div class="Participantes"></div>
                     </div>
                 </div>
      </script> 
@@ -87,7 +88,7 @@
      <script type="text/x-kendo-template" id="templateToolbarCursillo">
                 <div class="toolbar">
                     <input type ="button" id="botonCrearCursillo" class="k-button" value="Crear Cursillo"/>
-                
+                    <input type ="button" id="botonInscripcion" class="k-button" value="Inscribirse"/>
                 </div>
       </script> 
     <script type="text/javascript" src="../../Scripts/jsactions/Eventos/cursillos.js"></script>

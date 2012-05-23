@@ -83,6 +83,46 @@ namespace TortolasProject.Models.Repositorios
         {
             mtbMalagaDB.SubmitChanges();
         }
+
+        public IList<tbDocInscripcion> documentosCursillo(Guid Cursillo)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKCursillo.Equals(Cursillo)).ToList();
+        }
+
+        public IList<tbUsuario> participantesCursillo(Guid Cursillo)
+        {
+            IList<tbDocInscripcion> documentos = documentosCursillo(Cursillo);
+            //return mtbMalagaDB.tbUsuario.Where(usuario => documentos.Where(doc => doc.FKUsuario.Equals(usuario.idUsuario)).Count().Equals(1)  ).ToList();
+            IList<tbUsuario> participantes = new List<tbUsuario>();
+
+            foreach(tbDocInscripcion doc in documentos)
+            {
+                participantes.Add(mtbMalagaDB.tbUsuario.Where(u => u.idUsuario.Equals(doc.FKUsuario)).Single());
+            }
+             //participantes =  mtbMalagaDB.tbUsuario.Where(usuario => documentos.Where(doc => doc.FKUsuario.Equals(usuario.idUsuario)).Count().Equals(1)).ToList();
+
+            return participantes;
+        }
+
+        public int obtenerAcompanantesCursillo(Guid idCursillo, Guid idUsuario)
+        {
+            tbDocInscripcion doc = mtbMalagaDB.tbDocInscripcion
+                .Where(di => di.FKCursillo.Equals(idCursillo) && di.FKUsuario.Equals(idUsuario))
+                .Single(); 
+            return doc.NumAcom.HasValue ? 
+                    mtbMalagaDB.tbDocInscripcion
+                    .Where(di => di.FKCursillo.Equals(idCursillo) && di.FKUsuario.Equals(idUsuario))
+                    .Single().NumAcom.Value 
+                : 
+                    0;
+           
+        }
+
+        public Boolean existInscrip(Guid idCursillo,Guid idUsuario)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(docu => docu.FKCursillo.Equals(idCursillo) && docu.FKUsuario.Equals(idUsuario)).Count() != 0;
+        }
+
     }
 }
 

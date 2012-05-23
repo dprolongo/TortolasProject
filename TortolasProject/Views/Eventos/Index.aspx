@@ -72,6 +72,9 @@
                         
                     </div>
                     <div class="infoParticipantes">
+                        <div class="Participantes">
+                            
+                        </div>
                     </div>
                 </div>
      </script> 
@@ -79,7 +82,7 @@
      <script type="text/x-kendo-template" id="templateToolbarEvento">
                 <div class="toolbar">
                     <input type ="button" id="botonCrearEvento" class="k-button" value="Crear Evento"/>
-                
+                    <input type ="button"id="botonInscripcion" class ="k-button" value="Inscribirse"/>
                 </div>
       </script> 
     <script type="text/javascript" src="../../Scripts/jsactions/Eventos/eventos.js"></script>
