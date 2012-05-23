@@ -306,7 +306,7 @@ namespace TortolasProject.Controllers
                     {
                         idMovimientoGasto = Guid.NewGuid(),
                         Concepto = f.Concepto,
-                        Fecha = f.Fecha,
+                        Fecha = DateTime.Today,
                         Responsable = f.FKJuntaDirectiva,
                         FKFactura = f.idFactura,
                         Total = f.Total
@@ -318,7 +318,7 @@ namespace TortolasProject.Controllers
                     tbMovimientoIngreso mg = new tbMovimientoIngreso {
                                     idMovimientoIngreso = Guid.NewGuid(),
                                     Concepto = f.Concepto,
-                                    Fecha = f.Fecha,
+                                    Fecha = DateTime.Today,
                                     Responsable = f.FKJuntaDirectiva,
                                     FKFactura = f.idFactura,
                                     Total = f.Total
@@ -439,7 +439,7 @@ namespace TortolasProject.Controllers
                     {
                         idMovimientoGasto = Guid.NewGuid(),
                         Concepto = facturaAntigua.Concepto,
-                        Fecha = facturaAntigua.Fecha,
+                        Fecha = DateTime.Today,
                         Responsable = facturaAntigua.FKJuntaDirectiva,
                         FKFactura = idFactura,
                         Total = facturaAntigua.Total
@@ -452,7 +452,7 @@ namespace TortolasProject.Controllers
                     {
                         idMovimientoIngreso = Guid.NewGuid(),
                         Concepto = facturaAntigua.Concepto,
-                        Fecha = facturaAntigua.Fecha,
+                        Fecha = DateTime.Today,
                         Responsable = facturaAntigua.FKJuntaDirectiva,
                         FKFactura = idFactura,
                         Total = facturaAntigua.Total
@@ -532,9 +532,38 @@ namespace TortolasProject.Controllers
 
         [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
-        public void establecerPagado(Guid idFactura)
-        { 
+        public static void establecerPagado(Guid idFactura)
+        {
+            tbFactura f = FacturasRepo.leerFactura(idFactura);
             FacturasRepo.setEstadoFactura(FacturasRepo.leerEstadoByNombre("Pagado"), idFactura);
+            
+            // Creamos un movimiento relacionado con la factura pagada.
+            if (f.Total < 0)
+            {
+                tbMovimientoGasto mg = new tbMovimientoGasto
+                {
+                    idMovimientoGasto = Guid.NewGuid(),
+                    Concepto = f.Concepto,
+                    Fecha = DateTime.Today,
+                    Responsable = f.FKJuntaDirectiva,
+                    FKFactura = f.idFactura,
+                    Total = f.Total
+                };
+                FacturasRepo.nuevoMovimientoGasto(mg);
+            }
+            else
+            {
+                tbMovimientoIngreso mg = new tbMovimientoIngreso
+                {
+                    idMovimientoIngreso = Guid.NewGuid(),
+                    Concepto = f.Concepto,
+                    Fecha = DateTime.Today,
+                    Responsable = f.FKJuntaDirectiva,
+                    FKFactura = f.idFactura,
+                    Total = f.Total
+                };
+                FacturasRepo.nuevoMovimientoIngreso(mg);
+            }
         }
 
         public static Boolean crearFacturaExterna(tbFactura f, IList<tbLineaFactura> lineas)
@@ -545,6 +574,7 @@ namespace TortolasProject.Controllers
             {
                 if (linea.FKFactura == f.idFactura) lineasCorrectas = lineasCorrectas && true;
                 else lineasCorrectas = false;
+                linea.Total = linea.PrecioUnitario * linea.Unidades;
                 totalLineas = totalLineas + linea.Total;
             }
             f.BaseImponible = totalLineas;
@@ -588,7 +618,9 @@ namespace TortolasProject.Controllers
                       ResponsableName = obtenerJuntaDirectivaNickname(m.Responsable),
                       Fecha = m.Fecha,                      
                       Descripcion = m.Descripcion,
-                      Responsable = m.Responsable
+                      Responsable = m.Responsable,
+                      NumMovimiento = m.NumMovimiento,
+                      Saldo = m.Saldo
                   };
                 if (m.FKFactura.HasValue) mov.FKFactura = (Guid)m.FKFactura;
                 listaMovimientos.Add(mov);
@@ -604,7 +636,9 @@ namespace TortolasProject.Controllers
                                   ResponsableName = obtenerJuntaDirectivaNickname(m.Responsable),
                                   Fecha = m.Fecha,                                  
                                   Descripcion = m.Descripcion,
-                                  Responsable = m.Responsable
+                                  Responsable = m.Responsable,
+                                  NumMovimiento = m.NumMovimiento,
+                                  Saldo = m.Saldo
                               };
                               if (m.FKFactura.HasValue) mov.FKFactura = (Guid)m.FKFactura;
                               listaMovimientos.Add(mov);
@@ -619,7 +653,9 @@ namespace TortolasProject.Controllers
                                   ResponsableName = obtenerJuntaDirectivaNickname(m.Responsable),
                                   Fecha = m.Fecha.ToShortDateString(),
                                   FKFactura = m.FKFactura.ToString(),
-                                  Descripcion = m.Descripcion
+                                  Descripcion = m.Descripcion,
+                                  NumMovimiento = m.NumMovimiento,
+                                  Saldo = m.Saldo
                               };
 
 
@@ -649,7 +685,7 @@ namespace TortolasProject.Controllers
         [HttpPost]
         public int nuevoMovimiento(FormCollection data)
         {
-            DateTime fecha = DateTime.Parse(data["fecha"]);
+            //DateTime fecha = DateTime.Parse(data["fecha"]);
             String concepto = data["concepto"];
             String descripcion = data["descripcion"];
             Decimal total = Decimal.Parse(data["total"]);
@@ -659,7 +695,7 @@ namespace TortolasProject.Controllers
                 tbMovimientoIngreso mi = new tbMovimientoIngreso
                 {
                     idMovimientoIngreso = Guid.NewGuid(),
-                    Fecha = fecha,
+                    Fecha = DateTime.Today,
                     Concepto = concepto,
                     Descripcion = descripcion,
                     Total = total,
@@ -673,7 +709,7 @@ namespace TortolasProject.Controllers
                 tbMovimientoGasto mg = new tbMovimientoGasto
                 {
                     idMovimientoGasto = Guid.NewGuid(),
-                    Fecha = fecha,
+                    Fecha = DateTime.Today,
                     Concepto = concepto,
                     Descripcion = descripcion,
                     Total = total,
