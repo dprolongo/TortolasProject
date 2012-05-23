@@ -61,6 +61,24 @@
                                  },
                                 { text: "Contratos", imageUrl: "../../content/icons/aim.ico" }
                             ]
+                        },
+                        {
+                            text: "Contabilidad", imageUrl: "../../content/icons/agents.ico",
+                            
+                            items: [
+                                { 
+                                    text: "Facturas", imageUrl: "../../content/icons/aim.ico",
+                                    url: "/Facturas",
+                                },
+                                { 
+                                    text: "Movimientos", imageUrl: "../../content/icons/aim.ico",
+                                    url: "/Facturas/Movimientos",
+                                },
+                                { 
+                                    text: "Gráficos contables", imageUrl: "../../content/icons/aim.ico",
+                                    url: "/Facturas/graficosContables",
+                                },
+                            ]
                         }
                     ]
                 });
