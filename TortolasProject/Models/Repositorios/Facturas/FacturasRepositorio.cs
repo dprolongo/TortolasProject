@@ -133,11 +133,47 @@ namespace TortolasProject.Models.Repositorios
         {
             return mtbMalagaDB.tbLineaFactura.Contains(linea);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Métodos generales de movimientos
+        ///////////////////////////////////////////////////////////////////////////////
+        public int nuevoNumMovimiento()
+        {
+            int numGastos = mtbMalagaDB.tbMovimientoGasto.Count();
+            int numIngresos = mtbMalagaDB.tbMovimientoIngreso.Count();
+
+            if ( numGastos > 0 || numIngresos > 0)
+            {
+                return Math.Max(
+                    numGastos > 0? mtbMalagaDB.tbMovimientoGasto.Max(mg => mg.NumMovimiento):0,
+                    numIngresos > 0? mtbMalagaDB.tbMovimientoIngreso.Max(mi => mi.NumMovimiento):0
+                );
+            }
+            else return 1;
+        }
+
+        public Decimal saldoAnterior()
+        {
+            int numGastos = mtbMalagaDB.tbMovimientoGasto.Count();
+            int numIngresos = mtbMalagaDB.tbMovimientoIngreso.Count();
+            
+            if (numGastos > 0 || numIngresos > 0)
+            {
+                int numMovimiento = nuevoNumMovimiento();
+                if (existeMovimientoGastoByNumMovimiento(numMovimiento) != null) return existeMovimientoGastoByNumMovimiento(numMovimiento).Saldo;
+                else if (existeMovimientoIngresoByNumMovimiento(numMovimiento) != null) return existeMovimientoIngresoByNumMovimiento(numMovimiento).Saldo;
+                else return 0;
+            }
+            else return 0;   
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Métodos de tbMovimientosIngreso
         ///////////////////////////////////////////////////////////////////////////////
         public void nuevoMovimientoIngreso(tbMovimientoIngreso mov)
         {
+            mov.NumMovimiento = nuevoNumMovimiento() + 1;
+            mov.Saldo = saldoAnterior() + mov.Total;
             mtbMalagaDB.tbMovimientoIngreso.InsertOnSubmit(mov);
             save();
         }
@@ -170,12 +206,20 @@ namespace TortolasProject.Models.Repositorios
             old.Total = mov.Total;
             save();
         }
+        public tbMovimientoGasto existeMovimientoGastoByNumMovimiento(int numMovimiento)
+        {
+            return mtbMalagaDB.tbMovimientoGasto.Where(mg => mg.NumMovimiento == numMovimiento).Count() > 0 ?
+                mtbMalagaDB.tbMovimientoGasto.Where(mg => mg.NumMovimiento == numMovimiento).Single() :
+                null;
 
+        }
         ///////////////////////////////////////////////////////////////////////////////
         // Métodos de tbMovimientosGasto
         ///////////////////////////////////////////////////////////////////////////////
         public void nuevoMovimientoGasto(tbMovimientoGasto mov)
         {
+            mov.NumMovimiento = nuevoNumMovimiento() + 1;
+            mov.Saldo = saldoAnterior() + mov.Total;
             mtbMalagaDB.tbMovimientoGasto.InsertOnSubmit(mov);
             save();
         }
@@ -218,7 +262,13 @@ namespace TortolasProject.Models.Repositorios
         {
             return mtbMalagaDB.tbMovimientoIngreso.Any(m => m.idMovimientoIngreso.Equals(idMovimiento));
         }
+        public tbMovimientoIngreso existeMovimientoIngresoByNumMovimiento(int numMovimiento)
+        {
+            return mtbMalagaDB.tbMovimientoIngreso.Where(mi => mi.NumMovimiento == numMovimiento).Count() > 0 ?
+                mtbMalagaDB.tbMovimientoIngreso.Where(mg => mg.NumMovimiento == numMovimiento).Single() :
+                null;
 
+        }
         ///////////////////////////////////////////////////////////////////////////////
         // Gráficas contables                                                            
         ////////////////// /////////////////////////////////////////////////////////////
