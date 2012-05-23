@@ -8,12 +8,12 @@ namespace TortolasProject.Models.Repositorios
     public class EmpresasRepositorio
     {
         mtbMalagaDataContext mtbMalagaDB = new mtbMalagaDataContext();
-
+        
         // EMPRESAS //
 
         public IList<tbEmpresa> ListarEmpresas()
         {
-            return mtbMalagaDB.tbEmpresa.ToList();
+            return mtbMalagaDB.tbEmpresa.ToList<tbEmpresa>();
         }
 
         public tbEmpresa buscaremp(Guid idemp)
@@ -61,7 +61,7 @@ namespace TortolasProject.Models.Repositorios
 
         public IList<tbAsociacion> ListarAsociaciones()
         {
-            return mtbMalagaDB.tbAsociacion.ToList();
+            return mtbMalagaDB.tbAsociacion.ToList<tbAsociacion>();
         }
 
         public void updateAsoc(tbAsociacion asoc)
@@ -140,7 +140,7 @@ namespace TortolasProject.Models.Repositorios
 
         public void updatePat(tbPatrocinador pat)
         {
-            tbPatrocinador original = buscarpat(pat.FKCodigoEmpresa);
+            tbPatrocinador original = buscarpat(pat.idPatrocinador);
 
             original.LocalizacionPublicidad = pat.LocalizacionPublicidad;
 
@@ -180,6 +180,12 @@ namespace TortolasProject.Models.Repositorios
 
 
             mtbMalagaDB.SubmitChanges();
+        }
+
+        public void deletePub(Guid id)
+        {
+            mtbMalagaDB.tbPublicidad.DeleteOnSubmit(buscarpub(id));
+            salvar();
         }
 
         // CONVENIOS //

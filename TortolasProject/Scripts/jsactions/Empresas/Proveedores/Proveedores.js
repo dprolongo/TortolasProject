@@ -261,7 +261,7 @@
 
             var datos = {};
 
-            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+            if (comprobarNecesarios("ComprobarNulosProveedores")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nuevoproveedornombre").val();

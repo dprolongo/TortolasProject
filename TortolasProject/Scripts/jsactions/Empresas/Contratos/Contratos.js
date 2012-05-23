@@ -288,7 +288,7 @@
         $("#BotonAceptarVentanaEditarContrato").live("click", function () {
             var datos = {};
 
-            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+            if (comprobarNecesarios("ComprobarNulosContratosEditar")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nombreempresacontratoeditar").val();
@@ -384,7 +384,7 @@
         $("#BotonAceptarVentanaCrearContrato").click(function () {
 
             var datos = {};
-            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+            if (comprobarNecesarios("ComprobarNulosContratosCrear")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nombreempresacontratocrear").val();

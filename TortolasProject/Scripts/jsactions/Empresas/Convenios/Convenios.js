@@ -242,7 +242,7 @@
 
             var datos = {};
 
-            if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+            if (comprobarNecesarios("ComprobarNulosConvenio")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nombreempresaconveniocrear").val();

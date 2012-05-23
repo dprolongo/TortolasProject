@@ -223,7 +223,7 @@
         </center>
     </div>
 
-    <div id="VentanaCrearProveedor">
+    <div id="VentanaCrearProveedor" class="ComprobarNulosProveedores">
         <b><h5>Datos Proveedor</h5></b>
         <br />
         <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nuevoproveedornombre" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox requerido" /><br />
@@ -286,7 +286,7 @@
         </center>
     </div>
 
-    <div id="VentanaCrearPatrocinador">
+    <div id="VentanaCrearPatrocinador" class="ComprobarNulosPatrocinadores">
         <b><h5>Datos Patrocinador</h5></b>
         <br />
         <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombrepatrocinadornuevo" class=" CuadroTexto NoModificable nombreempresaasociacion k-textbox requerido" /><br />
@@ -329,7 +329,7 @@
         </center>
     </div>
 
-    <div id="VentanaCrearPublicidad">
+    <div id="VentanaCrearPublicidad" class="ComprobarNulosPublicidad">
         <b><h5>Datos Elemento Publicitario</h5></b>
         <br />
         <label for="loca">Localización: </label><input type="text" id="Text1" class=" CuadroTexto NoModificable k-textbox" /><br />
@@ -344,6 +344,20 @@
             </div>
             <input type="button" value="Aceptar" id="Button1" class="k-button" />
             <input type="button" value="Cancelar" id="Button2" class="k-button FuncionBotonCancelarProveedores" />    
+        </center>
+    </div>
+
+    <div id="VentanaEliminarPublicidad">
+        <b><h5>Datos Elemento Publicitario</h5></b>
+        <br />
+        <label for="loca">Localización: </label><input type="text" id="locapublicidadeliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="carac">Características: </label><input type="text" id="caracteristicapublicidadeliminar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <br />
+        <hr />
+        <br />
+        <center>
+            <input type="button" value="Aceptar" id="BotonAceptarVentanaEliminarPublicidad" class="k-button" />
+            <input type="button" value="Cancelar" id="BotonCancelarVentanaEliminarPublicidad" class="k-button FuncionBotonCancelarProveedores" />    
         </center>
     </div>
 
@@ -379,7 +393,7 @@
         </center>
     </div>
 
-    <div id="VentanaCrearConvenio">
+    <div id="VentanaCrearConvenio" class="ComprobarNulosConvenio">
         <b><h5>Datos Convenio</h5></b>
         <br />
         <label for="nombreempresaproveedor">Nombre: </label><input type="text" id="nombreempresaconveniocrear" class=" CuadroTexto NoModificable requerido nombreempresaasociacion k-textbox" /><br />
@@ -408,7 +422,7 @@
         </center>
     </div>
 
-    <div id="VentanaEditarContrato">
+    <div id="VentanaEditarContrato" class="ComprobarNulosContratosEditar">
         <h5>Datos Empresa</h5>
         <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratoeditar" class=" CuadroTexto k-textbox nombreempresaasociacion" /><br />
         <label for="cif">CIF: </label><input type="text" id="cifcontratoeditar" class=" CuadroTexto k-textbox cifremoto" /><br />
@@ -460,7 +474,7 @@
         </center>
     </div>
 
-    <div id="VentanaCrearContrato">
+    <div id="VentanaCrearContrato" class="ComprobarNulosContratosCrear">
         <h5>Datos Empresa</h5>
         <label for="nombreempresacontratoeditar">Nombre: </label><input type="text" id="nombreempresacontratocrear" class=" CuadroTexto requerido k-textbox nombreempresaasociacion" /><br />
         <label for="cif">CIF: </label><input type="text" id="cifempresacontratocrear" class=" CuadroTexto k-textbox cifremoto requerido" /><br />
