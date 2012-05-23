@@ -25,7 +25,7 @@ var status;             // Status de la validación
 var validacionLinea;    // Validación de una línea de factura
 var statusLinea;        // Status de la validación de una línea.
 var idLineaFactura;           // uid de la linea editada
-
+var editarLinea;
 
 $(document).ready(function () {
     $("#facturaForm").hide();
@@ -75,6 +75,7 @@ function estadoDetallesFactura() {
     fecha = factura.Fecha;
     concepto = factura.Concepto;
     vieneDeDetalles = false;
+    editar = false;
 
     // Ocultar campos
     if(factura.NombreEstado == "Pagado") $("#poliButton").hide();   
@@ -287,6 +288,7 @@ function tablaEditable() {
 
     // Tabla de facturas
     $("#facturaLineasFacturaGrid").kendoGrid({
+        selectable: true,
         dataSource: dataSource,
         toolbar: [{ text: "Nueva línea", className: "nuevaLineaFacturaButton" }],
         columns: [
@@ -517,41 +519,49 @@ function inicializar() {
                 tipo = "usuario";
                 idRelacion = fila.idUsuario;
                 $("#relacionDiv").html(fila.nickname);
+                $("#conceptoFactura").val("Usuario: " + fila.nickname);
                 break;
             case 1: // Eventos
                 tipo = "evento";
                 idRelacion = fila.idEvento;
                 $("#relacionDiv").html(fila.Titulo);
+                $("#conceptoFactura").val("Evento: " + fila.Titulo);
                 break;
             case 2: // Cursillos
                 tipo = "cursillo";
                 idRelacion = fila.idCursillo;
                 $("#relacionDiv").html(fila.Titulo);
+                $("#conceptoFactura").val("Cursillo: " + fila.Titulo);
                 break;
             case 3: // Pedidos globales
                 tipo = "pedidoGlobal";
                 idRelacion = fila.idPedidoGlobal;
                 $("#relacionDiv").html(fila.idPedido);
+                $("#conceptoFactura").val("Pedido global: " + fila.idPedido);
                 break;
             case 4: // Pedidos socio
                 tipo = "pedidoUsuario";
                 idRelacion = fila.idPedidoUsuario;
-                $("#relacionDiv").html("<p>" + fila.idPedidoUsuario + "</p><p>" + fila.nickname);
+                $("#relacionDiv").html("Pedido usauario: [" + fila.idPedidoUsuario + "] " + fila.nickname);
+                $("#conceptoFactura").val("Pedido usuario: " + fila.nickname);
                 break;           
             case 5:
                 tipo = "empresa";
                 idRelacion = fila.idEmpresa;
                 $("#relacionDiv").html(fila.Nombre);
+                $("#conceptoFactura").val("Empresa: " + fila.Nombre);
                 break;
             case 6:
                 tipo: "proveedor";
                 idRelacion = fila.idProveedores;
                 $("#relacionDiv").html(fila.Nombre);
+                $("#conceptoFactura").val("Proveedor: " + fila.Nombre);
                 break;
             case 7:
                 tipo = "contrato";
                 idRelacion = fila.idContrato;
                 $("#relacionDiv").html("Contrato: " + fila.NombreEmpresa);
+                $("#conceptoFactura").val("Contrato: " + fila.NombreEmpresa);
         }
 
         $("#relacionesWindow").data("kendoWindow").close();
@@ -803,6 +813,9 @@ function ventanaLineaFactura()
     $(".nuevaLineaFacturaButton").live("click", function() {
         idLineaFactura = null;
         idArticulo = null;
+        editarLinea = false;
+        $("#conceptoLinea").removeClass("k-state-disabled");
+        $("#precioLinea").data("kendoNumericTextBox").enable(true);
         $("#quitarArticulo").hide();
         $("#articulosGrid").show();
         $("#agregarArticuloConcepto").show();
@@ -817,9 +830,14 @@ function ventanaLineaFactura()
     $("#facturaLineasFacturaGrid").delegate(".editarLineaFacturaButton", "click", function (e) {
         e.preventDefault();
         
+        editarLinea = true;
+        $("#conceptoLinea").removeClass("k-state-disabled");
+        $("#conceptoLinea").prop("disabled",false);
+        $("#precioLinea").data("kendoNumericTextBox").enable(true);
+
         var linea = tabla.dataItem($(this).closest("tr"));
         idLineaFactura = linea.idLineaFactura;
-        if(linea.idArticulo != null)
+        if(linea.idArticulo != "")
         {
             $("#conceptoLinea").val(linea.concepto);
             $("#conceptoLinea").prop("disabled",true);
@@ -849,7 +867,7 @@ function ventanaLineaFactura()
     // Botón editar línea
     $("#facturaLineasFacturaGrid").delegate(".eliminarLineaFacturaButton", "click", function (e) {
         e.preventDefault();
-
+        
         // Obtenemos la UID de la fila creada por KENDO
         var uid = $(this).closest("tr").attr("data-uid");        
         dataSource.remove(dataSource.getByUid(uid));
@@ -935,32 +953,41 @@ function ventanaLineaFactura()
         var unidades = $("#unidadesLinea").val();
         var precio = $("#precioLinea").val();
         
-        alert(validacionLinea.validate());
         if(!validacionLinea.validate())
         {
             //statusLinea.text("Rellene todos los campos").addClass("invalid");            
         }
         else
-        {            
-            if(idLineaFactura == null )     // Nueva línea
+        {
+            if(idLineaFactura == null && editarLinea == false )     // Nueva línea
             {
                 var linea = {
                     concepto: conceptoLinea,
                     unidades: unidades*1,
                     precio: precio*1,
-                    total: precio * unidades,
-                    idArticulo: idArticulo
+                    total: precio * unidades
                 };
+                if(idArticulo == null){ linea.idArticulo = "";}
+                else{ linea.idArticulo = idArticulo;}
                 dataSource.add(linea);
             }
             else   // Linea editada
             {
-                var linea = dataSource.get(idLineaFactura);
+                var uid = $("#facturaLineasFacturaGrid .k-state-selected").attr("data-uid");
+                var linea = dataSource.getByUid(uid);
                 linea.concepto = conceptoLinea;
-                linea.unidades = unidades*1;
-                linea.precio = precio*1;
+                linea.unidades = unidades * 1;
+                linea.precio = precio* 1;
                 linea.total = precio * unidades;
-                linea.idArticulo = idArticulo;
+                if(idArticulo == null){ linea.idArticulo = "";}
+                else {linea.idArticulo = idArticulo;}
+                
+                /*
+                dataSource.add(linea);
+                dataSource.remove(dataSource.getByUid(uid));
+                console.log("UID: "+uid);
+                alert(uid);
+                */
             }
 
             tabla.refresh();
