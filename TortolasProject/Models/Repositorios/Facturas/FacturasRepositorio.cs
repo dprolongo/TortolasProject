@@ -13,35 +13,34 @@ namespace TortolasProject.Models.Repositorios
         ///////////////////////////////////////////////////////////////////////////////
         // Métodos de la clase de tbFactura
         ///////////////////////////////////////////////////////////////////////////////
+        public int nuevoNumFactura()
+        {
+            if (mtbMalagaDB.tbFactura.Count() > 0) return mtbMalagaDB.tbFactura.Max(f => f.NumFactura) + 1;
+            else return 1;
+        }
         public IList<tbFactura> listarFacturas()
         {
-            return mtbMalagaDB.tbFactura.ToList();
+            return mtbMalagaDB.tbFactura.Where(f=> f.Eliminado == false).ToList();
 
         }
 
         public tbFactura leerFactura(Guid id)
         {
-            return mtbMalagaDB.tbFactura.Where(factura => factura.idFactura == id).Single();
-            
+            return mtbMalagaDB.tbFactura.Where(factura => factura.idFactura == id && factura.Eliminado == false).Single();            
         }
 
         public void nuevaFactura(tbFactura f)
         {
+            f.NumFactura = nuevoNumFactura();
+            f.Eliminado = false;
             mtbMalagaDB.tbFactura.InsertOnSubmit(f);
             save();
         }
         public void eliminarFactura(Guid id)
         {
             tbFactura f = leerFactura(id);
-            
-            foreach ( tbLineaFactura lineaFactura in mtbMalagaDB.tbLineaFactura.Where(lf => lf.FKFactura == f.idFactura) )
-            {
-                eliminarLinea(lineaFactura.idLineaFactura);
-            }
-
-            mtbMalagaDB.tbFactura.DeleteOnSubmit(f);
+            f.Eliminado = true;
             save();
-
         }
 
         public void setEstadoFactura(tbEstadoFactura estado, Guid id)
@@ -226,22 +225,22 @@ namespace TortolasProject.Models.Repositorios
 
         public IList<tbFactura> soloIngresosFactura()
         {
-            return mtbMalagaDB.tbFactura.Where(f => f.Total >= 0).ToList(); 
+            return mtbMalagaDB.tbFactura.Where(f => f.Total >= 0 && f.Eliminado == false).ToList(); 
         }
 
         public IList<tbFactura> soloGastosFactura()
         {
-            return mtbMalagaDB.tbFactura.Where(f => f.Total < 0).ToList();
+            return mtbMalagaDB.tbFactura.Where(f => f.Total < 0 && f.Eliminado == false).ToList();
         }
 
         public Decimal ingresosFecha(DateTime inicial, DateTime final)
         {
-            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total >= 0).ToList().Sum(f=> f.Total);
+            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total >= 0 && f.Eliminado == false).ToList().Sum(f=> f.Total);
         }
 
         public Decimal gastosFecha(DateTime inicial, DateTime final)
         {
-            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total < 0).ToList().Sum(f => f.Total);
+            return mtbMalagaDB.tbFactura.Where(f => f.Fecha.CompareTo(inicial) > 0 && f.Fecha.CompareTo(final) < 0 && f.Total < 0 && f.Eliminado == false).ToList().Sum(f => f.Total);
         }
 
         public Dictionary<DateTime, Decimal[]> todosIngresosGastos()
@@ -251,7 +250,7 @@ namespace TortolasProject.Models.Repositorios
             foreach (tbFactura f in mtbMalagaDB.tbFactura.ToList())
             {
                 DateTime fecha = new DateTime(f.Fecha.Year,f.Fecha.Month,f.Fecha.Day);
-                if (!datos.ContainsKey(fecha))
+                if (!datos.ContainsKey(new DateTime(fecha.Year,fecha.Month,fecha.Day)))
                 {
                     Decimal[] valores = new Decimal[2];
                     if(f.Total >= 0)
@@ -263,7 +262,7 @@ namespace TortolasProject.Models.Repositorios
                         valores[0] = 0;
                         valores[1] = f.Total;
                     }
-                    datos.Add(fecha,valores);
+                    datos.Add(new DateTime(fecha.Year,fecha.Month,1),valores);
                 }
                 else
                 {                   
