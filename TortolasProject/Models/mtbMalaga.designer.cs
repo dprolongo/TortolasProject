@@ -33,6 +33,9 @@ namespace TortolasProject.Models
     partial void Insertaspnet_Applications(aspnet_Applications instance);
     partial void Updateaspnet_Applications(aspnet_Applications instance);
     partial void Deleteaspnet_Applications(aspnet_Applications instance);
+    partial void InserttbUsuario(tbUsuario instance);
+    partial void UpdatetbUsuario(tbUsuario instance);
+    partial void DeletetbUsuario(tbUsuario instance);
     partial void Insertaspnet_Membership(aspnet_Membership instance);
     partial void Updateaspnet_Membership(aspnet_Membership instance);
     partial void Deleteaspnet_Membership(aspnet_Membership instance);
@@ -159,9 +162,6 @@ namespace TortolasProject.Models
     partial void InserttbPublicidad(tbPublicidad instance);
     partial void UpdatetbPublicidad(tbPublicidad instance);
     partial void DeletetbPublicidad(tbPublicidad instance);
-    partial void InserttbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
-    partial void UpdatetbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
-    partial void DeletetbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo instance);
     partial void InserttbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
     partial void UpdatetbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
     partial void DeletetbRelacionPedidoGlobalArticulo(tbRelacionPedidoGlobalArticulo instance);
@@ -174,9 +174,6 @@ namespace TortolasProject.Models
     partial void InserttbTipoCuota(tbTipoCuota instance);
     partial void UpdatetbTipoCuota(tbTipoCuota instance);
     partial void DeletetbTipoCuota(tbTipoCuota instance);
-    partial void InserttbUsuario(tbUsuario instance);
-    partial void UpdatetbUsuario(tbUsuario instance);
-    partial void DeletetbUsuario(tbUsuario instance);
     #endregion
 		
 		public mtbMalagaDataContext() : 
@@ -214,6 +211,14 @@ namespace TortolasProject.Models
 			get
 			{
 				return this.GetTable<aspnet_Applications>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbUsuario> tbUsuario
+		{
+			get
+			{
+				return this.GetTable<tbUsuario>();
 			}
 		}
 		
@@ -553,14 +558,6 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
-		{
-			get
-			{
-				return this.GetTable<tbRelacionLineaPedidoUsuarioArticulo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tbRelacionPedidoGlobalArticulo> tbRelacionPedidoGlobalArticulo
 		{
 			get
@@ -590,14 +587,6 @@ namespace TortolasProject.Models
 			get
 			{
 				return this.GetTable<tbTipoCuota>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tbUsuario> tbUsuario
-		{
-			get
-			{
-				return this.GetTable<tbUsuario>();
 			}
 		}
 	}
@@ -845,6 +834,837 @@ namespace TortolasProject.Models
 		{
 			this.SendPropertyChanging();
 			entity.aspnet_Applications = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbUsuario")]
+	public partial class tbUsuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _idUsuario;
+		
+		private string _Nickname;
+		
+		private string _Email;
+		
+		private string _Nombre;
+		
+		private string _Apellidos;
+		
+		private string _Direccion;
+		
+		private System.Nullable<System.DateTime> _FechaNacimiento;
+		
+		private string _DNI;
+		
+		private string _Avatar;
+		
+		private System.Guid _FKUser;
+		
+		private string _SitioWeb;
+		
+		private string _Facebook;
+		
+		private string _Twitter;
+		
+		private string _Aficiones;
+		
+		private string _Skype;
+		
+		private string _Sexo;
+		
+		private string _GooglePlus;
+		
+		private string _Experiencias;
+		
+		private string _Telefono;
+		
+		private string _Nacionalidad;
+		
+		private string _Provincia;
+		
+		private string _Localidad;
+		
+		private EntitySet<tbDocInscripcion> _tbDocInscripcion;
+		
+		private EntitySet<tbEvento> _tbEvento;
+		
+		private EntitySet<tbFactura> _tbFactura;
+		
+		private EntitySet<tbMensaje> _tbMensaje;
+		
+		private EntitySet<tbMensaje> _tbMensaje1;
+		
+		private EntitySet<tbPedidoUsuario> _tbPedidoUsuario;
+		
+		private EntitySet<tbRuta> _tbRuta;
+		
+		private EntitySet<tbSocio> _tbSocio;
+		
+		private EntityRef<aspnet_Users> _aspnet_Users;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidUsuarioChanging(System.Guid value);
+    partial void OnidUsuarioChanged();
+    partial void OnNicknameChanging(string value);
+    partial void OnNicknameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnApellidosChanging(string value);
+    partial void OnApellidosChanged();
+    partial void OnDireccionChanging(string value);
+    partial void OnDireccionChanged();
+    partial void OnFechaNacimientoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaNacimientoChanged();
+    partial void OnDNIChanging(string value);
+    partial void OnDNIChanged();
+    partial void OnAvatarChanging(string value);
+    partial void OnAvatarChanged();
+    partial void OnFKUserChanging(System.Guid value);
+    partial void OnFKUserChanged();
+    partial void OnSitioWebChanging(string value);
+    partial void OnSitioWebChanged();
+    partial void OnFacebookChanging(string value);
+    partial void OnFacebookChanged();
+    partial void OnTwitterChanging(string value);
+    partial void OnTwitterChanged();
+    partial void OnAficionesChanging(string value);
+    partial void OnAficionesChanged();
+    partial void OnSkypeChanging(string value);
+    partial void OnSkypeChanged();
+    partial void OnSexoChanging(string value);
+    partial void OnSexoChanged();
+    partial void OnGooglePlusChanging(string value);
+    partial void OnGooglePlusChanged();
+    partial void OnExperienciasChanging(string value);
+    partial void OnExperienciasChanged();
+    partial void OnTelefonoChanging(string value);
+    partial void OnTelefonoChanged();
+    partial void OnNacionalidadChanging(string value);
+    partial void OnNacionalidadChanged();
+    partial void OnProvinciaChanging(string value);
+    partial void OnProvinciaChanged();
+    partial void OnLocalidadChanging(string value);
+    partial void OnLocalidadChanged();
+    #endregion
+		
+		public tbUsuario()
+		{
+			this._tbDocInscripcion = new EntitySet<tbDocInscripcion>(new Action<tbDocInscripcion>(this.attach_tbDocInscripcion), new Action<tbDocInscripcion>(this.detach_tbDocInscripcion));
+			this._tbEvento = new EntitySet<tbEvento>(new Action<tbEvento>(this.attach_tbEvento), new Action<tbEvento>(this.detach_tbEvento));
+			this._tbFactura = new EntitySet<tbFactura>(new Action<tbFactura>(this.attach_tbFactura), new Action<tbFactura>(this.detach_tbFactura));
+			this._tbMensaje = new EntitySet<tbMensaje>(new Action<tbMensaje>(this.attach_tbMensaje), new Action<tbMensaje>(this.detach_tbMensaje));
+			this._tbMensaje1 = new EntitySet<tbMensaje>(new Action<tbMensaje>(this.attach_tbMensaje1), new Action<tbMensaje>(this.detach_tbMensaje1));
+			this._tbPedidoUsuario = new EntitySet<tbPedidoUsuario>(new Action<tbPedidoUsuario>(this.attach_tbPedidoUsuario), new Action<tbPedidoUsuario>(this.detach_tbPedidoUsuario));
+			this._tbRuta = new EntitySet<tbRuta>(new Action<tbRuta>(this.attach_tbRuta), new Action<tbRuta>(this.detach_tbRuta));
+			this._tbSocio = new EntitySet<tbSocio>(new Action<tbSocio>(this.attach_tbSocio), new Action<tbSocio>(this.detach_tbSocio));
+			this._aspnet_Users = default(EntityRef<aspnet_Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUsuario", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid idUsuario
+		{
+			get
+			{
+				return this._idUsuario;
+			}
+			set
+			{
+				if ((this._idUsuario != value))
+				{
+					this.OnidUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._idUsuario = value;
+					this.SendPropertyChanged("idUsuario");
+					this.OnidUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nickname", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nickname
+		{
+			get
+			{
+				return this._Nickname;
+			}
+			set
+			{
+				if ((this._Nickname != value))
+				{
+					this.OnNicknameChanging(value);
+					this.SendPropertyChanging();
+					this._Nickname = value;
+					this.SendPropertyChanged("Nickname");
+					this.OnNicknameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellidos", DbType="VarChar(100)")]
+		public string Apellidos
+		{
+			get
+			{
+				return this._Apellidos;
+			}
+			set
+			{
+				if ((this._Apellidos != value))
+				{
+					this.OnApellidosChanging(value);
+					this.SendPropertyChanging();
+					this._Apellidos = value;
+					this.SendPropertyChanged("Apellidos");
+					this.OnApellidosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="NVarChar(200)")]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this.OnDireccionChanging(value);
+					this.SendPropertyChanging();
+					this._Direccion = value;
+					this.SendPropertyChanged("Direccion");
+					this.OnDireccionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaNacimiento
+		{
+			get
+			{
+				return this._FechaNacimiento;
+			}
+			set
+			{
+				if ((this._FechaNacimiento != value))
+				{
+					this.OnFechaNacimientoChanging(value);
+					this.SendPropertyChanging();
+					this._FechaNacimiento = value;
+					this.SendPropertyChanged("FechaNacimiento");
+					this.OnFechaNacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DNI", DbType="VarChar(9)")]
+		public string DNI
+		{
+			get
+			{
+				return this._DNI;
+			}
+			set
+			{
+				if ((this._DNI != value))
+				{
+					this.OnDNIChanging(value);
+					this.SendPropertyChanging();
+					this._DNI = value;
+					this.SendPropertyChanged("DNI");
+					this.OnDNIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="NVarChar(100)")]
+		public string Avatar
+		{
+			get
+			{
+				return this._Avatar;
+			}
+			set
+			{
+				if ((this._Avatar != value))
+				{
+					this.OnAvatarChanging(value);
+					this.SendPropertyChanging();
+					this._Avatar = value;
+					this.SendPropertyChanged("Avatar");
+					this.OnAvatarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKUser", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FKUser
+		{
+			get
+			{
+				return this._FKUser;
+			}
+			set
+			{
+				if ((this._FKUser != value))
+				{
+					if (this._aspnet_Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFKUserChanging(value);
+					this.SendPropertyChanging();
+					this._FKUser = value;
+					this.SendPropertyChanged("FKUser");
+					this.OnFKUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SitioWeb", DbType="NVarChar(100)")]
+		public string SitioWeb
+		{
+			get
+			{
+				return this._SitioWeb;
+			}
+			set
+			{
+				if ((this._SitioWeb != value))
+				{
+					this.OnSitioWebChanging(value);
+					this.SendPropertyChanging();
+					this._SitioWeb = value;
+					this.SendPropertyChanged("SitioWeb");
+					this.OnSitioWebChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facebook", DbType="NVarChar(100)")]
+		public string Facebook
+		{
+			get
+			{
+				return this._Facebook;
+			}
+			set
+			{
+				if ((this._Facebook != value))
+				{
+					this.OnFacebookChanging(value);
+					this.SendPropertyChanging();
+					this._Facebook = value;
+					this.SendPropertyChanged("Facebook");
+					this.OnFacebookChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Twitter", DbType="NVarChar(100)")]
+		public string Twitter
+		{
+			get
+			{
+				return this._Twitter;
+			}
+			set
+			{
+				if ((this._Twitter != value))
+				{
+					this.OnTwitterChanging(value);
+					this.SendPropertyChanging();
+					this._Twitter = value;
+					this.SendPropertyChanged("Twitter");
+					this.OnTwitterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Aficiones", DbType="NVarChar(200)")]
+		public string Aficiones
+		{
+			get
+			{
+				return this._Aficiones;
+			}
+			set
+			{
+				if ((this._Aficiones != value))
+				{
+					this.OnAficionesChanging(value);
+					this.SendPropertyChanging();
+					this._Aficiones = value;
+					this.SendPropertyChanged("Aficiones");
+					this.OnAficionesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Skype", DbType="NVarChar(100)")]
+		public string Skype
+		{
+			get
+			{
+				return this._Skype;
+			}
+			set
+			{
+				if ((this._Skype != value))
+				{
+					this.OnSkypeChanging(value);
+					this.SendPropertyChanging();
+					this._Skype = value;
+					this.SendPropertyChanged("Skype");
+					this.OnSkypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexo", DbType="NVarChar(10)")]
+		public string Sexo
+		{
+			get
+			{
+				return this._Sexo;
+			}
+			set
+			{
+				if ((this._Sexo != value))
+				{
+					this.OnSexoChanging(value);
+					this.SendPropertyChanging();
+					this._Sexo = value;
+					this.SendPropertyChanged("Sexo");
+					this.OnSexoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GooglePlus", DbType="NVarChar(100)")]
+		public string GooglePlus
+		{
+			get
+			{
+				return this._GooglePlus;
+			}
+			set
+			{
+				if ((this._GooglePlus != value))
+				{
+					this.OnGooglePlusChanging(value);
+					this.SendPropertyChanging();
+					this._GooglePlus = value;
+					this.SendPropertyChanged("GooglePlus");
+					this.OnGooglePlusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Experiencias", DbType="NVarChar(300)")]
+		public string Experiencias
+		{
+			get
+			{
+				return this._Experiencias;
+			}
+			set
+			{
+				if ((this._Experiencias != value))
+				{
+					this.OnExperienciasChanging(value);
+					this.SendPropertyChanging();
+					this._Experiencias = value;
+					this.SendPropertyChanged("Experiencias");
+					this.OnExperienciasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(11)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this.OnTelefonoChanging(value);
+					this.SendPropertyChanging();
+					this._Telefono = value;
+					this.SendPropertyChanged("Telefono");
+					this.OnTelefonoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nacionalidad", DbType="NVarChar(20)")]
+		public string Nacionalidad
+		{
+			get
+			{
+				return this._Nacionalidad;
+			}
+			set
+			{
+				if ((this._Nacionalidad != value))
+				{
+					this.OnNacionalidadChanging(value);
+					this.SendPropertyChanging();
+					this._Nacionalidad = value;
+					this.SendPropertyChanged("Nacionalidad");
+					this.OnNacionalidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="NVarChar(50)")]
+		public string Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this.OnProvinciaChanging(value);
+					this.SendPropertyChanging();
+					this._Provincia = value;
+					this.SendPropertyChanged("Provincia");
+					this.OnProvinciaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Localidad", DbType="NVarChar(50)")]
+		public string Localidad
+		{
+			get
+			{
+				return this._Localidad;
+			}
+			set
+			{
+				if ((this._Localidad != value))
+				{
+					this.OnLocalidadChanging(value);
+					this.SendPropertyChanging();
+					this._Localidad = value;
+					this.SendPropertyChanged("Localidad");
+					this.OnLocalidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbDocInscripcion", Storage="_tbDocInscripcion", ThisKey="idUsuario", OtherKey="FKUsuario")]
+		public EntitySet<tbDocInscripcion> tbDocInscripcion
+		{
+			get
+			{
+				return this._tbDocInscripcion;
+			}
+			set
+			{
+				this._tbDocInscripcion.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbEvento", Storage="_tbEvento", ThisKey="idUsuario", OtherKey="FKUsuarioCreador")]
+		public EntitySet<tbEvento> tbEvento
+		{
+			get
+			{
+				return this._tbEvento;
+			}
+			set
+			{
+				this._tbEvento.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbFactura", Storage="_tbFactura", ThisKey="idUsuario", OtherKey="FKUsuario")]
+		public EntitySet<tbFactura> tbFactura
+		{
+			get
+			{
+				return this._tbFactura;
+			}
+			set
+			{
+				this._tbFactura.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbMensaje", Storage="_tbMensaje", ThisKey="idUsuario", OtherKey="FKDestinatario")]
+		public EntitySet<tbMensaje> tbMensaje
+		{
+			get
+			{
+				return this._tbMensaje;
+			}
+			set
+			{
+				this._tbMensaje.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbMensaje1", Storage="_tbMensaje1", ThisKey="idUsuario", OtherKey="FKRemitente")]
+		public EntitySet<tbMensaje> tbMensaje1
+		{
+			get
+			{
+				return this._tbMensaje1;
+			}
+			set
+			{
+				this._tbMensaje1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbPedidoUsuario", Storage="_tbPedidoUsuario", ThisKey="idUsuario", OtherKey="FKUsuario")]
+		public EntitySet<tbPedidoUsuario> tbPedidoUsuario
+		{
+			get
+			{
+				return this._tbPedidoUsuario;
+			}
+			set
+			{
+				this._tbPedidoUsuario.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbRuta", Storage="_tbRuta", ThisKey="idUsuario", OtherKey="FKUsuario")]
+		public EntitySet<tbRuta> tbRuta
+		{
+			get
+			{
+				return this._tbRuta;
+			}
+			set
+			{
+				this._tbRuta.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbSocio", Storage="_tbSocio", ThisKey="idUsuario", OtherKey="FKUsuario")]
+		public EntitySet<tbSocio> tbSocio
+		{
+			get
+			{
+				return this._tbSocio;
+			}
+			set
+			{
+				this._tbSocio.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_tbUsuario", Storage="_aspnet_Users", ThisKey="FKUser", OtherKey="UserId", IsForeignKey=true)]
+		public aspnet_Users aspnet_Users
+		{
+			get
+			{
+				return this._aspnet_Users.Entity;
+			}
+			set
+			{
+				aspnet_Users previousValue = this._aspnet_Users.Entity;
+				if (((previousValue != value) 
+							|| (this._aspnet_Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._aspnet_Users.Entity = null;
+						previousValue.tbUsuario.Remove(this);
+					}
+					this._aspnet_Users.Entity = value;
+					if ((value != null))
+					{
+						value.tbUsuario.Add(this);
+						this._FKUser = value.UserId;
+					}
+					else
+					{
+						this._FKUser = default(System.Guid);
+					}
+					this.SendPropertyChanged("aspnet_Users");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tbDocInscripcion(tbDocInscripcion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbDocInscripcion(tbDocInscripcion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbEvento(tbEvento entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbEvento(tbEvento entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbFactura(tbFactura entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbFactura(tbFactura entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbMensaje(tbMensaje entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbMensaje(tbMensaje entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbMensaje1(tbMensaje entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario1 = this;
+		}
+		
+		private void detach_tbMensaje1(tbMensaje entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario1 = null;
+		}
+		
+		private void attach_tbPedidoUsuario(tbPedidoUsuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbPedidoUsuario(tbPedidoUsuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbRuta(tbRuta entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbRuta(tbRuta entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
+		}
+		
+		private void attach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = this;
+		}
+		
+		private void detach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbUsuario = null;
 		}
 	}
 	
@@ -2654,6 +3474,8 @@ namespace TortolasProject.Models
 		
 		private System.DateTime _LastActivityDate;
 		
+		private EntitySet<tbUsuario> _tbUsuario;
+		
 		private EntityRef<aspnet_Membership> _aspnet_Membership;
 		
 		private EntitySet<aspnet_PersonalizationPerUser> _aspnet_PersonalizationPerUser;
@@ -2661,8 +3483,6 @@ namespace TortolasProject.Models
 		private EntityRef<aspnet_Profile> _aspnet_Profile;
 		
 		private EntitySet<aspnet_UsersInRoles> _aspnet_UsersInRoles;
-		
-		private EntitySet<tbUsuario> _tbUsuario;
 		
 		private EntityRef<aspnet_Applications> _aspnet_Applications;
 		
@@ -2688,11 +3508,11 @@ namespace TortolasProject.Models
 		
 		public aspnet_Users()
 		{
+			this._tbUsuario = new EntitySet<tbUsuario>(new Action<tbUsuario>(this.attach_tbUsuario), new Action<tbUsuario>(this.detach_tbUsuario));
 			this._aspnet_Membership = default(EntityRef<aspnet_Membership>);
 			this._aspnet_PersonalizationPerUser = new EntitySet<aspnet_PersonalizationPerUser>(new Action<aspnet_PersonalizationPerUser>(this.attach_aspnet_PersonalizationPerUser), new Action<aspnet_PersonalizationPerUser>(this.detach_aspnet_PersonalizationPerUser));
 			this._aspnet_Profile = default(EntityRef<aspnet_Profile>);
 			this._aspnet_UsersInRoles = new EntitySet<aspnet_UsersInRoles>(new Action<aspnet_UsersInRoles>(this.attach_aspnet_UsersInRoles), new Action<aspnet_UsersInRoles>(this.detach_aspnet_UsersInRoles));
-			this._tbUsuario = new EntitySet<tbUsuario>(new Action<tbUsuario>(this.attach_tbUsuario), new Action<tbUsuario>(this.detach_tbUsuario));
 			this._aspnet_Applications = default(EntityRef<aspnet_Applications>);
 			OnCreated();
 		}
@@ -2841,6 +3661,19 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_tbUsuario", Storage="_tbUsuario", ThisKey="UserId", OtherKey="FKUser")]
+		public EntitySet<tbUsuario> tbUsuario
+		{
+			get
+			{
+				return this._tbUsuario;
+			}
+			set
+			{
+				this._tbUsuario.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_aspnet_Membership", Storage="_aspnet_Membership", ThisKey="UserId", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
 		public aspnet_Membership aspnet_Membership
 		{
@@ -2925,19 +3758,6 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_tbUsuario", Storage="_tbUsuario", ThisKey="UserId", OtherKey="FKUser")]
-		public EntitySet<tbUsuario> tbUsuario
-		{
-			get
-			{
-				return this._tbUsuario;
-			}
-			set
-			{
-				this._tbUsuario.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Applications_aspnet_Users", Storage="_aspnet_Applications", ThisKey="ApplicationId", OtherKey="ApplicationId", IsForeignKey=true)]
 		public aspnet_Applications aspnet_Applications
 		{
@@ -2992,6 +3812,18 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		private void attach_tbUsuario(tbUsuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.aspnet_Users = this;
+		}
+		
+		private void detach_tbUsuario(tbUsuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.aspnet_Users = null;
+		}
+		
 		private void attach_aspnet_PersonalizationPerUser(aspnet_PersonalizationPerUser entity)
 		{
 			this.SendPropertyChanging();
@@ -3011,18 +3843,6 @@ namespace TortolasProject.Models
 		}
 		
 		private void detach_aspnet_UsersInRoles(aspnet_UsersInRoles entity)
-		{
-			this.SendPropertyChanging();
-			entity.aspnet_Users = null;
-		}
-		
-		private void attach_tbUsuario(tbUsuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.aspnet_Users = this;
-		}
-		
-		private void detach_tbUsuario(tbUsuario entity)
 		{
 			this.SendPropertyChanging();
 			entity.aspnet_Users = null;
@@ -3811,8 +4631,6 @@ namespace TortolasProject.Models
 		
 		private EntitySet<tbLineaFactura> _tbLineaFactura;
 		
-		private EntitySet<tbRelacionLineaPedidoUsuarioArticulo> _tbRelacionLineaPedidoUsuarioArticulo;
-		
 		private EntitySet<tbRelacionPedidoGlobalArticulo> _tbRelacionPedidoGlobalArticulo;
 		
 		private EntityRef<tbArticulo> _tbArticulo1;
@@ -3842,7 +4660,6 @@ namespace TortolasProject.Models
 			this._tbArticulo2 = default(EntityRef<tbArticulo>);
 			this._tbInventario = new EntitySet<tbInventario>(new Action<tbInventario>(this.attach_tbInventario), new Action<tbInventario>(this.detach_tbInventario));
 			this._tbLineaFactura = new EntitySet<tbLineaFactura>(new Action<tbLineaFactura>(this.attach_tbLineaFactura), new Action<tbLineaFactura>(this.detach_tbLineaFactura));
-			this._tbRelacionLineaPedidoUsuarioArticulo = new EntitySet<tbRelacionLineaPedidoUsuarioArticulo>(new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.attach_tbRelacionLineaPedidoUsuarioArticulo), new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.detach_tbRelacionLineaPedidoUsuarioArticulo));
 			this._tbRelacionPedidoGlobalArticulo = new EntitySet<tbRelacionPedidoGlobalArticulo>(new Action<tbRelacionPedidoGlobalArticulo>(this.attach_tbRelacionPedidoGlobalArticulo), new Action<tbRelacionPedidoGlobalArticulo>(this.detach_tbRelacionPedidoGlobalArticulo));
 			this._tbArticulo1 = default(EntityRef<tbArticulo>);
 			this._tbCategoria = default(EntityRef<tbCategoria>);
@@ -4032,19 +4849,6 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbRelacionLineaPedidoUsuarioArticulo", ThisKey="idArticulo", OtherKey="FKArticulo")]
-		public EntitySet<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
-		{
-			get
-			{
-				return this._tbRelacionLineaPedidoUsuarioArticulo;
-			}
-			set
-			{
-				this._tbRelacionLineaPedidoUsuarioArticulo.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionPedidoGlobalArticulo", Storage="_tbRelacionPedidoGlobalArticulo", ThisKey="idArticulo", OtherKey="FKArticulo")]
 		public EntitySet<tbRelacionPedidoGlobalArticulo> tbRelacionPedidoGlobalArticulo
 		{
@@ -4165,18 +4969,6 @@ namespace TortolasProject.Models
 		}
 		
 		private void detach_tbLineaFactura(tbLineaFactura entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbArticulo = null;
-		}
-		
-		private void attach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbArticulo = this;
-		}
-		
-		private void detach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbArticulo = null;
@@ -6260,6 +7052,8 @@ namespace TortolasProject.Models
 		
 		private string _Observaciones;
 		
+		private EntitySet<tbSocio> _tbSocio;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6278,6 +7072,7 @@ namespace TortolasProject.Models
 		
 		public tbDescuentoSocio()
 		{
+			this._tbSocio = new EntitySet<tbSocio>(new Action<tbSocio>(this.attach_tbSocio), new Action<tbSocio>(this.detach_tbSocio));
 			OnCreated();
 		}
 		
@@ -6381,6 +7176,19 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbDescuentoSocio_tbSocio", Storage="_tbSocio", ThisKey="idDescuentoSocio", OtherKey="FKDescuento")]
+		public EntitySet<tbSocio> tbSocio
+		{
+			get
+			{
+				return this._tbSocio;
+			}
+			set
+			{
+				this._tbSocio.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6399,6 +7207,18 @@ namespace TortolasProject.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbDescuentoSocio = this;
+		}
+		
+		private void detach_tbSocio(tbSocio entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbDescuentoSocio = null;
 		}
 	}
 	
@@ -6422,9 +7242,9 @@ namespace TortolasProject.Models
 		
 		private EntityRef<tbCursillo> _tbCursillo;
 		
-		private EntityRef<tbEvento> _tbEvento;
-		
 		private EntityRef<tbUsuario> _tbUsuario;
+		
+		private EntityRef<tbEvento> _tbEvento;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -6447,8 +7267,8 @@ namespace TortolasProject.Models
 		public tbDocInscripcion()
 		{
 			this._tbCursillo = default(EntityRef<tbCursillo>);
-			this._tbEvento = default(EntityRef<tbEvento>);
 			this._tbUsuario = default(EntityRef<tbUsuario>);
+			this._tbEvento = default(EntityRef<tbEvento>);
 			OnCreated();
 		}
 		
@@ -6618,40 +7438,6 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbEvento_tbDocInscripcion", Storage="_tbEvento", ThisKey="FKEvento", OtherKey="idEvento", IsForeignKey=true)]
-		public tbEvento tbEvento
-		{
-			get
-			{
-				return this._tbEvento.Entity;
-			}
-			set
-			{
-				tbEvento previousValue = this._tbEvento.Entity;
-				if (((previousValue != value) 
-							|| (this._tbEvento.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbEvento.Entity = null;
-						previousValue.tbDocInscripcion.Remove(this);
-					}
-					this._tbEvento.Entity = value;
-					if ((value != null))
-					{
-						value.tbDocInscripcion.Add(this);
-						this._FKEvento = value.idEvento;
-					}
-					else
-					{
-						this._FKEvento = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("tbEvento");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbDocInscripcion", Storage="_tbUsuario", ThisKey="FKUsuario", OtherKey="idUsuario", IsForeignKey=true)]
 		public tbUsuario tbUsuario
 		{
@@ -6682,6 +7468,40 @@ namespace TortolasProject.Models
 						this._FKUsuario = default(System.Guid);
 					}
 					this.SendPropertyChanged("tbUsuario");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbEvento_tbDocInscripcion", Storage="_tbEvento", ThisKey="FKEvento", OtherKey="idEvento", IsForeignKey=true)]
+		public tbEvento tbEvento
+		{
+			get
+			{
+				return this._tbEvento.Entity;
+			}
+			set
+			{
+				tbEvento previousValue = this._tbEvento.Entity;
+				if (((previousValue != value) 
+							|| (this._tbEvento.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbEvento.Entity = null;
+						previousValue.tbDocInscripcion.Remove(this);
+					}
+					this._tbEvento.Entity = value;
+					if ((value != null))
+					{
+						value.tbDocInscripcion.Add(this);
+						this._FKEvento = value.idEvento;
+					}
+					else
+					{
+						this._FKEvento = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("tbEvento");
 				}
 			}
 		}
@@ -7882,6 +8702,10 @@ namespace TortolasProject.Models
 		
 		private bool _Eliminado;
 		
+		private System.Nullable<System.Guid> _FKPedidoGlobal;
+		
+		private System.Nullable<System.Guid> _FKPedidoUsuario;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
 		private EntitySet<tbLineaFactura> _tbLineaFactura;
@@ -7896,13 +8720,13 @@ namespace TortolasProject.Models
 		
 		private EntityRef<tbEstadoFactura> _tbEstadoFactura;
 		
+		private EntityRef<tbUsuario> _tbUsuario;
+		
 		private EntityRef<tbContrato> _tbContrato;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
 		
 		private EntityRef<tbProveedores> _tbProveedores;
-		
-		private EntityRef<tbUsuario> _tbUsuario;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -7938,6 +8762,10 @@ namespace TortolasProject.Models
     partial void OnNumFacturaChanged();
     partial void OnEliminadoChanging(bool value);
     partial void OnEliminadoChanged();
+    partial void OnFKPedidoGlobalChanging(System.Nullable<System.Guid> value);
+    partial void OnFKPedidoGlobalChanged();
+    partial void OnFKPedidoUsuarioChanging(System.Nullable<System.Guid> value);
+    partial void OnFKPedidoUsuarioChanged();
     #endregion
 		
 		public tbFactura()
@@ -7949,10 +8777,10 @@ namespace TortolasProject.Models
 			this._tbEventoOficial = default(EntityRef<tbEventoOficial>);
 			this._tbCursillo = default(EntityRef<tbCursillo>);
 			this._tbEstadoFactura = default(EntityRef<tbEstadoFactura>);
+			this._tbUsuario = default(EntityRef<tbUsuario>);
 			this._tbContrato = default(EntityRef<tbContrato>);
 			this._tbJuntaDirectiva = default(EntityRef<tbJuntaDirectiva>);
 			this._tbProveedores = default(EntityRef<tbProveedores>);
-			this._tbUsuario = default(EntityRef<tbUsuario>);
 			OnCreated();
 		}
 		
@@ -8284,6 +9112,46 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoGlobal", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> FKPedidoGlobal
+		{
+			get
+			{
+				return this._FKPedidoGlobal;
+			}
+			set
+			{
+				if ((this._FKPedidoGlobal != value))
+				{
+					this.OnFKPedidoGlobalChanging(value);
+					this.SendPropertyChanging();
+					this._FKPedidoGlobal = value;
+					this.SendPropertyChanged("FKPedidoGlobal");
+					this.OnFKPedidoGlobalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> FKPedidoUsuario
+		{
+			get
+			{
+				return this._FKPedidoUsuario;
+			}
+			set
+			{
+				if ((this._FKPedidoUsuario != value))
+				{
+					this.OnFKPedidoUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._FKPedidoUsuario = value;
+					this.SendPropertyChanged("FKPedidoUsuario");
+					this.OnFKPedidoUsuarioChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbFactura_tbCuota", Storage="_tbCuota", ThisKey="idFactura", OtherKey="FKFactura")]
 		public EntitySet<tbCuota> tbCuota
 		{
@@ -8438,6 +9306,40 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbFactura", Storage="_tbUsuario", ThisKey="FKUsuario", OtherKey="idUsuario", IsForeignKey=true)]
+		public tbUsuario tbUsuario
+		{
+			get
+			{
+				return this._tbUsuario.Entity;
+			}
+			set
+			{
+				tbUsuario previousValue = this._tbUsuario.Entity;
+				if (((previousValue != value) 
+							|| (this._tbUsuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbUsuario.Entity = null;
+						previousValue.tbFactura.Remove(this);
+					}
+					this._tbUsuario.Entity = value;
+					if ((value != null))
+					{
+						value.tbFactura.Add(this);
+						this._FKUsuario = value.idUsuario;
+					}
+					else
+					{
+						this._FKUsuario = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("tbUsuario");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbContrato_tbFactura", Storage="_tbContrato", ThisKey="FKContrato", OtherKey="idContrato", IsForeignKey=true)]
 		public tbContrato tbContrato
 		{
@@ -8536,40 +9438,6 @@ namespace TortolasProject.Models
 						this._FKProveedores = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("tbProveedores");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbFactura", Storage="_tbUsuario", ThisKey="FKUsuario", OtherKey="idUsuario", IsForeignKey=true)]
-		public tbUsuario tbUsuario
-		{
-			get
-			{
-				return this._tbUsuario.Entity;
-			}
-			set
-			{
-				tbUsuario previousValue = this._tbUsuario.Entity;
-				if (((previousValue != value) 
-							|| (this._tbUsuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbUsuario.Entity = null;
-						previousValue.tbFactura.Remove(this);
-					}
-					this._tbUsuario.Entity = value;
-					if ((value != null))
-					{
-						value.tbFactura.Add(this);
-						this._FKUsuario = value.idUsuario;
-					}
-					else
-					{
-						this._FKUsuario = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("tbUsuario");
 				}
 			}
 		}
@@ -9696,9 +10564,9 @@ namespace TortolasProject.Models
 		
 		private System.Guid _FKPedidoUsuario;
 		
-		private System.Nullable<int> _Unidades;
+		private int _Unidades;
 		
-		private EntitySet<tbRelacionLineaPedidoUsuarioArticulo> _tbRelacionLineaPedidoUsuarioArticulo;
+		private System.Guid _FKArticulo;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -9708,13 +10576,14 @@ namespace TortolasProject.Models
     partial void OnidLineaPedidoUsuarioChanged();
     partial void OnFKPedidoUsuarioChanging(System.Guid value);
     partial void OnFKPedidoUsuarioChanged();
-    partial void OnUnidadesChanging(System.Nullable<int> value);
+    partial void OnUnidadesChanging(int value);
     partial void OnUnidadesChanged();
+    partial void OnFKArticuloChanging(System.Guid value);
+    partial void OnFKArticuloChanged();
     #endregion
 		
 		public tbLineaPedidoUsuario()
 		{
-			this._tbRelacionLineaPedidoUsuarioArticulo = new EntitySet<tbRelacionLineaPedidoUsuarioArticulo>(new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.attach_tbRelacionLineaPedidoUsuarioArticulo), new Action<tbRelacionLineaPedidoUsuarioArticulo>(this.detach_tbRelacionLineaPedidoUsuarioArticulo));
 			OnCreated();
 		}
 		
@@ -9738,7 +10607,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoUsuario", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKPedidoUsuario
 		{
 			get
@@ -9758,8 +10627,8 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Int")]
-		public System.Nullable<int> Unidades
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Int NOT NULL")]
+		public int Unidades
 		{
 			get
 			{
@@ -9778,16 +10647,23 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbRelacionLineaPedidoUsuarioArticulo", ThisKey="idLineaPedidoUsuario", OtherKey="FKLineaPedidoUsuario")]
-		public EntitySet<tbRelacionLineaPedidoUsuarioArticulo> tbRelacionLineaPedidoUsuarioArticulo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKArticulo", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FKArticulo
 		{
 			get
 			{
-				return this._tbRelacionLineaPedidoUsuarioArticulo;
+				return this._FKArticulo;
 			}
 			set
 			{
-				this._tbRelacionLineaPedidoUsuarioArticulo.Assign(value);
+				if ((this._FKArticulo != value))
+				{
+					this.OnFKArticuloChanging(value);
+					this.SendPropertyChanging();
+					this._FKArticulo = value;
+					this.SendPropertyChanged("FKArticulo");
+					this.OnFKArticuloChanged();
+				}
 			}
 		}
 		
@@ -9809,18 +10685,6 @@ namespace TortolasProject.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbLineaPedidoUsuario = this;
-		}
-		
-		private void detach_tbRelacionLineaPedidoUsuarioArticulo(tbRelacionLineaPedidoUsuarioArticulo entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbLineaPedidoUsuario = null;
 		}
 	}
 	
@@ -10390,6 +11254,10 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.Guid> _FKFactura;
 		
+		private int _NumMovimiento;
+		
+		private decimal _Saldo;
+		
 		private EntityRef<tbFactura> _tbFactura;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
@@ -10412,6 +11280,10 @@ namespace TortolasProject.Models
     partial void OnResponsableChanged();
     partial void OnFKFacturaChanging(System.Nullable<System.Guid> value);
     partial void OnFKFacturaChanged();
+    partial void OnNumMovimientoChanging(int value);
+    partial void OnNumMovimientoChanged();
+    partial void OnSaldoChanging(decimal value);
+    partial void OnSaldoChanged();
     #endregion
 		
 		public tbMovimientoGasto()
@@ -10569,6 +11441,46 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumMovimiento", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int NumMovimiento
+		{
+			get
+			{
+				return this._NumMovimiento;
+			}
+			set
+			{
+				if ((this._NumMovimiento != value))
+				{
+					this.OnNumMovimientoChanging(value);
+					this.SendPropertyChanging();
+					this._NumMovimiento = value;
+					this.SendPropertyChanged("NumMovimiento");
+					this.OnNumMovimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Saldo", DbType="Money NOT NULL")]
+		public decimal Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbFactura_tbMovimientoGasto", Storage="_tbFactura", ThisKey="FKFactura", OtherKey="idFactura", IsForeignKey=true)]
 		public tbFactura tbFactura
 		{
@@ -10678,6 +11590,10 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.Guid> _FKFactura;
 		
+		private int _NumMovimiento;
+		
+		private decimal _Saldo;
+		
 		private EntityRef<tbFactura> _tbFactura;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
@@ -10700,6 +11616,10 @@ namespace TortolasProject.Models
     partial void OnResponsableChanged();
     partial void OnFKFacturaChanging(System.Nullable<System.Guid> value);
     partial void OnFKFacturaChanged();
+    partial void OnNumMovimientoChanging(int value);
+    partial void OnNumMovimientoChanged();
+    partial void OnSaldoChanging(decimal value);
+    partial void OnSaldoChanged();
     #endregion
 		
 		public tbMovimientoIngreso()
@@ -10853,6 +11773,46 @@ namespace TortolasProject.Models
 					this._FKFactura = value;
 					this.SendPropertyChanged("FKFactura");
 					this.OnFKFacturaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumMovimiento", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int NumMovimiento
+		{
+			get
+			{
+				return this._NumMovimiento;
+			}
+			set
+			{
+				if ((this._NumMovimiento != value))
+				{
+					this.OnNumMovimientoChanging(value);
+					this.SendPropertyChanging();
+					this._NumMovimiento = value;
+					this.SendPropertyChanged("NumMovimiento");
+					this.OnNumMovimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Saldo", DbType="Money NOT NULL")]
+		public decimal Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
 				}
 			}
 		}
@@ -11402,7 +12362,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoGlobal", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKPedidoGlobal", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKPedidoGlobal
 		{
 			get
@@ -11426,7 +12386,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKUsuario", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKUsuario", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKUsuario
 		{
 			get
@@ -12009,198 +12969,6 @@ namespace TortolasProject.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbRelacionLineaPedidoUsuarioArticulo")]
-	public partial class tbRelacionLineaPedidoUsuarioArticulo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _FKLineaPedidoUsuario;
-		
-		private System.Guid _FKArticulo;
-		
-		private System.Guid _idRelacionLineaPedidoArticulo;
-		
-		private EntityRef<tbArticulo> _tbArticulo;
-		
-		private EntityRef<tbLineaPedidoUsuario> _tbLineaPedidoUsuario;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnFKLineaPedidoUsuarioChanging(System.Guid value);
-    partial void OnFKLineaPedidoUsuarioChanged();
-    partial void OnFKArticuloChanging(System.Guid value);
-    partial void OnFKArticuloChanged();
-    partial void OnidRelacionLineaPedidoArticuloChanging(System.Guid value);
-    partial void OnidRelacionLineaPedidoArticuloChanged();
-    #endregion
-		
-		public tbRelacionLineaPedidoUsuarioArticulo()
-		{
-			this._tbArticulo = default(EntityRef<tbArticulo>);
-			this._tbLineaPedidoUsuario = default(EntityRef<tbLineaPedidoUsuario>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKLineaPedidoUsuario", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FKLineaPedidoUsuario
-		{
-			get
-			{
-				return this._FKLineaPedidoUsuario;
-			}
-			set
-			{
-				if ((this._FKLineaPedidoUsuario != value))
-				{
-					if (this._tbLineaPedidoUsuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKLineaPedidoUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._FKLineaPedidoUsuario = value;
-					this.SendPropertyChanged("FKLineaPedidoUsuario");
-					this.OnFKLineaPedidoUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKArticulo", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FKArticulo
-		{
-			get
-			{
-				return this._FKArticulo;
-			}
-			set
-			{
-				if ((this._FKArticulo != value))
-				{
-					if (this._tbArticulo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._FKArticulo = value;
-					this.SendPropertyChanged("FKArticulo");
-					this.OnFKArticuloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idRelacionLineaPedidoArticulo", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid idRelacionLineaPedidoArticulo
-		{
-			get
-			{
-				return this._idRelacionLineaPedidoArticulo;
-			}
-			set
-			{
-				if ((this._idRelacionLineaPedidoArticulo != value))
-				{
-					this.OnidRelacionLineaPedidoArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._idRelacionLineaPedidoArticulo = value;
-					this.SendPropertyChanged("idRelacionLineaPedidoArticulo");
-					this.OnidRelacionLineaPedidoArticuloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbArticulo_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbArticulo", ThisKey="FKArticulo", OtherKey="idArticulo", IsForeignKey=true)]
-		public tbArticulo tbArticulo
-		{
-			get
-			{
-				return this._tbArticulo.Entity;
-			}
-			set
-			{
-				tbArticulo previousValue = this._tbArticulo.Entity;
-				if (((previousValue != value) 
-							|| (this._tbArticulo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbArticulo.Entity = null;
-						previousValue.tbRelacionLineaPedidoUsuarioArticulo.Remove(this);
-					}
-					this._tbArticulo.Entity = value;
-					if ((value != null))
-					{
-						value.tbRelacionLineaPedidoUsuarioArticulo.Add(this);
-						this._FKArticulo = value.idArticulo;
-					}
-					else
-					{
-						this._FKArticulo = default(System.Guid);
-					}
-					this.SendPropertyChanged("tbArticulo");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbLineaPedidoUsuario_tbRelacionLineaPedidoUsuarioArticulo", Storage="_tbLineaPedidoUsuario", ThisKey="FKLineaPedidoUsuario", OtherKey="idLineaPedidoUsuario", IsForeignKey=true)]
-		public tbLineaPedidoUsuario tbLineaPedidoUsuario
-		{
-			get
-			{
-				return this._tbLineaPedidoUsuario.Entity;
-			}
-			set
-			{
-				tbLineaPedidoUsuario previousValue = this._tbLineaPedidoUsuario.Entity;
-				if (((previousValue != value) 
-							|| (this._tbLineaPedidoUsuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbLineaPedidoUsuario.Entity = null;
-						previousValue.tbRelacionLineaPedidoUsuarioArticulo.Remove(this);
-					}
-					this._tbLineaPedidoUsuario.Entity = value;
-					if ((value != null))
-					{
-						value.tbRelacionLineaPedidoUsuarioArticulo.Add(this);
-						this._FKLineaPedidoUsuario = value.idLineaPedidoUsuario;
-					}
-					else
-					{
-						this._FKLineaPedidoUsuario = default(System.Guid);
-					}
-					this.SendPropertyChanged("tbLineaPedidoUsuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbRelacionPedidoGlobalArticulo")]
 	public partial class tbRelacionPedidoGlobalArticulo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -12642,11 +13410,19 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.DateTime> _FechaExpiracion;
 		
+		private System.Guid _FKDescuento;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
 		private EntityRef<tbJuntaDirectiva> _tbJuntaDirectiva;
 		
+		private EntityRef<tbSocio> _tbSocio2;
+		
 		private EntityRef<tbUsuario> _tbUsuario;
+		
+		private EntityRef<tbDescuentoSocio> _tbDescuentoSocio;
+		
+		private EntityRef<tbSocio> _tbSocio1;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -12672,13 +13448,18 @@ namespace TortolasProject.Models
     partial void OnMotivosBajaChanged();
     partial void OnFechaExpiracionChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaExpiracionChanged();
+    partial void OnFKDescuentoChanging(System.Guid value);
+    partial void OnFKDescuentoChanged();
     #endregion
 		
 		public tbSocio()
 		{
 			this._tbCuota = new EntitySet<tbCuota>(new Action<tbCuota>(this.attach_tbCuota), new Action<tbCuota>(this.detach_tbCuota));
 			this._tbJuntaDirectiva = default(EntityRef<tbJuntaDirectiva>);
+			this._tbSocio2 = default(EntityRef<tbSocio>);
 			this._tbUsuario = default(EntityRef<tbUsuario>);
+			this._tbDescuentoSocio = default(EntityRef<tbDescuentoSocio>);
+			this._tbSocio1 = default(EntityRef<tbSocio>);
 			OnCreated();
 		}
 		
@@ -12693,6 +13474,10 @@ namespace TortolasProject.Models
 			{
 				if ((this._idSocio != value))
 				{
+					if (this._tbSocio1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnidSocioChanging(value);
 					this.SendPropertyChanging();
 					this._idSocio = value;
@@ -12713,6 +13498,10 @@ namespace TortolasProject.Models
 			{
 				if ((this._NumeroSocio != value))
 				{
+					if (this._tbSocio1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnNumeroSocioChanging(value);
 					this.SendPropertyChanging();
 					this._NumeroSocio = value;
@@ -12886,6 +13675,30 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKDescuento", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FKDescuento
+		{
+			get
+			{
+				return this._FKDescuento;
+			}
+			set
+			{
+				if ((this._FKDescuento != value))
+				{
+					if (this._tbDescuentoSocio.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFKDescuentoChanging(value);
+					this.SendPropertyChanging();
+					this._FKDescuento = value;
+					this.SendPropertyChanged("FKDescuento");
+					this.OnFKDescuentoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbCuota", Storage="_tbCuota", ThisKey="idSocio", OtherKey="FKSocio")]
 		public EntitySet<tbCuota> tbCuota
 		{
@@ -12928,6 +13741,35 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbSocio", Storage="_tbSocio2", ThisKey="idSocio,NumeroSocio", OtherKey="idSocio,NumeroSocio", IsUnique=true, IsForeignKey=false)]
+		public tbSocio tbSocio2
+		{
+			get
+			{
+				return this._tbSocio2.Entity;
+			}
+			set
+			{
+				tbSocio previousValue = this._tbSocio2.Entity;
+				if (((previousValue != value) 
+							|| (this._tbSocio2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbSocio2.Entity = null;
+						previousValue.tbSocio1 = null;
+					}
+					this._tbSocio2.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio1 = this;
+					}
+					this.SendPropertyChanged("tbSocio2");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbSocio", Storage="_tbUsuario", ThisKey="FKUsuario", OtherKey="idUsuario", IsForeignKey=true)]
 		public tbUsuario tbUsuario
 		{
@@ -12958,6 +13800,76 @@ namespace TortolasProject.Models
 						this._FKUsuario = default(System.Guid);
 					}
 					this.SendPropertyChanged("tbUsuario");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbDescuentoSocio_tbSocio", Storage="_tbDescuentoSocio", ThisKey="FKDescuento", OtherKey="idDescuentoSocio", IsForeignKey=true)]
+		public tbDescuentoSocio tbDescuentoSocio
+		{
+			get
+			{
+				return this._tbDescuentoSocio.Entity;
+			}
+			set
+			{
+				tbDescuentoSocio previousValue = this._tbDescuentoSocio.Entity;
+				if (((previousValue != value) 
+							|| (this._tbDescuentoSocio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbDescuentoSocio.Entity = null;
+						previousValue.tbSocio.Remove(this);
+					}
+					this._tbDescuentoSocio.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio.Add(this);
+						this._FKDescuento = value.idDescuentoSocio;
+					}
+					else
+					{
+						this._FKDescuento = default(System.Guid);
+					}
+					this.SendPropertyChanged("tbDescuentoSocio");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbSocio_tbSocio", Storage="_tbSocio1", ThisKey="idSocio,NumeroSocio", OtherKey="idSocio,NumeroSocio", IsForeignKey=true)]
+		public tbSocio tbSocio1
+		{
+			get
+			{
+				return this._tbSocio1.Entity;
+			}
+			set
+			{
+				tbSocio previousValue = this._tbSocio1.Entity;
+				if (((previousValue != value) 
+							|| (this._tbSocio1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbSocio1.Entity = null;
+						previousValue.tbSocio2 = null;
+					}
+					this._tbSocio1.Entity = value;
+					if ((value != null))
+					{
+						value.tbSocio2 = this;
+						this._idSocio = value.idSocio;
+						this._NumeroSocio = value.NumeroSocio;
+					}
+					else
+					{
+						this._idSocio = default(System.Guid);
+						this._NumeroSocio = default(int);
+					}
+					this.SendPropertyChanged("tbSocio1");
 				}
 			}
 		}
@@ -13202,837 +14114,6 @@ namespace TortolasProject.Models
 		{
 			this.SendPropertyChanging();
 			entity.tbTipoCuota = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbUsuario")]
-	public partial class tbUsuario : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _idUsuario;
-		
-		private string _Nickname;
-		
-		private string _Email;
-		
-		private string _Nombre;
-		
-		private string _Apellidos;
-		
-		private string _Direccion;
-		
-		private System.Nullable<System.DateTime> _FechaNacimiento;
-		
-		private string _DNI;
-		
-		private string _Avatar;
-		
-		private System.Guid _FKUser;
-		
-		private string _SitioWeb;
-		
-		private string _Facebook;
-		
-		private string _Twitter;
-		
-		private string _Aficiones;
-		
-		private string _Skype;
-		
-		private string _Sexo;
-		
-		private string _GooglePlus;
-		
-		private string _Experiencias;
-		
-		private string _Telefono;
-		
-		private string _Nacionalidad;
-		
-		private string _Provincia;
-		
-		private string _Localidad;
-		
-		private EntitySet<tbDocInscripcion> _tbDocInscripcion;
-		
-		private EntitySet<tbEvento> _tbEvento;
-		
-		private EntitySet<tbFactura> _tbFactura;
-		
-		private EntitySet<tbMensaje> _tbMensaje;
-		
-		private EntitySet<tbMensaje> _tbMensaje1;
-		
-		private EntitySet<tbPedidoUsuario> _tbPedidoUsuario;
-		
-		private EntitySet<tbRuta> _tbRuta;
-		
-		private EntitySet<tbSocio> _tbSocio;
-		
-		private EntityRef<aspnet_Users> _aspnet_Users;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidUsuarioChanging(System.Guid value);
-    partial void OnidUsuarioChanged();
-    partial void OnNicknameChanging(string value);
-    partial void OnNicknameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnApellidosChanging(string value);
-    partial void OnApellidosChanged();
-    partial void OnDireccionChanging(string value);
-    partial void OnDireccionChanged();
-    partial void OnFechaNacimientoChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaNacimientoChanged();
-    partial void OnDNIChanging(string value);
-    partial void OnDNIChanged();
-    partial void OnAvatarChanging(string value);
-    partial void OnAvatarChanged();
-    partial void OnFKUserChanging(System.Guid value);
-    partial void OnFKUserChanged();
-    partial void OnSitioWebChanging(string value);
-    partial void OnSitioWebChanged();
-    partial void OnFacebookChanging(string value);
-    partial void OnFacebookChanged();
-    partial void OnTwitterChanging(string value);
-    partial void OnTwitterChanged();
-    partial void OnAficionesChanging(string value);
-    partial void OnAficionesChanged();
-    partial void OnSkypeChanging(string value);
-    partial void OnSkypeChanged();
-    partial void OnSexoChanging(string value);
-    partial void OnSexoChanged();
-    partial void OnGooglePlusChanging(string value);
-    partial void OnGooglePlusChanged();
-    partial void OnExperienciasChanging(string value);
-    partial void OnExperienciasChanged();
-    partial void OnTelefonoChanging(string value);
-    partial void OnTelefonoChanged();
-    partial void OnNacionalidadChanging(string value);
-    partial void OnNacionalidadChanged();
-    partial void OnProvinciaChanging(string value);
-    partial void OnProvinciaChanged();
-    partial void OnLocalidadChanging(string value);
-    partial void OnLocalidadChanged();
-    #endregion
-		
-		public tbUsuario()
-		{
-			this._tbDocInscripcion = new EntitySet<tbDocInscripcion>(new Action<tbDocInscripcion>(this.attach_tbDocInscripcion), new Action<tbDocInscripcion>(this.detach_tbDocInscripcion));
-			this._tbEvento = new EntitySet<tbEvento>(new Action<tbEvento>(this.attach_tbEvento), new Action<tbEvento>(this.detach_tbEvento));
-			this._tbFactura = new EntitySet<tbFactura>(new Action<tbFactura>(this.attach_tbFactura), new Action<tbFactura>(this.detach_tbFactura));
-			this._tbMensaje = new EntitySet<tbMensaje>(new Action<tbMensaje>(this.attach_tbMensaje), new Action<tbMensaje>(this.detach_tbMensaje));
-			this._tbMensaje1 = new EntitySet<tbMensaje>(new Action<tbMensaje>(this.attach_tbMensaje1), new Action<tbMensaje>(this.detach_tbMensaje1));
-			this._tbPedidoUsuario = new EntitySet<tbPedidoUsuario>(new Action<tbPedidoUsuario>(this.attach_tbPedidoUsuario), new Action<tbPedidoUsuario>(this.detach_tbPedidoUsuario));
-			this._tbRuta = new EntitySet<tbRuta>(new Action<tbRuta>(this.attach_tbRuta), new Action<tbRuta>(this.detach_tbRuta));
-			this._tbSocio = new EntitySet<tbSocio>(new Action<tbSocio>(this.attach_tbSocio), new Action<tbSocio>(this.detach_tbSocio));
-			this._aspnet_Users = default(EntityRef<aspnet_Users>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUsuario", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid idUsuario
-		{
-			get
-			{
-				return this._idUsuario;
-			}
-			set
-			{
-				if ((this._idUsuario != value))
-				{
-					this.OnidUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._idUsuario = value;
-					this.SendPropertyChanged("idUsuario");
-					this.OnidUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nickname", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nickname
-		{
-			get
-			{
-				return this._Nickname;
-			}
-			set
-			{
-				if ((this._Nickname != value))
-				{
-					this.OnNicknameChanging(value);
-					this.SendPropertyChanging();
-					this._Nickname = value;
-					this.SendPropertyChanged("Nickname");
-					this.OnNicknameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellidos", DbType="VarChar(100)")]
-		public string Apellidos
-		{
-			get
-			{
-				return this._Apellidos;
-			}
-			set
-			{
-				if ((this._Apellidos != value))
-				{
-					this.OnApellidosChanging(value);
-					this.SendPropertyChanging();
-					this._Apellidos = value;
-					this.SendPropertyChanged("Apellidos");
-					this.OnApellidosChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="NVarChar(200)")]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this.OnDireccionChanging(value);
-					this.SendPropertyChanging();
-					this._Direccion = value;
-					this.SendPropertyChanged("Direccion");
-					this.OnDireccionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaNacimiento
-		{
-			get
-			{
-				return this._FechaNacimiento;
-			}
-			set
-			{
-				if ((this._FechaNacimiento != value))
-				{
-					this.OnFechaNacimientoChanging(value);
-					this.SendPropertyChanging();
-					this._FechaNacimiento = value;
-					this.SendPropertyChanged("FechaNacimiento");
-					this.OnFechaNacimientoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DNI", DbType="VarChar(9)")]
-		public string DNI
-		{
-			get
-			{
-				return this._DNI;
-			}
-			set
-			{
-				if ((this._DNI != value))
-				{
-					this.OnDNIChanging(value);
-					this.SendPropertyChanging();
-					this._DNI = value;
-					this.SendPropertyChanged("DNI");
-					this.OnDNIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="NVarChar(100)")]
-		public string Avatar
-		{
-			get
-			{
-				return this._Avatar;
-			}
-			set
-			{
-				if ((this._Avatar != value))
-				{
-					this.OnAvatarChanging(value);
-					this.SendPropertyChanging();
-					this._Avatar = value;
-					this.SendPropertyChanged("Avatar");
-					this.OnAvatarChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKUser", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FKUser
-		{
-			get
-			{
-				return this._FKUser;
-			}
-			set
-			{
-				if ((this._FKUser != value))
-				{
-					if (this._aspnet_Users.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKUserChanging(value);
-					this.SendPropertyChanging();
-					this._FKUser = value;
-					this.SendPropertyChanged("FKUser");
-					this.OnFKUserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SitioWeb", DbType="NVarChar(100)")]
-		public string SitioWeb
-		{
-			get
-			{
-				return this._SitioWeb;
-			}
-			set
-			{
-				if ((this._SitioWeb != value))
-				{
-					this.OnSitioWebChanging(value);
-					this.SendPropertyChanging();
-					this._SitioWeb = value;
-					this.SendPropertyChanged("SitioWeb");
-					this.OnSitioWebChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facebook", DbType="NVarChar(100)")]
-		public string Facebook
-		{
-			get
-			{
-				return this._Facebook;
-			}
-			set
-			{
-				if ((this._Facebook != value))
-				{
-					this.OnFacebookChanging(value);
-					this.SendPropertyChanging();
-					this._Facebook = value;
-					this.SendPropertyChanged("Facebook");
-					this.OnFacebookChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Twitter", DbType="NVarChar(100)")]
-		public string Twitter
-		{
-			get
-			{
-				return this._Twitter;
-			}
-			set
-			{
-				if ((this._Twitter != value))
-				{
-					this.OnTwitterChanging(value);
-					this.SendPropertyChanging();
-					this._Twitter = value;
-					this.SendPropertyChanged("Twitter");
-					this.OnTwitterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Aficiones", DbType="NVarChar(200)")]
-		public string Aficiones
-		{
-			get
-			{
-				return this._Aficiones;
-			}
-			set
-			{
-				if ((this._Aficiones != value))
-				{
-					this.OnAficionesChanging(value);
-					this.SendPropertyChanging();
-					this._Aficiones = value;
-					this.SendPropertyChanged("Aficiones");
-					this.OnAficionesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Skype", DbType="NVarChar(100)")]
-		public string Skype
-		{
-			get
-			{
-				return this._Skype;
-			}
-			set
-			{
-				if ((this._Skype != value))
-				{
-					this.OnSkypeChanging(value);
-					this.SendPropertyChanging();
-					this._Skype = value;
-					this.SendPropertyChanged("Skype");
-					this.OnSkypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexo", DbType="NVarChar(10)")]
-		public string Sexo
-		{
-			get
-			{
-				return this._Sexo;
-			}
-			set
-			{
-				if ((this._Sexo != value))
-				{
-					this.OnSexoChanging(value);
-					this.SendPropertyChanging();
-					this._Sexo = value;
-					this.SendPropertyChanged("Sexo");
-					this.OnSexoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GooglePlus", DbType="NVarChar(100)")]
-		public string GooglePlus
-		{
-			get
-			{
-				return this._GooglePlus;
-			}
-			set
-			{
-				if ((this._GooglePlus != value))
-				{
-					this.OnGooglePlusChanging(value);
-					this.SendPropertyChanging();
-					this._GooglePlus = value;
-					this.SendPropertyChanged("GooglePlus");
-					this.OnGooglePlusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Experiencias", DbType="NVarChar(300)")]
-		public string Experiencias
-		{
-			get
-			{
-				return this._Experiencias;
-			}
-			set
-			{
-				if ((this._Experiencias != value))
-				{
-					this.OnExperienciasChanging(value);
-					this.SendPropertyChanging();
-					this._Experiencias = value;
-					this.SendPropertyChanged("Experiencias");
-					this.OnExperienciasChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(11)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this.OnTelefonoChanging(value);
-					this.SendPropertyChanging();
-					this._Telefono = value;
-					this.SendPropertyChanged("Telefono");
-					this.OnTelefonoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nacionalidad", DbType="NVarChar(20)")]
-		public string Nacionalidad
-		{
-			get
-			{
-				return this._Nacionalidad;
-			}
-			set
-			{
-				if ((this._Nacionalidad != value))
-				{
-					this.OnNacionalidadChanging(value);
-					this.SendPropertyChanging();
-					this._Nacionalidad = value;
-					this.SendPropertyChanged("Nacionalidad");
-					this.OnNacionalidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="NVarChar(50)")]
-		public string Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this.OnProvinciaChanging(value);
-					this.SendPropertyChanging();
-					this._Provincia = value;
-					this.SendPropertyChanged("Provincia");
-					this.OnProvinciaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Localidad", DbType="NVarChar(50)")]
-		public string Localidad
-		{
-			get
-			{
-				return this._Localidad;
-			}
-			set
-			{
-				if ((this._Localidad != value))
-				{
-					this.OnLocalidadChanging(value);
-					this.SendPropertyChanging();
-					this._Localidad = value;
-					this.SendPropertyChanged("Localidad");
-					this.OnLocalidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbDocInscripcion", Storage="_tbDocInscripcion", ThisKey="idUsuario", OtherKey="FKUsuario")]
-		public EntitySet<tbDocInscripcion> tbDocInscripcion
-		{
-			get
-			{
-				return this._tbDocInscripcion;
-			}
-			set
-			{
-				this._tbDocInscripcion.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbEvento", Storage="_tbEvento", ThisKey="idUsuario", OtherKey="FKUsuarioCreador")]
-		public EntitySet<tbEvento> tbEvento
-		{
-			get
-			{
-				return this._tbEvento;
-			}
-			set
-			{
-				this._tbEvento.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbFactura", Storage="_tbFactura", ThisKey="idUsuario", OtherKey="FKUsuario")]
-		public EntitySet<tbFactura> tbFactura
-		{
-			get
-			{
-				return this._tbFactura;
-			}
-			set
-			{
-				this._tbFactura.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbMensaje", Storage="_tbMensaje", ThisKey="idUsuario", OtherKey="FKDestinatario")]
-		public EntitySet<tbMensaje> tbMensaje
-		{
-			get
-			{
-				return this._tbMensaje;
-			}
-			set
-			{
-				this._tbMensaje.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbMensaje1", Storage="_tbMensaje1", ThisKey="idUsuario", OtherKey="FKRemitente")]
-		public EntitySet<tbMensaje> tbMensaje1
-		{
-			get
-			{
-				return this._tbMensaje1;
-			}
-			set
-			{
-				this._tbMensaje1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbPedidoUsuario", Storage="_tbPedidoUsuario", ThisKey="idUsuario", OtherKey="FKUsuario")]
-		public EntitySet<tbPedidoUsuario> tbPedidoUsuario
-		{
-			get
-			{
-				return this._tbPedidoUsuario;
-			}
-			set
-			{
-				this._tbPedidoUsuario.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbRuta", Storage="_tbRuta", ThisKey="idUsuario", OtherKey="FKUsuario")]
-		public EntitySet<tbRuta> tbRuta
-		{
-			get
-			{
-				return this._tbRuta;
-			}
-			set
-			{
-				this._tbRuta.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbUsuario_tbSocio", Storage="_tbSocio", ThisKey="idUsuario", OtherKey="FKUsuario")]
-		public EntitySet<tbSocio> tbSocio
-		{
-			get
-			{
-				return this._tbSocio;
-			}
-			set
-			{
-				this._tbSocio.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_tbUsuario", Storage="_aspnet_Users", ThisKey="FKUser", OtherKey="UserId", IsForeignKey=true)]
-		public aspnet_Users aspnet_Users
-		{
-			get
-			{
-				return this._aspnet_Users.Entity;
-			}
-			set
-			{
-				aspnet_Users previousValue = this._aspnet_Users.Entity;
-				if (((previousValue != value) 
-							|| (this._aspnet_Users.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._aspnet_Users.Entity = null;
-						previousValue.tbUsuario.Remove(this);
-					}
-					this._aspnet_Users.Entity = value;
-					if ((value != null))
-					{
-						value.tbUsuario.Add(this);
-						this._FKUser = value.UserId;
-					}
-					else
-					{
-						this._FKUser = default(System.Guid);
-					}
-					this.SendPropertyChanged("aspnet_Users");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tbDocInscripcion(tbDocInscripcion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbDocInscripcion(tbDocInscripcion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbEvento(tbEvento entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbEvento(tbEvento entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbFactura(tbFactura entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbFactura(tbFactura entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbMensaje(tbMensaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbMensaje(tbMensaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbMensaje1(tbMensaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario1 = this;
-		}
-		
-		private void detach_tbMensaje1(tbMensaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario1 = null;
-		}
-		
-		private void attach_tbPedidoUsuario(tbPedidoUsuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbPedidoUsuario(tbPedidoUsuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbRuta(tbRuta entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbRuta(tbRuta entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
-		}
-		
-		private void attach_tbSocio(tbSocio entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = this;
-		}
-		
-		private void detach_tbSocio(tbSocio entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbUsuario = null;
 		}
 	}
 }

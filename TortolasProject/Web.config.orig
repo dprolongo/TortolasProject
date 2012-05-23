@@ -11,13 +11,13 @@
    providerName="System.Data.SqlClient" />
   <add name="icubeDBConnectionString2" connectionString="Data Source=icubedevs.dyndns.org;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito"
    providerName="System.Data.SqlClient" />
-<<<<<<< HEAD
-  <add name="icubeDBConnectionString3" connectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;User ID=sa;Password=pitopito"
+  <add name="icubeDBConnectionString3" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito"
    providerName="System.Data.SqlClient" />
- </connectionStrings>
-=======
+  <add name="icubeDBConnectionString4" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;User Instance=True"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString5" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True"
+   providerName="System.Data.SqlClient" />
  </connectionStrings>  
->>>>>>> b2f7b8e412f69b0121988508c2d3f5fd07a4a3de
 	<appSettings>
 		<add key="webpages:Version" value="1.0.0.0"/>
 		<add key="ClientValidationEnabled" value="true"/>
@@ -50,6 +50,17 @@
 				<add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="icubeDBConnectionString1" applicationName="/"/>
 			</providers>
 		</profile>
+<<<<<<< HEAD
+		<roleManager enabled="true">
+   <providers>
+    <clear />
+    <add connectionStringName="icubeDBConnectionString1" applicationName="/"
+     name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" />
+    <add applicationName="/" name="AspNetWindowsTokenRoleProvider"
+     type="System.Web.Security.WindowsTokenRoleProvider" />
+   </providers>
+  </roleManager>
+=======
 		<roleManager enabled="false">
 			<providers>
 				<clear/>
@@ -57,6 +68,7 @@
 				<add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/"/>
 			</providers>
 		</roleManager>
+>>>>>>> f0e50cc24bb5fc17719f3cf760e60ee6d94e684c
 		<pages>
 			<namespaces>
 				<add namespace="System.Web.Helpers"/>

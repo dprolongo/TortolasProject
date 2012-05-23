@@ -24,7 +24,9 @@ $(document).ready(function () {
                         Fecha: { editable: true },
                         Total: { editable: true, type: "number" },
                         ResponsableName: { editable: false },
-                        Descripcion: { editable: true }
+                        Descripcion: { editable: true },
+                        NumMovimiento: {},
+                        Saldo: {}
                     }
                 }
             }
@@ -44,6 +46,10 @@ $(document).ready(function () {
                 ],
         columns: [
             {
+                field: "NumMovimiento",
+                title: "Núm. Movimiento"
+            },
+            {
                 field: "Fecha",
                 title: "Fecha"
             },
@@ -58,6 +64,10 @@ $(document).ready(function () {
             {
                 field: "Total",
                 title: "Importe"
+            },
+            {
+                field: "Saldo",
+                title: "Saldo"
             }
         ]
     }).data("kendoGrid");
@@ -88,12 +98,12 @@ $(document).ready(function () {
     });
 
     $(".ingresosButton").click(function () {
-        dataSource.filter({field: "Total", operator: "gte", value: 0});
+        dataSource.filter({ field: "Total", operator: "gte", value: 0 });
     });
 
     $(".gastosButton").click(function () {
         dataSource.filter({
-            field: "Total", operator: "lt", value: 0 
+            field: "Total", operator: "lt", value: 0
         });
     });
 
@@ -135,33 +145,33 @@ $(document).ready(function () {
 
     /*
     $("#MovimientosGrid").delegate(".eliminarMovimientoButton", "click", function (e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        var movimiento = tabla.dataItem($(this).closest("tr"));
-        var r = confirm("¿Está seguro de eliminar el movimiento? \n \n Concepto: " + movimiento.Concepto + "\n \n Importe: " + movimiento.Total);
-        if (r == true) {
-            var urlDelete = "../Facturas/eliminarMovimiento";
-            var datos = {
-                idMovimiento: movimiento.idMovimiento,
-                tipo: movimiento.Tipo
-            };
+    var movimiento = tabla.dataItem($(this).closest("tr"));
+    var r = confirm("¿Está seguro de eliminar el movimiento? \n \n Concepto: " + movimiento.Concepto + "\n \n Importe: " + movimiento.Total);
+    if (r == true) {
+    var urlDelete = "../Facturas/eliminarMovimiento";
+    var datos = {
+    idMovimiento: movimiento.idMovimiento,
+    tipo: movimiento.Tipo
+    };
 
-            $.post(urlDelete, datos, function (data) {
-                dataSource.remove(movimiento);
+    $.post(urlDelete, datos, function (data) {
+    dataSource.remove(movimiento);
 
-                tabla.refresh();
-            });
-        }
+    tabla.refresh();
+    });
+    }
     });
     
 
     $("#MovimientosGrid").delegate(".leerMovimientoButton", "click", function (e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        var movimiento = tabla.dataItem($(this).closest("tr"));
+    var movimiento = tabla.dataItem($(this).closest("tr"));
 
-        // Llamamos a la función para ver los detalles de la factura
-        leerMovimiento(movimiento.idMovimiento);
+    // Llamamos a la función para ver los detalles de la factura
+    leerMovimiento(movimiento.idMovimiento);
     });
     */
     $(".k-grid-content tr").live("click", function () {

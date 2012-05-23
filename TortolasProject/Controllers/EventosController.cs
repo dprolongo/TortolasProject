@@ -60,7 +60,6 @@ namespace TortolasProject.Controllers
                 idDocumentoInscripcion = idDocumentoInscripcion,
                 Pagado = false,
                 NumAcom = NumAcompa,
-                FKCursillo = null,
                 FKEvento = idEvento,
                 FKUsuario = FKUsuario
             };
