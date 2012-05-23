@@ -35,7 +35,14 @@
                             <li>Contratos</li>
                         </ul>
                         <div id='generalDiv'>
-                            Opciones generales
+                            <label for='filtroUsuarios' class='filtrosCheckBox'>Usuarios</label><input id='filtroUsuarios' name='filtroUsuarios' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroEventos' class='filtrosCheckBox'>Eventos</label><input id='filtroEventos' name='filtroEventos' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroCursillos' class='filtrosCheckBox'>Cursillos</label><input id='filtroCursillos' name='filtroCursillos' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroPedidoGlobal' class='filtrosCheckBox'>Pedidos globales</label><input id='filtroPedidoGlobal' name='filtroPedidoGlobal' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroPedidoUsuario' class='filtrosCheckBox'>Pedidos usuarios</label><input id='filtroPedidoUsuario' name='filtroPedidoUsuario' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroEmpresa' class='filtrosCheckBox'>Empresas</label><input id='filtroEmpresa' name='filtroEmpresa' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroProveedores' class='filtrosCheckBox'>Proveedores</label><input id='filtroProveedores' name='filtroProveedores' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
+                            <label for='filtroContrato' class='filtrosCheckBox'>Contratos</label><input id='filtroContrato' name='filtroContrato' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
                         </div>
                         <div id='usuariosFacturaDiv'>
                             <div id='usuariosFacturaGrid'></div>                        
