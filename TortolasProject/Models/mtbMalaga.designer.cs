@@ -180,7 +180,7 @@ namespace TortolasProject.Models
     #endregion
 		
 		public mtbMalagaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["icubeDBConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["icubeDBConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -7902,6 +7902,10 @@ namespace TortolasProject.Models
 		
 		private decimal _BaseImponible;
 		
+		private int _NumFactura;
+		
+		private bool _Eliminado;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
 		private EntitySet<tbLineaFactura> _tbLineaFactura;
@@ -7954,6 +7958,10 @@ namespace TortolasProject.Models
     partial void OnConceptoChanged();
     partial void OnBaseImponibleChanging(decimal value);
     partial void OnBaseImponibleChanged();
+    partial void OnNumFacturaChanging(int value);
+    partial void OnNumFacturaChanged();
+    partial void OnEliminadoChanging(bool value);
+    partial void OnEliminadoChanged();
     #endregion
 		
 		public tbFactura()
@@ -8256,6 +8264,46 @@ namespace TortolasProject.Models
 					this._BaseImponible = value;
 					this.SendPropertyChanged("BaseImponible");
 					this.OnBaseImponibleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumFactura", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int NumFactura
+		{
+			get
+			{
+				return this._NumFactura;
+			}
+			set
+			{
+				if ((this._NumFactura != value))
+				{
+					this.OnNumFacturaChanging(value);
+					this.SendPropertyChanging();
+					this._NumFactura = value;
+					this.SendPropertyChanged("NumFactura");
+					this.OnNumFacturaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Eliminado", DbType="Bit NOT NULL")]
+		public bool Eliminado
+		{
+			get
+			{
+				return this._Eliminado;
+			}
+			set
+			{
+				if ((this._Eliminado != value))
+				{
+					this.OnEliminadoChanging(value);
+					this.SendPropertyChanging();
+					this._Eliminado = value;
+					this.SendPropertyChanged("Eliminado");
+					this.OnEliminadoChanged();
 				}
 			}
 		}
@@ -12987,6 +13035,8 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<int> _Meses;
 		
+		private string _Clase;
+		
 		private EntitySet<tbCuota> _tbCuota;
 		
     #region Definiciones de métodos de extensibilidad
@@ -13003,6 +13053,8 @@ namespace TortolasProject.Models
     partial void OnTipoChanged();
     partial void OnMesesChanging(System.Nullable<int> value);
     partial void OnMesesChanged();
+    partial void OnClaseChanging(string value);
+    partial void OnClaseChanged();
     #endregion
 		
 		public tbTipoCuota()
@@ -13107,6 +13159,26 @@ namespace TortolasProject.Models
 					this._Meses = value;
 					this.SendPropertyChanged("Meses");
 					this.OnMesesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clase", DbType="NVarChar(20)")]
+		public string Clase
+		{
+			get
+			{
+				return this._Clase;
+			}
+			set
+			{
+				if ((this._Clase != value))
+				{
+					this.OnClaseChanging(value);
+					this.SendPropertyChanging();
+					this._Clase = value;
+					this.SendPropertyChanged("Clase");
+					this.OnClaseChanged();
 				}
 			}
 		}

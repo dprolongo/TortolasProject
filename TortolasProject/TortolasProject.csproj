@@ -94,7 +94,6 @@
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InformesController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\Monitores\MonitoresController.cs" />
     <Compile Include="Controllers\PatrocinadoresController.cs" />
@@ -870,8 +869,7 @@
     <Content Include="Scripts\styles\textures\glass.png" />
     <Content Include="Scripts\styles\textures\highlight.png" />
     <Content Include="Views\Administracion\Index.aspx" />
-    <Content Include="Views\Facturas\facturaPDF.aspx" />
-    <Content Include="Views\Facturas\PDF\facturaPDF.ascx" />
+    <Content Include="Views\Facturas\PDF\facturaPDF.aspx" />
     <Content Include="Views\Facturas\facturasNav.ascx" />
     <Content Include="Views\Facturas\graficosContables.aspx" />
     <Content Include="Views\Cursillos\Index.aspx" />
