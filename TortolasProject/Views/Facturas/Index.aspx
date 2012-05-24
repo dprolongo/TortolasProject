@@ -35,6 +35,11 @@
                             <li>Contratos</li>
                         </ul>
                         <div id='generalDiv'>
+                            <label for='periodoFechas'>Periodo</label>
+                            <div id='periodoFechas'>
+                                <label for='fechaInicial'>Inicial</label><input id='fechaInicial' />
+                                <label for='fechaFinal'>Final</label><input id='fechaFinal' />
+                            </div>
                             <label for='filtroUsuarios' class='filtrosCheckBox'>Usuarios</label><input id='filtroUsuarios' name='filtroUsuarios' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
                             <label for='filtroEventos' class='filtrosCheckBox'>Eventos</label><input id='filtroEventos' name='filtroEventos' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />
                             <label for='filtroCursillos' class='filtrosCheckBox'>Cursillos</label><input id='filtroCursillos' name='filtroCursillos' type="checkbox" class='filtrosCheckBox k-checkbox' /><br />

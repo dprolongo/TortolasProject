@@ -31,7 +31,9 @@ $(document).ready(function () {
                         FKContrato: {},
                         FKCursillo: {},
                         FKEventoOficial: {},
-                        FKProveedores: {}
+                        FKProveedores: {},
+                        FKPedidoGlobal: {},
+                        FKPedidoUsuario: {}
                     }
                 }
             }
@@ -67,7 +69,7 @@ $(document).ready(function () {
     }).data("kendoGrid");
 
     $(".pageSizeDropDown").kendoDropDownList({
-        width:"50px",
+        width: "50px",
         dataTextField: "text",
         dataValueField: "value",
         dataSource: [
@@ -143,19 +145,16 @@ function datosVentana() {
 
     $("#filtrarButton").click(function () {
         var tab = $("#relacionesTab").data("kendoTabStrip").select().index();
-        var grid = $("#relacionesTab .k-state-active .k-grid").data("kendoGrid");
-        var uid = $("#relacionesTab .k-state-active .k-state-selected").attr("data-uid");
-        var fila = grid.dataSource.getByUid(uid);
+        if (tab != 0) {
+            var grid = $("#relacionesTab .k-state-active .k-grid").data("kendoGrid");
+            var uid = $("#relacionesTab .k-state-active .k-state-selected").attr("data-uid");
+            var fila = grid.dataSource.getByUid(uid);
+        }
         dataSource.filter({});
 
         switch (tab) {
             case 0: // Opciones generales                
-                if ($(".filtroUsuarios").attr("checked") == "checked") {
-                    dataSource.filter([
-                     { field: "FKUsuario", operator: "neq", value: "" }
-                    ]);
-                }
-
+                filtrosGenerales();
                 break;
             case 1: // Usuarios                
                 dataSource.filter([
@@ -193,6 +192,7 @@ function datosVentana() {
                      { field: "FKContrato", operator: "eq", value: fila.idContrato }
                 ]);
         }
+        tabla.refresh();
         ventanaFiltros.close();
     });   
 
@@ -385,4 +385,72 @@ function datosVentana() {
         selectable: true,
         pageable: true
     });
+
+    $("#fechaInicial").kendoDatePicker({
+        start: "day",
+        depth: "year",
+        format: "dd/MM/yyyy"
+    });
+
+    $("#fechaFinal").kendoDatePicker({
+        start: "day",
+        depth: "year",
+        format: "dd/MM/yyyy"
+    });
+}
+
+function filtrosGenerales() {
+    var fechaInicial = $("#fechaInicial").val();
+    var fechaFinal = $("#fechaFinal").val();
+
+    if (fechaInicial != "" && fechaFinal != "") {
+        if (Date.parse(fechaInicial) < Date.parse(fechaFinal)) 
+        {
+            dataSource.filter([
+                    { field: "fecha", operator: "gte", value: Date.parse(fechaInicial) },
+                    { field: "fecha", operator: "lte", value: Date.parse(fechaFinal) }
+                ]);
+        }
+    }
+    if ( $(".filtroUsuarios").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKUsuario", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroEventos").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKEventoOficial", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroCursillos").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKCursillos", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroPedidoGlobal").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKPedidoGlobal", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroPedidoUsuario").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKPedidoUsuario", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroEmpresa").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKEmpresa", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroProveedor").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKProveedor", operator: "neq", value: "" }
+                    ]);
+    }
+    if ($(".filtroContrato").attr("checked") == "checked") {
+        dataSource.filter([
+                     { field: "FKContrato", operator: "neq", value: "" }
+        ]);
+    }
+
 }
