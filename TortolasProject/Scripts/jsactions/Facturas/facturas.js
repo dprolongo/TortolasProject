@@ -536,14 +536,14 @@ function inicializar() {
             case 3: // Pedidos globales
                 tipo = "pedidoGlobal";
                 idRelacion = fila.idPedidoGlobal;
-                $("#relacionDiv").html(fila.idPedido);
-                $("#conceptoFactura").val("Pedido global: " + fila.idPedido);
+                $("#relacionDiv").html(fila.Nombre);
+                $("#conceptoFactura").val("Pedido global: " + fila.Nombre);
                 break;
             case 4: // Pedidos socio
                 tipo = "pedidoUsuario";
                 idRelacion = fila.idPedidoUsuario;
-                $("#relacionDiv").html("Pedido usauario: [" + fila.idPedidoUsuario + "] " + fila.nickname);
-                $("#conceptoFactura").val("Pedido usuario: " + fila.nickname);
+                $("#relacionDiv").html("Pedido: " + fila.TituloPedido +" Usuario: " + fila.nickname);
+                $("#conceptoFactura").val("Pedido: " + fila.TituloPedido +" Usuario: " + fila.nickname);
                 break;           
             case 5:
                 tipo = "empresa";
