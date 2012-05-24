@@ -753,6 +753,7 @@
     <Content Include="Scripts\jsactions\Facturas\Old\facturasNueva.js" />
     <Content Include="Scripts\jsactions\Facturas\visorRutas.js" />
     <Content Include="Scripts\jsactions\Pedidos\inventarioIndex.js" />
+    <Content Include="Scripts\jsactions\Pedidos\pedidosCerrados.js" />
     <Content Include="Scripts\jsactions\Perfil\Informacion.js" />
     <Content Include="Scripts\jsactions\Pedidos\pedidosIndex.js" />
     <Content Include="Scripts\jsactions\Perfil\Mensajeria.js" />
@@ -910,6 +911,7 @@
     <Content Include="Views\Home\Captacion.aspx" />
     <Content Include="Views\Articulos\Index.aspx" />
     <Content Include="Views\Monitores\Index.aspx" />
+    <Content Include="Views\Pedidos\PedidosCerrados.aspx" />
     <Content Include="Views\Perfil\Index.aspx" />
     <Content Include="Views\Inventario\Index.aspx" />
     <Content Include="Views\Pedidos\Index.aspx" />

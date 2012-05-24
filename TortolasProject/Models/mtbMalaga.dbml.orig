@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="icubeDB" Class="mtbMalagaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_Applications" Member="aspnet_Applications">
     <Type Name="aspnet_Applications">
       <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
@@ -161,7 +161,10 @@
       <Association Name="tbArticulo_tbArticulo" Member="tbArticulo2" ThisKey="idArticulo" OtherKey="idArticulo" Type="tbArticulo" Cardinality="One" />
       <Association Name="tbArticulo_tbInventario" Member="tbInventario" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbInventario" />
       <Association Name="tbArticulo_tbLineaFactura" Member="tbLineaFactura" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbLineaFactura" />
+<<<<<<< HEAD
+=======
       <Association Name="tbArticulo_tbLineaPedidoUsuario" Member="tbLineaPedidoUsuario" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbLineaPedidoUsuario" />
+>>>>>>> 41a2ddf93f01848af2983c172bf0d7164e8d120b
       <Association Name="tbArticulo_tbRelacionPedidoGlobalArticulo" Member="tbRelacionPedidoGlobalArticulo" ThisKey="idArticulo" OtherKey="FKArticulo" Type="tbRelacionPedidoGlobalArticulo" />
       <Association Name="tbArticulo_tbArticulo" Member="tbArticulo1" ThisKey="idArticulo" OtherKey="idArticulo" Type="tbArticulo" IsForeignKey="true" />
       <Association Name="tbCategoria_tbArticulo" Member="tbCategoria" ThisKey="FKCategoria" OtherKey="idCategoria" Type="tbCategoria" IsForeignKey="true" />
@@ -282,7 +285,7 @@
       <Column Name="FKCursillo" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="FKEvento" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="FKUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NumAcom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumAcom" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tbCursillo_tbDocInscripcion" Member="tbCursillo" ThisKey="FKCursillo" OtherKey="idCursillo" Type="tbCursillo" IsForeignKey="true" />
       <Association Name="tbEvento_tbDocInscripcion" Member="tbEvento" ThisKey="FKEvento" OtherKey="idEvento" Type="tbEvento" IsForeignKey="true" />
       <Association Name="tbUsuario_tbDocInscripcion" Member="tbUsuario" ThisKey="FKUsuario" OtherKey="idUsuario" Type="tbUsuario" IsForeignKey="true" />
@@ -320,7 +323,7 @@
       <Column Name="idEstadoPedido" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Estado" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="tbEstadoPedido_tbPedidoGlobal" Member="tbPedidoGlobal" ThisKey="idEstadoPedido" OtherKey="FKEstadoPedido" Type="tbPedidoGlobal" />
->>>>>>> c674220a6a0560d4bab50613b5bd27debbe390e4
+>>>>>>> 41a2ddf93f01848af2983c172bf0d7164e8d120b
     </Type>
   </Table>
   <Table Name="dbo.tbEvento" Member="tbEvento">
@@ -438,8 +441,11 @@
       <Column Name="FKPedidoUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Unidades" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FKArticulo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+<<<<<<< HEAD
+=======
       <Association Name="tbArticulo_tbLineaPedidoUsuario" Member="tbArticulo" ThisKey="FKArticulo" OtherKey="idArticulo" Type="tbArticulo" IsForeignKey="true" />
       <Association Name="tbPedidoUsuario_tbLineaPedidoUsuario" Member="tbPedidoUsuario" ThisKey="FKPedidoUsuario" OtherKey="idPedidoUsuario" Type="tbPedidoUsuario" IsForeignKey="true" />
+>>>>>>> 41a2ddf93f01848af2983c172bf0d7164e8d120b
     </Type>
   </Table>
   <Table Name="dbo.tbMensaje" Member="tbMensaje">
@@ -589,9 +595,14 @@
       <Association Name="tbSocio_tbCuota" Member="tbCuota" ThisKey="idSocio" OtherKey="FKSocio" Type="tbCuota" />
       <Association Name="tbSocio_tbJuntaDirectiva" Member="tbJuntaDirectiva" ThisKey="idSocio" OtherKey="FKSocio" Type="tbJuntaDirectiva" Cardinality="One" />
       <Association Name="tbSocio_tbSocio" Member="tbSocio2" ThisKey="idSocio,NumeroSocio" OtherKey="idSocio,NumeroSocio" Type="tbSocio" Cardinality="One" />
+<<<<<<< HEAD
       <Association Name="tbDescuentoSocio_tbSocio" Member="tbDescuentoSocio" ThisKey="FKDescuento" OtherKey="idDescuentoSocio" Type="tbDescuentoSocio" IsForeignKey="true" />
       <Association Name="tbSocio_tbSocio" Member="tbSocio1" ThisKey="idSocio,NumeroSocio" OtherKey="idSocio,NumeroSocio" Type="tbSocio" IsForeignKey="true" />
+=======
+>>>>>>> 41a2ddf93f01848af2983c172bf0d7164e8d120b
       <Association Name="tbUsuario_tbSocio" Member="tbUsuario" ThisKey="FKUsuario" OtherKey="idUsuario" Type="tbUsuario" IsForeignKey="true" />
+      <Association Name="tbDescuentoSocio_tbSocio" Member="tbDescuentoSocio" ThisKey="FKDescuento" OtherKey="idDescuentoSocio" Type="tbDescuentoSocio" IsForeignKey="true" />
+      <Association Name="tbSocio_tbSocio" Member="tbSocio1" ThisKey="idSocio,NumeroSocio" OtherKey="idSocio,NumeroSocio" Type="tbSocio" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbTipoCuota" Member="tbTipoCuota">
