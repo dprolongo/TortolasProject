@@ -32,8 +32,8 @@
             <div id='relacionesFacturaContainer'>
                 <div id='relacionesButton' class='k-button'>Añadir relación</div>
                 <div id='relacionesExistentesDiv'>
-                        <div id='relacionDiv'><% if( !estado.Equals("nueva") && Model.idRelacion != null ){ Response.Write(Model.idRelacion); } %></div>
-                        <div id='quitarRelacionButton' class='k-button'> X </div>
+                        <div id='relacionDiv'><% if( !estado.Equals("nueva") && Model.idRelacion != null ){ Response.Write(Model.RelacionName); } %></div>
+                        <div id='quitarRelacionButton'> x </div>
                 </div>
           
 
