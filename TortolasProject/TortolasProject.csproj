@@ -132,7 +132,7 @@
     <Compile Include="Models\Repositorios\Usuarios\UsuariosRepositorio.cs" />
     <Compile Include="Models\tbFactura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Facturas\Informes\facturacion.cs">
+    <Compile Include="Informes\facturacion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>facturacion.rpt</DependentUpon>
@@ -153,7 +153,6 @@
     <Content Include="Content\Empresas\FormatoTexto.css" />
     <Content Include="Content\Eventos\EventosKendocss.css" />
     <Content Include="Content\Empresas\EmpresasNew.css" />
-    <Content Include="Content\Eventos\CursillosKendocss.css" />
     <Content Include="Content\Facturas\facturaPDF.css" />
     <Content Include="Content\Facturas\graficosContables.css" />
     <Content Include="Content\Facturas\movimientoPDF.css" />
@@ -976,7 +975,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Facturas\Informes\facturacion.rpt">
+    <EmbeddedResource Include="Informes\facturacion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>facturacion.cs</LastGenOutput>
     </EmbeddedResource>
