@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TortolasProject.Views.Facturas.Informes {
+namespace TortolasProject.Informes {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace TortolasProject.Views.Facturas.Informes {
         
         public override string FullResourceName {
             get {
-                return "TortolasProject.Views.Facturas.Informes.facturacion.rpt";
+                return "TortolasProject.Informes.facturacion.rpt";
             }
             set {
                 // Do nothing

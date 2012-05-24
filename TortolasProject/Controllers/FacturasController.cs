@@ -8,6 +8,7 @@ using TortolasProject.Models;
 using TortolasProject.Models.Repositorios;
 using System.IO;
 using Rotativa;
+using CrystalDecisions.CrystalReports.Engine;
 
 
 namespace TortolasProject.Controllers
@@ -157,7 +158,12 @@ namespace TortolasProject.Controllers
         [Authorize(Roles = "Junta Directiva, Asesor fiscal")]
         public ActionResult informesContables()
         {
-            return View();
+            ReportClass rptH = new ReportClass();
+            rptH.FileName = Server.MapPath("Informes/facturacion.rpt");
+            rptH.Load();
+            rptH.SetDataSource(db);
+            Stream stream = rptH.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(stream, "application/pdf");
         }
 
         public ActionResult visorRuta()
