@@ -159,8 +159,16 @@ namespace TortolasProject.Controllers
         {
             return View();
         }
-            
 
+        public ActionResult visorRuta()
+        {
+            return View();
+        }
+        public ActionResult devolverRuta()
+        {
+            String filename = "~/Content/Rutas/rutaGPX.gpx";
+            return File(filename, "text/xml", Server.HtmlEncode(filename));
+        }
         ///////////////////////////////////////////////////////////////////////////////
         // Funciones FACTURAS
         ///////////////////////////////////////////////////////////////////////////////
@@ -488,20 +496,23 @@ namespace TortolasProject.Controllers
         {
             Guid idFactura = Guid.Parse(data["idFactura"]);
             tbFactura f = FacturasRepo.leerFactura(idFactura);
-
-            if (f.FKUsuario != null) { f.idRelacion = f.FKUsuario.ToString(); f.tipo = "usuario"; }
-            else if (f.FKEventoOficial != null) { f.idRelacion = f.FKEventoOficial.ToString(); f.tipo = "eventos"; }
-            else if (f.FKCursillo != null) { f.idRelacion = f.FKCursillo.ToString(); f.tipo = "cursillos"; }
-            else if (f.FKPedidoGlobal != null) { f.idRelacion = f.FKPedidoGlobal.ToString(); f.tipo = "pedidoGlobal"; }
-            else if (f.FKPedidoUsuario != null) { f.idRelacion = f.FKPedidoUsuario.ToString(); f.tipo = "pedidoUsuario"; }
-            else if (f.FKCodigoEmpresa != null) { f.idRelacion = f.FKCodigoEmpresa.ToString(); f.tipo = "empresa"; }
-            else if (f.FKProveedores != null) { f.idRelacion = f.FKProveedores.ToString(); f.tipo = "proveedor"; }
-            else if (f.FKContrato != null) { f.idRelacion = f.FKContrato.ToString(); f.tipo = "contrato"; }
-            else { f.idRelacion = null; f.tipo = null; }
-   
-           
+            UsuariosRepositorio UsuariosRepo = new UsuariosRepositorio();
+            EventosRepositorio EventosRepo = new EventosRepositorio();
+            CursillosRepositorio CursillosRepo = new CursillosRepositorio();
+            PedidosRepositorio PedidosRepo = new PedidosRepositorio();
+            EmpresasRepositorio EmpresasRepo = new EmpresasRepositorio();
             
 
+            if (f.FKUsuario != null) { f.idRelacion = f.FKUsuario.ToString(); f.tipo = "usuario"; f.RelacionName = "Usuario: "+UsuariosRepo.obtenerUsuario(f.FKUsuario.Value).Nickname; }
+            else if (f.FKEventoOficial != null) { f.idRelacion = f.FKEventoOficial.ToString(); f.tipo = "eventos"; f.RelacionName = "Evento oficial: "+EventosRepo.obtenerEventoByEventoOficial(f.FKEventoOficial).Titulo;}
+            else if (f.FKCursillo != null) { f.idRelacion = f.FKCursillo.ToString(); f.tipo = "cursillos"; f.RelacionName = "Cursillo: "+CursillosRepo.leerCursillo(f.FKCursillo.Value).Titulo;}
+            else if (f.FKPedidoGlobal != null) { f.idRelacion = f.FKPedidoGlobal.ToString(); f.tipo = "pedidoGlobal"; f.RelacionName = "Pedido Global: "+PedidosRepo.getPedidoGlobalById(f.FKPedidoGlobal.Value).Nombre; }
+            else if (f.FKPedidoUsuario != null) { f.idRelacion = f.FKPedidoUsuario.ToString(); f.tipo = "pedidoUsuario"; f.RelacionName = "Pedido: " + PedidosRepo.getPedidoGlobalById(f.FKPedidoGlobal.Value).Nombre + " Usuario: " + UsuariosRepo.obtenerUsuario(PedidosRepo.getPedidoUsuarioById(f.FKPedidoUsuario.Value)).Nickname; }
+            else if (f.FKCodigoEmpresa != null) { f.idRelacion = f.FKCodigoEmpresa.ToString(); f.tipo = "empresa"; f.RelacionName = "Empresa: "+EmpresasRepo.buscaremp(f.FKCodigoEmpresa.Value).Nombre; }
+            else if (f.FKProveedores != null) { f.idRelacion = f.FKProveedores.ToString(); f.tipo = "proveedor"; f.RelacionName = "Proveedor: "+EmpresasRepo.buscaremp(EmpresasRepo.buscarprov(f.FKProveedores.Value).FKCodigoEmpresa).Nombre;}
+            else if (f.FKContrato != null) { f.idRelacion = f.FKContrato.ToString(); f.tipo = "contrato"; f.RelacionName = "Contrato: "+EmpresasRepo.buscarcontrato(f.FKContrato.Value).NombreEmpresa; }
+            else { f.idRelacion = null; f.tipo = null; }
+   
             var factura = new
             {
                 idFactura = f.idFactura,
@@ -659,7 +670,7 @@ namespace TortolasProject.Controllers
                               };
 
 
-            return Json(movimientos);                                
+            return Json(movimientos.OrderBy(m => m.NumMovimiento));                                
         }
 
         [Authorize(Roles = "Junta Directiva")]
@@ -815,10 +826,12 @@ namespace TortolasProject.Controllers
                             select new
                             {
                                 idPedidoGlobal = e.idPedidoGlobal,
-                                Total = e.Total
+                                Total = e.Total,
+                                Nombre = PedidosRepo.getPedidoGlobalById(e.idPedidoGlobal).Nombre
                             };
 
             return Json(pedidos);
+
         }
 
         // Pedidos usuario
@@ -831,7 +844,8 @@ namespace TortolasProject.Controllers
                           {
                               idPedidoUsuario = e.idPedidoUsuario,
                               idUsuario = e.FKUsuario,
-                              nickname = db.tbUsuario.Where(u => u.idUsuario == e.FKUsuario).Single().Nickname
+                              nickname = db.tbUsuario.Where(u => u.idUsuario == e.FKUsuario).Single().Nickname,
+                              TituloPedido = PedidosRepo.getPedidoGlobalById(e.FKPedidoGlobal).Nombre
                           };
 
             return Json(pedidos);
