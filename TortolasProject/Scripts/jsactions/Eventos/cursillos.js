@@ -32,7 +32,7 @@ $(document).ready(function () {
         columns: [
                     {
                         field: "Titulo",
-                        text: "Titulo",
+                        title: "Titulo",
                         filterable: {
                             extra: false, //do not show extra filters
                             operators: { // redefine the string operators
@@ -47,7 +47,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "Lugar",
-                        text: "Lugar",
+                        title: "Lugar",
                         filterable: {
                             extra: false, //do not show extra filters
                             operators: { // redefine the string operators
@@ -62,7 +62,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "Tematica",
-                        text: "Tematica",
+                        title: "Temática",
                         filterable: {
                             extra: false, //do not show extra filters
                             operators: { // redefine the string operators
@@ -77,7 +77,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "FechaRealizacion",
-                        text: "Fecha",
+                        title: "Fecha",
                         filterable: {
                             extra: false, //do not show extra filters
                             operators: { // redefine the string operators
@@ -92,7 +92,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "Plazas",
-                        text: "Plazas",
+                        title: "Plazas",
                         filterable: {
                             extra: false, //do not show extra filters
                             operators: { // redefine the string operators
@@ -393,7 +393,7 @@ $(document).ready(function () {
             [
                 {
                     field: "Nombre",
-                    text: "Nombre",
+                    title: "Nombre",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -411,7 +411,7 @@ $(document).ready(function () {
                 },
                 {
                     field: "Apellidos",
-                    text: "Apellidos",
+                    title: "Apellidos",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -429,7 +429,7 @@ $(document).ready(function () {
                 },
                 {
                     field: "NumAcompa",
-                    text: "NumAcompa",
+                    title: "Num Acompañantes",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -447,7 +447,7 @@ $(document).ready(function () {
                 },
                 {
                     field: "PrecioPorGrupo",
-                    text: "PrecioPorGrupo",
+                    title: "Precio del grupo",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -510,7 +510,7 @@ $(document).ready(function () {
             windowInscripcion.center();
             windowInscripcion.open();
         }
-        else { 
+        else {
             alert("Ya está inscrito a este Cursillo")
         }
     });

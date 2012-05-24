@@ -6,7 +6,7 @@
     <label for="FechaRealizacion">Fecha: </label><input type="text" id="FechaRealizacion" class="k-input" /><br />
     <label for="FechaAperturaInscrip">Fecha de apertura de incripción: </label><input type="text" id="FechaAperturaInscrip" class="k-input" /><br />
     <label for="FechaLimiteInscrip">Fecha límite de inscripción: </label><input type="text" id="FechaLimiteInscrip" class="k-input" /><br />
-    <label for="Plazas">Plazas libres: </label><input type="text" id="Plazas" class="k-input" /><br />
+    <label for="Plazas">Plazas máximas: </label><input type="text" id="Plazas" class="k-input" /><br />
     <label for="NumAcompa">Número máximo de acompañantes por inscripción: </label><input type="text" id="NumAcompa" class="k-input" /><br />
     <label for="PrioridadSocios">Prioridad para socios: </label><input type="select" id="PrioridadSocios" class="dropdown" /><br />
 

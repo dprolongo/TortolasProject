@@ -47,7 +47,9 @@ namespace TortolasProject.Controllers
                                 Plazas = ob.Plazas,
                                 NumAcompa = ob.NumAcompa,
                                 DescuentoSocios = ob.DescuentoSocios,
-                                ConocimientosPrevios = ob.ConocimientosPrevios
+                                ConocimientosPrevios = ob.ConocimientosPrevios,
+                                TotalParticipantes = CursillosRepo.calcularTotalParticipantes(ob.idCursillo),
+                                PlazasLibres = (ob.Plazas - CursillosRepo.calcularTotalParticipantes(ob.idCursillo))
                             };
             return Json(cursillos);
         }
@@ -84,12 +86,13 @@ namespace TortolasProject.Controllers
             {
                 idLineaFactura = Guid.NewGuid(),
                 Descripcion = UsuariosRepo.obtenerUsuario(FKUsuario).Nickname,
-                Unidades = (CursillosRepo.obtenerAcompanantesCursillo(idCursillo,FKUsuario)+ 1),
-                PrecioUnitario = CursillosRepo.leerCursillo(idCursillo).Precio,
-                FKFactura= idFactura
-            }
-            
-            FacturasController.crearFacturaExterna(Factura, new List<tbLineaFactura>().Add(Linea));
+                Unidades = (CursillosRepo.obtenerAcompanantesCursillo(idCursillo, FKUsuario) + 1),
+                PrecioUnitario = CursillosRepo.leerCursillo(idCursillo).Precio.HasValue? CursillosRepo.leerCursillo(idCursillo).Precio.Value : 0 ,
+                FKFactura = idFactura
+            };
+            IList<tbLineaFactura> lista = new List<tbLineaFactura>();
+            lista.Add(Linea);
+            FacturasController.crearFacturaExterna(Factura,lista);
         }
 
         [HttpPost]

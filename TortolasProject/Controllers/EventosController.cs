@@ -14,6 +14,7 @@ namespace TortolasProject.Controllers
         mtbMalagaDataContext bd = new mtbMalagaDataContext();
         EventosRepositorio EventosRepo = new EventosRepositorio();
         UsuariosRepositorio UsuariosRepo = new UsuariosRepositorio();
+        FacturasRepositorio FacturasRepo = new FacturasRepositorio();
 
           //Index
         public ActionResult Index()
@@ -43,7 +44,11 @@ namespace TortolasProject.Controllers
                               FechaRealizacion = ob.FechaRealizacion.ToShortDateString(),
                               PrioridadSocios = ob.PrioridadSocios,
                               Plazas = ob.Plazas,
-                              NumAcompa = ob.NumAcompa
+                              NumAcompa = ob.NumAcompa,
+                              Tipo = EventosRepo.esOficial(ob.idEvento)==true ? "Oficial" : "Libre",
+                              Precio = EventosRepo.esOficial(ob.idEvento)==true ? EventosRepo.obtenerEventoOficialByIdEvento(ob.idEvento).Precio : 0,
+                              TotalParticipantes = EventosRepo.calcularTotalParticipantes(ob.idEvento),
+                              PlazasLibres = (ob.Plazas - EventosRepo.calcularTotalParticipantes(ob.idEvento))
                           };
             return Json(eventos);
         }
@@ -64,6 +69,31 @@ namespace TortolasProject.Controllers
                 FKUsuario = FKUsuario
             };
             EventosRepo.inscripcionEvento(DocInscrip);
+
+            if (EventosRepo.esOficial(idEvento))
+            {
+                Guid idFactura = Guid.NewGuid();
+                tbFactura Factura = new tbFactura
+                {
+                    idFactura = idFactura,
+                    Concepto = "Inscripción Evento Oficial",
+                    FKEventoOficial = EventosRepo.obtenerEventoOficialByIdEvento(idEvento).idEventoOficial,
+                    FKUsuario = FKUsuario,
+                    Fecha = DateTime.Today,
+                    FKEstado = FacturasRepo.leerEstadoByNombre("Pendiente").idEstadoFactura
+                };
+                tbLineaFactura Linea = new tbLineaFactura
+                {
+                    idLineaFactura = Guid.NewGuid(),
+                    Descripcion = UsuariosRepo.obtenerUsuario(FKUsuario).Nickname,
+                    Unidades = (EventosRepo.obtenerAcompanantesEvento(idEvento, FKUsuario) + 1),
+                    PrecioUnitario = EventosRepo.obtenerEventoOficialByIdEvento(idEvento).Precio.HasValue ? EventosRepo.obtenerEventoOficialByIdEvento(idEvento).Precio.Value : 0,
+                    FKFactura = idFactura
+                };
+                IList<tbLineaFactura> lista = new List<tbLineaFactura>();
+                lista.Add(Linea);
+                FacturasController.crearFacturaExterna(Factura, lista);
+            }
             
         }
 
@@ -80,6 +110,8 @@ namespace TortolasProject.Controllers
             int NumAcompa = int.Parse(data["NumAcompaUpdate"]);
             bool PrioridadSocios = bool.Parse(data["PrioridadSociosUpdate"]);
             String Actividad = data["ActividadUpdate"];
+            String Tipo = data["Tipo"];
+            Decimal Precio = Decimal.Parse(data["PrecioUpdate"]);
 
             tbEvento Evento = new tbEvento
             {
@@ -95,6 +127,12 @@ namespace TortolasProject.Controllers
             };
 
             EventosRepo.editarEvento(idEvento,Evento);
+
+            if (Tipo=="Oficial")
+            {
+
+                EventosRepo.editarEventoOficial(idEvento, Precio);
+            }
         }
 
         [HttpPost]

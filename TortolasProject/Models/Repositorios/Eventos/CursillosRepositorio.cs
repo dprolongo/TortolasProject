@@ -109,18 +109,17 @@ namespace TortolasProject.Models.Repositorios
             tbDocInscripcion doc = mtbMalagaDB.tbDocInscripcion
                 .Where(di => di.FKCursillo.Equals(idCursillo) && di.FKUsuario.Equals(idUsuario))
                 .Single(); 
-            return doc.NumAcom.HasValue ? 
-                    mtbMalagaDB.tbDocInscripcion
-                    .Where(di => di.FKCursillo.Equals(idCursillo) && di.FKUsuario.Equals(idUsuario))
-                    .Single().NumAcom.Value 
-                : 
-                    0;
-           
+            return mtbMalagaDB.tbDocInscripcion.Where(di => di.FKCursillo.Equals(idCursillo) && di.FKUsuario.Equals(idUsuario)).Single().NumAcom;         
         }
 
         public Boolean existInscrip(Guid idCursillo,Guid idUsuario)
         {
             return mtbMalagaDB.tbDocInscripcion.Where(docu => docu.FKCursillo.Equals(idCursillo) && docu.FKUsuario.Equals(idUsuario)).Count() != 0;
+        }
+
+        public int calcularTotalParticipantes(Guid idCursillo)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKCursillo.Equals(idCursillo)).Sum(doc => doc.NumAcom + 1);
         }
 
     }

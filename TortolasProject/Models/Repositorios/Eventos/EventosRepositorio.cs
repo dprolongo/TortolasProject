@@ -93,12 +93,7 @@ namespace TortolasProject.Models.Repositorios
             tbDocInscripcion doc = mtbMalagaDB.tbDocInscripcion
                 .Where(di => di.FKEvento.Equals(idEvento) && di.FKUsuario.Equals(idUsuario))
                 .Single(); 
-            return doc.NumAcom.HasValue ? 
-                    mtbMalagaDB.tbDocInscripcion
-                    .Where(di => di.FKEvento.Equals(idEvento) && di.FKUsuario.Equals(idUsuario))
-                    .Single().NumAcom.Value 
-                : 
-                    0;
+            return mtbMalagaDB.tbDocInscripcion.Where(di => di.FKEvento.Equals(idEvento) && di.FKUsuario.Equals(idUsuario)).Single().NumAcom;
            
         }
 
@@ -113,6 +108,34 @@ namespace TortolasProject.Models.Repositorios
             save();
         }
 
+        public Boolean esOficial(Guid idEvento)
+        {
+            return mtbMalagaDB.tbEventoOficial.Where(evo => evo.FKEvento.Equals(idEvento)).Count().Equals(1);
+        }
+
+        public tbEventoOficial obtenerEventoOficialByIdEvento(Guid idEvento)
+        {
+            return mtbMalagaDB.tbEventoOficial.Where(evo => evo.FKEvento.Equals(idEvento)).Single();
+        }
+
+        public tbEvento obtenerEventoByEventoOficial(Guid idEventoOficial)
+        {
+            tbEventoOficial eventoOfi = new tbEventoOficial();
+            eventoOfi = mtbMalagaDB.tbEventoOficial.Where(evo =>evo.idEventoOficial.Equals(idEventoOficial)).Single();
+            return leerEvento(eventoOfi.FKEvento);
+        }
+
+        public void editarEventoOficial(Guid FKEvento, Decimal Precio)
+        {
+            tbEventoOficial evOfi = obtenerEventoOficialByIdEvento(FKEvento);
+            evOfi.Precio = Precio;
+            save();
+        }
+
+        public int calcularTotalParticipantes(Guid idEvento)
+        {
+            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKEvento.Equals(idEvento)).Sum(doc => doc.NumAcom + 1);
+        }
         // 
         //  Funciones auxiliares
         //

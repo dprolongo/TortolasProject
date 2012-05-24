@@ -1,5 +1,6 @@
 ﻿var maxacompa;
 var idEvento = null;
+var TipoEvento;
 
 $(document).ready(function () {
 
@@ -34,7 +35,7 @@ $(document).ready(function () {
         columns: [
                     {
                         field: "Titulo",
-                        text: "Titulo",
+                        title: "Titulo",
                         filterable:
                         {
                             extra: false, //do not show extra filters
@@ -52,7 +53,25 @@ $(document).ready(function () {
                     },
                     {
                         field: "Lugar",
-                        text: "Lugar",
+                        title: "Lugar",
+                        filterable:
+                        {
+                            extra: false, //do not show extra filters
+                            operators:
+                            { // redefine the string operators
+                                string:
+                                {
+                                    eq: "Es igual a..",
+                                    neq: "No es igual a...",
+                                    startswith: "Empieza por...",
+                                    contains: "Contiene"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        field: "Tipo",
+                        title: "Tipo",
                         filterable:
                         {
                             extra: false, //do not show extra filters
@@ -70,7 +89,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "FechaRealizacion",
-                        text: "Fecha",
+                        title: "Fecha",
                         filterable:
                         {
                             extra: false, //do not show extra filters
@@ -88,7 +107,7 @@ $(document).ready(function () {
                     },
                     {
                         field: "Plazas",
-                        text: "Plazas",
+                        title: "Plazas",
                         filterable:
                         {
                             extra: false, //do not show extra filters
@@ -295,10 +314,17 @@ $(document).ready(function () {
         $("#FechaLimiteInscrip").data("kendoDatePicker").value(filajson.FechaLimiteInscripcion);
         $("#Plazas").val(filajson.Plazas);
         $("#NumAcompa").val(filajson.NumAcompa);
+        TipoEvento = filajson.Tipo;
+        $("#PrecioEvento").val(filajson.Precio);
+        if (filajson.Tipo == "Oficial") {
+            $("#capaPrecio").show();
+        }
+        else {
+            $("#capaPrecio").hide();
+        }
 
         $("#PrioridadSocios").data("kendoDropDownList").value((filajson.PrioridadSocios));
         $("#editor").data("kendoEditor").value((filajson.Actividad));
-
         windowEditar.center();
         windowEditar.open();
     });
@@ -335,7 +361,6 @@ $(document).ready(function () {
             datos["PrecioEventoUpdate"] = $("#PrecioEvento").val();
         }
 
-        alert(datos["TipoUpdate"]);
         $.ajax(
         {
             url: "Eventos/CreateEvento",
@@ -354,7 +379,7 @@ $(document).ready(function () {
         var datos = {};
 
         datos["numacompa"] = 0;
-        if (!$("#AcompanantesDropdown").data("kendoDropDownList").value()) {
+        if ($("#AcompanantesDropdown").data("kendoDropDownList").value()) {
             datos["numacompa"] = $("#Acompanantes").val();
         }
         datos["idEvento"] = idEvento;
@@ -383,6 +408,8 @@ $(document).ready(function () {
         datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
         datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
         datos["idEvento"] = idEvento;
+        datos["Tipo"] = TipoEvento;
+        datos["PrecioUpdate"] = $("#PrecioEvento").val();
 
         $.ajax(
         {
@@ -446,7 +473,7 @@ $(document).ready(function () {
             [
                 {
                     field: "Nombre",
-                    text: "Nombre",
+                    title: "Nombre",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -464,7 +491,7 @@ $(document).ready(function () {
                 },
                 {
                     field: "Apellidos",
-                    text: "Apellidos",
+                    title: "Apellidos",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -482,7 +509,7 @@ $(document).ready(function () {
                 },
                 {
                     field: "NumAcompa",
-                    text: "NumAcompa",
+                    title: "Num Acompañantes",
                     filterable:
                     {
                         extra: false, //do not show extra filters
@@ -500,6 +527,8 @@ $(document).ready(function () {
                 }
             ]
         });
+
+          
     }
 
     $("#botonInscripcion").live("click", function () {
