@@ -32,7 +32,7 @@ namespace TortolasProject.Controllers
         public ActionResult leerTodos()
         {
 
-            var articulos = from art in ArticulosRepo.listarArticulos() 
+            var articulos = from art in ArticulosRepo.listarArticulos()
                            select new
                                {
                                    idArticulo = art.idArticulo,
@@ -46,6 +46,8 @@ namespace TortolasProject.Controllers
 
             return Json(articulos);
         }
+
+        
 
         public ActionResult cargarVistaAnadirArticulo()
         {
