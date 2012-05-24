@@ -153,6 +153,7 @@
     <Content Include="Content\Empresas\FormatoTexto.css" />
     <Content Include="Content\Eventos\EventosKendocss.css" />
     <Content Include="Content\Empresas\EmpresasNew.css" />
+    <Content Include="Content\Eventos\CursillosKendocss.css" />
     <Content Include="Content\Facturas\facturaPDF.css" />
     <Content Include="Content\Facturas\graficosContables.css" />
     <Content Include="Content\Facturas\movimientoPDF.css" />
