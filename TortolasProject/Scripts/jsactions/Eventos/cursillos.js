@@ -1,5 +1,7 @@
 ﻿var maxacompa;
 var idCursillo = null;
+var TotalParticipantesGeneral;
+var PlazasLibresGeneral;
 
 $(document).ready(function () {
 
@@ -162,13 +164,35 @@ $(document).ready(function () {
             var numacompa = this.dataItem(e.item.index());
             if (numacompa.valor == true) {
                 $("#NumeroAcompa").show();
+                $("#Acompanantes").kendoNumericTextBox
+                ({
+                    min: 1,
+                    max: maxacompa,
+                    step: 1,
+                    format: "0"
+                });
             }
             else {
+                $("#acompaWrapper").empty();
+                $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+                $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
+                $("#NumeroAcompa").val(0);
                 $("#NumeroAcompa").hide();
             }
         }
     });
     $("#NumeroAcompa").hide();
+
+    $(".requerido").change(function () {
+
+        if ($(this).val() == "") {
+            $(this).addClass("k-invalid");
+        }
+        else {
+            $(this).removeClass("k-invalid");
+        }
+    });
+
     $("#FechaRealizacion").kendoDatePicker({
 
         format: "dd/MM/yyyy"
@@ -196,6 +220,41 @@ $(document).ready(function () {
                 $("#FormularioCreacion").html(data);
                 $("#FormularioCreacion").show();
                 $("#editor").kendoEditor();
+                $("#Monitor").kendoDropDownList
+                ({
+                    dataSource: new kendo.data.DataSource
+                    ({
+                        transport:
+                        {
+                            read:
+                            {
+                                url: "Cursillos/leerMonitores",
+                                type: "POST",
+                                async: false
+                            }
+                        }
+                    }),
+                    dataTextField: "Nombre",
+                    dataValueField: "idMonitor"
+
+                });
+
+                $("#Monitor").hide();
+
+                $("#checkboxMonitor").change(function () {
+
+                    $("#capaMonitor").toggle();
+                });
+
+                $(".requerido").change(function () {
+
+                    if ($(this).val() == "") {
+                        $(this).addClass("k-invalid");
+                    }
+                    else {
+                        $(this).removeClass("k-invalid");
+                    }
+                });
 
                 $("#FechaRealizacion").kendoDatePicker({
 
@@ -267,31 +326,41 @@ $(document).ready(function () {
     });
 
     $("#BotonAceptarFormularioCrear").live("click", function () {
-        var datos = {};
-        datos["TituloUpdate"] = $("#Titulo").val();
-        datos["LugarUpdate"] = $("#Lugar").val();
-        datos["TematicaUpdate"] = $("#Tematica").val();
-        datos["ConocimientosPreviosUpdate"] = $("#ConocimientosPrevios").val();
-        datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
-        datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
-        datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
-        datos["PlazasUpdate"] = $("#Plazas").val();
-        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
-        datos["PrecioUpdate"] = $("#Precio").val();
-        datos["DescuentoSociosUpdate"] = $("#DescuentoSocios").val();
-        datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+        if (comprobarNecesarios("FormularioCrear")) {
 
-        $.ajax(
-        {
-            url: "Cursillos/CreateCursillo",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                $("#FormularioCreacion").hide();
-                $("#Cursillostabla").show();
-            }
-        });
+            var datos = {};
+            datos["TituloUpdate"] = $("#Titulo").val();
+            datos["LugarUpdate"] = $("#Lugar").val();
+            datos["TematicaUpdate"] = $("#Tematica").val();
+            datos["ConocimientosPreviosUpdate"] = $("#ConocimientosPrevios").val();
+            datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
+            datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
+            datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
+            datos["PlazasUpdate"] = $("#Plazas").val();
+            datos["NumAcompaUpdate"] = $("#NumAcompa").val();
+            datos["PrecioUpdate"] = $("#Precio").val();
+            datos["DescuentoSociosUpdate"] = $("#DescuentoSocios").val();
+            datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+            if ($("#checkboxMonitor").attr("checked") == "checked")
+                datos["MonitorUpdate"] = $("#Monitor").data("kendoDropDownList").value();
+            else
+                datos["MonitorUpdate"] = "";
+
+            $.ajax(
+            {
+                url: "Cursillos/CreateCursillo",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    $("#FormularioCreacion").hide();
+                    $("#Cursillostabla").show();
+                }
+            });
+        }
+        else {
+            alert("Campos requeridos vacíos");
+        }
     });
 
     $("#BotonAceptarInscripcion").click(function () {
@@ -301,46 +370,66 @@ $(document).ready(function () {
         if ($("#AcompanantesDropdown").data("kendoDropDownList").value()) {
             datos["numacompa"] = $("#Acompanantes").val();
         }
-        datos["idCursillo"] = idCursillo;
-        $.ajax(
-        {
-            url: "Cursillos/InscripcionCursillo",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                windowInscripcion.close();
-            }
-        });
+
+        var nuevosParticipantes = null;
+        if (datos["numacompa"] == "") {
+            nuevosParticipantes = 0;
+            datos["numacompa"] = 0;
+        }
+        else {
+            nuevosParticipantes = datos["numacompa"];
+        }
+
+        if (PlazasLibresGeneral >= nuevosParticipantes) {
+            datos["idCursillo"] = idCursillo;
+            $.ajax
+            ({
+                url: "Cursillos/InscripcionCursillo",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    windowInscripcion.close();
+                }
+            });
+        }
+        else {
+            alert("No quedan plazas libres suficientes \n Plazas libres: " + PlazasLibresGeneral);
+        }
     });
 
     $("#BotonAceptarVentanaEditar").click(function () {
-        var datos = {};
+        if (comprobarNecesarios("VentanaEditar")) {
+            var datos = {};
 
-        datos["TituloUpdate"] = $("#Titulo").val();
-        datos["LugarUpdate"] = $("#Lugar").val();
-        datos["TematicaUpdate"] = $("#Tematica").val();
-        datos["ConocimientosPreviosUpdate"] = $("#ConocimientosPreviosTematica").val();
-        datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
-        datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
-        datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
-        datos["PlazasUpdate"] = $("#Plazas").val();
-        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
-        datos["PrecioUpdate"] = $("#Precio").val();
-        datos["DescuentoSociosUpdate"] = $("#DescuentoSocios").val();
-        datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
-        datos["idCursillo"] = idCursillo;
+            datos["TituloUpdate"] = $("#Titulo").val();
+            datos["LugarUpdate"] = $("#Lugar").val();
+            datos["TematicaUpdate"] = $("#Tematica").val();
+            datos["ConocimientosPreviosUpdate"] = $("#ConocimientosPreviosTematica").val();
+            datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
+            datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
+            datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
+            datos["PlazasUpdate"] = $("#Plazas").val();
+            datos["NumAcompaUpdate"] = $("#NumAcompa").val();
+            datos["PrecioUpdate"] = $("#Precio").val();
+            datos["DescuentoSociosUpdate"] = $("#DescuentoSocios").val();
+            datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+            datos["idCursillo"] = idCursillo;
 
-        $.ajax(
-        {
-            url: "Cursillos/UpdateCursillo",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                windowEditar.close();
-            }
-        });
+            $.ajax(
+            {
+                url: "Cursillos/UpdateCursillo",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    windowEditar.close();
+                }
+            });
+        }
+        else {
+            alert("Campos requeridos vacíos");
+        }
     });
 
 
@@ -467,6 +556,16 @@ $(document).ready(function () {
         });
     }
 
+    $("#botonFacturas").live("click", function () {
+
+        var fila = $("#Cursillostabla").data("kendoGrid").select();
+        var filaJson = $("#Cursillostabla").data("kendoGrid").dataItem(fila).toJSON(); // La pasamos a JSON
+
+        var Cursillo = datasource.getByUid(fila.attr("data-uid"));
+
+        location.replace("../Cursillos/cargarVistaFacturasCursillo/" + Cursillo.idCursillo);
+    });
+
     $("#botonInscripcion").live("click", function () {
 
         var fila = $("#Cursillostabla").data("kendoGrid").select();
@@ -478,26 +577,29 @@ $(document).ready(function () {
         var Precio = Cursillo.Precio;
         maxacompa = Cursillo.NumAcompa;
         var inscripcionExistente;
+        TotalParticipantesGeneral = Cursillo.TotalParticipantes;
+        PlazasLibresGeneral = Cursillo.PlazasLibres;
 
-        $.ajax
-        ({
-            url: "Cursillos/comprobarInscrip",
-            type: "POST",
-            data: { idCursillo: idCursillo },
-            async: false,
-            success: function (data) {
-                inscripcionExistente = data;
-            }
-        });
-        if (inscripcionExistente == "False") {
-            $("#TituloCursilloInscripcion").text(Titulo);
-            $("#PrecioCursilloInscripcion").text(Precio);
+        if (PlazasLibresGeneral > 0) {
+            $.ajax
+            ({
+                url: "Cursillos/comprobarInscrip",
+                type: "POST",
+                data: { idCursillo: idCursillo },
+                async: false,
+                success: function (data) {
+                    inscripcionExistente = data;
+                }
+            });
+            if (inscripcionExistente == "False") {
+                $("#TituloCursilloInscripcion").text(Titulo);
+                $("#PrecioCursilloInscripcion").text(Precio);
 
-            $("#acompaWrapper").empty();
-            $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
-            $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
+                $("#acompaWrapper").empty();
+                $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+                $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
 
-            $("#Acompanantes").kendoNumericTextBox
+                $("#Acompanantes").kendoNumericTextBox
             ({
                 min: 1,
                 max: maxacompa,
@@ -505,13 +607,17 @@ $(document).ready(function () {
                 format: "0"
             });
 
-            $("#NumeroAcompa").hide();
+                $("#NumeroAcompa").hide();
 
-            windowInscripcion.center();
-            windowInscripcion.open();
+                windowInscripcion.center();
+                windowInscripcion.open();
+            }
+            else {
+                alert("Ya está inscrito a este Cursillo")
+            }
         }
         else {
-            alert("Ya está inscrito a este Cursillo")
+            alert("No quedan plazas libres en este cursillo")
         }
     });
 
@@ -542,5 +648,25 @@ $(document).ready(function () {
                 my: "top left"
             }
         });
+
+        $("#botonFacturas").qtip({
+            content: {
+                text: "Seleccione un Cursillo y haga click para ver la Factura asociada"
+            },
+            position: {
+                my: "top left"
+            }
+        });
     }
 });
+
+function comprobarNecesarios(formulario) {
+    var noHayErrores = true;
+    $("#" + formulario + " .requerido").each(function (index) {
+        if ($(this).val() == "") {
+            $(this).addClass("k-invalid");
+            noHayErrores = false;
+        }
+    });
+    return noHayErrores;
+}

@@ -1,6 +1,8 @@
 ﻿var maxacompa;
 var idEvento = null;
 var TipoEvento;
+var TotalParticipantesGeneral;
+var PlazasLibresGeneral;
 
 $(document).ready(function () {
 
@@ -129,7 +131,15 @@ $(document).ready(function () {
                         command: [{ text: "Editar", className: "botonEditarFila" }, { text: "Eliminar", className: "botonEliminarFila"}]
                     }
 
-        ],
+            ],
+        change: function (e) {
+            var Tipo = this.dataSource.getByUid(this.select().data("uid")).Tipo;
+            console.log(Tipo);
+            if (Tipo == "Oficial")
+                $("#botonFacturas").show();
+            else
+                $("#botonFacturas").hide();
+        },
         detailTemplate: kendo.template($("#template").html()),
         detailInit: inicializarDetalles
     });
@@ -206,14 +216,30 @@ $(document).ready(function () {
                     format: "0"
                 });
                 $("#NumeroAcompa").show();
+
+
             }
             else {
+                $("#acompaWrapper").empty();
+                $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+                $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
+                $("#NumeroAcompa").val(0);
                 $("#NumeroAcompa").hide();
             }
         }
     });
 
     $("#NumeroAcompa").hide();
+
+    $(".requerido").change(function () {
+
+        if ($(this).val() == "") {
+            $(this).addClass("k-invalid");
+        }
+        else {
+            $(this).removeClass("k-invalid");
+        }
+    });
 
     $("#FechaRealizacion").kendoDatePicker
     ({
@@ -253,6 +279,16 @@ $(document).ready(function () {
                 $("#FechaLimiteInscrip").kendoDatePicker
                 ({
                     format: "dd/MM/yyyy"
+                });
+
+                $(".requerido").change(function () {
+
+                    if ($(this).val() == "") {
+                        $(this).addClass("k-invalid");
+                    }
+                    else {
+                        $(this).removeClass("k-invalid");
+                    }
                 });
 
                 var valoresComboPrioridad =
@@ -345,34 +381,39 @@ $(document).ready(function () {
     });
 
     $("#BotonAceptarFormularioCrear").live("click", function () {
-        var datos = {};
-        datos["TituloUpdate"] = $("#Titulo").val();
-        datos["LugarUpdate"] = $("#Lugar").val();
-        datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
-        datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
-        datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
-        datos["PlazasUpdate"] = $("#Plazas").val();
-        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
-        datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
-        datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
-        datos["TipoUpdate"] = $("#tipoEventoDropDown").data("kendoDropDownList").value();
-        datos["PrecioEventoUpdate"] = 0;
-        if ($("#tipoEventoDropDown").data("kendoDropDownList").value()) {
-            datos["PrecioEventoUpdate"] = $("#PrecioEvento").val();
-        }
 
-        $.ajax(
-        {
-            url: "Eventos/CreateEvento",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                $("#FormularioCreacion").hide();
-                $("#Eventostabla").show();
+        if (comprobarNecesarios("FormularioCrear")) {
+            var datos = {};
+            datos["TituloUpdate"] = $("#Titulo").val();
+            datos["LugarUpdate"] = $("#Lugar").val();
+            datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
+            datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
+            datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
+            datos["PlazasUpdate"] = $("#Plazas").val();
+            datos["NumAcompaUpdate"] = $("#NumAcompa").val();
+            datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
+            datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+            datos["TipoUpdate"] = $("#tipoEventoDropDown").data("kendoDropDownList").value();
+            datos["PrecioEventoUpdate"] = 0;
+            if ($("#tipoEventoDropDown").data("kendoDropDownList").value()) {
+                datos["PrecioEventoUpdate"] = $("#PrecioEvento").val();
             }
-        });
 
+            $.ajax(
+            {
+                url: "Eventos/CreateEvento",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    $("#FormularioCreacion").hide();
+                    $("#Eventostabla").show();
+                }
+            });
+        }
+        else {
+            alert("Campos Necesarios vacíos");
+        }
     });
 
     $("#BotonAceptarInscripcion").click(function () {
@@ -382,45 +423,67 @@ $(document).ready(function () {
         if ($("#AcompanantesDropdown").data("kendoDropDownList").value()) {
             datos["numacompa"] = $("#Acompanantes").val();
         }
-        datos["idEvento"] = idEvento;
-        $.ajax(
+
+        var nuevosParticipantes = null;
+        if (datos["numacompa"] == "") {
+            nuevosParticipantes = 0;
+            datos["numacompa"] = 0;
+        }
+        else 
         {
-            url: "Eventos/InscripcionEvento",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                windowInscripcion.close();
-            }
-        });
+            nuevosParticipantes = datos["numacompa"];
+        }
+
+        if (PlazasLibresGeneral >= nuevosParticipantes) {
+            datos["idEvento"] = idEvento;
+            $.ajax
+            ({
+                url: "Eventos/InscripcionEvento",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    windowInscripcion.close();
+                }
+            });
+        }
+        else {
+            alert("No quedan plazas libres suficientes \n Plazas libres: " + PlazasLibresGeneral);
+        }
     });
 
     $("#BotonAceptarVentanaEditar").click(function () {
-        var datos = {};
 
-        datos["TituloUpdate"] = $("#Titulo").val();
-        datos["LugarUpdate"] = $("#Lugar").val();
-        datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
-        datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
-        datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
-        datos["PlazasUpdate"] = $("#Plazas").val();
-        datos["NumAcompaUpdate"] = $("#NumAcompa").val();
-        datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
-        datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
-        datos["idEvento"] = idEvento;
-        datos["Tipo"] = TipoEvento;
-        datos["PrecioUpdate"] = $("#PrecioEvento").val();
+        if (comprobarNecesarios("VentanaEditar")) {
+            var datos = {};
 
-        $.ajax(
-        {
-            url: "Eventos/UpdateEvento",
-            type: "POST",
-            data: datos,
-            success: function () {
-                datasource.read();
-                windowEditar.close();
-            }
-        });
+            datos["TituloUpdate"] = $("#Titulo").val();
+            datos["LugarUpdate"] = $("#Lugar").val();
+            datos["FechaRealizacionUpdate"] = $("#FechaRealizacion").val();
+            datos["FechaAperturaInscripUpdate"] = $("#FechaAperturaInscrip").val();
+            datos["FechaLimiteInscripUpdate"] = $("#FechaLimiteInscrip").val();
+            datos["PlazasUpdate"] = $("#Plazas").val();
+            datos["NumAcompaUpdate"] = $("#NumAcompa").val();
+            datos["PrioridadSociosUpdate"] = $("#PrioridadSocios").val();
+            datos["ActividadUpdate"] = $("#editor").data("kendoEditor").value();
+            datos["idEvento"] = idEvento;
+            datos["Tipo"] = TipoEvento;
+            datos["PrecioUpdate"] = $("#PrecioEvento").val();
+
+            $.ajax(
+            {
+                url: "Eventos/UpdateEvento",
+                type: "POST",
+                data: datos,
+                success: function () {
+                    datasource.read();
+                    windowEditar.close();
+                }
+            });
+        }
+        else {
+            alert("Campos requeridos vacíos");
+        }
     });
 
 
@@ -528,8 +591,17 @@ $(document).ready(function () {
             ]
         });
 
-          
     }
+
+    $("#botonFacturas").live("click", function () {
+
+        var fila = $("#Eventostabla").data("kendoGrid").select();
+        var filaJson = $("#Eventostabla").data("kendoGrid").dataItem(fila).toJSON(); // La pasamos a JSON
+
+        var Evento = datasource.getByUid(fila.attr("data-uid"));
+
+        location.replace("../Eventos/cargarVistaFacturasEvento/" + Evento.idEvento);
+    });
 
     $("#botonInscripcion").live("click", function () {
 
@@ -541,39 +613,47 @@ $(document).ready(function () {
         idEvento = Evento.idEvento;
         var Precio = Evento.Precio;
         maxacompa = Evento.NumAcompa;
+
+        TotalParticipantesGeneral = Evento.TotalParticipantes;
+        PlazasLibresGeneral = Evento.PlazasLibres;
         var inscripcionExistente;
 
-        $.ajax
-        ({
-            url: "Eventos/comprobarInscrip",
-            type: "POST",
-            data: { idEvento: idEvento },
-            async: false,
-            success: function (data) {
-                inscripcionExistente = data;
-            }
-        });
-        if (inscripcionExistente == "False") {
-            $("#TituloEventoInscripcion").text(Titulo);
-            $("#PrecioEventoInscripcion").text(Precio);
+        if (PlazasLibresGeneral > 0) {
+            $.ajax
+            ({
+                url: "Eventos/comprobarInscrip",
+                type: "POST",
+                data: { idEvento: idEvento },
+                async: false,
+                success: function (data) {
+                    inscripcionExistente = data;
+                }
+            });
+            if (inscripcionExistente == "False") {
+                $("#TituloEventoInscripcion").text(Titulo);
+                $("#PrecioEventoInscripcion").text(Precio);
 
-            $("#acompaWrapper").empty();
-            $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
-            $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
+                $("#acompaWrapper").empty();
+                $("#acompaWrapper").html('<div id="NumeroAcompa"><label> Número de acompañantes: </label><input id="Acompanantes" /></div>');
+                $("#AcompanantesDropdown").data("kendoDropDownList").select(0);
 
-            $("#Acompanantes").kendoNumericTextBox
+                $("#Acompanantes").kendoNumericTextBox
                 ({
                     min: 1,
                     max: maxacompa,
                     step: 1,
                     format: "0"
                 });
-            $("#NumeroAcompa").hide();
-            windowInscripcion.center();
-            windowInscripcion.open();
+                $("#NumeroAcompa").hide();
+                windowInscripcion.center();
+                windowInscripcion.open();
+            }
+            else {
+                alert("Ya está inscrito a este Evento");
+            }
         }
         else {
-            alert("Ya está inscrito a este Evento");
+            alert("No quedan plazas libres en este evento");
         }
     });
 
@@ -605,5 +685,25 @@ $(document).ready(function () {
                 my: "top left"
             }
         });
+
+        $("#botonFacturas").qtip({
+            content: {
+                text: "Seleccione un Evento y haga click para ver la Factura asociada"
+            },
+            position: {
+                my: "top left"
+            }
+        });
     }
 });
+
+function comprobarNecesarios(formulario) {
+    var noHayErrores = true;
+    $("#" + formulario + " .requerido").each(function (index) {
+        if ($(this).val() == "") {
+            $(this).addClass("k-invalid");
+            noHayErrores = false;
+        }
+    });
+    return noHayErrores;
+}
