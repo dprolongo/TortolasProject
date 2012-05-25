@@ -7,6 +7,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <img src="../../Content/images/titulorutas.png" /><br />
 <div id="tablaRutas"></div>
+<div class="mapa">
+    <div id='map_canvas' class='mapa' style='width:inherit;height:400px'></div>
+</div> 
 
 <div id="ventanaCrear">
     <center><img src="../../Content/images/nuevaruta.png" height="160" /></center><br />
@@ -80,10 +83,7 @@
                     </tr>
                     </table>
                 </div>
-            </div>
-            <div class="mapa">
-                <div class='map_canvas'></div>
-            </div>          
+            </div>         
         </div>
     </div>
     </script> 

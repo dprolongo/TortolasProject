@@ -15,7 +15,7 @@ body
     height:100%;
     width:100%;
     
-    background-color:#EAEAEA;   
+    background-color:#3B5998;   
     font-size: 13px;
     font-family: Arial, SunSans-Regular, Sans-Serif;
     padding:0;
@@ -33,6 +33,7 @@ body
     background-color:#3B5998;
     position: fixed;
     z-index:998;   
+    top:20px;
 }
 
 #logoContainer{
@@ -92,10 +93,11 @@ h1{
 {
     position:relative;
     float:left;
-    top:60px;
-    
+    top:80px;
+   /* min-height: 800px; */
     width:100%;
     height:100%;
+    margin-top:10px;
     margin-bottom: 10px;
     margin: 0 auto;
      
@@ -104,7 +106,7 @@ h1{
 
 #containerleft{
     position:fixed;
-    top:60px;
+    top:80px;
     left:0px;
     
     width: 200px;
@@ -114,16 +116,15 @@ h1{
     
     font-family: Georgia,'Times New Roman',times,serif;
     background-color:#DCDCDC;
-    z-index:102;
-    
-        
+    z-index:102;       
 }
 
 #containercenter
 {
+   
     position:relative;
     left:0px;
-    
+     min-height:800px; 
     width:845px;
     height:100%;
     margin:0px auto;
@@ -137,13 +138,49 @@ h1{
 #containeright
 {
     position:fixed;  
-    top:60px;
+    top:80px;
     right:0px;
     
     width:200px;
     height:100%;
     padding:0;
     margin:0;
-    
+    background-color:#EAEAEA;
     z-index:102;
+}
+.demo-section {
+    width: 200px;
+    margin-top:20px;
+}
+.demo-section h3
+{ 
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+.brazilFlag {
+    background-position: 0 0;
+}
+.indiaFlag {
+    background-position: 0 -32px;
+}
+.netherlandsFlag {
+    background-position: 0 -64px;
+}
+.historyIcon {
+    background-position: 0 -96px;
+}
+.geographyIcon {
+    background-position: 0 -128px;
+}
+
+#menulateral li ul div
+{   
+    padding: 40px;
+    width: 400px;
+}
+
+#menulateral li ul li
+{   
+    padding: 40px;
+    
 }

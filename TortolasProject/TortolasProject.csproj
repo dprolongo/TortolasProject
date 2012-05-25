@@ -450,6 +450,7 @@
     <Content Include="Content\images\titulocaptacion.png" />
     <Content Include="Content\images\titulocuotas.png" />
     <Content Include="Content\images\tituloinneradminsocios.png" />
+    <Content Include="Content\images\titulomisrutas.png" />
     <Content Include="Content\images\titulopedidos.png" />
     <Content Include="Content\images\titulorutas.png" />
     <Content Include="Content\images\titulousuarios.png" />
@@ -1081,6 +1082,8 @@
     <Content Include="Views\Perfil\Index.aspx" />
     <Content Include="Views\Inventario\Index.aspx" />
     <Content Include="Views\Pedidos\Index.aspx" />
+    <Content Include="Views\Perfil\PDF\facturaPDF.aspx" />
+    <Content Include="Views\Perfil\PDF\movimientoPDF.aspx" />
     <Content Include="Views\Rutas\Index.aspx" />
     <Content Include="Views\Socios\Index.aspx" />
     <Content Include="Views\Usuarios\Index.aspx" />

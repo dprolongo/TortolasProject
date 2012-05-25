@@ -17,7 +17,6 @@
 
 
 <asp:Content ID="facturaMainContent" ContentPlaceHolderID="MainContent" runat="server">
-<%Html.RenderPartial("facturasNav"); %>
 <% String estado = Model.vista; %>
 <input type="hidden" id='estadoPage' value='<% Response.Write(estado); %>' />
 <input type="hidden" id='idFactura' value='<% Response.Write(Model.idFactura); %>' />

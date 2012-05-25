@@ -28,8 +28,10 @@ label
 {
     border : 1px solid red;
 }
-#map_canvas
+.mapa
 {
+    position:relative;
+    float:left;
     width:600px;
     height:400px;
 }

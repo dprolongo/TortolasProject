@@ -269,10 +269,10 @@ namespace TortolasProject.Controllers.Perfil
             IList<tbLineaFactura> lineasFacturas = new List<tbLineaFactura>();
             Guid usuario = usuariosRepo.obtenerUsuarioNoAsp(HomeController.obtenerUserIdActual()).idUsuario;
             Guid socio = usuariosRepo.obtenerSocio(usuario).idSocio;
-
+            Guid idFactura = Guid.NewGuid();
             tbFactura factura = new tbFactura
             {
-                idFactura = Guid.NewGuid(),
+                idFactura = idFactura,
                 Concepto = data["Concepto"],    // Renovacion o alta+ reno
                 Fecha = DateTime.Today,
                 FKUsuario = usuario,                
@@ -286,7 +286,7 @@ namespace TortolasProject.Controllers.Perfil
                 {
                     idLineaFactura = Guid.NewGuid(),
                     Descripcion = "Alta de Socio", // informacion mas detallada
-                    FKFactura = factura.idFactura,
+                    FKFactura = idFactura,
                     Unidades = 1,
                     PrecioUnitario = int.Parse(data["importeAlta"]), 
                     Total = 1 * int.Parse(data["importeAlta"])
@@ -299,7 +299,7 @@ namespace TortolasProject.Controllers.Perfil
             {
                     idLineaFactura = Guid.NewGuid(),
                     Descripcion = data["Descripcion"], // informacion mas detallada
-                    FKFactura = factura.idFactura,
+                    FKFactura = idFactura,
                     Unidades = 1,
                     PrecioUnitario = int.Parse(data["importeRenovacion"]), //
                     Total = 1 * int.Parse(data["importeRenovacion"])
@@ -310,7 +310,7 @@ namespace TortolasProject.Controllers.Perfil
             
             tbCuota cuota = new tbCuota
             {
-                FKFactura = factura.idFactura,
+                FKFactura = idFactura,
                 idCuota = Guid.NewGuid(),
                 FKTipoCuota = usuariosRepo.tipoCuota(data["tipoCuota"]),
                 FKSocio = socio,
@@ -330,28 +330,15 @@ namespace TortolasProject.Controllers.Perfil
             factura.LineasFactura = facturasRepo.listarLineasFactura(factura.idFactura);
             factura.ResponsableName = obtenerJuntaDirectivaNickname(factura.FKJuntaDirectiva);
 
-
-            // Meter relacion
-            /*
-             * 
-             * 
-             */
-
-            return new Rotativa.RouteAsPdf("Facturas/facturaPDF", new { id = factura.idFactura })
-            {
-                FileName = "Factura"
-                              + factura.Fecha.Day
-                              + factura.Fecha.Month
-                              + factura.Fecha.Year
-                              + ".pdf"
-            }; //return RedirectToAction("generarFacturaPDF", "Facturas", new { id = factura.idFactura.ToString("B") });
+            return RedirectToAction("leerFactura", "Facturas", new { id = idFactura.ToString()});
+            
+            //return RedirectToAction("facturaPDF", new { id = factura.idFactura });
         }
-        
+
         private String obtenerJuntaDirectivaNickname(Guid idJuntaDirectiva)
         {
             return mtbDB.tbUsuario.Where(u => u.idUsuario == (mtbDB.tbSocio.Where(s => s.idSocio == idJuntaDirectiva).Single().FKUsuario)).Single().Nickname;
         }
-
-
+        
     }
 }

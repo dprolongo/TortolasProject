@@ -26,7 +26,6 @@
     });
 
     $("#LogInButton").click(function () {
-        alert("iniciando sesión");
         var u = $("#userLogIn").val();
         var p = $("#pwdLogIn").val();
 
@@ -47,42 +46,15 @@
         });
     });
 
-    $("#kedomenuizquierda").kendoMenu({
+    $("#menuLateral").kendoMenu({
         direction: "right right",
-        orientation: "vertical",
-        dataSource: [
-                        {
-                            text: "Empresas", imageUrl: "../../content/icons/agents.ico",
-                            
-                            items: [
-                                { 
-                                    text: "Empresas y asociados", imageUrl: "../../content/icons/aim.ico",
-                                    url: "http://localhost:3608/Empresas#",
-                                 },
-                                { text: "Contratos", imageUrl: "../../content/icons/aim.ico" }
-                            ]
-                        },
-                        {
-                            text: "Contabilidad", imageUrl: "../../content/icons/agents.ico",
-                            
-                            items: [
-                                { 
-                                    text: "Facturas", imageUrl: "../../content/icons/aim.ico",
-                                    url: "/Facturas",
-                                },
-                                { 
-                                    text: "Movimientos", imageUrl: "../../content/icons/aim.ico",
-                                    url: "/Facturas/Movimientos",
-                                },
-                                { 
-                                    text: "Gráficos contables", imageUrl: "../../content/icons/aim.ico",
-                                    url: "/Facturas/graficosContables",
-                                },
-                            ]
-                        }
-                    ]
-                });
-     //Menu izquierda
+        orientation: "vertical"
+    });
+    //Menu izquierda
 
-
+    $.ajax({
+        url:"",
+        type:"POST",
+        async:false
+    });
 });

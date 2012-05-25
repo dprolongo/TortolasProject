@@ -294,8 +294,9 @@
   </Table>
   <Table Name="dbo.tbCursilloMonitor" Member="tbCursilloMonitor">
     <Type Name="tbCursilloMonitor">
-      <Column Name="FKCursillo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FKMonitor" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FKCursillo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FKMonitor" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="idCursilloMonitor" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="tbCursillo_tbCursilloMonitor" Member="tbCursillo" ThisKey="FKCursillo" OtherKey="idCursillo" Type="tbCursillo" IsForeignKey="true" />
       <Association Name="tbMonitor_tbCursilloMonitor" Member="tbMonitor" ThisKey="FKMonitor" OtherKey="idMonitor" Type="tbMonitor" IsForeignKey="true" />
     </Type>

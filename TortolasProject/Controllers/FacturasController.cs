@@ -15,7 +15,7 @@ namespace TortolasProject.Controllers
 {
     public class FacturasController : Controller
     {
-        mtbMalagaDataContext db = new mtbMalagaDataContext();
+        static mtbMalagaDataContext db = new mtbMalagaDataContext();
         static FacturasRepositorio FacturasRepo = new FacturasRepositorio();
         static Decimal  IVA = 1.18M;
 
@@ -747,14 +747,14 @@ namespace TortolasProject.Controllers
         // Auxiliares                                                            
         ///////////////////////////////////////////////////////////////////////////////
         
-        private Guid obtenerJuntaDirectivaLogueado()
+        public static Guid obtenerJuntaDirectivaLogueado()
         {
             Guid user = HomeController.obtenerUserIdActual();
             return db.tbJuntaDirectiva.Where(jd => jd.FKSocio == db.tbSocio.Where(s => s.FKUsuario == db.tbUsuario.Where(u => u.FKUser == user).Single().idUsuario).Single().idSocio).Single().FKSocio;
         }
 
         
-        private String obtenerJuntaDirectivaNickname(Guid idJuntaDirectiva)
+        public static String obtenerJuntaDirectivaNickname(Guid idJuntaDirectiva)
         {           
             return db.tbUsuario.Where(u => u.idUsuario == (db.tbSocio.Where(s => s.idSocio == idJuntaDirectiva).Single().FKUsuario)).Single().Nickname;
         }
@@ -1020,8 +1020,8 @@ namespace TortolasProject.Controllers
         ///////////////////////////////////////////////////////////////////////////////
         // Generación de PDF
         ///////////////////////////////////////////////////////////////////////////////
-        [Authorize(Roles = "Socio")]
-        public ActionResult generarFacturaPDF(String id)
+        [Authorize(Roles = "Socio, Junta Directiva")]
+        public static ActionResult generarFacturaPDF(String id)
         {
             tbFactura factura = FacturasRepo.leerFactura(Guid.Parse(id));
             factura.LineasFactura = FacturasRepo.listarLineasFactura(factura.idFactura);
@@ -1044,7 +1044,7 @@ namespace TortolasProject.Controllers
             //return View("facturaPDF", factura);
         }
 
-        [Authorize(Roles = "Socio")]
+        [Authorize(Roles = "Socio, Junta Directiva")]
         public ActionResult facturaPDF(String id)
         { 
             tbFactura factura = FacturasRepo.leerFactura(Guid.Parse(id));

@@ -161,7 +161,7 @@
             $(".tabSocio_" + e.data.idUsuario + " .carnetFechaAlta").append(socio.FechaAlta);
             $(".tabSocio_" + e.data.idUsuario + " .carnetNombre").append(e.data.Nombre);
             $(".tabSocio_" + e.data.idUsuario + " .carnetApellidos").append(e.data.Apellidos);
-            $(".tabSocio_" + e.data.idUsuario + " .carnetDNI").append(e.data.DNI);            
+            $(".tabSocio_" + e.data.idUsuario + " .carnetDNI").append(e.data.DNI);
         }
         // No es un socio
         else {
@@ -265,22 +265,29 @@
             var nickname = $("#nuevoNickname").val();
             var email = $("#nuevoEmail").val();
             var password = $("#nuevoPassword").val();
-
-            if (nickname == "" || email == "" || password == "") {
-                alert("Uno o varios campos estan vacios.");
+            
+            if (password.length >= 6) {
+                if (nickname == "" || email == "" || password == "") {
+                    alert("Uno o varios campos estan vacios.");
+                }
+                else {
+                    $.ajax({
+                        url: "Home/RegistroInterno",
+                        type: "POST",
+                        data: { UserName: nickname, Email: email, Password: password, ConfirmPassword: password },
+                        success: function () {
+                            $("#tablaAdminUsuarios").data("kendoGrid").dataSource.read();
+                            ventanaNuevoUsuario.close();
+                        },
+                        async: false
+                    });
+                }
             }
             else {
-                $.ajax({
-                    url: "Home/Registro",
-                    type: "POST",
-                    data: { UserName: nickname, Email: email, Password: password, ConfirmPassword: password },
-                    success: function () {
-                        $("#tablaAdminUsuarios").data("kendoGrid").dataSource.read();
-                        ventanaNuevoUsuario.close();
-                    },
-                    async: false
-                });
+                alert("La contraseña es demasiada corta");
             }
+
+
         }
         else {
             alert("Uno o varios campos ya existen en la Base de Datos, elija otro.");

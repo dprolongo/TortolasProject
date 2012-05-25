@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using TortolasProject.Models.Repositorios;
 using TortolasProject.Models;
 using TortolasProject.Controllers;
+using System.Web.Security;
+
 
 namespace TortolasProject.Controllers.Socios
 {
@@ -70,6 +72,7 @@ namespace TortolasProject.Controllers.Socios
         public void crearSocio(tbSocio societe)
         {
             mtbDB.tbSocio.InsertOnSubmit(societe);
+            Roles.AddUserToRole(usuariosRepo.obtenerUsuario(societe.FKUsuario).Nickname, "Socio");
             mtbDB.SubmitChanges();
         }
 
@@ -114,6 +117,8 @@ namespace TortolasProject.Controllers.Socios
             Guid idSocio = Guid.Parse(data["idSocio"]);
             Guid Cargo = Guid.Parse(data["cargoDirectivo"]);
 
+            
+            Roles.AddUserToRole(usuariosRepo.obtenerUsuarioBySocio(idSocio).Nickname, "Junta Directiva");
             if (usuariosRepo.esJuntaDirectiva(idSocio).Equals(false))
                 usuariosRepo.crearJuntaDirectiva(idSocio, Cargo);
         }
@@ -157,6 +162,7 @@ namespace TortolasProject.Controllers.Socios
                     FKDescuento = Guid.Parse("fe3134e4-aea5-4f27-8740-68c6022db21c")
                     
                 };
+                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(idUsuario).Nickname,"Socio");
                 mtbDB.tbSocio.InsertOnSubmit(socio);
             }
             else
@@ -173,6 +179,7 @@ namespace TortolasProject.Controllers.Socios
                     FKDescuento = Guid.Parse("fe3134e4-aea5-4f27-8740-68c6022db21c"),
                     FechaBaja = DateTime.Parse(data["FechaBaja"])
                 };
+                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(idUsuario).Nickname, "Socio");
                 mtbDB.tbSocio.InsertOnSubmit(socio);
             }
 
@@ -218,6 +225,14 @@ namespace TortolasProject.Controllers.Socios
             Guid idSocio = Guid.Parse(data["idSocio"]);
             String Estado = data["Estado"];
 
+            if (Estado.Equals("Activo"))
+            {
+                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(usuariosRepo.obtenerSocioById(idSocio).FKUsuario).Nickname, "Junta Directiva");
+            }
+            else
+            {
+                Roles.RemoveUserFromRole(usuariosRepo.obtenerUsuario(usuariosRepo.obtenerSocioById(idSocio).FKUsuario).Nickname, "Junta Directiva");
+            }
             usuariosRepo.cambiarEstadoJunta(idSocio, Estado);
         }
 
@@ -266,7 +281,7 @@ namespace TortolasProject.Controllers.Socios
         public JsonResult administrarDescuentosSocio()
         {
             var descuento = from d in usuariosRepo.listarDescuentoSocios()
-                            select new
+                            select new  
                             {
                                 idDescuentoSocio = d.idDescuentoSocio,
                                 Nombre = d.Nombre,

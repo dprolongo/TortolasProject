@@ -6928,6 +6928,8 @@ namespace TortolasProject.Models
 		
 		private System.Guid _FKMonitor;
 		
+		private System.Guid _idCursilloMonitor;
+		
 		private EntityRef<tbCursillo> _tbCursillo;
 		
 		private EntityRef<tbMonitor> _tbMonitor;
@@ -6940,6 +6942,8 @@ namespace TortolasProject.Models
     partial void OnFKCursilloChanged();
     partial void OnFKMonitorChanging(System.Guid value);
     partial void OnFKMonitorChanged();
+    partial void OnidCursilloMonitorChanging(System.Guid value);
+    partial void OnidCursilloMonitorChanged();
     #endregion
 		
 		public tbCursilloMonitor()
@@ -6949,7 +6953,7 @@ namespace TortolasProject.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKCursillo", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKCursillo", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKCursillo
 		{
 			get
@@ -6973,7 +6977,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKMonitor", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKMonitor", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKMonitor
 		{
 			get
@@ -6993,6 +6997,26 @@ namespace TortolasProject.Models
 					this._FKMonitor = value;
 					this.SendPropertyChanged("FKMonitor");
 					this.OnFKMonitorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCursilloMonitor", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid idCursilloMonitor
+		{
+			get
+			{
+				return this._idCursilloMonitor;
+			}
+			set
+			{
+				if ((this._idCursilloMonitor != value))
+				{
+					this.OnidCursilloMonitorChanging(value);
+					this.SendPropertyChanging();
+					this._idCursilloMonitor = value;
+					this.SendPropertyChanged("idCursilloMonitor");
+					this.OnidCursilloMonitorChanged();
 				}
 			}
 		}

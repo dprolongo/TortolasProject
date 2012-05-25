@@ -1,6 +1,14 @@
 ﻿var map;
+var poly;
 $(document).ready(function () {
+    var myOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    $('#map_canvas').hide();
     var UsuarioLogado = null;
     var rutaArchivo = "";
     // Nos traemos el usuario logueado
@@ -189,7 +197,7 @@ $(document).ready(function () {
         $(".detallesRutas").kendoTabStrip();
 
         $(".descripcion_" + e.data.idRuta).html(e.data.Descripcion);
-        inicializarMapa(e.data.Ruta);
+        inicializarMapa(e.data.idRuta);
     }
 
     // FUNCION PARA CREAR UNA NUEVA RUTA
@@ -365,22 +373,11 @@ $(document).ready(function () {
 
 });
 function inicializarMapa(idRuta)
-{
-
-  var myOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map($(".map_canvas"), myOptions);
-    console.log("Mapa creado");
-    
-    /*
+{   
     $.ajax({
-        type: "GET",
-        url: "devolverRuta",
-        data: idRuta,
+        type: "POST",
+        url: "Rutas/devolverRuta",
+        data: {idRuta:idRuta},
         dataType: "xml",
         success: function (xml) {
             var points = [];
@@ -393,7 +390,11 @@ function inicializarMapa(idRuta)
                 bounds.extend(p);
             });
 
-            var poly = new google.maps.Polyline({
+            if(poly){
+                poly.setMap(null);
+            }
+
+            poly = new google.maps.Polyline({
                 // use your own style here
                 path: points,
                 strokeColor: "#FF00AA",
@@ -405,7 +406,10 @@ function inicializarMapa(idRuta)
 
             // fit bounds to track
             map.fitBounds(bounds);
+
+            $("#map_canvas").show();
+            google.maps.event.trigger(map, "resize");
         }
     });
-    */
+    
 }

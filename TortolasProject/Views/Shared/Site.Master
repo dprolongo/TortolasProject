@@ -144,26 +144,13 @@
         </div>
         <nav id="topNav">
         	<ul>
-            	<li><a href="#" title="Inicio">Inicio</a></li>
-                <li><a href="#" title="Eventos">Eventos</a>
-                	<ul>
-                            <li><a href="#" title="Eventos Oficiales">Eventos Oficiales</a></li>
-                            <li><a href="#" title="Eventos No Oficiales">Eventos No Oficiales</a></li>
-                            <li><a href="#" title="Cursillos">Cursillos</a></li>                        
-                            <li class="last"><a href="#" title="Sub Nav Link 5">Sub Nav Link 5</a></li>
-                         </ul>        
-                </li>
-              <li><a href="#" title="Administracion">Administracion</a>
-                        <ul>
-                            <li><a href="#" title="Usuarios">Usuarios</a></li>
-                            <li><a href="#" title="Monitores">Monitores</a></li>
-                            <li><a href="#" title="Descuento de Socio">Descuento de Socio</a></li>                        
-                            <li class="last"><a href="#" title="Sub Nav Link 5">Sub Nav Link 5</a></li>
-                         </ul>  
-              </li>
-              <li><a href="#" title="Nav Link 1">Nav Link 4</a></li>
-              <li class="last"><a href="#" title="Nav Link 1">Nav Link 5</a></li>
-          </ul>
+            	<li><%: Html.ActionLink("Inicio","Index","Home") %></li>
+                <li><%: Html.ActionLink("Eventos", "Index", "Eventos") %></li>                
+                <li><%: Html.ActionLink("Cursillos", "Index", "Cursillos") %></li>                
+                <li><%: Html.ActionLink("Pedidos","Index", "Pedidos") %></li>
+                <li class="last"><%: Html.ActionLink("Rutas","Index","Rutas") %></li>
+                
+            </ul>
         </nav>
     </div>
 
@@ -177,44 +164,60 @@
 <!-- FIN MENU BAR -->
 
         <div id="container">
-
             <div id="containerleft">
                 <div id="leftbar" class="visibilidadMenuIzq">
-                
-                    <div class="demo-section">
-
-                    <h4>Menu Administración</h4>
-
-                    <ul id="kedomenuizquierda"></ul>
-
+                    <% if (Page.User.IsInRole("Junta Directiva") || Page.User.IsInRole("Asesor fiscal"))
+                       {
+                    %>
+                        <div class="demo-section">                          
+                            <ul id="menuLateral">
+                                <% if (Page.User.IsInRole("Junta Directiva"))
+                                   {
+                                %>
+                                <li><a href="#" title="Socios">Gestión usuarios</a>
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                <a href="#" title="Usuarios" ><img src="/Content/icons/aim.ico">
+                                                <%: Html.ActionLink("Usuarios","Index","Usuarios") %></a>
+                                            </div>
+                                         </li>
+                                        <li><a href="#" title="Socios"><%: Html.ActionLink("Socios","Index","Socios") %></a></li>
+                                        <li><a href="#" title="Monitores"><%: Html.ActionLink("Monitores","Index","Monitores") %></a></li>
+                                    </ul> 
+                                </li>
+                                <% } %>
+                                <li><a href="#" title="Contabilidad">Contabilidad</a>
+                                    <ul>
+                                        <% if (Page.User.IsInRole("Junta Directiva")) { %>
+                                        <li><a href="#" title="Facturas"><%: Html.ActionLink("Facturas","Index","Facturas") %></a></li>
+                                        <li><a href="#" title="Movimiento"><%: Html.ActionLink("Movimientos","Movimientos","Facturas") %></a></li>
+                                        <li><a href="#" title="Graficas contables"><%: Html.ActionLink("Gráficos contables","graficosContables","Facturas") %></a></li>
+                                        <%
+                                        }
+                                        %>
+                                        <li><a href="#" title="Informes contables"><%: Html.ActionLink("Informes contables","../Informes/facturacion.aspx") %></a></abbr></li>
+                                    </ul> 
+                                </li>
+                                <% if (Page.User.IsInRole("Junta Directiva"))
+                                   {
+                                %>
+                                <li><a href='#' title='GestiónArticulos'>Gestión artículos</a>
+                                        <ul>
+                                            <li><a href='#' title='Articulos'><%: Html.ActionLink("Artículos","Index","Articulos") %></a></li>
+                                            <li><a href='#' title='Inventario'><%: Html.ActionLink("Inventario","Index","Inventario") %></a></li>
+                                        </ul>                                    
+                                </li>
+                                <li><a href="#" title="Empresas">Empresas</a>
+                                    <ul>
+                                        <li><a href="#" title="Empresas"><%: Html.ActionLink("Empresas","Index","Empresas") %></a></li>
+                                    </ul> 
+                                </li> 
+                                <% } %>
+                            </ul>
+                        </div>
                     </div>
-
-                    <style scoped>
-                        .demo-section {
-                	        width: 200px;
-                        }
-                        .demo-section h3 {
-                	        font-weight: normal;
-                	        padding-bottom: 10px;
-                        }
-                        .brazilFlag {
-                	        background-position: 0 0;
-                        }
-                        .indiaFlag {
-                	        background-position: 0 -32px;
-                        }
-                        .netherlandsFlag {
-                	        background-position: 0 -64px;
-                        }
-                        .historyIcon {
-                	        background-position: 0 -96px;
-                        }
-                        .geographyIcon {
-                	        background-position: 0 -128px;
-                        }
-                    </style>
-                
-                </div>
+                    <% } %>
             </div>
 
             <div id="containercenter">
