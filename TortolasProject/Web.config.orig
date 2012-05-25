@@ -3,6 +3,7 @@
   http://go.microsoft.com/fwlink/?LinkId=152368
   --><configuration>
 	<connectionStrings>
+<<<<<<< HEAD
 		<add name="icubeDBConnectionString" connectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito;MultipleActiveResultSets=true" providerName="System.Data.SqlClient"/>
 		<add name="icubeDBConnectionString1" connectionString="Data Source=icubedevs.dyndns.org\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito" providerName="System.Data.SqlClient"/>
 		<add name="icubeDBConnectionString2" connectionString="Data Source=icubedevs.dyndns.org;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito" providerName="System.Data.SqlClient"/>
@@ -10,6 +11,21 @@
 		<add name="icubeDBConnectionString4" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;User Instance=True" providerName="System.Data.SqlClient"/>
 		<add name="icubeDBConnectionString5" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" providerName="System.Data.SqlClient"/>
 	</connectionStrings>
+=======
+  <add name="icubeDBConnectionString" connectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito; MultipleActiveResultSets=True"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString1" connectionString="Data Source=icubedevs.dyndns.org\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString2" connectionString="Data Source=icubedevs.dyndns.org;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString3" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;Password=pitopito"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString4" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;User Instance=True"
+   providerName="System.Data.SqlClient" />
+  <add name="icubeDBConnectionString5" connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icubeDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True"
+   providerName="System.Data.SqlClient" />
+ </connectionStrings>  
+>>>>>>> 5d7b0921ca5f741ff7bac3430fa75eb44bf3f970
 	<appSettings>
      <add key="webpages:Version" value="1.0.0.0" />
      <add key="ClientValidationEnabled" value="true" />

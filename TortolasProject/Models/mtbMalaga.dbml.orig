@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="icubeDB" Class="mtbMalagaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-<<<<<<< HEAD
   <Connection Mode="WebSettings" ConnectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString" Provider="System.Data.SqlClient" />
-=======
-  <Connection Mode="WebSettings" ConnectionString="Data Source=escaparate\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString6" Provider="System.Data.SqlClient" />
->>>>>>> 877a5299717a477c30c7405880decfde3f25be00
   <Table Name="dbo.aspnet_Applications" Member="aspnet_Applications">
     <Type Name="aspnet_Applications">
       <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
@@ -285,7 +281,7 @@
       <Column Name="FechaRealizacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="DescuentoSocios" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Plazas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Plazas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ConocimientosPrevios" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="FKUsuarioCreador" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="NumAcompa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -374,8 +370,8 @@
       <Column Name="FechaAperturaInscripcion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="FechaLimiteInscripcion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="FechaRealizacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="PrioridadSocios" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Plazas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PrioridadSocios" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Plazas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FKUsuarioCreador" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="NumAcompa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="tbEvento_tbAnuncio" Member="tbAnuncio" ThisKey="idEvento" OtherKey="idAnuncio" Type="tbAnuncio" Cardinality="One" />
@@ -611,13 +607,13 @@
       <Column Name="FKUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-<<<<<<< HEAD
       <Column Name="rutaArchivo" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-=======
-      <Column Name="rutaArchivo" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
->>>>>>> 877a5299717a477c30c7405880decfde3f25be00
       <Column Name="Kilometros" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FKDificultad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+<<<<<<< HEAD
+=======
+      <Association Name="tbDificultad_tbRuta" Member="tbDificultad" ThisKey="FKDificultad" OtherKey="idDificultad" Type="tbDificultad" IsForeignKey="true" />
+>>>>>>> 5d7b0921ca5f741ff7bac3430fa75eb44bf3f970
       <Association Name="tbUsuario_tbRuta" Member="tbUsuario" ThisKey="FKUsuario" OtherKey="idUsuario" Type="tbUsuario" IsForeignKey="true" />
       <Association Name="tbDificultad_tbRuta" Member="tbDificultad" ThisKey="FKDificultad" OtherKey="idDificultad" Type="tbDificultad" IsForeignKey="true" />
     </Type>
