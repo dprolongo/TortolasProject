@@ -1,6 +1,14 @@
 ﻿var map;
+var poly;
 $(document).ready(function () {
+    var myOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    $('#map_canvas').hide();
     var UsuarioLogado = null;
     var rutaArchivo = "";
     // Nos traemos el usuario logueado
@@ -365,23 +373,7 @@ $(document).ready(function () {
 
 });
 function inicializarMapa(idRuta)
-{
-
-  var myOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map(document.getElementById("map_canvas_"+idRuta), myOptions);
-    
-    //$("#map_canvas_"+idRuta).width("inherit");
-    //$("#map_canvas_"+idRuta).height(400);
-    console.log("Mapa creado");
-   
-   $(".mapa").css("width","700px");
-
-    
+{   
     $.ajax({
         type: "POST",
         url: "Rutas/devolverRuta",
@@ -398,7 +390,11 @@ function inicializarMapa(idRuta)
                 bounds.extend(p);
             });
 
-            var poly = new google.maps.Polyline({
+            if(poly){
+                poly.setMap(null);
+            }
+
+            poly = new google.maps.Polyline({
                 // use your own style here
                 path: points,
                 strokeColor: "#FF00AA",
@@ -411,6 +407,7 @@ function inicializarMapa(idRuta)
             // fit bounds to track
             map.fitBounds(bounds);
 
+            $("#map_canvas").show();
             google.maps.event.trigger(map, "resize");
         }
     });
