@@ -179,7 +179,7 @@
             value: 0,
             min: 0,
             step: 1.00,
-            format: "n",
+            format: "c",
             decimals: 2
         });
 
@@ -253,7 +253,7 @@
             $("#jdirectivacontratoeditar").val(filajson.NombreJuntaDirectiva);
             $("#fechacreacioncontratoeditar").val(filajson.FechaCreacion);
             $("#fechacaducidadcontratoeditar").val(filajson.FechaCaducidad);
-            $("#descripcionlegalcontratoeditar").data("kendoEditor").value((filajson.DescripcionLegal));
+            $("#descripcionlegalcontratoeditar").val(filajson.DescripcionLegal);
             $("#importecontraroeditar").val(filajson.Importe);
 
             weditarContrato.center();

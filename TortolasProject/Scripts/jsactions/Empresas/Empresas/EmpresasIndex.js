@@ -1,6 +1,35 @@
 ﻿
 $(document).ready(function () {
 
+    var idEmpresa = null;
+
+    //DATASOURCE Y GRID//
+
+    $(".VisibilidadGridEmpresasRemota").hide(); //Inicio oculta la ventana para vincular empresas
+    $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton de aceptar para la ventana de editaje/eliminacion
+    $(".VisibilidadDatosNuevaEmpresaRemota").hide(); //Oculta el boton de aceptar de la ventana editar
+
+    
+    var datasource = new kendo.data.DataSource
+    ({
+        transport:
+            {
+                read:
+                {
+                    url: "Empresas/LeerTodos",
+                    datatype: "json",
+                    type: "POST"
+                }
+            },
+        schema:
+        {
+            model:
+             {
+                 id: "idEmpresa"
+             }
+        }
+    });
+
     $("#VentanaEmpresasRemota") //Creo la ventana como variable global para que pueda ser usado por todos
         .kendoWindow
         ({
@@ -56,32 +85,7 @@ $(document).ready(function () {
         return noHayErrores;    
     }
 
-    //DATASOURCE Y GRID//
-
-    $(".VisibilidadGridEmpresasRemota").hide(); //Inicio oculta la ventana para vincular empresas
-    $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton de aceptar para la ventana de editaje/eliminacion
-    $(".VisibilidadDatosNuevaEmpresaRemota").hide(); //Oculta el boton de aceptar de la ventana editar
-
-    var idEmpresa = null;
-    var datasource = new kendo.data.DataSource
-    ({
-        transport:
-            {
-                read:
-                {
-                    url: "Empresas/LeerTodos",
-                    datatype: "json",
-                    type: "POST"
-                }
-            },
-        schema:
-        {
-            model:
-             {
-                 id: "idEmpresa"
-             }
-        }
-    });
+    //GRID//
 
     $("#EmpresasNavegador").kendoTabStrip(); //Creo el kendo para pestañas
 

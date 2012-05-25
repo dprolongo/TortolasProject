@@ -29,7 +29,7 @@ namespace TortolasProject.Controllers
             var patrocinadores = from ob in PatrocinadoresRepo.ListarPatrocinadores()
                               select new
                               {
-                                  idPatrocinador = ob.FKCodigoEmpresa,
+                                  idPatrocinador = ob.idPatrocinador,
                                   LocalizacionP = ob.LocalizacionPublicidad,
                                   NombrePatrocinador = PatrocinadoresRepo.buscaremp(ob.FKCodigoEmpresa).Nombre,
                                   CIFEmpresaPat = PatrocinadoresRepo.buscaremp(ob.FKCodigoEmpresa).CIF,

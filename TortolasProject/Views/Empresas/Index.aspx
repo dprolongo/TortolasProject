@@ -80,10 +80,10 @@
             </div>
             <script type="text/x-kendo-template" id="detallepublicidad">
                 <img src="../../Content/images/publicidad.jpg"  /> <!--Fuente: Calibri, size: 24-->
-                <div class="PublicidadGrid">
+                <div class="PublicidadGrid" id="PubliGrid_#= idPatrocinador #">
                 </div>
                 <br />
-                <input type="button" value="Nuevo Elemento Publicitario" class="k-button BotonNuevaPublicidad" />
+                <input type="button" value="Nuevo Elemento Publicitario" class="k-button BotonNuevaPublicidad" patrocinador="#= idPatrocinador #" />
             </script>
             <br />
             <div id="PatrocinadorHerramientasContent">
@@ -554,8 +554,8 @@
     <div id="VentanaEditarPublicidad">
         <b><h5>Datos Elemento Publicitario</h5></b>
         <br />
-        <label for="loca">Localización: </label><input type="text" id="locpublicidadeditar" class=" CuadroTexto NoModificable k-textbox" /><br />
-        <label for="carac">Características: </label><input type="text" id="caracpublicidadeditar" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="loca">Localización: </label><input type="text" id="locpublicidadeditar" class="locpublicidadeditar CuadroTexto NoModificable k-textbox" /><br />
+        <label for="carac">Características: </label><input type="text" id="caracpublicidadeditar" class="caracpublicidadeditar CuadroTexto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -568,9 +568,8 @@
     <div id="VentanaCrearPublicidad" class="ComprobarNulosPublicidad">
         <b><h5>Datos Elemento Publicitario</h5></b>
         <br />
-        <label for="loca">Localización: </label><input type="text" id="Text1" class=" CuadroTexto NoModificable k-textbox" /><br />
-        <label for="carac">Características: </label><input type="text" id="Text2" class=" CuadroTexto NoModificable k-textbox" /><br />
-        <label for="cif">CIF Patrocinador: </label><input type="text" id="cifpatrocinador" class=" CuadroTexto NoModificable k-textbox requerido" /><br />
+        <label for="loca">Localización: </label><input type="text" id="locapublicidadcrear" class=" CuadroTexto NoModificable k-textbox" /><br />
+        <label for="carac">Características: </label><input type="text" id="carapublicidadcrear" class=" CuadroTexto NoModificable k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -578,8 +577,8 @@
             <div hidden="hidden" id="MensajeErrorPublicidad" class="FormatoMensajeError">
                     <p>Datos nulos o erroneos</p>
             </div>
-            <input type="button" value="Aceptar" id="Button1" class="k-button" />
-            <input type="button" value="Cancelar" id="Button2" class="k-button FuncionBotonCancelarProveedores" />    
+            <input type="button" value="Aceptar" id="BotonAceptarVentanaCrearPublicidad" class="k-button" />
+            <input type="button" value="Cancelar" id="BotonCancelarVentanaCrearPublicidad" class="k-button FuncionBotonCancelarProveedores" />    
         </center>
     </div>
 
@@ -672,7 +671,7 @@
         <label for="FechaCreacion">Fecha Creación: </label><input type="text" id="fechacreacioncontratoeditar" class=" CuadroTexto k-textbox datapickerfechacrearcion" /><br />
         <label for="FechaCaducidad">Fecha Expiración: </label><input type="text" id="fechacaducidadcontratoeditar" class=" CuadroTexto k-textbox datapickerfechacaducidad" /><br />
         <h5>Descripción Legal</h5>
-        <textarea id="descripcionlegalcontratoeditar" rows="20" cols="38"></textarea>
+        <textarea id="descripcionlegalcontratoeditar" rows="20" cols="38"></textarea><br />
         <label for="Importe">Importe: </label><input type="text" id="importecontraroeditar" class=" CuadroTexto k-textbox numerictextboximporte" /><br />
         <br />
         <hr />

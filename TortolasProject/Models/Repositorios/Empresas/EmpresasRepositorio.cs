@@ -166,9 +166,9 @@ namespace TortolasProject.Models.Repositorios
             return mtbMalagaDB.tbPublicidad.Where(publicidad => publicidad.FKCodigoEmpresa == id).ToList();
         }
 
-        public tbPublicidad buscarpub(Guid idpat)
+        public tbPublicidad buscarpub(Guid idpub)
         {
-            return mtbMalagaDB.tbPublicidad.Where(patrocinador => patrocinador.FKCodigoEmpresa == idpat).Single();
+            return mtbMalagaDB.tbPublicidad.Where(publicidad => publicidad.idPublicidad == idpub).Single();
         }
 
         public void updatePub(tbPublicidad pub)
@@ -185,6 +185,12 @@ namespace TortolasProject.Models.Repositorios
         public void deletePub(Guid id)
         {
             mtbMalagaDB.tbPublicidad.DeleteOnSubmit(buscarpub(id));
+            salvar();
+        }
+
+        public void createPub(tbPublicidad pub)
+        {
+            mtbMalagaDB.tbPublicidad.InsertOnSubmit(pub);
             salvar();
         }
 
