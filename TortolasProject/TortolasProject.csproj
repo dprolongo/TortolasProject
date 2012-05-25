@@ -1063,12 +1063,10 @@
     <Content Include="Scripts\styles\textures\highlight.png" />
     <Content Include="Views\Administracion\Index.aspx" />
     <Content Include="Views\Facturas\PDF\facturaPDF.aspx" />
-    <Content Include="Views\Facturas\facturaPDF.ascx" />
     <Content Include="Views\Facturas\facturasNav.ascx" />
     <Content Include="Views\Facturas\graficosContables.aspx" />
     <Content Include="Views\Cursillos\Index.aspx" />
     <Content Include="Views\Cursillos\VistaCrearCursillo.ascx" />
-    <Content Include="Views\Facturas\informesContables.aspx" />
     <Content Include="Views\Facturas\Old\editarFactura.aspx" />
     <Content Include="Views\Facturas\Old\leerFactura.aspx" />
     <Content Include="Views\Articulos\AnadirArticulo.ascx" />
@@ -1085,7 +1083,6 @@
     <Content Include="Views\Facturas\leerMovimiento.aspx" />
     <Content Include="Views\Facturas\Movimientos.aspx" />
     <Content Include="Views\Facturas\PDF\movimientoPDF.aspx" />
-    <Content Include="Views\Facturas\visorRuta.aspx" />
     <Content Include="Views\Home\Captacion.aspx" />
     <Content Include="Views\Articulos\Index.aspx" />
     <Content Include="Views\Monitores\Index.aspx" />

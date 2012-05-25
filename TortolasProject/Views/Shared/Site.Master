@@ -176,7 +176,12 @@
                                 %>
                                 <li><a href="#" title="Socios">Gestión usuarios</a>
                                     <ul>
-                                        <li><a href="#" title="Usuarios"><%: Html.ActionLink("Usuarios","Index","Usuarios") %></a></li>
+                                        <li>
+                                            <div>
+                                                <a href="#" title="Usuarios" ><img src="/Content/icons/aim.ico">
+                                                <%: Html.ActionLink("Usuarios","Index","Usuarios") %></a>
+                                            </div>
+                                         </li>
                                         <li><a href="#" title="Socios"><%: Html.ActionLink("Socios","Index","Socios") %></a></li>
                                         <li><a href="#" title="Monitores"><%: Html.ActionLink("Monitores","Index","Monitores") %></a></li>
                                     </ul> 

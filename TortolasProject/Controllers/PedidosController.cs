@@ -138,7 +138,7 @@ namespace TortolasProject.Controllers
                           {
                               idPedidoUsuario = ped.idPedidoUsuario,
                               FKPedidoGlobal = ped.FKPedidoGlobal,
-                              FKUsuario = ped.FKUsuario
+                              FKUsuario = ped.FKUsuario,
                               Subtotal = ped.Subtotal
                           };
             return Json(pedidosUsu);

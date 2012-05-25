@@ -47,10 +47,14 @@
     });
 
     $("#menuLateral").kendoMenu({
-            direction: "right right",
-            orientation: "vertical"
+        direction: "right right",
+        orientation: "vertical"
     });
-     //Menu izquierda
+    //Menu izquierda
 
-
+    $.ajax({
+        url:"",
+        type:"POST",
+        async:false
+    });
 });

@@ -18,7 +18,7 @@ namespace TortolasProject.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "ASP.NET MVC";
+           
 
             return View();
         }
