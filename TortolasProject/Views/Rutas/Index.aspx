@@ -33,6 +33,9 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptContent" runat="server">
     <script src="../../Scripts/jsactions/Rutas/Rutas.js" type="text/javascript"></script>
+      <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCc8eoHPdFfC_ZI0ncqfFxxwlxFGkDIQVs&sensor=true">
+    </script>
     
     <!-- TOOLBAR DEL KENDO GRID RUTAS -->
     <script type="text/x-kendo-template" id="templateToolbarRutas">
@@ -79,7 +82,7 @@
                 </div>
             </div>
             <div class="mapa">
-
+                <div class='map_canvas'></div>
             </div>          
         </div>
     </div>

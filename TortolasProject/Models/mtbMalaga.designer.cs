@@ -12365,7 +12365,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPublicidad", ThisKey="FKCodigoEmpresa", OtherKey="FKCodigoEmpresa")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPublicidad", ThisKey="idPatrocinador", OtherKey="FKCodigoEmpresa")]
 		public EntitySet<tbPublicidad> tbPublicidad
 		{
 			get
@@ -13355,7 +13355,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPatrocinador", ThisKey="FKCodigoEmpresa", OtherKey="FKCodigoEmpresa", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPatrocinador", ThisKey="FKCodigoEmpresa", OtherKey="idPatrocinador", IsForeignKey=true)]
 		public tbPatrocinador tbPatrocinador
 		{
 			get
@@ -13378,7 +13378,7 @@ namespace TortolasProject.Models
 					if ((value != null))
 					{
 						value.tbPublicidad.Add(this);
-						this._FKCodigoEmpresa = value.FKCodigoEmpresa;
+						this._FKCodigoEmpresa = value.idPatrocinador;
 					}
 					else
 					{

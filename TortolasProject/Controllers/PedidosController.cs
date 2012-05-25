@@ -118,8 +118,7 @@ namespace TortolasProject.Controllers
                                     select new
                                     {
                                         usuario = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Nickname,
-                                        subtotal = peds.Subtotal,
-                                        pagado = peds.Pagado,
+                                        subtotal = peds.Subtotal,                                        
                                         idPedidoUsuario = peds.idPedidoUsuario,
 
                                         Nombre = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Nombre,
@@ -140,8 +139,7 @@ namespace TortolasProject.Controllers
                           {
                               idPedidoUsuario = ped.idPedidoUsuario,
                               FKPedidoGlobal = ped.FKPedidoGlobal,
-                              FKUsuario = ped.FKUsuario,
-                              Pagado = ped.Pagado,
+                              FKUsuario = ped.FKUsuario,                              
                               Subtotal = ped.Subtotal
                           };
             return Json(pedidosUsu);
@@ -158,8 +156,8 @@ namespace TortolasProject.Controllers
             {
                 idPedidoUsuario = idPedidoUsuario,
                 FKPedidoGlobal = idPedido,
-                FKUsuario = FKUsuario,
-                Pagado = "No"                
+                FKUsuario = FKUsuario
+                            
             };
 
             IList<tbLineaPedidoUsuario> lista = new List<tbLineaPedidoUsuario>();

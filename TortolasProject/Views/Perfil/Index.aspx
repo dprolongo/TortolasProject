@@ -290,7 +290,7 @@
         <input type="button" class="k-button" id="botonModoEnvio" value="Responder" modoEnvio="Muestra" />
         <br /><br />
         <label for="mostrarAsunto"> Asunto</label<><input type="text" class="k-textbox muestra" id="mostrarAsunto" size="70" required/><br /><br />
-        <textarea id="mostrarCuerpoMensaje" class="muestra" rows="10" cols="60"></textarea>
+        <div id="mostrarCuerpoMensaje" class="muestra" rows="10" cols="60"></textarea>
         <div class="editorwrapper">
             <textarea id="mostrarCuerpoMensajeEditable" class="muestra" rows="10" cols="60"></textarea><br /><br />        
         </div>

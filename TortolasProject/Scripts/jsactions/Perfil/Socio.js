@@ -50,7 +50,7 @@
                 $("#carnetApellidos").append("  " + socio.Apellidos);
                 $("#carnetDNI").append("  " + socio.DNI);
                 $("#estadoSubscripcion").append(socio.Estado);
-                $("#tipoDescuento").append("  "+socio.TipoDescuento+" <b>("+socio.ValorDescuento+"%)</b>");
+                $("#tipoDescuento").append("  " + socio.TipoDescuento + " <b>(" + socio.ValorDescuento + "%)</b>");
 
                 // Rellenamos las tablas con los datos de la Base de Datos
                 $(".columnaMensual").text("* " + cuotas["Mensual"] + " €");
@@ -169,7 +169,7 @@
 
                 var aEnviar = {};
                 var concepto = null;
-                var descripcion = null;
+                var descripcion = null;                
                 aEnviar["importeRenovacion"] = $("#importeNuevo").text();
                 aEnviar["importeAlta"] = $("#importeAlta").text();
                 aEnviar["FechaExpiracion"] = $("#fechaExpiracionNueva").text();

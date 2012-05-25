@@ -19,36 +19,31 @@
              </p>
             <div id="graficas">
                 <ul>
+                    <li>Calculadora</li>
+                    <li>Altas</li>
                     <li>Socios</li>
                     <li>Eventos</li>
                     <li>Pedidos</li>                    
                 </ul>
-                <div id="pestanaSocios">
-                   <div id="graficasSocios">
-                    <ul>                        
-                        <li>Altas</li>                        
-                        <li>Numero Socios</li>
-                    </ul>
-                        <div id="pestanaAltas">
-                            <div id="graficaAltas"></div>
-                        </div>
-                        <div id="pestanaNumeroSocio">
-                        <br /><br />
+                <div id="pestanaCalculadora">
+                
+                </div>
+                <div id="pestanaAltas">                 
+                        
+                        <div id="graficaAltas"></div>
+                 </div>
+                 <div id="pestanaNumeroSocios">
+                 <br /><br />
                             <p style="margin:20px 0px 10px 30px" id="numeroDeSocios" ><b>Numero de Socios actuales:  <b></p>
                             <div id="graficaNumeroSocio"></div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div>
-                    <div>hola</div>
-                    <!--<div id="graficasEventos">yehe<br /></div>-->
-                </div>                    
-                <div >
-                <div>topo</div>
-                </div>
-            </div>
-                                   
-                    
-	
+                 </div>
+                 <div id="pestanaEventos">
+                 
+                 </div>                                               
+                 <div id="pestanaPedidos">
+                 
+                 </div>
+              </div>          
+                                             
+
 </asp:Content>

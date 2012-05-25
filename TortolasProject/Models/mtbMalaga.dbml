@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="icubeDB" Class="mtbMalagaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ESCAPARATE\SQLEXPRESS;Initial Catalog=icubeDB;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="icubeDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_Applications" Member="aspnet_Applications">
     <Type Name="aspnet_Applications">
       <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
@@ -540,7 +540,7 @@
       <Column Name="LocalizacionPublicidad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="FKCodigoEmpresa" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="idPatrocinador" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="tbPatrocinador_tbPublicidad" Member="tbPublicidad" ThisKey="FKCodigoEmpresa" OtherKey="FKCodigoEmpresa" Type="tbPublicidad" />
+      <Association Name="tbPatrocinador_tbPublicidad" Member="tbPublicidad" ThisKey="idPatrocinador" OtherKey="FKCodigoEmpresa" Type="tbPublicidad" />
       <Association Name="tbEmpresa_tbPatrocinador" Member="tbEmpresa" ThisKey="FKCodigoEmpresa" OtherKey="idEmpresa" Type="tbEmpresa" IsForeignKey="true" />
     </Type>
   </Table>
@@ -587,7 +587,7 @@
       <Column Name="idPublicidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Caracteristicas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="tbPublicidad_tbAvisoRetiradaPublicidad" Member="tbAvisoRetiradaPublicidad" ThisKey="idPublicidad" OtherKey="FKCodigoPublicidad" Type="tbAvisoRetiradaPublicidad" />
-      <Association Name="tbPatrocinador_tbPublicidad" Member="tbPatrocinador" ThisKey="FKCodigoEmpresa" OtherKey="FKCodigoEmpresa" Type="tbPatrocinador" IsForeignKey="true" />
+      <Association Name="tbPatrocinador_tbPublicidad" Member="tbPatrocinador" ThisKey="FKCodigoEmpresa" OtherKey="idPatrocinador" Type="tbPatrocinador" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbRelacionPedidoGlobalArticulo" Member="tbRelacionPedidoGlobalArticulo">

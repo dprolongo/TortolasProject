@@ -209,9 +209,15 @@ namespace TortolasProject.Controllers.Socios
                                      Cargo = usuariosRepo.CargoPorID(j.FKCargoDirectivo).Nombre
                                  };
 <<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0479bc27766516b141b9b63eacfd35bcb3ba0cc1
+=======
 =======
 
 >>>>>>> 18a79459df91f18ef8d4ce6cba767b9d993cf2ee
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
             return Json(JuntaDirectiva);
         }
 
@@ -316,13 +322,23 @@ namespace TortolasProject.Controllers.Socios
             {
                
                 TimeSpan ts = DateTime.Today - socio.FechaAlta;
+<<<<<<< HEAD
+                int AnnosSocio = ((ts.Days)/30)/12;
+                if (Annos.CompareTo(AnnosSocio).Equals(-1))
+=======
 
                 if (Annos.CompareTo(ts.Days * 365).Equals(-1))
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
                     usuariosRepo.cambiarAntiguedad(socio.idSocio, true);
                 else
                     usuariosRepo.cambiarAntiguedad(socio.idSocio, false);
             }
+<<<<<<< HEAD
+        }       
+
+=======
         }
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
 
     }
 }

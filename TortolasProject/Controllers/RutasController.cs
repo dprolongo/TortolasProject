@@ -124,5 +124,14 @@ namespace TortolasProject.Controllers
 
             RutasRepo.eliminarRuta(idRuta);
         }
+
+
+        public ActionResult devolverRuta(String data)
+        {
+            Guid idRuta = Guid.Parse(data);
+            tbRuta ruta = RutasRepo.obtenerRuta(idRuta);
+            String filename = ruta.rutaArchivo;
+            return File(filename, "text/xml", Server.HtmlEncode(filename));
+        }
     }
 }
