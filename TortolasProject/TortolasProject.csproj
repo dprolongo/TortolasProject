@@ -112,7 +112,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Informes\DataSetFacturacion.cs">
+      <DependentUpon>DataSetFacturacion.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\DataSetFacturacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetFacturacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Informes\facturacion.aspx.cs">
+      <DependentUpon>facturacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Informes\facturacion.aspx.designer.cs">
+      <DependentUpon>facturacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\facturacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>facturacion.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Movimiento.cs" />
     <Compile Include="Models\mtbMalaga.designer.cs">
       <AutoGen>True</AutoGen>
@@ -359,6 +380,7 @@
     <Content Include="Content\images\tab_r.png" />
     <Content Include="Content\images\tour_hirschaidt011_1300216458.jpg" />
     <Content Include="Content\images\UserGroup.png" />
+    <Content Include="Informes\facturacion.aspx" />
     <Content Include="Rotativa\libeay32.dll" />
     <Content Include="Rotativa\libgcc_s_dw2-1.dll" />
     <Content Include="Rotativa\mingwm10.dll" />
@@ -961,6 +983,28 @@
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Content\Rutas\rutaGPX.gpx" />
     <None Include="Content\Rutas\ruta.kml" />
+    <None Include="Informes\DataSetFacturacion.xsc">
+      <DependentUpon>DataSetFacturacion.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DataSetFacturacion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetFacturacion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Informes\DataSetFacturacion.xss">
+      <DependentUpon>DataSetFacturacion.xsd</DependentUpon>
+    </None>
+    <None Include="Models\facturacion.xsc">
+      <DependentUpon>facturacion.xsd</DependentUpon>
+    </None>
+    <None Include="Models\facturacion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>facturacion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Models\facturacion.xss">
+      <DependentUpon>facturacion.xsd</DependentUpon>
+    </None>
     <None Include="Models\mtbMalaga.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>mtbMalaga.designer.cs</LastGenOutput>
@@ -977,6 +1021,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Informes\facturacion.resx">
+      <DependentUpon>facturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informes\facturacion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>facturacion.cs</LastGenOutput>
@@ -999,7 +1046,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3608</DevelopmentServerPort>
+          <DevelopmentServerPort>6508</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
