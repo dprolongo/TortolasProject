@@ -6417,7 +6417,7 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<bool> _DescuentoSocios;
 		
-		private System.Nullable<int> _Plazas;
+		private int _Plazas;
 		
 		private string _ConocimientosPrevios;
 		
@@ -6459,7 +6459,7 @@ namespace TortolasProject.Models
     partial void OnPrecioChanged();
     partial void OnDescuentoSociosChanging(System.Nullable<bool> value);
     partial void OnDescuentoSociosChanged();
-    partial void OnPlazasChanging(System.Nullable<int> value);
+    partial void OnPlazasChanging(int value);
     partial void OnPlazasChanged();
     partial void OnConocimientosPreviosChanging(string value);
     partial void OnConocimientosPreviosChanged();
@@ -6679,8 +6679,8 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plazas", DbType="Int")]
-		public System.Nullable<int> Plazas
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plazas", DbType="Int NOT NULL")]
+		public int Plazas
 		{
 			get
 			{
@@ -8313,9 +8313,9 @@ namespace TortolasProject.Models
 		
 		private System.DateTime _FechaRealizacion;
 		
-		private System.Nullable<bool> _PrioridadSocios;
+		private bool _PrioridadSocios;
 		
-		private System.Nullable<int> _Plazas;
+		private int _Plazas;
 		
 		private System.Guid _FKUsuarioCreador;
 		
@@ -8347,9 +8347,9 @@ namespace TortolasProject.Models
     partial void OnFechaLimiteInscripcionChanged();
     partial void OnFechaRealizacionChanging(System.DateTime value);
     partial void OnFechaRealizacionChanged();
-    partial void OnPrioridadSociosChanging(System.Nullable<bool> value);
+    partial void OnPrioridadSociosChanging(bool value);
     partial void OnPrioridadSociosChanged();
-    partial void OnPlazasChanging(System.Nullable<int> value);
+    partial void OnPlazasChanging(int value);
     partial void OnPlazasChanged();
     partial void OnFKUsuarioCreadorChanging(System.Guid value);
     partial void OnFKUsuarioCreadorChanged();
@@ -8506,8 +8506,8 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrioridadSocios", DbType="Bit")]
-		public System.Nullable<bool> PrioridadSocios
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrioridadSocios", DbType="Bit NOT NULL")]
+		public bool PrioridadSocios
 		{
 			get
 			{
@@ -8526,8 +8526,8 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plazas", DbType="Int")]
-		public System.Nullable<int> Plazas
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plazas", DbType="Int NOT NULL")]
+		public int Plazas
 		{
 			get
 			{
