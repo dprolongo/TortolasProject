@@ -7,8 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <img src="../../Content/images/titulorutas.png" /><br />
 <div id="tablaRutas"></div>
-<div class="mapa">
-    <div id='map_canvas' class='mapa' style='width:inherit;height:400px'></div>
+<div class="mapa k-widget">
+    <div id='map_canvas' class='mapa'></div>
 </div> 
 
 <div id="ventanaCrear">
