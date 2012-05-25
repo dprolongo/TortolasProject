@@ -237,6 +237,7 @@
         $("#BotonNuevoProveedor").click(function () {
 
             $(".VisibilidadTelefonodeContacto").show();
+            $(".DatosNuevaEmpresaRemotaDesdeProveedores").prop('disabled', true); //Bloquea editar los campos
 
             wcrearProveedor.center();
 
@@ -260,7 +261,20 @@
         $("#BotonAceptarVentanaCrearProveedor").click(function () {
 
             var datos = {};
-
+            if ($("#nuevoproveedortlf").val() == "") {
+                    datos["telefono"] = 0
+                    $("#nuevoproveedortlf").val("0");
+                }
+                else {
+                    datos["telefono"] = $("#nuevoproveedortlf").val();
+                }
+                if ($("#telefonoempresa").val() == "") {
+                    datos["telefono2"] = 0
+                    $("#telefonoempresa").val("0");
+                }
+                else {
+                    datos["telefono2"] = $("#telefonoempresa").val();
+                }
             if (comprobarNecesarios("ComprobarNulosProveedores")) 
             {
                 //Coger datos
@@ -269,18 +283,7 @@
                 datos["direccion"] = $("#nuevoproveedordir").val();
                 datos["mercado"] = $("#nuevoproveedormercado").val();
                 datos["codigopostal"] = $("#nuevoproveedorcpostal").val();
-                if ($("#nuevoproveedortlf").val() == "") {
-                    datos["telefono"] = 0
-                }
-                else {
-                    datos["telefono"] = $("#nuevoproveedortlf").val();
-                }
-                if ($("#telefonoempresa").val() == "") {
-                    datos["telefono2"] = 0
-                }
-                else {
-                    datos["telefono2"] = $("#telefonoempresa").val();
-                }
+                
 
 
                 $.ajax(

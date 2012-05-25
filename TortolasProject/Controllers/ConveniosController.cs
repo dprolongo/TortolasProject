@@ -14,11 +14,13 @@ namespace TortolasProject.Controllers
         // GET: /Convenios/
         static EmpresasRepositorio ConveniosRepo = new EmpresasRepositorio();
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos()
         {
@@ -35,6 +37,7 @@ namespace TortolasProject.Controllers
             return Json(convenios);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdateConvenio(FormCollection data)
         {
@@ -54,6 +57,7 @@ namespace TortolasProject.Controllers
             ConveniosRepo.updateCon(convenio);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeleteConvenio(FormCollection data)
         {
@@ -62,6 +66,7 @@ namespace TortolasProject.Controllers
             ConveniosRepo.deleteCon(idConvenio);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void CreateConvenio(FormCollection data)
         {

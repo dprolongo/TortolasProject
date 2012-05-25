@@ -137,10 +137,13 @@ namespace TortolasProject.Models.Repositorios
         {
             return mtbMalagaDB.tbPatrocinador.Where(patrocinador => patrocinador.FKCodigoEmpresa == idpat).Single();
         }
-
+        public tbPatrocinador buscarpatSelf(Guid idpat)
+        {
+            return mtbMalagaDB.tbPatrocinador.Where(patrocinador => patrocinador.idPatrocinador == idpat).Single();
+        }
         public void updatePat(tbPatrocinador pat)
         {
-            tbPatrocinador original = buscarpat(pat.idPatrocinador);
+            tbPatrocinador original = buscarpatSelf(pat.idPatrocinador);
 
             original.LocalizacionPublicidad = pat.LocalizacionPublicidad;
 
@@ -149,7 +152,7 @@ namespace TortolasProject.Models.Repositorios
 
         public void deletePat(Guid id)
         {
-            mtbMalagaDB.tbPatrocinador.DeleteOnSubmit(buscarpat(id));
+            mtbMalagaDB.tbPatrocinador.DeleteOnSubmit(buscarpatSelf(id));
             salvar();
         }
 
@@ -166,9 +169,9 @@ namespace TortolasProject.Models.Repositorios
             return mtbMalagaDB.tbPublicidad.Where(publicidad => publicidad.FKCodigoEmpresa == id).ToList();
         }
 
-        public tbPublicidad buscarpub(Guid idpat)
+        public tbPublicidad buscarpub(Guid idpub)
         {
-            return mtbMalagaDB.tbPublicidad.Where(patrocinador => patrocinador.FKCodigoEmpresa == idpat).Single();
+            return mtbMalagaDB.tbPublicidad.Where(publicidad => publicidad.idPublicidad == idpub).Single();
         }
 
         public void updatePub(tbPublicidad pub)
@@ -185,6 +188,12 @@ namespace TortolasProject.Models.Repositorios
         public void deletePub(Guid id)
         {
             mtbMalagaDB.tbPublicidad.DeleteOnSubmit(buscarpub(id));
+            salvar();
+        }
+
+        public void createPub(tbPublicidad pub)
+        {
+            mtbMalagaDB.tbPublicidad.InsertOnSubmit(pub);
             salvar();
         }
 
@@ -256,12 +265,11 @@ namespace TortolasProject.Models.Repositorios
             salvar();
         }
 
-        //Lista Junta Directiva//
+        //JUNTA DIRECTIVA//
 
         public IList<tbJuntaDirectiva> ListarJuntaDirectiva()
         {
             return mtbMalagaDB.tbJuntaDirectiva.ToList();
-            //.Where(junta => junta.Estado.Equals("Activo"))
         }
         public tbSocio buscarsocio(Guid id)
         {

@@ -14,12 +14,14 @@ namespace TortolasProject.Controllers
         //
         // GET: /Patrocinadores/
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos()
         {
@@ -27,7 +29,7 @@ namespace TortolasProject.Controllers
             var patrocinadores = from ob in PatrocinadoresRepo.ListarPatrocinadores()
                               select new
                               {
-                                  idPatrocinador = ob.FKCodigoEmpresa,
+                                  idPatrocinador = ob.idPatrocinador,
                                   LocalizacionP = ob.LocalizacionPublicidad,
                                   NombrePatrocinador = PatrocinadoresRepo.buscaremp(ob.FKCodigoEmpresa).Nombre,
                                   CIFEmpresaPat = PatrocinadoresRepo.buscaremp(ob.FKCodigoEmpresa).CIF,
@@ -35,6 +37,7 @@ namespace TortolasProject.Controllers
             return Json(patrocinadores);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdatePatrocinador(FormCollection data)
         {
@@ -47,13 +50,14 @@ namespace TortolasProject.Controllers
                  FKCodigoEmpresa = FKCodigoEmpresa,
                  idPatrocinador = idPatrocinador,//Le doy un valor para que no este vacio ni repetido, al actualizar no incluyo ese campo
                  LocalizacionPublicidad = Localización
-
+                
             };
 
 
             PatrocinadoresRepo.updatePat(patrocinador);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeletePatrocinador(FormCollection data)
         {
@@ -63,6 +67,7 @@ namespace TortolasProject.Controllers
             //PatrocinadoresRepo.deleteEmp(idPatrocinador);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void CreatePatrocinador(FormCollection data)
         {

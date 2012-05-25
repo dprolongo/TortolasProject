@@ -1,6 +1,35 @@
 ﻿
 $(document).ready(function () {
 
+    var idEmpresa = null;
+
+    //DATASOURCE Y GRID//
+
+    $(".VisibilidadGridEmpresasRemota").hide(); //Inicio oculta la ventana para vincular empresas
+    $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton de aceptar para la ventana de editaje/eliminacion
+    $(".VisibilidadDatosNuevaEmpresaRemota").hide(); //Oculta el boton de aceptar de la ventana editar
+
+    
+    var datasource = new kendo.data.DataSource
+    ({
+        transport:
+            {
+                read:
+                {
+                    url: "Empresas/LeerTodos",
+                    datatype: "json",
+                    type: "POST"
+                }
+            },
+        schema:
+        {
+            model:
+             {
+                 id: "idEmpresa"
+             }
+        }
+    });
+
     $("#VentanaEmpresasRemota") //Creo la ventana como variable global para que pueda ser usado por todos
         .kendoWindow
         ({
@@ -56,34 +85,12 @@ $(document).ready(function () {
         return noHayErrores;    
     }
 
-    //DATASOURCE Y GRID//
-
-    $(".VisibilidadGridEmpresasRemota").hide(); //Inicio oculta la ventana para vincular empresas
-    $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton de aceptar para la ventana de editaje/eliminacion
-    $(".VisibilidadDatosNuevaEmpresaRemota").hide(); //Oculta el boton de aceptar de la ventana editar
-
-    var idEmpresa = null;
-    var datasource = new kendo.data.DataSource
-    ({
-        transport:
-            {
-                read:
-                {
-                    url: "Empresas/LeerTodos",
-                    datatype: "json",
-                    type: "POST"
-                }
-            },
-        schema:
-        {
-            model:
-             {
-                 id: "idEmpresa"
-             }
-        }
-    });
-
+    //TABSTRIB//
     $("#EmpresasNavegador").kendoTabStrip(); //Creo el kendo para pestañas
+    //DROPDOWNLIST//
+    $(".dropdownnacionalidad").kendoDropDownList();
+
+    //GRID//
 
     $("#EmpresasGrid").kendoGrid //Creo el kendo Grid
     ({
@@ -116,7 +123,7 @@ $(document).ready(function () {
             },
             {
                 field: "Localidad",
-                title: "localidad"
+                title: "Nacionalidad"
             },
             {
                 field: "DireccionWeb",
@@ -229,7 +236,7 @@ $(document).ready(function () {
 
         $("#nombreempresa").val(filajson.Nombre);
         $("#cif").val(filajson.CIF);
-        $("#localidad").val(filajson.Localidad);
+        $("#localidadeditarempresa").val(filajson.Localidad);
         $("#direccionweb").val(filajson.DireccionWeb);
         $("#telefonodecontacto").val(filajson.TelefonodeContacto);
         $("#email-c").val(filajson.Email);
@@ -256,7 +263,7 @@ $(document).ready(function () {
 
         $("#nombreempresa").val(filajson.Nombre);
         $("#cif").val(filajson.CIF);
-        $("#localidad").val(filajson.Localidad);
+        $("#localidadeditarempresa").val(filajson.Localidad);
         $("#direccionweb").val(filajson.DireccionWeb);
         $("#telefonodecontacto").val(filajson.TelefonodeContacto);
         $("#email-c").val(filajson.Email);
@@ -271,15 +278,6 @@ $(document).ready(function () {
     //Boton Nueva Empresa//
 
     $("#BotonNuevaEmpresa").click(function () {
-        //alert("Crear!");
-        //$("#EmpresasNavegador").hide();
-
-        /*$.post('Empresas/CargarVistaNuevaEmpresa', function (data) {
-            $("#EmpresasHerramientasContent").hide();
-            $("#EmpresasGrid").hide();
-            $("#NuevaEmpresaFormulario").html(data);
-            $("#NuevaEmpresaFormulario").show();
-        });*/
 
         wcrearempresa.center();
 
@@ -296,7 +294,7 @@ $(document).ready(function () {
             //Coger datos
             datos["nombreempresa"] = $("#newnombreempresa").val();
             datos["cif"] = $("#newcif").val();
-            datos["localidad"] = $("#newlocalidad").val();
+            datos["localidad"] = $("#newlocalidad").data("kendoDropDownList").value();
             datos["direccionweb"] = $("#newdireccionweb").val();
             datos["telefonodecontacto"] = $("#newtelefonodecontacto").val();
             datos["email"] = $("#newemail-c").val();
@@ -310,14 +308,7 @@ $(document).ready(function () {
                     var temp = $("#EmpresasGrid").data("kendoGrid").dataSource;
                     temp.read();
 
-                    /*$.post('Empresas/Index', function () {
-                        $("#EmpresasHerramientasContent").show();
-                        $("#EmpresasGrid").show();
-                        $("#NuevaEmpresaFormulario2").hide();
-                        $("#EmpresasNavegador").show();
-                    });
-                    //alert("Ya he terminado!");
-                    */
+                    wcrearempresa.close();
                 },
                 async: false
             });
@@ -336,6 +327,9 @@ $(document).ready(function () {
             $("#EmpresasHerramientasContent").show();
             $("#EmpresasGrid").show();
             $("#NuevaEmpresaFormulario2").hide();
+            $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
+            $(".VisibilidadBotonAceptarEditar").show(); //Muestra el boton de aceptar de la ventana editar
+            $(".VisibilidadBotonAceptarEliminar").hide(); //Oculta el boton correspondiente para aceptar en la ventana eliminar
             wcrearempresa.close();
         });
     });
@@ -355,7 +349,7 @@ $(document).ready(function () {
     $("#BotonAceptarVentanaEditar").live("click", function () {
         var datos = {};
 
-        if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+        if (comprobarNecesarios("ComprobarNulosEditarEmpresa")) 
         {
             //Coger datos
             datos["nombreempresaupdate"] = $("#nombreempresa").val();

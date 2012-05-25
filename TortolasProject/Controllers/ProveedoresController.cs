@@ -16,11 +16,13 @@ namespace TortolasProject.Controllers.Empresas
         //
         // GET: /Proveedores/
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos()
         {
@@ -38,6 +40,7 @@ namespace TortolasProject.Controllers.Empresas
             return Json(proveedores);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdateProveedor(FormCollection data)
         {
@@ -62,6 +65,7 @@ namespace TortolasProject.Controllers.Empresas
             ProveedoresRepo.updateProv(proveedor);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeleteProveedor(FormCollection data)
         {
@@ -71,6 +75,7 @@ namespace TortolasProject.Controllers.Empresas
             //ProveedoresRepo.deleteEmp(idProveedor);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void CreateProveedor(FormCollection data)
         {

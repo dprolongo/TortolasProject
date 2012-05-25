@@ -94,6 +94,7 @@
         var noHayErrores = true;
         $("."+formulario+" .requerido").each(function(){
             if($(this).val()==""){
+                alert("NULO");
                 $(this).addClass("k-invalid");
                 noHayErrores = false;
             }
@@ -237,6 +238,7 @@
             $(".VisibilidadBotonAceptarCrear").show();
             $(".VisibilidadBotonAceptarEditar").hide();
             $(".VisibilidadBotonVincularEmpresa").show();
+            $(".DatosNuevaEmpresaRemotaDesdeAsociacion").prop('disabled', true); //Bloquea editar los campos
 
             weditarAsociacion.center();
 
@@ -260,6 +262,23 @@
         $("#BotonAceptarVentanaCrearAsociacion").click(function () {
 
             var datos = {};
+            if ($("#telefonoremoto").val() == "") {
+                    datos["telefono"] = 0;
+                    $("#telefonoremoto").val("0");
+                }
+                else {
+                    datos["telefono"] = $("#telefonoremoto").val(); 
+                }
+                if ($("#telefonoremoto2").val() == "") {
+                    datos["telefono2"] = 0 ;
+                    $("#telefonoremoto2").val("0");
+                }
+                else {
+                    datos["telefono2"] = $("#telefonoremoto2").val(); 
+                }
+
+
+                
             if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
             {
                 //Coger datos
@@ -267,18 +286,7 @@
                 datos["cif"] = $("#cifremoto").val();
                 datos["direccion"] = $("#direccion").val();
                 datos["tematica"] = $("#tematica").val();
-                if ($("#telefonoremoto").val() == "") {
-                    datos["telefono"] = 0
-                }
-                else {
-                    datos["telefono"] = $("#telefonoremoto").val(); 
-                }
-                if ($("#telefonoremoto2").val() == "") {
-                    datos["telefono2"] = 0 
-                }
-                else {
-                    datos["telefono2"] = $("#telefonoremoto2").val(); 
-                }
+                
 
 
                 $.ajax(
@@ -303,9 +311,6 @@
                 $("#MensajeErrorAsociaciones").fadeIn(500).fadeOut(3000);
             }
         });
-    /*$("#AsociacionesNav").live("click", function () {  //Actualiza los datos al pulsar en su pestaña.
-        
-    });*/
     
 
 

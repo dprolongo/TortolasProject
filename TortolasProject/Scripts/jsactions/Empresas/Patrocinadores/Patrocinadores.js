@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-    
-    var idPublicidad = null;
+
+        var tablaLlamante = null;
+        var idPublicidad = null;
         var idPatrocinador = null;
         var datasourcepat = new kendo.data.DataSource
         ({
@@ -68,8 +69,6 @@
         });
 
         function funciondetallepublicidad(e) {
-
-        
             var datasourcepub = new kendo.data.DataSource
             ({
                 transport:
@@ -83,13 +82,12 @@
                     },
                 },
                 schema:
-            {
-            
-                model:
-                 {
-                     id: "idPublicidad",
-                 }
-            }
+                {
+                    model:
+                    {
+                        id: "idPublicidad"
+                    }
+                }
             });
 
             $(".PublicidadGrid").kendoGrid //Creo el kendo Grid
@@ -117,8 +115,9 @@
                 }
             ],
             });
-        }
 
+            
+        }
         //VALIDACION//
 
         function comprobarNecesarios(formulario){ //Comprueba nulos
@@ -262,6 +261,8 @@
             weliminarPatrocinador.close();
             wcrearPatrocinador.close();
             weditarPublicidad.close();
+            weliminarPublicidad.close();
+            wcrearPublicidad.close();
 
         });
 
@@ -344,25 +345,27 @@
         $("#BotonAceptarVentanaCrearPatrocinador").click(function () {
 
             var datos = {};
-            $("#tlfpatrocinadornuevo").val() == 0;
+            if ($("#tlfpatrocinadornuevo").val() == "") {
+                    datos["telefono"] = 0;
+                    $("#tlfpatrocinadornuevo").val("0");
+                }
+                else {
+                    datos["telefono"] = $("#tlfpatrocinadornuevo").val();
+                }
+                if ($("#patrocinadortflremoto").val() == "") {
+                    datos["telefono2"] = 0;
+                    $("#patrocinadortflremoto").val("0");
+                }
+                else {
+                    datos["telefono2"] = $("#patrocinadortflremoto").val();
+                }
             if (comprobarNecesarios("ComprobarNulosPatrocinadores")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nombrepatrocinadornuevo").val();
                 datos["cif"] = $("#cifpatrocinadornuevo").val();
                 datos["localizacion"] = $("#locpatrocinadornuevo").val();
-                if ($("#tlfpatrocinadornuevo").val() == "") {
-                    datos["telefono"] = 0
-                }
-                else {
-                    datos["telefono"] = $("#tlfpatrocinadornuevo").val();
-                }
-                if ($("#patrocinadortflremoto").val() == "") {
-                    datos["telefono2"] = 0
-                }
-                else {
-                    datos["telefono2"] = $("#patrocinadortflremoto").val();
-                }
+                
 
                 $.ajax(
                 {
@@ -396,15 +399,18 @@
     
         $(".botonEditarFilaPublicidad").live("click", function () {
 
-            alert("Boton Pulsado Editar");
-            var fila = $(".PublicidadGrid").find("tbody tr.k-state-selected");
-            var filajson = $(".PublicidadGrid").data("kendoGrid").dataItem(fila).toJSON();
-            alert("Codigo Json?");
-            idPublicidad = datasourcepub.getByUid(fila.attr("data-uid")).idPublicidad;
-            alert(idPublicidad);
-
-            $("#locpublicidadeditar").val(filajson.NombrePatrocinador);
-            $("#caracpublicidadeditar").val(filajson.LocalizacionP);
+            var tabla = $(this).parent().parent().parent().parent().parent().parent().data("kendoGrid"); 
+            //Obtengo la tabla usando herencia
+            tablaLlamante = tabla;
+            var seleccionado = tabla.select();
+            var filaJson = tabla.dataItem(seleccionado).toJSON();      // La pasamos a JSON
+            var datasourcepu = tabla.dataSource;
+            
+            idPublicidad = datasourcepu.getByUid(seleccionado.attr("data-uid")).idPublicidad;
+            var Carac = datasourcepu.getByUid(seleccionado.attr("data-uid")).Caracteristicas;
+            var Loc = datasourcepu.getByUid(seleccionado.attr("data-uid")).Loc;
+            $(".locpublicidadeditar").val(Loc);
+            $(".caracpublicidadeditar").val(Carac);
 
             weditarPublicidad.center();
 
@@ -415,17 +421,17 @@
     
         $(".botonEliminarFilaPublicidad").live("click", function () {
 
-            $(".CuadroTexto").prop('disabled', true); //Bloquea editar los campos
-
-            alert("Boton Pulsado Eliminar");
-            var fila = $(".PublicidadGrid").find("tbody tr.k-state-selected");
-            var filajson = $(".PublicidadGrid").data("kendoGrid").dataItem(fila).toJSON();
+            var tabla = $(this).parent().parent().parent().parent().parent().parent().data("kendoGrid");
+            tablaLlamante = tabla;
+            var seleccionado = tabla.select();
+            var filaJson = tabla.dataItem(seleccionado).toJSON();      // La pasamos a JSON
+            var datasourcepu = tabla.dataSource;
             
-            idPublicidad = datasourcepub.getByUid(fila.attr("data-uid")).idPublicidad;
-            alert(idPublicidad);
-
-            $("#locpublicidadeditar").val(filajson.NombrePatrocinador);
-            $("#caracpublicidadeditar").val(filajson.LocalizacionP);
+            idPublicidad = datasourcepu.getByUid(seleccionado.attr("data-uid")).idPublicidad;
+            var Carac = datasourcepu.getByUid(seleccionado.attr("data-uid")).Caracteristicas;
+            var Loc = datasourcepu.getByUid(seleccionado.attr("data-uid")).Loc;
+            $("#locapublicidadeliminar").val(Loc);
+            $("#caracteristicapublicidadeliminar").val(Carac);
 
             weliminarPublicidad.center();
 
@@ -436,7 +442,12 @@
         //Crear//
 
         $(".BotonNuevaPublicidad").live("click", function () {
-
+            var idPatrocinadorPadre = $(this).attr("patrocinador"); //Cojo la id del patrocinador
+            
+            var tablaPadre = $("#PubliGrid_"+idPatrocinadorPadre).data("kendoGrid"); //Cojo el Grid asociado (publicidad)
+            tablaLlamante = tablaPadre;
+            
+            idPatrocinador = idPatrocinadorPadre;
             wcrearPublicidad.center();
 
             wcrearPublicidad.open();
@@ -446,21 +457,19 @@
 
         $("#BotonAceptarVentanaEditarPublicidad").live("click", function () {
             var datos = {};
-            //Coger datos
 
             datos["locupdate"] = $("#locpublicidadeditar").val();
             datos["idpublicidad"] = idPublicidad;
-            alert(idPublicidad);
             datos["caracpublicidadeditar"] = $("#caracpublicidadeditar").val();
-
+            
             $.ajax(
                 {
-                    url: "Publicidad/UpdatePublicidad",
+                    url: "Publicidad/updatePublicidad",
                     type: "POST",
                     data: datos,
                     success: function () {
                         $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
-                        datasourcepub.read();
+                        tablaLlamante.dataSource.read();
                         weditarPublicidad.close();
                     },
                     async: false
@@ -485,7 +494,7 @@
                     data: datos,
                     success: function () {
                         $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
-                        datasourcepub.read();
+                        tablaLlamante.dataSource.read();
                         weliminarPublicidad.close();
                     },
                     async: false
@@ -493,9 +502,28 @@
 
         });
 
-    /*$("#PatrocinadoresNav").live("click", function () {  //Actualiza los datos al pulsar en su pestaña.
-        
-    });*/
+        //Funciones: Botones Ventana Crear PUBLICIDAD //
 
+        $("#BotonAceptarVentanaCrearPublicidad").live("click", function () {
+            var datos = {};
+
+            alert(idPatrocinador);
+            datos["locpublicidad"] = $("#locapublicidadcrear").val();
+            datos["caracpublicidad"] = $("#carapublicidadcrear").val();
+            datos["idpatrocinador"] = idPatrocinador;
+            
+            $.ajax(
+                {
+                    url: "Publicidad/CreatePublicidad",
+                    type: "POST",
+                    data: datos,
+                    success: function () {
+                        $(".CuadroTexto").prop('disabled', false); //Devuelve poder editar los campos en la ventana editar
+                        tablaLlamante.dataSource.read();
+                        wcrearPublicidad.close();
+                    },
+                    async: false
+                });
+        });
 
 });

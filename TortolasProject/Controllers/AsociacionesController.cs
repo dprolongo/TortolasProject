@@ -15,12 +15,13 @@ namespace TortolasProject.Controllers.Empresas
 
         //
         // GET: /Asociaciones/
-
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos()
         {
@@ -38,6 +39,7 @@ namespace TortolasProject.Controllers.Empresas
             return Json(asociaciones);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void UpdateAsociacion(FormCollection data)
         {
@@ -57,6 +59,7 @@ namespace TortolasProject.Controllers.Empresas
             AsociacionesRepo.updateAsoc(asociacion);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeleteAsociacion(FormCollection data)
         {
@@ -66,6 +69,7 @@ namespace TortolasProject.Controllers.Empresas
             AsociacionesRepo.deleteEmp(idAsociacion);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void CreateAsociacion(FormCollection data)
         {

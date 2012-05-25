@@ -14,11 +14,13 @@ namespace TortolasProject.Controllers
         // GET: /Publicidad/
         static EmpresasRepositorio PublicidadRepo = new EmpresasRepositorio();
 
+        [Authorize(Roles = "Junta Directiva")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public ActionResult LeerTodos(FormCollection data)
         {
@@ -35,33 +37,56 @@ namespace TortolasProject.Controllers
             return Json(publicidad);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
-        public void UpdatePublicidad(FormCollection data)
+        public void updatePublicidad(FormCollection data)
         {
-            //var epublicidad = System.Web.Helpers.Json.Decode(data["models"]);
 
             Guid idPublicidad = Guid.Parse(data["idpublicidad"]);
             String Caracteristicas = data["caracpublicidadeditar"];
             String Localización = data["locupdate"];
+            Guid FKCEmp = Guid.NewGuid();
 
             tbPublicidad publicidad = new tbPublicidad
             {
                 Caracteristicas = Caracteristicas,
                 LocalizacionPublicidad = Localización,
                 idPublicidad = idPublicidad,
+                FKCodigoEmpresa = FKCEmp  //No puedo pasarle un valor nulo
             };
 
 
             PublicidadRepo.updatePub(publicidad);
         }
 
+        [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
         public void DeletePublicidad(FormCollection data)
         {
             Guid idPublicidad = Guid.Parse(data["idpublicidad"]);
 
             PublicidadRepo.deletePub(idPublicidad);
-            //PatrocinadoresRepo.deleteEmp(idPatrocinador);
+        }
+
+        [Authorize(Roles = "Junta Directiva")]
+        [HttpPost]
+        public void CreatePublicidad(FormCollection data)
+        {
+            Guid idPublicidad = Guid.NewGuid();
+            String Caracteristicas = data["caracpublicidad"];
+            String Localización = data["locpublicidad"];
+            Guid FKCEmp = Guid.Parse(data["idpatrocinador"]);
+
+            tbPublicidad publicidad = new tbPublicidad
+            {
+                Caracteristicas = Caracteristicas,
+                LocalizacionPublicidad = Localización,
+                idPublicidad = idPublicidad,
+                FKCodigoEmpresa = FKCEmp  
+            };
+
+            PublicidadRepo.createPub(publicidad);
+
         }
     }
 }

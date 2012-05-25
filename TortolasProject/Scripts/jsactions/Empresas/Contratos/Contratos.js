@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     
     var idContrato = null;
-        var FKJuntaDirectiva = null;
+    var FKJuntaDirectiva = null;
+    var idPublicidad = null;
 
         //Junta Directiva Remota//
 
@@ -16,7 +17,6 @@
         }).data("kendoWindow");
     
         $('#JuntaDirectivaGridRemoto .k-grid-content tr').live('dblclick', function () {   //Grid Junta Directiva Remota Crear
-            alert("hola");
             var fila = $("#JuntaDirectivaGridRemoto").find("tbody tr.k-state-selected");
 
             var filajson = $("#JuntaDirectivaGridRemoto").data("kendoGrid").dataItem(fila).toJSON();
@@ -47,7 +47,7 @@
             {
                 model:
                  {
-                     id: "idConvenio"
+                     id: "idContrato"
                  }
             }
          });
@@ -134,7 +134,7 @@
             columns: [
                 {
                     field: "NombreJuntaDirectiva",
-                    title: "Nombre Responsable",
+                    title: "Responsable",
                     filterable: {
                         extra: false, //do not show extra filters
                         operators: { // redefine the string operators
@@ -154,6 +154,32 @@
                 }
             ]
 
+        });
+
+        //GENERAR DATAPICKER//
+
+        $(".datapickerfechacrearcion").kendoDatePicker({
+            value: new Date(),
+            min: new Date(1950, 0, 1),
+            max: new Date(2049, 11, 31),
+            format: "dd/MM/yyyy"
+        });
+
+        $(".datapickerfechacaducidad").kendoDatePicker({
+            value: new Date(),
+            min: new Date(1950, 0, 1),
+            max: new Date(2049, 11, 31),
+            format: "dd/MM/yyyy"
+        });
+
+        //GENERAR NUMERICTEXTBOX//
+
+        $(".numerictextboximporte").kendoNumericTextBox({
+            value: 0,
+            min: 0,
+            step: 1.00,
+            format: "c",
+            decimals: 2
         });
 
         //VALIDACION//
@@ -213,6 +239,7 @@
         //Boton Editar//
 
         $(".botonEditarFilaContrato").live("click", function () {
+            $(".NoModificable").prop('disabled', true); //evita poder editar los campos en la ventana editar
 
             var fila = $("#ContratosGrid").find("tbody tr.k-state-selected");
 
@@ -226,7 +253,7 @@
             $("#jdirectivacontratoeditar").val(filajson.NombreJuntaDirectiva);
             $("#fechacreacioncontratoeditar").val(filajson.FechaCreacion);
             $("#fechacaducidadcontratoeditar").val(filajson.FechaCaducidad);
-            $("#descripcionlegalcontratoeditar").data("kendoEditor").value((filajson.DescripcionLegal));
+            $("#descripcionlegalcontratoeditar").val(filajson.DescripcionLegal);
             $("#importecontraroeditar").val(filajson.Importe);
 
             weditarContrato.center();
@@ -237,7 +264,6 @@
         //Boton Eliminar//
 
         $(".botonEliminarFilaContrato").live("click", function () {
-            //alert("Eliminar!");
 
             $(".CuadroTexto").prop('disabled', true); //Bloquea editar los campos
 
@@ -296,11 +322,10 @@
                 datos["nombrejunta"] = $("#jdirectivacontratoeditar").val();
                 datos["fechacreacion"] = $("#fechacreacioncontratoeditar").val();
                 datos["fechacaducidad"] = $("#fechacaducidadcontratoeditar").val();
-                datos["descripcion"] = $("#descripcionlegalcontratoeditar").data("kendoEditor").value();
+                datos["descripcion"] = $("#descripcionlegalcontratoeditar").val();
                 datos["importe"] = $("#importecontraroeditar").val();
                 datos["idcontrato"] = idContrato;
                 datos["fkjuntadirectiva"] = FKJuntaDirectiva;
-
                 $.ajax(
                     {
                         url: "Contratos/UpdateContrato",
@@ -348,9 +373,8 @@
 
         //Boton Nuevo Contrato//
 
-        $("#BotonNuevoContrato").click(function () {
-
-            $(".VisibilidadTelefonodeContacto").show();
+        $("#BotonNuevoContrato").click(function () 
+        {
             $(".CuadroTexto").prop('disable', false); //Devuelve poder editar los campos en la ventana
 
             wcrearContrato.center();
@@ -372,14 +396,14 @@
 
         //Boton Vincular JuntaDirectiva//
 
-        $("#BotonElegirJuntaDirectivaDesdeContrato").live("click", function () {  
+        $(".VincularJuntaDirectivaContrato").live("click", function () {  
 
             $("#VentanaJuntaDirectivaRemota").data("kendoWindow").center();
             $(".VisibilidadGridJuntaDirectivaRemota").show(); //Lo muestro
             $("#VentanaJuntaDirectivaRemota").data("kendoWindow").open();
         });
 
-        //Boton Crear Proveedor//
+        //Boton Crear Contrato//
 
         $("#BotonAceptarVentanaCrearContrato").click(function () {
 
@@ -396,13 +420,7 @@
                 datos["importe"] = $("#importecontratocrear").val();
                 datos["idcontrato"] = idContrato;
                 datos["fkjuntadirectiva"] = FKJuntaDirectiva;
-                if ($("#telefonoempresacontratocrear").val() == "") {
-                    datos["telefono"] = 0
-                }
-                else {
-                    datos["telefono"] = $("#telefonoempresacontratocrear").val();
-                }
-        
+                alert("Datos cogidos");
                 $.ajax(
                 {
                     url: "Contratos/CreateContrato",
@@ -414,11 +432,7 @@
 
                         temp.read();
 
-                        $(".VisibilidadDatosNuevaEmpresaRemota").hide();
-
                         wcrearContrato.close();
-
-                
                     },
                     async: false
                 });
