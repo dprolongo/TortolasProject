@@ -51,6 +51,7 @@ function estadoNuevaFactura() {
     // Ocultar botón poli
     $("#poliButton").hide();
     $("#eliminarButton").hide();
+    $("#pdfButton").hide();
     
 
     // DatePicker fecha
@@ -90,6 +91,7 @@ function estadoDetallesFactura() {
     $("#conceptoFactura").hide();
     $("#estadoFacturaDropDownList").hide();
     $("#estadoFacturaDropDownListContainer").hide();
+    $("#pdfButton").show();
 
 
     // Mostrar campos
@@ -170,6 +172,7 @@ function estadoDetallesFactura() {
      estadoPagina = "editar";
      $("#estadoPage").val(estadoPagina);
      actualizarTotal(BaseImponible,Total);
+     $("#pdfButton").hide();
 
     $("#volverButton").show();
     $("#poliButton").hide();

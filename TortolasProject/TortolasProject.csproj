@@ -129,11 +129,6 @@
       <DependentUpon>facturacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\facturacion.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>facturacion.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Models\Movimiento.cs" />
     <Compile Include="Models\mtbMalaga.designer.cs">
       <AutoGen>True</AutoGen>
@@ -912,7 +907,6 @@
     <Content Include="Views\Facturas\graficosContables.aspx" />
     <Content Include="Views\Cursillos\Index.aspx" />
     <Content Include="Views\Cursillos\VistaCrearCursillo.ascx" />
-    <Content Include="Views\Facturas\informesContables.aspx" />
     <Content Include="Views\Facturas\Old\editarFactura.aspx" />
     <Content Include="Views\Facturas\Old\leerFactura.aspx" />
     <Content Include="Views\Articulos\AnadirArticulo.ascx" />
@@ -993,17 +987,6 @@
     </None>
     <None Include="Informes\DataSetFacturacion.xss">
       <DependentUpon>DataSetFacturacion.xsd</DependentUpon>
-    </None>
-    <None Include="Models\facturacion.xsc">
-      <DependentUpon>facturacion.xsd</DependentUpon>
-    </None>
-    <None Include="Models\facturacion.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>facturacion.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Models\facturacion.xss">
-      <DependentUpon>facturacion.xsd</DependentUpon>
     </None>
     <None Include="Models\mtbMalaga.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

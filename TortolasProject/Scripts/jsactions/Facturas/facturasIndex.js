@@ -426,7 +426,7 @@ function datosVentana() {
                 dataType: "json",
                 type: "POST"
             }
-        }
+        },
         pageSize: numeroFilas
     });
 
