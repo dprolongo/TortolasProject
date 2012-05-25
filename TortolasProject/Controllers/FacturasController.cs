@@ -158,11 +158,7 @@ namespace TortolasProject.Controllers
         {
             return View();
         }
-        public ActionResult devolverRuta()
-        {
-            String filename = "~/Content/Rutas/rutaGPX.gpx";
-            return File(filename, "text/xml", Server.HtmlEncode(filename));
-        }
+        
         ///////////////////////////////////////////////////////////////////////////////
         // Funciones FACTURAS
         ///////////////////////////////////////////////////////////////////////////////
