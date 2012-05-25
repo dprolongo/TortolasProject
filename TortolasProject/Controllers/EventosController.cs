@@ -220,6 +220,27 @@ namespace TortolasProject.Controllers
             return EventosRepo.existInscrip(idEvento, Usuario);
         }
 
+        public ActionResult cargarVistaFacturasEvento(String id)
+        {
+            Guid idEvento = Guid.Parse(id);
+            Guid idEventoOficial = EventosRepo.obtenerEventoOficialByIdEvento(idEvento).idEventoOficial;
+            return View("FacturasEvento", idEventoOficial);
+        }
+
+        [HttpPost]
+        public void establecerEventoPagado(FormCollection data)
+        {
+            
+            Guid idFactura= Guid.Parse(data["idFactura"]);
+            FacturasController.establecerPagado(idFactura);
+            Guid idEventoOficial = FacturasRepo.leerFactura(idFactura).FKEventoOficial.Value;
+            Guid idUsuario = FacturasRepo.leerFactura(idFactura).FKUsuario.Value;
+            Guid idEvento = EventosRepo.obtenerEventoByEventoOficial(idEventoOficial).idEvento;
+            if (EventosRepo.HayInscripciones(idEvento))
+            {
+                EventosRepo.establecerDocPagado(EventosRepo.documentosEvento(idEvento).Where(doc =>doc.FKUsuario.Equals(idUsuario)).Single().idDocumentoInscripcion);
+            }
+        }
     }
 
 }

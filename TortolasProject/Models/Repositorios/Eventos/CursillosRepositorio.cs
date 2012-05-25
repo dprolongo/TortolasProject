@@ -38,10 +38,19 @@ namespace TortolasProject.Models.Repositorios
             save();
         }
 
+        public void eliminarCursilloMonitor(tbCursilloMonitor cursimo)
+        {
+            mtbMalagaDB.tbCursilloMonitor.DeleteOnSubmit(cursimo);
+            save();
+        }
+
         public void eliminarCursillo(Guid id)
         {
             tbCursillo cur = leerCursillo(id);
-
+            foreach (tbCursilloMonitor cursimo in mtbMalagaDB.tbCursilloMonitor.Where(curmo => curmo.FKCursillo.Equals(id)))
+            {
+                eliminarCursilloMonitor(cursimo);
+            }
             mtbMalagaDB.tbCursillo.DeleteOnSubmit(cur);
             save();
         }
@@ -117,9 +126,32 @@ namespace TortolasProject.Models.Repositorios
             return mtbMalagaDB.tbDocInscripcion.Where(docu => docu.FKCursillo.Equals(idCursillo) && docu.FKUsuario.Equals(idUsuario)).Count() != 0;
         }
 
+        public Boolean HayInscripciones(Guid idCursillo)
+        {
+            return (mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKCursillo.Equals(idCursillo)).Count() >= 1);
+        }
+
         public int calcularTotalParticipantes(Guid idCursillo)
         {
-            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKCursillo.Equals(idCursillo)).Sum(doc => doc.NumAcom + 1);
+            int Total =0;
+            if (HayInscripciones(idCursillo))
+            {
+                Total= mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKCursillo.Equals(idCursillo)).Sum(doc => doc.NumAcom + 1);
+            }
+            return Total;
+        }
+
+        public void establecerDocPagado(Guid idDocInscrip)
+        {
+            tbDocInscripcion documento = mtbMalagaDB.tbDocInscripcion.Where(doc => doc.idDocumentoInscripcion.Equals(idDocInscrip)).Single();
+            documento.Pagado = true;
+            save();
+        }
+
+        public void crearCursilloMonitor(tbCursilloMonitor CursilloMonitor)
+        {
+            mtbMalagaDB.tbCursilloMonitor.InsertOnSubmit(CursilloMonitor);
+            save();
         }
 
     }

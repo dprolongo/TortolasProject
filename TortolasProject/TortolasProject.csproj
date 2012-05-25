@@ -479,7 +479,7 @@
     <Content Include="Content\images\proveedores.jpg" />
     <Content Include="Content\Rutas\Rutas.css" />
     <Content Include="Content\slide.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Models\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -909,6 +909,8 @@
     <Content Include="Scripts\jsactions\Administracion\Usuarios.js" />
     <Content Include="Scripts\jsactions\Administracion\Usuarios\AdminUsuarios.js" />
     <Content Include="Scripts\jsactions\captacion.js" />
+    <Content Include="Scripts\jsactions\Eventos\facturaCursillo.js" />
+    <Content Include="Scripts\jsactions\Eventos\facturaEvento.js" />
     <Content Include="Scripts\jsactions\Facturas\facturas.js" />
     <Content Include="Scripts\jsactions\Eventos\cursillos.js" />
     <Content Include="Scripts\jsactions\Facturas\graficosContables.js" />
@@ -1062,6 +1064,8 @@
     <Content Include="Scripts\styles\textures\glass.png" />
     <Content Include="Scripts\styles\textures\highlight.png" />
     <Content Include="Views\Administracion\Index.aspx" />
+    <Content Include="Views\Cursillos\FacturasCursillo.aspx" />
+    <Content Include="Views\Eventos\FacturasEvento.aspx" />
     <Content Include="Views\Facturas\PDF\facturaPDF.aspx" />
     <Content Include="Views\Facturas\facturasNav.ascx" />
     <Content Include="Views\Facturas\graficosContables.aspx" />
@@ -1195,7 +1199,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15015</DevelopmentServerPort>
+          <DevelopmentServerPort>3608</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

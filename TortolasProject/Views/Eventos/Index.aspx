@@ -27,18 +27,18 @@
 </div>
 
 <div id ="VentanaEditar">
-    <label for="Titulo">Titulo: </label><input type="text" id="Titulo" class="k-input" /><br />
-    <label for="Lugar">Lugar: </label><input type="text" id="Lugar" class="k-input" /><br />
-    <label for="FechaRealizacion">Fecha: </label><input type="text" id="FechaRealizacion" class="k-input" /><br />
-    <label for="FechaAperturaInscrip">Fecha de apertura de incripción: </label><input type="text" id="FechaAperturaInscrip" class="k-input" /><br />
-    <label for="FechaLimiteInscrip">Fecha límite de inscripción: </label><input type="text" id="FechaLimiteInscrip" class="k-input" /><br />
-    <label for="Plazas">Plazas máximas: </label><input type="text" id="Plazas" class="k-input" /><br />
-    <label for="NumAcompa">Número de acompañantes máximos por inscripción: </label><input type="text" id="NumAcompa" class="k-input" /><br />
+    <label for="Titulo">Titulo: </label><input type="text" id="Titulo" class="k-input requerido" /><br />
+    <label for="Lugar">Lugar: </label><input type="text" id="Lugar" class="k-input requerido" /><br />
+    <label for="FechaRealizacion">Fecha: </label><input type="text" id="FechaRealizacion" class="k-input requerido" /><br />
+    <label for="FechaAperturaInscrip">Fecha de apertura de incripción: </label><input type="text" id="FechaAperturaInscrip" class="k-input requerido" /><br />
+    <label for="FechaLimiteInscrip">Fecha límite de inscripción: </label><input type="text" id="FechaLimiteInscrip" class="k-input requerido" /><br />
+    <label for="Plazas">Plazas máximas: </label><input type="text" id="Plazas" class="k-input requerido" /><br />
+    <label for="NumAcompa">Número de acompañantes máximos por inscripción: </label><input type="text" id="NumAcompa" class="k-input requerido" /><br />
     <div id="capaPrecio">
         <label for ="Precio">Precio por persona:<input type = "text" id="PrecioEvento" class ="k-input" /></label><br />
     </div>
     <label for="PrioridadSocios">Prioridad para socios: </label><input type="text" id="PrioridadSocios" class="dropdown" /><br />
-    <label for="Actividad">Actividad: </label><textarea id="editor" rows="10" cols="30" style="width:740px;height:440px"> </textarea>
+    <label for="Actividad">Actividad: </label><textarea id="editor" rows="10" cols="30" class="requerido" style="width:740px;height:440px"> </textarea>
 
     <center>
         <input type="button" value="Aceptar" id="BotonAceptarVentanaEditar" class="k-button" />
@@ -86,9 +86,8 @@
                     <div class="infoParticipantes">
                         <ul class="infoPlazas">
                             <li><label> Total Participantes:</label> <h3><b>#= TotalParticipantes # </b></h3></li><li><label>Plazas libres:</label> <h3><b>#= PlazasLibres # </b></h3></li>
-                            <div class="Participantes">
-                        </ul>        
-                    </div>
+                            <div class="Participantes"></div>
+                        </ul>
                     </div>
                 </div>
      </script> 
@@ -97,6 +96,7 @@
                 <div class="toolbar">
                     <input type ="button" id="botonCrearEvento" class="k-button" value="Crear Evento"/>
                     <input type ="button"id="botonInscripcion" class ="k-button" value="Inscribirse"/>
+                    <input type= "button" id="botonFacturas" class = "k-button" value="Ver Factura" />
                 </div>
       </script> 
     <script type="text/javascript" src="../../Scripts/jsactions/Eventos/eventos.js"></script>

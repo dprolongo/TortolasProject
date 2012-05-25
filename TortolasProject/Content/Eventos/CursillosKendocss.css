@@ -8,3 +8,7 @@
     list-style:none;
     display:inline;
 }
+.k-invalid,k-invalid:hover
+{
+    border : 1px solid red;
+}

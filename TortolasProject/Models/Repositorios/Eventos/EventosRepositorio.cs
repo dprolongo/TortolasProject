@@ -132,9 +132,27 @@ namespace TortolasProject.Models.Repositorios
             save();
         }
 
+        public Boolean HayInscripciones(Guid idEvento)
+        {
+            return (mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKEvento.Equals(idEvento)).Count() >= 1);
+        }
+
         public int calcularTotalParticipantes(Guid idEvento)
         {
-            return mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKEvento.Equals(idEvento)).Sum(doc => doc.NumAcom + 1);
+            int Total =0;
+            if (HayInscripciones(idEvento))
+            {
+                Total = mtbMalagaDB.tbDocInscripcion.Where(doc => doc.FKEvento.Equals(idEvento)).Sum(doc => doc.NumAcom + 1);
+            }
+
+            return Total;
+        }
+
+        public void establecerDocPagado(Guid idDocInscrip)
+        {
+            tbDocInscripcion documento = mtbMalagaDB.tbDocInscripcion.Where(doc => doc.idDocumentoInscripcion.Equals(idDocInscrip)).Single();
+            documento.Pagado = true;
+            save();
         }
         // 
         //  Funciones auxiliares

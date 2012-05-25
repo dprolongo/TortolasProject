@@ -17,6 +17,7 @@ namespace TortolasProject.Controllers
         CursillosRepositorio CursillosRepo = new CursillosRepositorio();
         UsuariosRepositorio UsuariosRepo = new UsuariosRepositorio();
         FacturasRepositorio FacturasRepo = new FacturasRepositorio();
+        MonitoresRepositorio MonitoresRepo = new MonitoresRepositorio();
         
 
         public ActionResult Index()
@@ -149,6 +150,7 @@ namespace TortolasProject.Controllers
             String Actividad = data["ActividadUpdate"];
             Decimal Precio = Decimal.Parse(data["PrecioUpdate"]);
             Guid FKUsuario = UsuariosRepo.obtenerSocio(UsuariosRepo.obtenerUsuarioByUser(HomeController.obtenerUserIdActual())).idSocio;
+
             tbCursillo Cursillo = new tbCursillo
             {
                 idCursillo = idCursillo,
@@ -168,6 +170,18 @@ namespace TortolasProject.Controllers
             };
 
             CursillosRepo.crearCursillo(Cursillo);
+            if (data["MonitorUpdate"]!="")
+            {
+                Guid Monitor = Guid.Parse(data["MonitorUpdate"]);
+                Guid idCursilloMonitor = Guid.NewGuid();
+                tbCursilloMonitor CursilloMonitor = new tbCursilloMonitor
+                {
+                    FKCursillo = idCursillo,
+                    FKMonitor = Monitor,
+                    idCursilloMonitor = idCursilloMonitor
+                };
+                CursillosRepo.crearCursilloMonitor(CursilloMonitor);
+            }
         }
 
         [HttpPost]
@@ -206,6 +220,37 @@ namespace TortolasProject.Controllers
             return CursillosRepo.existInscrip(idCursillo, Usuario);
         }
 
+        [HttpPost]
+        public JsonResult leerMonitores()
+        {
+            var monitores = from p in MonitoresRepo.listarTodos()
+                                select new
+                                {
+                                    Nombre = p.Apellidos,
+                                    idMonitor = p.idMonitor
+                                };
+            return Json(monitores);
+        }
+
+        public ActionResult cargarVistaFacturasCursillo(String id)
+        {
+            Guid idCursillo = Guid.Parse(id);
+            return View("FacturasCursillo", idCursillo);
+        }
+
+        [HttpPost]
+        public void establecerCursilloPagado(FormCollection data)
+        {
+
+            Guid idFactura = Guid.Parse(data["idFactura"]);
+            FacturasController.establecerPagado(idFactura);
+            Guid idUsuario = FacturasRepo.leerFactura(idFactura).FKUsuario.Value;
+            Guid idCursillo = FacturasRepo.leerFactura(idFactura).FKCursillo.Value;
+            if (CursillosRepo.HayInscripciones(idCursillo))
+            {
+                CursillosRepo.establecerDocPagado(CursillosRepo.documentosCursillo(idCursillo).Where(doc => doc.FKUsuario.Equals(idUsuario)).Single().idDocumentoInscripcion);
+            }
+        }
     
     }
 }

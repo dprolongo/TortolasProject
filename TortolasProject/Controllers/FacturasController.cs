@@ -614,7 +614,44 @@ namespace TortolasProject.Controllers
                 return false;
             }            
         }
-          
+
+        [HttpPost]
+        public JsonResult leerFacturasByEvento(FormCollection data)
+        {
+            Guid idEventoOficial = Guid.Parse(data["idEventoOficial"]);
+
+            var facturas = from f in FacturasRepo.leerFacturasByEventoOficial(idEventoOficial)
+                           select new
+                           {
+                               idFactura = f.idFactura,
+                               NumFactura =f.NumFactura,
+                               Fecha = f.Fecha.ToShortDateString(),
+                               Concepto = f.Concepto,
+                               Total = f.Total,
+                               EstadoName = FacturasRepo.getEstadoFactura(f.idFactura),
+                               BaseImponible = f.BaseImponible
+                           };
+            return Json(facturas);
+        }
+
+        [HttpPost]
+        public JsonResult leerFacturasByCursillo(FormCollection data)
+        {
+            Guid idCursillo = Guid.Parse(data["idCursillo"]);
+
+            var facturas = from f in FacturasRepo.leerFacturasByCursillo(idCursillo)
+                           select new
+                           {
+                               idFactura = f.idFactura,
+                               NumFactura = f.NumFactura,
+                               Fecha = f.Fecha.ToShortDateString(),
+                               Concepto = f.Concepto,
+                               Total = f.Total,
+                               EstadoName = FacturasRepo.getEstadoFactura(f.idFactura),
+                               BaseImponible = f.BaseImponible
+                           };
+            return Json(facturas);
+        }
         ///////////////////////////////////////////////////////////////////////////////
         // Movimientos                                                            
         ///////////////////////////////////////////////////////////////////////////////
