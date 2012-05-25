@@ -126,11 +126,11 @@ namespace TortolasProject.Controllers
         }
 
 
-        public ActionResult devolverRuta(String data)
+        public ActionResult devolverRuta(FormCollection data)
         {
-            Guid idRuta = Guid.Parse(data);
+            Guid idRuta = Guid.Parse(data["idRuta"]);
             tbRuta ruta = RutasRepo.obtenerRuta(idRuta);
-            String filename = ruta.rutaArchivo;
+            String filename = "~/Content/Rutas/"+ruta.rutaArchivo;
             return File(filename, "text/xml", Server.HtmlEncode(filename));
         }
     }

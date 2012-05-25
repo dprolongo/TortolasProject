@@ -6928,6 +6928,8 @@ namespace TortolasProject.Models
 		
 		private System.Guid _FKMonitor;
 		
+		private System.Guid _idCursilloMonitor;
+		
 		private EntityRef<tbCursillo> _tbCursillo;
 		
 		private EntityRef<tbMonitor> _tbMonitor;
@@ -6940,6 +6942,8 @@ namespace TortolasProject.Models
     partial void OnFKCursilloChanged();
     partial void OnFKMonitorChanging(System.Guid value);
     partial void OnFKMonitorChanged();
+    partial void OnidCursilloMonitorChanging(System.Guid value);
+    partial void OnidCursilloMonitorChanged();
     #endregion
 		
 		public tbCursilloMonitor()
@@ -6949,7 +6953,7 @@ namespace TortolasProject.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKCursillo", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKCursillo", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKCursillo
 		{
 			get
@@ -6973,7 +6977,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKMonitor", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKMonitor", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid FKMonitor
 		{
 			get
@@ -6993,6 +6997,26 @@ namespace TortolasProject.Models
 					this._FKMonitor = value;
 					this.SendPropertyChanged("FKMonitor");
 					this.OnFKMonitorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCursilloMonitor", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid idCursilloMonitor
+		{
+			get
+			{
+				return this._idCursilloMonitor;
+			}
+			set
+			{
+				if ((this._idCursilloMonitor != value))
+				{
+					this.OnidCursilloMonitorChanging(value);
+					this.SendPropertyChanging();
+					this._idCursilloMonitor = value;
+					this.SendPropertyChanged("idCursilloMonitor");
+					this.OnidCursilloMonitorChanged();
 				}
 			}
 		}
@@ -12365,7 +12389,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPublicidad", ThisKey="FKCodigoEmpresa", OtherKey="FKCodigoEmpresa")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPublicidad", ThisKey="idPatrocinador", OtherKey="FKCodigoEmpresa")]
 		public EntitySet<tbPublicidad> tbPublicidad
 		{
 			get
@@ -12463,6 +12487,8 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<System.Guid> _FKEstadoPedido;
 		
+		private System.Nullable<System.DateTime> _FechaLimitePago;
+		
 		private EntitySet<tbPedidoUsuario> _tbPedidoUsuario;
 		
 		private EntitySet<tbRelacionPedidoGlobalArticulo> _tbRelacionPedidoGlobalArticulo;
@@ -12485,6 +12511,8 @@ namespace TortolasProject.Models
     partial void OnNombreChanged();
     partial void OnFKEstadoPedidoChanging(System.Nullable<System.Guid> value);
     partial void OnFKEstadoPedidoChanged();
+    partial void OnFechaLimitePagoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaLimitePagoChanged();
     #endregion
 		
 		public tbPedidoGlobal()
@@ -12619,6 +12647,26 @@ namespace TortolasProject.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaLimitePago", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaLimitePago
+		{
+			get
+			{
+				return this._FechaLimitePago;
+			}
+			set
+			{
+				if ((this._FechaLimitePago != value))
+				{
+					this.OnFechaLimitePagoChanging(value);
+					this.SendPropertyChanging();
+					this._FechaLimitePago = value;
+					this.SendPropertyChanged("FechaLimitePago");
+					this.OnFechaLimitePagoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPedidoGlobal_tbPedidoUsuario", Storage="_tbPedidoUsuario", ThisKey="idPedidoGlobal", OtherKey="FKPedidoGlobal")]
 		public EntitySet<tbPedidoUsuario> tbPedidoUsuario
 		{
@@ -12738,8 +12786,6 @@ namespace TortolasProject.Models
 		
 		private System.Nullable<decimal> _Subtotal;
 		
-		private string _Pagado;
-		
 		private EntitySet<tbLineaPedidoUsuario> _tbLineaPedidoUsuario;
 		
 		private EntityRef<tbPedidoGlobal> _tbPedidoGlobal;
@@ -12758,8 +12804,6 @@ namespace TortolasProject.Models
     partial void OnFKUsuarioChanged();
     partial void OnSubtotalChanging(System.Nullable<decimal> value);
     partial void OnSubtotalChanged();
-    partial void OnPagadoChanging(string value);
-    partial void OnPagadoChanged();
     #endregion
 		
 		public tbPedidoUsuario()
@@ -12854,26 +12898,6 @@ namespace TortolasProject.Models
 					this._Subtotal = value;
 					this.SendPropertyChanged("Subtotal");
 					this.OnSubtotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pagado", DbType="VarChar(25)")]
-		public string Pagado
-		{
-			get
-			{
-				return this._Pagado;
-			}
-			set
-			{
-				if ((this._Pagado != value))
-				{
-					this.OnPagadoChanging(value);
-					this.SendPropertyChanging();
-					this._Pagado = value;
-					this.SendPropertyChanged("Pagado");
-					this.OnPagadoChanged();
 				}
 			}
 		}
@@ -13355,7 +13379,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPatrocinador", ThisKey="FKCodigoEmpresa", OtherKey="FKCodigoEmpresa", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbPatrocinador_tbPublicidad", Storage="_tbPatrocinador", ThisKey="FKCodigoEmpresa", OtherKey="idPatrocinador", IsForeignKey=true)]
 		public tbPatrocinador tbPatrocinador
 		{
 			get
@@ -13378,7 +13402,7 @@ namespace TortolasProject.Models
 					if ((value != null))
 					{
 						value.tbPublicidad.Add(this);
-						this._FKCodigoEmpresa = value.FKCodigoEmpresa;
+						this._FKCodigoEmpresa = value.idPatrocinador;
 					}
 					else
 					{
@@ -13773,7 +13797,7 @@ namespace TortolasProject.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutaArchivo", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutaArchivo", DbType="VarChar(500)")]
 		public string rutaArchivo
 		{
 			get

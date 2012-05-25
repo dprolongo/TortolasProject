@@ -189,7 +189,7 @@ $(document).ready(function () {
         $(".detallesRutas").kendoTabStrip();
 
         $(".descripcion_" + e.data.idRuta).html(e.data.Descripcion);
-        inicializarMapa(e.data.Ruta);
+        inicializarMapa(e.data.idRuta);
     }
 
     // FUNCION PARA CREAR UNA NUEVA RUTA
@@ -373,14 +373,19 @@ function inicializarMapa(idRuta)
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map($(".map_canvas"), myOptions);
-    console.log("Mapa creado");
+    map = new google.maps.Map(document.getElementById("map_canvas_"+idRuta), myOptions);
     
-    /*
+    //$("#map_canvas_"+idRuta).width("inherit");
+    //$("#map_canvas_"+idRuta).height(400);
+    console.log("Mapa creado");
+   
+   $(".mapa").css("width","700px");
+
+    
     $.ajax({
-        type: "GET",
-        url: "devolverRuta",
-        data: idRuta,
+        type: "POST",
+        url: "Rutas/devolverRuta",
+        data: {idRuta:idRuta},
         dataType: "xml",
         success: function (xml) {
             var points = [];
@@ -405,7 +410,9 @@ function inicializarMapa(idRuta)
 
             // fit bounds to track
             map.fitBounds(bounds);
+
+            google.maps.event.trigger(map, "resize");
         }
     });
-    */
+    
 }

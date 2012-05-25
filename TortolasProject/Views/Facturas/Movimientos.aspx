@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="MovimientosMainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <%Html.RenderPartial("facturasNav"); %>
+    
     <div id="facturaContainer"> 
 
         <div id="MovimientosGrid"></div>

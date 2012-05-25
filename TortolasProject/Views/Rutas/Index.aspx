@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="mapa">
-                <div class='map_canvas'></div>
+                <div id='map_canvas_#= idRuta #' class='mapa' style='width:inherit;height:400px'></div>
             </div>          
         </div>
     </div>

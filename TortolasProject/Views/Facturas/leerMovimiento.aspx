@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="MovimientoMainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <%Html.RenderPartial("facturasNav"); %>
+    
     <div id='facturaContainer'>
         <div id='toolbarMovimiento'>
             <div id='volverButton' class='k-button' onclick='history.back();'>Volver</div>

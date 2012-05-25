@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="graficosMainContent" ContentPlaceHolderID="MainContent" runat="server">
- <%Html.RenderPartial("facturasNav"); %>
  <div id='facturaContainer'>
      <div id="GraficosContainer" class='k-grid k-widget'>
         <div id='graficaToolbar' class='k-toolbar k-grid-toolbar'>        
