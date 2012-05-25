@@ -85,11 +85,12 @@ $(document).ready(function () {
         return noHayErrores;    
     }
 
-    //GRID//
-
+    //TABSTRIB//
     $("#EmpresasNavegador").kendoTabStrip(); //Creo el kendo para pestañas
+    //DROPDOWNLIST//
+    $(".dropdownnacionalidad").kendoDropDownList();
 
-    $("#newlocalidad").kendoDropDownList();
+    //GRID//
 
     $("#EmpresasGrid").kendoGrid //Creo el kendo Grid
     ({
@@ -122,7 +123,7 @@ $(document).ready(function () {
             },
             {
                 field: "Localidad",
-                title: "localidad"
+                title: "Nacionalidad"
             },
             {
                 field: "DireccionWeb",
@@ -235,7 +236,7 @@ $(document).ready(function () {
 
         $("#nombreempresa").val(filajson.Nombre);
         $("#cif").val(filajson.CIF);
-        $("#localidad").val(filajson.Localidad);
+        $("#localidadeditarempresa").val(filajson.Localidad);
         $("#direccionweb").val(filajson.DireccionWeb);
         $("#telefonodecontacto").val(filajson.TelefonodeContacto);
         $("#email-c").val(filajson.Email);
@@ -262,7 +263,7 @@ $(document).ready(function () {
 
         $("#nombreempresa").val(filajson.Nombre);
         $("#cif").val(filajson.CIF);
-        $("#localidad").val(filajson.Localidad);
+        $("#localidadeditarempresa").val(filajson.Localidad);
         $("#direccionweb").val(filajson.DireccionWeb);
         $("#telefonodecontacto").val(filajson.TelefonodeContacto);
         $("#email-c").val(filajson.Email);
@@ -277,15 +278,6 @@ $(document).ready(function () {
     //Boton Nueva Empresa//
 
     $("#BotonNuevaEmpresa").click(function () {
-        //alert("Crear!");
-        //$("#EmpresasNavegador").hide();
-
-        /*$.post('Empresas/CargarVistaNuevaEmpresa', function (data) {
-            $("#EmpresasHerramientasContent").hide();
-            $("#EmpresasGrid").hide();
-            $("#NuevaEmpresaFormulario").html(data);
-            $("#NuevaEmpresaFormulario").show();
-        });*/
 
         wcrearempresa.center();
 
@@ -316,14 +308,7 @@ $(document).ready(function () {
                     var temp = $("#EmpresasGrid").data("kendoGrid").dataSource;
                     temp.read();
 
-                    /*$.post('Empresas/Index', function () {
-                        $("#EmpresasHerramientasContent").show();
-                        $("#EmpresasGrid").show();
-                        $("#NuevaEmpresaFormulario2").hide();
-                        $("#EmpresasNavegador").show();
-                    });
-                    //alert("Ya he terminado!");
-                    */
+                    wcrearempresa.close();
                 },
                 async: false
             });
@@ -364,7 +349,7 @@ $(document).ready(function () {
     $("#BotonAceptarVentanaEditar").live("click", function () {
         var datos = {};
 
-        if (comprobarNecesarios("ComprobarNulosAsociaciones")) 
+        if (comprobarNecesarios("ComprobarNulosEditarEmpresa")) 
         {
             //Coger datos
             datos["nombreempresaupdate"] = $("#nombreempresa").val();

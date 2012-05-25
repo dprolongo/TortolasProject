@@ -345,25 +345,27 @@
         $("#BotonAceptarVentanaCrearPatrocinador").click(function () {
 
             var datos = {};
-            $("#tlfpatrocinadornuevo").val() == 0;
+            if ($("#tlfpatrocinadornuevo").val() == "") {
+                    datos["telefono"] = 0;
+                    $("#tlfpatrocinadornuevo").val("0");
+                }
+                else {
+                    datos["telefono"] = $("#tlfpatrocinadornuevo").val();
+                }
+                if ($("#patrocinadortflremoto").val() == "") {
+                    datos["telefono2"] = 0;
+                    $("#patrocinadortflremoto").val("0");
+                }
+                else {
+                    datos["telefono2"] = $("#patrocinadortflremoto").val();
+                }
             if (comprobarNecesarios("ComprobarNulosPatrocinadores")) 
             {
                 //Coger datos
                 datos["nombreempresa"] = $("#nombrepatrocinadornuevo").val();
                 datos["cif"] = $("#cifpatrocinadornuevo").val();
                 datos["localizacion"] = $("#locpatrocinadornuevo").val();
-                if ($("#tlfpatrocinadornuevo").val() == "") {
-                    datos["telefono"] = 0
-                }
-                else {
-                    datos["telefono"] = $("#tlfpatrocinadornuevo").val();
-                }
-                if ($("#patrocinadortflremoto").val() == "") {
-                    datos["telefono2"] = 0
-                }
-                else {
-                    datos["telefono2"] = $("#patrocinadortflremoto").val();
-                }
+                
 
                 $.ajax(
                 {

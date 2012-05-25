@@ -114,12 +114,12 @@
     </div> 
     <br />
 
-    <div id="VentanaEditar">
+    <div id="VentanaEditar" class="ComprobarNulosEditarEmpresa">
         <b><h5>Datos Empresa</h5></b>
         <br />
         <label for="nombreempresa">Nombre: </label><input type="text" id="nombreempresa" class=" CuadroTexto k-textbox requerido" /><br />
         <label for="cif">CIF: </label><input type="text" id="cif" class=" CuadroTexto k-textbox requerido" /><br />
-        <label for="localidad">Localidad: </label><input type="text" id="localidad" class=" CuadroTexto k-textbox" /><br />
+        <label for="localidad">Localidad: </label><input type="text" id="localidadeditarempresa" class=" CuadroTexto k-textbox" /><br />
         <label for="direccionweb">Dirección Web: </label><input type="text" id="direccionweb" class=" CuadroTexto k-textbox" /><br />
         <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonodecontacto" class=" CuadroTexto k-textbox requerido" /><br />
         <label for="email">E-Mail: </label><input type="text" id="email-c" class=" CuadroTexto k-textbox" /><br />
@@ -138,8 +138,7 @@
         <label for="nombreempresa">Nombre: </label><input type="text" id="newnombreempresa" class="k-textbox requerido" /><br />
         <label for="cif">CIF: </label><input type="text" id="newcif" class="k-textbox requerido" /><br />
         <h5>Datos Contacto</h5>
-        <label for="localidad">Localidad: </label><input type="text" id="newlocalidad0" class=" k-textbox" /><br />
-        <select id="newlocalidad">
+        Nacionalidad: <select id="newlocalidad" class="dropdownnacionalidad">
             <option value="AF">Afganistán</option> 
                       <option value="AL">Albania</option> 
                       <option value="DE">Alemania</option> 
@@ -402,10 +401,10 @@
         <div id="DatosNuevaEmpresaRemota" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="localidadremota" class=" CuadroTexto localidadremota k-textbox" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="dirwebremota" class=" CuadroTexto dirwebremota k-textbox" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class=" CuadroTexto telefonoremoto2 k-textbox requerido" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="emailremoto" class=" CuadroTexto emailremoto k-textbox" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="localidadremota" class="DatosNuevaEmpresaRemotaDesdeAsociacion CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="dirwebremota" class="DatosNuevaEmpresaRemotaDesdeAsociacion CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoremoto2" class="DatosNuevaEmpresaRemotaDesdeAsociacion CuadroTexto telefonoremoto2 k-textbox" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="emailremoto" class="DatosNuevaEmpresaRemotaDesdeAsociacion CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>
@@ -428,7 +427,7 @@
         <label for="cif">CIF: </label><input type="text" id="cifproveedor" class=" CuadroTexto NoModificable k-textbox" /><br />
         <label for="direccion">Dirección Física: </label><input type="text" id="dirfisica" class=" CuadroTexto k-textbox" /><br />
         <label for="mercado">Mercado: </label><input type="text" id="mercado" class=" CuadroTexto k-textbox" /><br />
-        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostal" class=" CuadroTexto VisibilidadTelefonodeContacto k-textbox" /><br />
+        <label for="codigopostal">Código Postal: </label><input type="text" id="codigopostal" class="CuadroTexto k-textbox" /><br />
         <br />
         <hr />
         <br />
@@ -475,10 +474,10 @@
         <div id="DatosNuevaEmpresaRemota2" class="VisibilidadDatosNuevaEmpresaRemota">
             <b><h5>Datos Empresa Asociada</h5></b>
             <br />
-            <label for="localidad">Localidad: </label><input type="text" id="nuevoproveedorlocalidad" class=" CuadroTexto localidadremota k-textbox" /><br />
-            <label for="direccionweb">Dirección Web: </label><input type="text" id="nuevoproveedorweb" class=" CuadroTexto dirwebremota k-textbox" /><br />
-            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class=" CuadroTexto telefonoremoto2 k-textbox requerido" /><br />
-            <label for="email">E-Mail: </label><input type="text" id="nuevoproveedoremail" class=" CuadroTexto emailremoto k-textbox" /><br />
+            <label for="localidad">Localidad: </label><input type="text" id="nuevoproveedorlocalidad" class="DatosNuevaEmpresaRemotaDesdeProveedores CuadroTexto localidadremota k-textbox" /><br />
+            <label for="direccionweb">Dirección Web: </label><input type="text" id="nuevoproveedorweb" class="DatosNuevaEmpresaRemotaDesdeProveedores CuadroTexto dirwebremota k-textbox" /><br />
+            <label for="telefonodecontacto">Teléfono de Contacto: </label><input type="text" id="telefonoempresa" class="DatosNuevaEmpresaRemotaDesdeProveedores CuadroTexto telefonoremoto2 k-textbox requerido" /><br />
+            <label for="email">E-Mail: </label><input type="text" id="nuevoproveedoremail" class="DatosNuevaEmpresaRemotaDesdeProveedores CuadroTexto emailremoto k-textbox" /><br />
         </div>
 
         <center>

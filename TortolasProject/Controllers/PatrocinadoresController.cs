@@ -50,7 +50,7 @@ namespace TortolasProject.Controllers
                  FKCodigoEmpresa = FKCodigoEmpresa,
                  idPatrocinador = idPatrocinador,//Le doy un valor para que no este vacio ni repetido, al actualizar no incluyo ese campo
                  LocalizacionPublicidad = Localización
-
+                
             };
 
 

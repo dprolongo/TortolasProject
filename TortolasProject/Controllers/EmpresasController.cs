@@ -90,7 +90,7 @@ namespace TortolasProject.Controllers
                 DireccionWeb = DireccionWeb,
                 TelefonodeContacto = TelefonodeContacto,
                 Email = Email,
-                CIF = CIF,
+                CIF = CIF
             };
 
             EmpresasRepo.createEmp(Empresa);

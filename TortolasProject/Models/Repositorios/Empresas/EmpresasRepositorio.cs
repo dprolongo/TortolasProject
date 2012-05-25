@@ -137,10 +137,13 @@ namespace TortolasProject.Models.Repositorios
         {
             return mtbMalagaDB.tbPatrocinador.Where(patrocinador => patrocinador.FKCodigoEmpresa == idpat).Single();
         }
-
+        public tbPatrocinador buscarpatSelf(Guid idpat)
+        {
+            return mtbMalagaDB.tbPatrocinador.Where(patrocinador => patrocinador.idPatrocinador == idpat).Single();
+        }
         public void updatePat(tbPatrocinador pat)
         {
-            tbPatrocinador original = buscarpat(pat.idPatrocinador);
+            tbPatrocinador original = buscarpatSelf(pat.idPatrocinador);
 
             original.LocalizacionPublicidad = pat.LocalizacionPublicidad;
 
@@ -149,7 +152,7 @@ namespace TortolasProject.Models.Repositorios
 
         public void deletePat(Guid id)
         {
-            mtbMalagaDB.tbPatrocinador.DeleteOnSubmit(buscarpat(id));
+            mtbMalagaDB.tbPatrocinador.DeleteOnSubmit(buscarpatSelf(id));
             salvar();
         }
 
