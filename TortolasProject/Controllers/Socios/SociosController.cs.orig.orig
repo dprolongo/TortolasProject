@@ -6,8 +6,6 @@ using System.Web.Mvc;
 using TortolasProject.Models.Repositorios;
 using TortolasProject.Models;
 using TortolasProject.Controllers;
-using System.Web.Security;
-
 
 namespace TortolasProject.Controllers.Socios
 {
@@ -72,7 +70,6 @@ namespace TortolasProject.Controllers.Socios
         public void crearSocio(tbSocio societe)
         {
             mtbDB.tbSocio.InsertOnSubmit(societe);
-            Roles.AddUserToRole(usuariosRepo.obtenerUsuario(societe.FKUsuario).Nickname, "Socio");
             mtbDB.SubmitChanges();
         }
 
@@ -117,8 +114,6 @@ namespace TortolasProject.Controllers.Socios
             Guid idSocio = Guid.Parse(data["idSocio"]);
             Guid Cargo = Guid.Parse(data["cargoDirectivo"]);
 
-            
-            Roles.AddUserToRole(usuariosRepo.obtenerUsuarioBySocio(idSocio).Nickname, "Junta Directiva");
             if (usuariosRepo.esJuntaDirectiva(idSocio).Equals(false))
                 usuariosRepo.crearJuntaDirectiva(idSocio, Cargo);
         }
@@ -162,7 +157,6 @@ namespace TortolasProject.Controllers.Socios
                     FKDescuento = Guid.Parse("fe3134e4-aea5-4f27-8740-68c6022db21c")
                     
                 };
-                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(idUsuario).Nickname,"Socio");
                 mtbDB.tbSocio.InsertOnSubmit(socio);
             }
             else
@@ -179,7 +173,6 @@ namespace TortolasProject.Controllers.Socios
                     FKDescuento = Guid.Parse("fe3134e4-aea5-4f27-8740-68c6022db21c"),
                     FechaBaja = DateTime.Parse(data["FechaBaja"])
                 };
-                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(idUsuario).Nickname, "Socio");
                 mtbDB.tbSocio.InsertOnSubmit(socio);
             }
 
@@ -215,7 +208,16 @@ namespace TortolasProject.Controllers.Socios
                                      NumeroSocio = usuariosRepo.obtenerSocioById(j.FKSocio).NumeroSocio,
                                      Cargo = usuariosRepo.CargoPorID(j.FKCargoDirectivo).Nombre
                                  };
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0479bc27766516b141b9b63eacfd35bcb3ba0cc1
+=======
+=======
+
+>>>>>>> 18a79459df91f18ef8d4ce6cba767b9d993cf2ee
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
             return Json(JuntaDirectiva);
         }
 
@@ -225,14 +227,6 @@ namespace TortolasProject.Controllers.Socios
             Guid idSocio = Guid.Parse(data["idSocio"]);
             String Estado = data["Estado"];
 
-            if (Estado.Equals("Activo"))
-            {
-                Roles.AddUserToRole(usuariosRepo.obtenerUsuario(usuariosRepo.obtenerSocioById(idSocio).FKUsuario).Nickname, "Junta Directiva");
-            }
-            else
-            {
-                Roles.RemoveUserFromRole(usuariosRepo.obtenerUsuario(usuariosRepo.obtenerSocioById(idSocio).FKUsuario).Nickname, "Junta Directiva");
-            }
             usuariosRepo.cambiarEstadoJunta(idSocio, Estado);
         }
 
@@ -281,7 +275,7 @@ namespace TortolasProject.Controllers.Socios
         public JsonResult administrarDescuentosSocio()
         {
             var descuento = from d in usuariosRepo.listarDescuentoSocios()
-                            select new  
+                            select new
                             {
                                 idDescuentoSocio = d.idDescuentoSocio,
                                 Nombre = d.Nombre,
@@ -328,14 +322,23 @@ namespace TortolasProject.Controllers.Socios
             {
                
                 TimeSpan ts = DateTime.Today - socio.FechaAlta;
+<<<<<<< HEAD
                 int AnnosSocio = ((ts.Days)/30)/12;
                 if (Annos.CompareTo(AnnosSocio).Equals(-1))
+=======
+
+                if (Annos.CompareTo(ts.Days * 365).Equals(-1))
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
                     usuariosRepo.cambiarAntiguedad(socio.idSocio, true);
                 else
                     usuariosRepo.cambiarAntiguedad(socio.idSocio, false);
             }
+<<<<<<< HEAD
         }       
 
+=======
+        }
+>>>>>>> 6c67f129dcb02d2c12d7997261bea3a1620fb62d
 
     }
 }

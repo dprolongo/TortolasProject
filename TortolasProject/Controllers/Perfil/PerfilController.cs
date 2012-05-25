@@ -7,7 +7,7 @@ using TortolasProject.Controllers.Perfil;
 using TortolasProject.Models.Repositorios;
 using TortolasProject.Models;
 using System.IO;
-
+using Rotativa;
 
 namespace TortolasProject.Controllers.Perfil
 {
@@ -236,7 +236,9 @@ namespace TortolasProject.Controllers.Perfil
                 MotivosBaja = societe.MotivosBaja,
                 FechaAlta = societe.FechaAlta.ToShortDateString(),
                 FechaBaja = societe.FechaBaja.HasValue == true ? societe.FechaBaja.Value.ToShortDateString() : null,
-                FechaExpiracion = societe.FechaExpiracion.HasValue == true ? societe.FechaExpiracion.Value.ToShortDateString() : null
+                FechaExpiracion = societe.FechaExpiracion.HasValue == true ? societe.FechaExpiracion.Value.ToShortDateString() : null,
+                TipoDescuento = usuariosRepo.nombreDescuentoSocio(societe.FKDescuento),
+                ValorDescuento = usuariosRepo.valorDescuentoSocio(societe.FKDescuento)
 
             };
 
@@ -261,16 +263,16 @@ namespace TortolasProject.Controllers.Perfil
         }
 
         [HttpPost]
-        public void realizarPago(FormCollection data)
+        public ActionResult realizarPago(FormCollection data)
         {
             Boolean hayAlta = Boolean.Parse(data["hayAlta"]);
             IList<tbLineaFactura> lineasFacturas = new List<tbLineaFactura>();
             Guid usuario = usuariosRepo.obtenerUsuarioNoAsp(HomeController.obtenerUserIdActual()).idUsuario;
             Guid socio = usuariosRepo.obtenerSocio(usuario).idSocio;
-
+            Guid idFactura = Guid.NewGuid();
             tbFactura factura = new tbFactura
             {
-                idFactura = Guid.NewGuid(),
+                idFactura = idFactura,
                 Concepto = data["Concepto"],    // Renovacion o alta+ reno
                 Fecha = DateTime.Today,
                 FKUsuario = usuario,                
@@ -284,7 +286,7 @@ namespace TortolasProject.Controllers.Perfil
                 {
                     idLineaFactura = Guid.NewGuid(),
                     Descripcion = "Alta de Socio", // informacion mas detallada
-                    FKFactura = factura.idFactura,
+                    FKFactura = idFactura,
                     Unidades = 1,
                     PrecioUnitario = int.Parse(data["importeAlta"]), 
                     Total = 1 * int.Parse(data["importeAlta"])
@@ -297,7 +299,7 @@ namespace TortolasProject.Controllers.Perfil
             {
                     idLineaFactura = Guid.NewGuid(),
                     Descripcion = data["Descripcion"], // informacion mas detallada
-                    FKFactura = factura.idFactura,
+                    FKFactura = idFactura,
                     Unidades = 1,
                     PrecioUnitario = int.Parse(data["importeRenovacion"]), //
                     Total = 1 * int.Parse(data["importeRenovacion"])
@@ -305,10 +307,10 @@ namespace TortolasProject.Controllers.Perfil
 
             lineasFacturas.Add(renovacion);
             
-
+            
             tbCuota cuota = new tbCuota
             {
-                FKFactura = factura.idFactura,
+                FKFactura = idFactura,
                 idCuota = Guid.NewGuid(),
                 FKTipoCuota = usuariosRepo.tipoCuota(data["tipoCuota"]),
                 FKSocio = socio,
@@ -323,9 +325,20 @@ namespace TortolasProject.Controllers.Perfil
 
             // Cambiamos el estado del socio            
             usuariosRepo.cambiarEstadoSocio(socio, "Pendiente", data["FechaExpiracion"]);
-            // FALTA AÑADIR PDF
             
+            // PDF
+            factura.LineasFactura = facturasRepo.listarLineasFactura(factura.idFactura);
+            factura.ResponsableName = obtenerJuntaDirectivaNickname(factura.FKJuntaDirectiva);
+
+            return RedirectToAction("leerFactura", "Facturas", new { id = idFactura.ToString()});
+            
+            //return RedirectToAction("facturaPDF", new { id = factura.idFactura });
         }
 
+        private String obtenerJuntaDirectivaNickname(Guid idJuntaDirectiva)
+        {
+            return mtbDB.tbUsuario.Where(u => u.idUsuario == (mtbDB.tbSocio.Where(s => s.idSocio == idJuntaDirectiva).Single().FKUsuario)).Single().Nickname;
+        }
+        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace TortolasProject.Models.Repositorios
 {
@@ -68,6 +69,10 @@ namespace TortolasProject.Models.Repositorios
             socio.NumeroSocio = NumeroSocio;
             socio.FechaExpiracion = FechaExpiracion;
             socio.Estado = Estado;
+            if(Estado.Equals("Activo"))
+                Roles.AddUserToRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
+            else
+                Roles.RemoveUserFromRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
             socio.FechaAlta = FechaAlta;
 
             mtbMalagaDB.SubmitChanges();
@@ -144,6 +149,7 @@ namespace TortolasProject.Models.Repositorios
         {
             mtbMalagaDB.tbSocio.InsertOnSubmit(socio);
             mtbMalagaDB.SubmitChanges();
+            Roles.AddUserToRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
         }
 
         public int ultimoNumeroSocio()
@@ -182,6 +188,11 @@ namespace TortolasProject.Models.Repositorios
             }
             
             socio.Estado = Estado;
+            if (Estado.Equals("Activo"))
+                Roles.AddUserToRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
+            else
+                Roles.RemoveUserFromRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
+
             mtbMalagaDB.SubmitChanges();
         }
 
@@ -190,6 +201,11 @@ namespace TortolasProject.Models.Repositorios
             tbSocio socio = obtenerSocioById(Socio);
             socio.FechaExpiracion = FechaExpiracion;
             socio.Estado = Estado;
+            if (Estado.Equals("Activo"))
+                Roles.AddUserToRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
+            else
+                Roles.RemoveUserFromRole(obtenerUsuario(socio.FKUsuario).Nickname, "Socio");
+
             mtbMalagaDB.SubmitChanges();
         }
 
@@ -218,6 +234,11 @@ namespace TortolasProject.Models.Repositorios
             return mtbMalagaDB.tbDescuentoSocio.Where(desc => desc.idDescuentoSocio.Equals(abuscar)).Single().Nombre;
         }
 
+        public int valorDescuentoSocio(Guid abuscar)
+        {
+            return mtbMalagaDB.tbDescuentoSocio.Where(desc => desc.idDescuentoSocio.Equals(abuscar)).Single().Cantidad;
+        }
+
         public void crearCuota(tbCuota cuota)
         {
             mtbMalagaDB.tbCuota.InsertOnSubmit(cuota);
@@ -236,7 +257,10 @@ namespace TortolasProject.Models.Repositorios
 
         public void crearJuntaDirectiva(Guid Socio, Guid Cargo)
         {
-            tbJuntaDirectiva directivo = new tbJuntaDirectiva{ FKSocio = Socio , FKCargoDirectivo = Cargo };
+            tbJuntaDirectiva directivo = new tbJuntaDirectiva{ FKSocio = Socio , FKCargoDirectivo = Cargo, Estado = "Activo" };
+            
+            Roles.AddUserToRole(obtenerUsuario(obtenerSocioById(Socio).FKUsuario).Nickname, "Junta Directiva");
+           
             mtbMalagaDB.tbJuntaDirectiva.InsertOnSubmit(directivo);
             mtbMalagaDB.SubmitChanges();
         }
@@ -271,6 +295,10 @@ namespace TortolasProject.Models.Repositorios
             tbJuntaDirectiva junta = mtbMalagaDB.tbJuntaDirectiva.Where(cargo => cargo.FKSocio.Equals(idSocio)).Single();
 
             junta.Estado = Estado;
+            if(Estado.Equals("Inactivo"))                
+                Roles.AddUserToRole(obtenerUsuario(obtenerSocioById(idSocio).FKUsuario).Nickname,"Junta Directiva");
+            else
+                Roles.RemoveUserFromRole(  obtenerUsuario(obtenerSocioById(idSocio).FKUsuario).Nickname, "Junta Directiva");
 
             mtbMalagaDB.SubmitChanges();
         }
