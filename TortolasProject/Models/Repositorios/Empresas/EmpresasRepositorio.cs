@@ -262,12 +262,11 @@ namespace TortolasProject.Models.Repositorios
             salvar();
         }
 
-        //Lista Junta Directiva//
+        //JUNTA DIRECTIVA//
 
         public IList<tbJuntaDirectiva> ListarJuntaDirectiva()
         {
             return mtbMalagaDB.tbJuntaDirectiva.ToList();
-            //.Where(junta => junta.Estado.Equals("Activo"))
         }
         public tbSocio buscarsocio(Guid id)
         {

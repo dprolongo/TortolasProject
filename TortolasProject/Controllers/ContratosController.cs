@@ -90,34 +90,20 @@ namespace TortolasProject.Controllers
 
         [Authorize(Roles = "Junta Directiva")]
         [HttpPost]
-        public void CreateProveedor(FormCollection data)
+        public void CreateContrato(FormCollection data)
         {
-            bool existe = true;
-
             Guid idEmpresa = Guid.NewGuid();
             String NombreEmpresa = data["nombreempresa"];
             String CIF = data["cif"];
-            int TelefonodeContacto = int.Parse(data["telefono"]);
             Guid FKJuntaDirectiva = Guid.Parse(data["fkjuntadirectiva"]);
             Decimal Importe = Decimal.Parse(data["importe"]);
             DateTime fechacreacion = DateTime.Parse(data["fechacreacion"]);
             DateTime fechacaducidad = DateTime.Parse(data["fechacaducidad"]);
             String Descripcion = data["descripcion"];
 
-
-            tbEmpresa Empresa = new tbEmpresa
-            {
-                idEmpresa = idEmpresa,
-                Nombre = NombreEmpresa,
-                Localidad = " ",
-                DireccionWeb = " ",
-                TelefonodeContacto = TelefonodeContacto,
-                Email = " ",
-                CIF = CIF
-            };
             tbContrato Contrato = new tbContrato
             {
-                FKCodigoEmpresa = idEmpresa,
+                FKCodigoEmpresa = idEmpresa, //Por rellenar
                 idContrato = Guid.NewGuid(),
                  DescripcionLegal = Descripcion,
                   FKJuntaDirectiva = FKJuntaDirectiva,
@@ -135,13 +121,9 @@ namespace TortolasProject.Controllers
             }
             catch
             {
-                existe = false;
+                
             }
 
-            if (!existe)
-            {
-                ContratosRepo.createEmp(Empresa);
-            }
 
             ContratosRepo.createContrato(Contrato);
 
@@ -156,7 +138,7 @@ namespace TortolasProject.Controllers
                             select new
                             {
                                 NombreJuntaDirectiva = ContratosRepo.buscarusuario(ContratosRepo.buscarsocio(ob.FKSocio).FKUsuario).Nombre,
-                                Cargo = ContratosRepo.obtenercargo(ob.FKCargoDirectivo),
+                                Cargo = ContratosRepo.obtenercargo(ob.FKCargoDirectivo).Nombre,
                                 FKSocio = ob.FKSocio,
                                 Estado = ob.Estado
                             };
