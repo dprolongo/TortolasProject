@@ -149,6 +149,7 @@
     <Content Include="Content\Administracion\Monitores\monitores.css" />
     <Content Include="Content\Administracion\Socios\AdminSocios.css" />
     <Content Include="Content\Administracion\Usuarios\Usuarios.css" />
+    <Content Include="Content\Captacion\Captacion.css" />
     <Content Include="Content\crud.css" />
     <Content Include="Content\emailBIG_titulo.png" />
     <Content Include="Content\Empresas\EmpresasNav.css" />
@@ -301,6 +302,7 @@
     <Content Include="Content\iconos\White-Dossier.png" />
     <Content Include="Content\iconos\Yellow-Dossier.png" />
     <Content Include="Content\images\bienvenidosocio.png" />
+    <Content Include="Content\images\calculatorahorro.png" />
     <Content Include="Content\images\comentario.png" />
     <Content Include="Content\images\cvv2.png" />
     <Content Include="Content\images\fondocarnet.png" />
@@ -437,12 +439,18 @@
     <Content Include="Content\images\nosocio.png" />
     <Content Include="Content\images\pago.gif" />
     <Content Include="Content\images\publicidad.jpg" />
+    <Content Include="Content\images\shopping-cart-icon.png" />
     <Content Include="Content\images\socios\danie.png" />
+    <Content Include="Content\images\tabaltas.png" />
+    <Content Include="Content\images\tabeventos.png" />
+    <Content Include="Content\images\tabnumerosocios.png" />
+    <Content Include="Content\images\tabpedidos.png" />
     <Content Include="Content\images\tituloadminsocios.png" />
     <Content Include="Content\images\titulobienvenida.png" />
     <Content Include="Content\images\titulocaptacion.png" />
     <Content Include="Content\images\titulocuotas.png" />
     <Content Include="Content\images\tituloinneradminsocios.png" />
+    <Content Include="Content\images\titulopedidos.png" />
     <Content Include="Content\images\titulorutas.png" />
     <Content Include="Content\images\titulousuarios.png" />
     <Content Include="Content\images\tituloventanaeditarsocio.png" />
@@ -914,6 +922,7 @@
     <Content Include="Scripts\jsactions\Pedidos\pedidosIndex.js" />
     <Content Include="Scripts\jsactions\Perfil\Mensajeria.js" />
     <Content Include="Scripts\jsactions\Perfil\Perfil.js" />
+    <Content Include="Scripts\jsactions\Perfil\Rutas.js" />
     <Content Include="Scripts\jsactions\Perfil\Socio.js" />
     <Content Include="Scripts\jsactions\Rutas\Rutas.js" />
     <Content Include="Scripts\jsactions\siteMaster.js" />
