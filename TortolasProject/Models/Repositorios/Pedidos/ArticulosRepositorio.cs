@@ -30,6 +30,16 @@ namespace TortolasProject.Models.Repositorios
             save();
         }
 
+        public IList<tbArticulo> getArticulosById(IList<Guid> idArticulos)
+        {
+            IList<tbArticulo> arts = new List<tbArticulo>();
+            foreach (Guid idArticulo in idArticulos)
+            {
+                arts.Add(leerArticulo(idArticulo));
+            }
+            return arts;
+        }
+
         public tbArticulo leerArticulo(Guid idArticulo)
         {
             return mtbMalagaDB.tbArticulo.Where(articulo => articulo.idArticulo == idArticulo).Single();

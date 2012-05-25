@@ -11,14 +11,61 @@ namespace TortolasProject.Controllers
     public class PedidosController : Controller
     {
         static PedidosRepositorio PedidosRepo = new PedidosRepositorio();
+        static ArticulosRepositorio ArticulosRepo = new ArticulosRepositorio();
+        static UsuariosRepositorio UsuariosRepo = new UsuariosRepositorio();
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult leerTodos()
+        public ActionResult PedidosCerrados()
         {
+            return View();
+        }
+        //*********************RELACION PEDIDO GLOBAL - ARTICULO*****************
+        [HttpPost]
+        public ActionResult getArticulosByPedido(FormCollection data)
+        {
+            Guid idPedido = Guid.Parse(data["idPedido"]);
+            var articulos = from a in ArticulosRepo.getArticulosById(PedidosRepo.getArticulosByPedido(idPedido))
+                            select new
+                            {
+                                idArticulo = a.idArticulo,
+                                nombre = a.Nombre,
+                                imagen = a.Imagen,
+                                descripcion = a.Descripcion,
+                                precio = a.Precio,
+                                fKCategoria = a.FKCategoria,
+                                categoriaNombre = ArticulosRepo.leerCategoria(a.FKCategoria).Nombre
+                            };
+            return Json(articulos);
+        }
+
+        //*******************************LINEA PEDIDO USUARIO***************************
+        public ActionResult getArticulosByPedidoUsuario(FormCollection data)
+        {
+            Guid idPedidoUsuario = Guid.Parse(data["idPedidoUsuario"]);
+
+            var articulos = from a in PedidosRepo.getLineasPedidoUsuarioByPedidoUsuario(idPedidoUsuario)
+                            select new 
+                            {
+                                idArticulo = ArticulosRepo.leerArticulo(a.FKArticulo).idArticulo,
+                                nombre = ArticulosRepo.leerArticulo(a.FKArticulo).Nombre,
+                                imagen = ArticulosRepo.leerArticulo(a.FKArticulo).Imagen,
+                                descripcion = ArticulosRepo.leerArticulo(a.FKArticulo).Descripcion,
+                                precio = ArticulosRepo.leerArticulo(a.FKArticulo).Precio,
+                                fKCategoria = ArticulosRepo.leerArticulo(a.FKArticulo).FKCategoria,
+                                categoriaNombre = ArticulosRepo.leerCategoria(ArticulosRepo.leerArticulo(a.FKArticulo).FKCategoria).Nombre,
+                                unidades = a.Unidades
+                            };  
+            return Json(articulos);
+        }
+
+
+        //*********************************PEDIDOS********************************
+        public ActionResult leerTodos()
+        { 
             var pedidos = from ped in PedidosRepo.listarPedidos()
                           select new
                           {
@@ -34,20 +81,111 @@ namespace TortolasProject.Controllers
         public int anadirPedido(FormCollection Data)
         {
             String nombre = Data["Nombre"];
-            int descuento = int.Parse(Data["Descuento"]);
+            Decimal descuento = Decimal.Parse(Data["Descuento"]);
             DateTime date = DateTime.Parse(Data["Fecha"]);
-
+            var articulosRaw = System.Web.Helpers.Json.Decode(Data["Articulos"]);
+            Guid idPedidoGlobal = Guid.NewGuid();
             tbPedidoGlobal f = new tbPedidoGlobal()
             {
                 Nombre = nombre,
                 DescuentoFijo = descuento,
-                idPedidoGlobal = Guid.NewGuid(),
+                idPedidoGlobal = idPedidoGlobal,
                 Total = 0,
                 FechaLimite = date
             };
 
-            PedidosRepo.anadirPedido(f);
+            PedidosRepo.anadirPedidoGlobal(f);
+
+            int i;
+            for (i = 0; i < articulosRaw.Length; i++)
+            {
+                Guid id = Guid.Parse(articulosRaw[i].idArticulo);
+                tbRelacionPedidoGlobalArticulo rpga = new tbRelacionPedidoGlobalArticulo
+                {
+                    FKPedidoGlobal = idPedidoGlobal,
+                    FKArticulo = id,
+                    idRelacionPedidoGlobalArticulo = Guid.NewGuid()
+                };
+                PedidosRepo.anadirRelacionPedidoGlobalArticulo(rpga);
+            }
             return 1;
         }
+        //*************************PEDIDOS USUARIO********************************
+        public ActionResult leerPedidosUsuarioByPedido(FormCollection data)
+        {
+            Guid idPedido = Guid.Parse(data["idPedido"]);
+            var PedidosUsuario = from peds in PedidosRepo.getPedidoUsuarioByPedido(idPedido)
+                                    select new
+                                    {
+                                        usuario = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Nickname,
+                                        subtotal = peds.Subtotal,
+                                        pagado = peds.Pagado,
+                                        idPedidoUsuario = peds.idPedidoUsuario,
+
+                                        Nombre = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Nombre,
+                                        Apellidos = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Apellidos,
+                                        Sexo = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Sexo,
+                                        Email = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Email,
+                                        Avatar = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Avatar,
+                                        Nacionaliad = UsuariosRepo.obtenerUsuario(peds.FKUsuario).Nacionalidad
+                                    };
+
+            return Json(PedidosUsuario);
+        }
+        
+        public ActionResult leerTodosPedidosUsuario()
+        {
+            var pedidosUsu = from ped in PedidosRepo.listarPedidosUsuario()
+                          select new
+                          {
+                              idPedidoUsuario = ped.idPedidoUsuario,
+                              FKPedidoGlobal = ped.FKPedidoGlobal,
+                              FKUsuario = ped.FKUsuario,
+                              Pagado = ped.Pagado,
+                              Subtotal = ped.Subtotal
+                          };
+            return Json(pedidosUsu);
+        }
+
+        public int anadirPedidoUsuario (FormCollection Data)
+        {
+            Guid FKUsuario = UsuariosRepo.obtenerUsuarioNoAsp(HomeController.obtenerUserIdActual()).idUsuario;
+            var lineasRaw = System.Web.Helpers.Json.Decode(Data["lineas"]);
+            Guid idPedido = Guid.Parse(Data["FKPedidoGlobal"]);
+            Guid idPedidoUsuario = Guid.NewGuid();
+            decimal total = 0;
+            tbPedidoUsuario f = new tbPedidoUsuario()
+            {
+                idPedidoUsuario = idPedidoUsuario,
+                FKPedidoGlobal = idPedido,
+                FKUsuario = FKUsuario,
+                Pagado = "No"                
+            };
+
+            IList<tbLineaPedidoUsuario> lista = new List<tbLineaPedidoUsuario>();
+            int i;
+            for (i=0;i<lineasRaw.Length;i++)
+            {
+                Guid idLineaPedidoUsuario = Guid.NewGuid();
+                tbLineaPedidoUsuario p = new tbLineaPedidoUsuario()
+                {
+                    idLineaPedidoUsuario = idLineaPedidoUsuario,
+                    FKPedidoUsuario = idPedidoUsuario,
+                    Unidades = lineasRaw[i].Unidades,
+                    FKArticulo = Guid.Parse(lineasRaw[i].idArticulo)
+                };
+                total+= ArticulosRepo.leerArticulo(p.FKArticulo).Precio * lineasRaw[i].Unidades;
+                lista.Add(p);
+            };
+            f.Subtotal = total;
+
+            PedidosRepo.anadirPedidoUsuario(f);
+            foreach (tbLineaPedidoUsuario linea in lista)
+            {
+                PedidosRepo.anadirLineaPedidoUsuario(linea);
+            }
+            return 1;
+        }
+
       }
 }

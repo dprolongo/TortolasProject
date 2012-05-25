@@ -87,4 +87,12 @@
 {
     border-bottom:3px solid gray;   
 }
+.empty-grid
+{
+    color: black;
+    background: #eee;
+    height: 100%;
+    text-align: center;
+    line-height: 100px;
+}
 

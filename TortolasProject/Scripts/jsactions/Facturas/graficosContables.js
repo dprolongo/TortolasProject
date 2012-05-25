@@ -64,7 +64,40 @@ function inicializar() {
     });
 
     $("#todos").click(function () {
-        inicializar();
+        var titulo = "Contabilidad";
+        var series = [
+        {
+            field: "ingresos",
+            name: "Ingresos",
+            color: "blue"
+        },
+        {
+            field: "gastos",
+            name: "Gastos",
+            color: "red"
+        }];
+        jQuery.removeData("#grafica", "kendoChart");
+        $("#grafica").empty();
+        dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "../Facturas/todosIngresosGastos",
+                dataType: "json",
+                type: "POST"
+            }
+        },
+        schema: {
+                model: {
+                    fields: {
+                        fecha: {  },
+                        ingresos: { type: "number"},
+                        gastos: { type: "number" }
+                    }
+                }
+            },
+    });
+    dataSource.read();    
+    graficaTodos(titulo, series);
     });
 
     $("#filtrarFecha").click(function () {
@@ -73,8 +106,7 @@ function inicializar() {
             inicial: $("#fechaInicio").val(),
             final: $("#fechaFinal").val()
         };
-        alert(kendo.stringify(datosPeriodo));
-        dataSourceFechas = dataSource = new kendo.data.DataSource({
+        dataSource = new kendo.data.DataSource({
             transport: {
                 read: {
                     url: url,
@@ -106,10 +138,9 @@ function inicializar() {
         }];
         jQuery.removeData("#grafica", "kendoChart");
         $("#grafica").empty();
-        graficaPeriodo(titulo,series);
+        graficaTodos(titulo,series);
     });
-    
-    
+       
 }
 
 function inicializarGrafica() {
@@ -137,41 +168,6 @@ function graficaTodos(titulo,series){
             height: 400,
         },
         dataSource: dataSource,
-        title: {
-            text: titulo
-        },
-        legend: {
-            position: "top"
-        },
-        seriesDefaults: {
-            type: "line"
-        },
-        series: series
-        ,
-        categoryAxis: {
-            field: "fecha"            
-        },
-        valueAxis: {
-            labels: {
-                format: "{0:N0}"
-            }
-        },
-        tooltip: {
-            visible: true,
-            template: "#= category # <br /> <b>#= series.name #</b> #= value  #€"
-        }
-    }).data("kendoChart");
-}
-
-function graficaPeriodo(titulo,series){
-    grafica = $("#grafica").kendoChart({
-        theme: $(document).data("kendoSkin") || "default",
-        height: 200,
-        chartArea: 
-        {                
-            height: 400,
-        },
-        dataSource: dataSourceFechas,
         title: {
             text: titulo
         },

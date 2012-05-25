@@ -128,27 +128,28 @@
                      <hr />
                      <br /><br />
 
-                     <div id="totalAlta" class="cuadroCuentas">
-                        <label for="importeAlta"><b>Importe :</b></label><div id="importeAlta"></div><br />
-                        <label for="IVAAlta"><b>IVA :</b></label><div id="IVAAlta"></div><br />
-                        <label for="importeTotalAlta"><b>Importe Total :</b></label><div id="importeTotalAlta"></div><br />                         
-                    </div>
+                     <div id="alta">
+                         <div id="totalAlta" class="cuadroCuentas">
+                            <label for="importeAlta"><b>Importe :</b></label><div id="importeAlta"></div><br />
+                            <label for="IVAAlta"><b>IVA :</b></label><div id="IVAAlta"></div><br />
+                            <label for="importeTotalAlta"><b>Importe Total :</b></label><div id="importeTotalAlta"></div><br />                         
+                        </div>
 
-                     <div id="textoAlta">
-                     Debido a que o nunca ha sido parte de MTB o ha sido de baja debe abonar la cuota de Alta. A continuacion podra ver los detalles.<br /><br />
-                     <table id="tarifasAlta" border="0" width="50%" >                        
-                        <thead>
+                         <div id="textoAlta">
+                         Debido a que o nunca ha sido parte de MTB o ha sido de baja debe abonar la cuota de Alta. A continuacion podra ver los detalles.<br /><br />
+                         <table id="tarifasAlta" border="0" width="50%" >                        
+                            <thead>
+                                <tr align="center">
+                                    <th>Tarifa de Alta de Socio</th>                               
+                                </tr>
+                            </thead>
                             <tr align="center">
-                                <th>Tarifa de Alta de Socio</th>                               
-                            </tr>
-                        </thead>
-                        <tr align="center">
-                            <td class="columnaAlta"> </td>
-                        </tr>                        
-                    </table><br /><i>
-                    * IVA No incluido</i><br /><br /><br /><br />
-                     </div>     <!-- Este texto solo se mostrara para las altas, el resto es comun -->
-
+                                <td class="columnaAlta"> </td>
+                            </tr>                        
+                        </table><br /><i>
+                        * IVA No incluido</i><br /><br /><br /><br />
+                         </div>     <!-- Este texto solo se mostrara para las altas, el resto es comun -->
+                    </div>
                      
                     Existen tres cuotas para la renovacion de Socio: mensual, trimestral y anual. Tiene dos maneras de pago : por <u>tarjeta</u> o <u>cuenta bancaria</u> o <u>PayPal</u>.
                     Una vez que recibamos su pago, el Sistema le activara su cuenta.<br />                                        

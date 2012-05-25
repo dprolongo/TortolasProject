@@ -236,7 +236,9 @@ namespace TortolasProject.Controllers.Perfil
                 MotivosBaja = societe.MotivosBaja,
                 FechaAlta = societe.FechaAlta.ToShortDateString(),
                 FechaBaja = societe.FechaBaja.HasValue == true ? societe.FechaBaja.Value.ToShortDateString() : null,
-                FechaExpiracion = societe.FechaExpiracion.HasValue == true ? societe.FechaExpiracion.Value.ToShortDateString() : null
+                FechaExpiracion = societe.FechaExpiracion.HasValue == true ? societe.FechaExpiracion.Value.ToShortDateString() : null,
+                TipoDescuento = usuariosRepo.nombreDescuentoSocio(societe.FKDescuento),
+                ValorDescuento = usuariosRepo.valorDescuentoSocio(societe.FKDescuento)
 
             };
 
@@ -305,7 +307,7 @@ namespace TortolasProject.Controllers.Perfil
 
             lineasFacturas.Add(renovacion);
             
-
+            
             tbCuota cuota = new tbCuota
             {
                 FKFactura = factura.idFactura,

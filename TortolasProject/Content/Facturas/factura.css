@@ -1,5 +1,16 @@
-﻿
-#facturaHeader
+﻿#facturaHeader
+{
+    position:relative;
+    float:left;
+    width:inherit;
+}
+#pdfButton
+{
+    position:relative;
+    float:right;
+}
+    
+#facturaDetalles
 {
     display:block;
     position:relative;
@@ -13,6 +24,37 @@
 {
     position:relative;
     float:right;
+}
+#relacionesExistentesDiv
+{
+    width:auto;
+    position:relative;
+    float:right;
+    border: 1px solid gray;
+    border-radius:5px;
+    padding:3px;
+  
+}
+#relacionesExistentesDiv #relacionDiv
+{
+    position:relative;
+    float:right;
+    margin-left:5px;
+    
+}
+#relacionesExistentesDiv #quitarRelacionButton 
+{
+    position:relative;
+    float:left;
+    font-weight:bold;
+}
+#relacionesExistentesDiv:hover
+{
+    position:relative;
+    float:left;
+    font-weight:bold;
+    background-color:#E3E3E3;
+    cursor:pointer;
 }
 #conceptoFacturaDiv
 {
